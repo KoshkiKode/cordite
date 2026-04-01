@@ -34,7 +34,7 @@ class_name CohesiveMaterialFactory
 
 ## Path to the cohesive shader within the Godot project.
 ## Adjust this constant if you move the shader to a different directory.
-const SHADER_PATH := "res://pipeline/cohesive_flat.gdshader"
+const SHADER_PATH := "res://assets/shaders/cohesive_flat.gdshader"
 
 ## Maximum number of colors supported in a palette texture.
 ## Must match MAX_PALETTE_SIZE in cohesive_flat.gdshader.
