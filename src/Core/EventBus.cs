@@ -46,6 +46,19 @@ public partial class EventBus : Node
     [Signal] public delegate void BuildingCompletedEventHandler(Node building);
     [Signal] public delegate void BuildingDestroyedEventHandler(Node building);
 
+    // ── Fog of War Events ────────────────────────────────────────────
+
+    [Signal] public delegate void FogUpdatedEventHandler(int playerId);
+    [Signal] public delegate void AreaExploredEventHandler(int playerId, int cellX, int cellY);
+    [Signal] public delegate void EntityRevealedEventHandler(int playerId, int entityId);
+    [Signal] public delegate void EntityHiddenEventHandler(int playerId, int entityId);
+
+    // ── Minimap Events ───────────────────────────────────────────────
+
+    [Signal] public delegate void MinimapPingEventHandler(int playerIndex, int gridX, int gridY, int pingType);
+    [Signal] public delegate void MinimapClickEventHandler(Vector3 worldPosition);
+    [Signal] public delegate void BaseUnderAttackEventHandler(int playerId, Vector3 position);
+
     // ── UI Events ────────────────────────────────────────────────────
 
     [Signal] public delegate void TooltipRequestedEventHandler(string text, Vector2 position);
@@ -77,4 +90,19 @@ public partial class EventBus : Node
     public void EmitBuildingPlaced(Node building) => EmitSignal(SignalName.BuildingPlaced, building);
     public void EmitBuildingCompleted(Node building) => EmitSignal(SignalName.BuildingCompleted, building);
     public void EmitBuildingDestroyed(Node building) => EmitSignal(SignalName.BuildingDestroyed, building);
+
+    public void EmitFogUpdated(int playerId) => EmitSignal(SignalName.FogUpdated, playerId);
+    public void EmitAreaExplored(int playerId, int cellX, int cellY) =>
+        EmitSignal(SignalName.AreaExplored, playerId, cellX, cellY);
+    public void EmitEntityRevealed(int playerId, int entityId) =>
+        EmitSignal(SignalName.EntityRevealed, playerId, entityId);
+    public void EmitEntityHidden(int playerId, int entityId) =>
+        EmitSignal(SignalName.EntityHidden, playerId, entityId);
+
+    public void EmitMinimapPing(int playerIndex, int gridX, int gridY, int pingType) =>
+        EmitSignal(SignalName.MinimapPing, playerIndex, gridX, gridY, pingType);
+    public void EmitMinimapClick(Vector3 worldPosition) =>
+        EmitSignal(SignalName.MinimapClick, worldPosition);
+    public void EmitBaseUnderAttack(int playerId, Vector3 position) =>
+        EmitSignal(SignalName.BaseUnderAttack, playerId, position);
 }
