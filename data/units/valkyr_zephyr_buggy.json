@@ -1,0 +1,48 @@
+{
+    "Id": "valkyr_zephyr_buggy",
+    "DisplayName": "Zephyr Buggy",
+    "FactionId": "valkyr",
+    "Category": "LightVehicle",
+    "MovementClassId": "LightVehicle",
+    "MaxHealth": 90.0,
+    "ArmorValue": 1.0,
+    "ArmorClass": "Light",
+    "SightRange": 10.0,
+    "BuildTime": 10.0,
+    "Cost": 600,
+    "SecondaryCost": 0,
+    "PopulationCost": 1,
+    "Weapons": [
+        {
+            "Id": "zephyr_autocannon",
+            "Type": "GatlingGun",
+            "Damage": 8.0,
+            "RateOfFire": 4.0,
+            "Range": 6.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 30.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 1,
+            "AccuracyPercent": 70.0,
+            "ArmorModifiers": {
+                "Unarmored": 1.5,
+                "Light": 1.0,
+                "Medium": 0.5,
+                "Heavy": 0.2,
+                "Aircraft": 0.3,
+                "Building": 0.3
+            }
+        }
+    ],
+    "SpecialAbilityId": "afterburner",
+    "Description": "Extremely fast scout that excels at running circles around slow armies. Catches air over hills.",
+    "SpeedOverride": 8.5,
+    "TurnRateOverride": null,
+    "MassOverride": 0.6,
+    "FootprintWidth": 2,
+    "FootprintHeight": 2,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false
+}

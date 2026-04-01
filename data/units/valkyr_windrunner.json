@@ -1,0 +1,48 @@
+{
+    "Id": "valkyr_windrunner",
+    "DisplayName": "Windrunner",
+    "FactionId": "valkyr",
+    "Category": "Infantry",
+    "MovementClassId": "Infantry",
+    "MaxHealth": 60.0,
+    "ArmorValue": 1.0,
+    "ArmorClass": "Unarmored",
+    "SightRange": 9.0,
+    "BuildTime": 6.0,
+    "Cost": 200,
+    "SecondaryCost": 0,
+    "PopulationCost": 1,
+    "Weapons": [
+        {
+            "Id": "windrunner_smg",
+            "Type": "MachineGun",
+            "Damage": 6.0,
+            "RateOfFire": 5.0,
+            "Range": 5.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 0.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 1,
+            "AccuracyPercent": 65.0,
+            "ArmorModifiers": {
+                "Unarmored": 1.5,
+                "Light": 0.8,
+                "Medium": 0.3,
+                "Heavy": 0.1,
+                "Aircraft": 0.0,
+                "Building": 0.2
+            }
+        }
+    ],
+    "SpecialAbilityId": "target_designator",
+    "Description": "Lightly-armed recon infantry that paints targets for the real killers above. Stealthed when stationary.",
+    "SpeedOverride": null,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 1,
+    "FootprintHeight": 1,
+    "CanGarrison": true,
+    "CanCrush": false,
+    "IsStealthed": true,
+    "IsDetector": false
+}

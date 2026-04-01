@@ -1,0 +1,51 @@
+{
+    "Id": "valkyr",
+    "DisplayName": "Valkyr",
+    "Archetype": "AirPrimary",
+    "Description": "Masters of vertical warfare. The Valkyr Ascendancy projects power from above — their doctrine of air supremacy treats the sky as sovereign territory. Swift, precise, and devastating from altitude, they trade ground durability for unmatched aerial dominance.",
+    "AestheticTheme": "sleek_hightech",
+    "ColorIndex": 0,
+    "HarvesterSpeedMod": 1.1,
+    "BuildSpeedMod": 0.9,
+    "UnitBuildSpeedMod": 0.85,
+    "IncomeMod": 0.95,
+    "DefenseCostMod": 1.2,
+    "AirUnitCostMod": 0.85,
+    "GroundUnitCostMod": 1.15,
+    "RepairRateMod": 1.0,
+    "FactionMechanicId": "sortie_system",
+    "AvailableUnitIds": [
+        "valkyr_windrunner",
+        "valkyr_skyguard",
+        "valkyr_gale_trooper",
+        "valkyr_zephyr_buggy",
+        "valkyr_mistral_apc",
+        "valkyr_kestrel",
+        "valkyr_harrier",
+        "valkyr_peregrine",
+        "valkyr_tempest",
+        "valkyr_shriek",
+        "valkyr_updraft",
+        "valkyr_overwatch_drone",
+        "valkyr_stormcaller",
+        "valkyr_valkyrie_carrier"
+    ],
+    "AvailableBuildingIds": [
+        "valkyr_command_center",
+        "valkyr_airstrip",
+        "valkyr_barracks",
+        "valkyr_refinery",
+        "valkyr_power_plant",
+        "valkyr_radar_spire",
+        "valkyr_tech_lab",
+        "valkyr_wind_wall",
+        "valkyr_skypiercer_turret",
+        "valkyr_downburst_turret"
+    ],
+    "TechTreeUnlocks": {
+        "advanced_avionics": 1500,
+        "precision_munitions": 2000,
+        "sortie_optimization": 1200,
+        "stealth_coating": 2500
+    }
+}
