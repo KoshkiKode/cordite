@@ -1,0 +1,777 @@
+{
+  "fingerprint": "processed/quaternius_fingerprint.json",
+  "input": "raw/kenney-space/Models/GLTF format",
+  "output_dir": "processed/kenney",
+  "preserve_animations": false,
+  "aggressive": false,
+  "total": 153,
+  "success": 153,
+  "failed": 0,
+  "results": [
+    {
+      "input": "raw/kenney-space/Models/GLTF format/alien.glb",
+      "output": "processed/kenney/alien_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/astronautA.glb",
+      "output": "processed/kenney/astronautA_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/astronautB.glb",
+      "output": "processed/kenney/astronautB_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/barrel.glb",
+      "output": "processed/kenney/barrel_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/barrels.glb",
+      "output": "processed/kenney/barrels_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/barrels_rail.glb",
+      "output": "processed/kenney/barrels_rail_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/bones.glb",
+      "output": "processed/kenney/bones_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/chimney.glb",
+      "output": "processed/kenney/chimney_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/chimney_detailed.glb",
+      "output": "processed/kenney/chimney_detailed_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/corridor.glb",
+      "output": "processed/kenney/corridor_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/corridor_corner.glb",
+      "output": "processed/kenney/corridor_corner_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/corridor_cornerRound.glb",
+      "output": "processed/kenney/corridor_cornerRound_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/corridor_cornerRoundWindow.glb",
+      "output": "processed/kenney/corridor_cornerRoundWindow_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/corridor_cross.glb",
+      "output": "processed/kenney/corridor_cross_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/corridor_detailed.glb",
+      "output": "processed/kenney/corridor_detailed_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/corridor_end.glb",
+      "output": "processed/kenney/corridor_end_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/corridor_open.glb",
+      "output": "processed/kenney/corridor_open_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/corridor_roof.glb",
+      "output": "processed/kenney/corridor_roof_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/corridor_split.glb",
+      "output": "processed/kenney/corridor_split_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/corridor_wall.glb",
+      "output": "processed/kenney/corridor_wall_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/corridor_wallCorner.glb",
+      "output": "processed/kenney/corridor_wallCorner_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/corridor_window.glb",
+      "output": "processed/kenney/corridor_window_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/corridor_windowClosed.glb",
+      "output": "processed/kenney/corridor_windowClosed_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/craft_cargoA.glb",
+      "output": "processed/kenney/craft_cargoA_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/craft_cargoB.glb",
+      "output": "processed/kenney/craft_cargoB_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/craft_miner.glb",
+      "output": "processed/kenney/craft_miner_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/craft_racer.glb",
+      "output": "processed/kenney/craft_racer_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/craft_speederA.glb",
+      "output": "processed/kenney/craft_speederA_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/craft_speederB.glb",
+      "output": "processed/kenney/craft_speederB_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/craft_speederC.glb",
+      "output": "processed/kenney/craft_speederC_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/craft_speederD.glb",
+      "output": "processed/kenney/craft_speederD_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/crater.glb",
+      "output": "processed/kenney/crater_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/craterLarge.glb",
+      "output": "processed/kenney/craterLarge_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/desk_chair.glb",
+      "output": "processed/kenney/desk_chair_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/desk_chairArms.glb",
+      "output": "processed/kenney/desk_chairArms_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/desk_chairStool.glb",
+      "output": "processed/kenney/desk_chairStool_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/desk_computer.glb",
+      "output": "processed/kenney/desk_computer_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/desk_computerCorner.glb",
+      "output": "processed/kenney/desk_computerCorner_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/desk_computerScreen.glb",
+      "output": "processed/kenney/desk_computerScreen_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/gate_complex.glb",
+      "output": "processed/kenney/gate_complex_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/gate_simple.glb",
+      "output": "processed/kenney/gate_simple_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/hangar_largeA.glb",
+      "output": "processed/kenney/hangar_largeA_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/hangar_largeB.glb",
+      "output": "processed/kenney/hangar_largeB_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/hangar_roundA.glb",
+      "output": "processed/kenney/hangar_roundA_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/hangar_roundB.glb",
+      "output": "processed/kenney/hangar_roundB_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/hangar_roundGlass.glb",
+      "output": "processed/kenney/hangar_roundGlass_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/hangar_smallA.glb",
+      "output": "processed/kenney/hangar_smallA_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/hangar_smallB.glb",
+      "output": "processed/kenney/hangar_smallB_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/machine_barrel.glb",
+      "output": "processed/kenney/machine_barrel_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/machine_barrelLarge.glb",
+      "output": "processed/kenney/machine_barrelLarge_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/machine_generator.glb",
+      "output": "processed/kenney/machine_generator_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/machine_generatorLarge.glb",
+      "output": "processed/kenney/machine_generatorLarge_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/machine_wireless.glb",
+      "output": "processed/kenney/machine_wireless_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/machine_wirelessCable.glb",
+      "output": "processed/kenney/machine_wirelessCable_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/meteor.glb",
+      "output": "processed/kenney/meteor_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/meteor_detailed.glb",
+      "output": "processed/kenney/meteor_detailed_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/meteor_half.glb",
+      "output": "processed/kenney/meteor_half_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/monorail_trackCornerLarge.glb",
+      "output": "processed/kenney/monorail_trackCornerLarge_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/monorail_trackCornerSmall.glb",
+      "output": "processed/kenney/monorail_trackCornerSmall_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/monorail_trackSlope.glb",
+      "output": "processed/kenney/monorail_trackSlope_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/monorail_trackStraight.glb",
+      "output": "processed/kenney/monorail_trackStraight_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/monorail_trackSupport.glb",
+      "output": "processed/kenney/monorail_trackSupport_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/monorail_trackSupportCorner.glb",
+      "output": "processed/kenney/monorail_trackSupportCorner_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/monorail_trainBox.glb",
+      "output": "processed/kenney/monorail_trainBox_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/monorail_trainCargo.glb",
+      "output": "processed/kenney/monorail_trainCargo_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/monorail_trainEnd.glb",
+      "output": "processed/kenney/monorail_trainEnd_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/monorail_trainFlat.glb",
+      "output": "processed/kenney/monorail_trainFlat_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/monorail_trainFront.glb",
+      "output": "processed/kenney/monorail_trainFront_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/monorail_trainPassenger.glb",
+      "output": "processed/kenney/monorail_trainPassenger_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/pipe_corner.glb",
+      "output": "processed/kenney/pipe_corner_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/pipe_cornerDiagonal.glb",
+      "output": "processed/kenney/pipe_cornerDiagonal_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/pipe_cornerRound.glb",
+      "output": "processed/kenney/pipe_cornerRound_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/pipe_cornerRoundLarge.glb",
+      "output": "processed/kenney/pipe_cornerRoundLarge_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/pipe_cross.glb",
+      "output": "processed/kenney/pipe_cross_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/pipe_end.glb",
+      "output": "processed/kenney/pipe_end_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/pipe_entrance.glb",
+      "output": "processed/kenney/pipe_entrance_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/pipe_open.glb",
+      "output": "processed/kenney/pipe_open_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/pipe_rampLarge.glb",
+      "output": "processed/kenney/pipe_rampLarge_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/pipe_rampSmall.glb",
+      "output": "processed/kenney/pipe_rampSmall_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/pipe_ring.glb",
+      "output": "processed/kenney/pipe_ring_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/pipe_ringHigh.glb",
+      "output": "processed/kenney/pipe_ringHigh_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/pipe_ringHighEnd.glb",
+      "output": "processed/kenney/pipe_ringHighEnd_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/pipe_ringSupport.glb",
+      "output": "processed/kenney/pipe_ringSupport_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/pipe_split.glb",
+      "output": "processed/kenney/pipe_split_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/pipe_straight.glb",
+      "output": "processed/kenney/pipe_straight_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/pipe_supportHigh.glb",
+      "output": "processed/kenney/pipe_supportHigh_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/pipe_supportLow.glb",
+      "output": "processed/kenney/pipe_supportLow_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/platform_center.glb",
+      "output": "processed/kenney/platform_center_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/platform_corner.glb",
+      "output": "processed/kenney/platform_corner_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/platform_cornerOpen.glb",
+      "output": "processed/kenney/platform_cornerOpen_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/platform_cornerRound.glb",
+      "output": "processed/kenney/platform_cornerRound_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/platform_end.glb",
+      "output": "processed/kenney/platform_end_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/platform_high.glb",
+      "output": "processed/kenney/platform_high_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/platform_large.glb",
+      "output": "processed/kenney/platform_large_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/platform_long.glb",
+      "output": "processed/kenney/platform_long_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/platform_low.glb",
+      "output": "processed/kenney/platform_low_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/platform_side.glb",
+      "output": "processed/kenney/platform_side_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/platform_small.glb",
+      "output": "processed/kenney/platform_small_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/platform_smallDiagonal.glb",
+      "output": "processed/kenney/platform_smallDiagonal_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/platform_straight.glb",
+      "output": "processed/kenney/platform_straight_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/rail.glb",
+      "output": "processed/kenney/rail_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/rail_corner.glb",
+      "output": "processed/kenney/rail_corner_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/rail_end.glb",
+      "output": "processed/kenney/rail_end_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/rail_middle.glb",
+      "output": "processed/kenney/rail_middle_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/rock.glb",
+      "output": "processed/kenney/rock_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/rock_crystals.glb",
+      "output": "processed/kenney/rock_crystals_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/rock_crystalsLargeA.glb",
+      "output": "processed/kenney/rock_crystalsLargeA_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/rock_crystalsLargeB.glb",
+      "output": "processed/kenney/rock_crystalsLargeB_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/rock_largeA.glb",
+      "output": "processed/kenney/rock_largeA_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/rock_largeB.glb",
+      "output": "processed/kenney/rock_largeB_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/rocket_baseA.glb",
+      "output": "processed/kenney/rocket_baseA_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/rocket_baseB.glb",
+      "output": "processed/kenney/rocket_baseB_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/rocket_finsA.glb",
+      "output": "processed/kenney/rocket_finsA_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/rocket_finsB.glb",
+      "output": "processed/kenney/rocket_finsB_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/rocket_fuelA.glb",
+      "output": "processed/kenney/rocket_fuelA_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/rocket_fuelB.glb",
+      "output": "processed/kenney/rocket_fuelB_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/rocket_sidesA.glb",
+      "output": "processed/kenney/rocket_sidesA_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/rocket_sidesB.glb",
+      "output": "processed/kenney/rocket_sidesB_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/rocket_topA.glb",
+      "output": "processed/kenney/rocket_topA_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/rocket_topB.glb",
+      "output": "processed/kenney/rocket_topB_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/rocks_smallA.glb",
+      "output": "processed/kenney/rocks_smallA_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/rocks_smallB.glb",
+      "output": "processed/kenney/rocks_smallB_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/rover.glb",
+      "output": "processed/kenney/rover_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/satelliteDish.glb",
+      "output": "processed/kenney/satelliteDish_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/satelliteDish_detailed.glb",
+      "output": "processed/kenney/satelliteDish_detailed_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/satelliteDish_large.glb",
+      "output": "processed/kenney/satelliteDish_large_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/stairs.glb",
+      "output": "processed/kenney/stairs_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/stairs_corner.glb",
+      "output": "processed/kenney/stairs_corner_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/stairs_short.glb",
+      "output": "processed/kenney/stairs_short_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/structure.glb",
+      "output": "processed/kenney/structure_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/structure_closed.glb",
+      "output": "processed/kenney/structure_closed_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/structure_detailed.glb",
+      "output": "processed/kenney/structure_detailed_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/structure_diagonal.glb",
+      "output": "processed/kenney/structure_diagonal_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/supports_high.glb",
+      "output": "processed/kenney/supports_high_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/supports_low.glb",
+      "output": "processed/kenney/supports_low_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/terrain.glb",
+      "output": "processed/kenney/terrain_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/terrain_ramp.glb",
+      "output": "processed/kenney/terrain_ramp_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/terrain_rampLarge.glb",
+      "output": "processed/kenney/terrain_rampLarge_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/terrain_rampLarge_detailed.glb",
+      "output": "processed/kenney/terrain_rampLarge_detailed_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/terrain_roadCorner.glb",
+      "output": "processed/kenney/terrain_roadCorner_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/terrain_roadCross.glb",
+      "output": "processed/kenney/terrain_roadCross_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/terrain_roadEnd.glb",
+      "output": "processed/kenney/terrain_roadEnd_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/terrain_roadSplit.glb",
+      "output": "processed/kenney/terrain_roadSplit_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/terrain_roadStraight.glb",
+      "output": "processed/kenney/terrain_roadStraight_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/terrain_side.glb",
+      "output": "processed/kenney/terrain_side_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/terrain_sideCliff.glb",
+      "output": "processed/kenney/terrain_sideCliff_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/terrain_sideCorner.glb",
+      "output": "processed/kenney/terrain_sideCorner_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/terrain_sideCornerInner.glb",
+      "output": "processed/kenney/terrain_sideCornerInner_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/terrain_sideEnd.glb",
+      "output": "processed/kenney/terrain_sideEnd_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/turret_double.glb",
+      "output": "processed/kenney/turret_double_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/turret_single.glb",
+      "output": "processed/kenney/turret_single_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/weapon_gun.glb",
+      "output": "processed/kenney/weapon_gun_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/kenney-space/Models/GLTF format/weapon_rifle.glb",
+      "output": "processed/kenney/weapon_rifle_cohesive.glb",
+      "status": "ok"
+    }
+  ]
+}

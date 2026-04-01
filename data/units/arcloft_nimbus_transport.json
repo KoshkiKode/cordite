@@ -1,0 +1,48 @@
+{
+    "Id": "arcloft_nimbus_transport",
+    "DisplayName": "Nimbus Transport",
+    "FactionId": "arcloft",
+    "Category": "APC",
+    "MovementClassId": "APC",
+    "MaxHealth": 228.0,
+    "ArmorValue": 4.0,
+    "ArmorClass": "Medium",
+    "SightRange": 9.0,
+    "BuildTime": 15.0,
+    "Cost": 700,
+    "SecondaryCost": 0,
+    "PopulationCost": 2,
+    "Weapons": [
+        {
+            "Id": "nimbus_transport_primary",
+            "Type": "None",
+            "Damage": 10.0,
+            "RateOfFire": 1.0,
+            "Range": 7.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 0.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 1,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.5,
+                "Light": 1.0,
+                "Medium": 0.8,
+                "Heavy": 0.5,
+                "Unarmored": 1.0,
+                "Building": 0.5
+            }
+        }
+    ],
+    "SpecialAbilityId": "point_defense",
+    "Description": "Armored transport with active missile defense \u2014 surprisingly survivable for its size.",
+    "SpeedOverride": null,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 2,
+    "FootprintHeight": 2,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false
+}

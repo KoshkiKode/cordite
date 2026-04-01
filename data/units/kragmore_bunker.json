@@ -1,0 +1,48 @@
+{
+    "Id": "kragmore_bunker",
+    "DisplayName": "Bunker",
+    "FactionId": "kragmore",
+    "Category": "Defense",
+    "MovementClassId": "Static",
+    "MaxHealth": 465.0,
+    "ArmorValue": 8.0,
+    "ArmorClass": "Building",
+    "SightRange": 8.0,
+    "BuildTime": 18.0,
+    "Cost": 1000,
+    "SecondaryCost": 50,
+    "PopulationCost": 0,
+    "Weapons": [
+        {
+            "Id": "bunker_primary",
+            "Type": "MachineGun",
+            "Damage": 10.0,
+            "RateOfFire": 2.5,
+            "Range": 9.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 0.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.8,
+                "Light": 1.0,
+                "Medium": 0.5,
+                "Heavy": 0.2,
+                "Unarmored": 1.5,
+                "Building": 0.2
+            }
+        }
+    ],
+    "SpecialAbilityId": "garrison_bunker",
+    "Description": "Heavily fortified infantry fighting position \u2014 hard to crack without siege weapons.",
+    "SpeedOverride": null,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 2,
+    "FootprintHeight": 2,
+    "CanGarrison": true,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false
+}

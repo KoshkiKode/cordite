@@ -1,0 +1,48 @@
+{
+    "Id": "stormrend_thunderclap",
+    "DisplayName": "Thunderclap",
+    "FactionId": "stormrend",
+    "Category": "LightVehicle",
+    "MovementClassId": "LightVehicle",
+    "MaxHealth": 104.0,
+    "ArmorValue": 2.0,
+    "ArmorClass": "Light",
+    "SightRange": 10.0,
+    "BuildTime": 22.0,
+    "Cost": 1400,
+    "SecondaryCost": 100,
+    "PopulationCost": 3,
+    "Weapons": [
+        {
+            "Id": "thunderclap_primary",
+            "Type": "Rockets",
+            "Damage": 44.0,
+            "RateOfFire": 0.8,
+            "Range": 11.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 18.0,
+            "AreaOfEffect": 2.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 1.2,
+                "Light": 1.0,
+                "Medium": 0.8,
+                "Heavy": 0.6,
+                "Unarmored": 1.5,
+                "Building": 0.5
+            }
+        }
+    ],
+    "SpecialAbilityId": "fire_on_move",
+    "Description": "Mobile artillery that embodies Stormrend philosophy: it shoots, it moves, it never stops.",
+    "SpeedOverride": 0.385,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 2,
+    "FootprintHeight": 2,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false
+}

@@ -1,0 +1,48 @@
+{
+    "Id": "ironmarch_siegebreaker",
+    "DisplayName": "Siegebreaker",
+    "FactionId": "ironmarch",
+    "Category": "Tank",
+    "MovementClassId": "Tank",
+    "MaxHealth": 465.0,
+    "ArmorValue": 8.0,
+    "ArmorClass": "Medium",
+    "SightRange": 8.0,
+    "BuildTime": 30.0,
+    "Cost": 2200,
+    "SecondaryCost": 300,
+    "PopulationCost": 5,
+    "Weapons": [
+        {
+            "Id": "siegebreaker_primary",
+            "Type": "Cannon",
+            "Damage": 70.0,
+            "RateOfFire": 0.5,
+            "Range": 8.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 30.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.3,
+                "Light": 1.2,
+                "Medium": 1.0,
+                "Heavy": 0.8,
+                "Unarmored": 0.7,
+                "Building": 0.8
+            }
+        }
+    ],
+    "SpecialAbilityId": "structure_bonus",
+    "Description": "Purpose-built wall-breaker that leads the assault on enemy fortifications.",
+    "SpeedOverride": 0.126,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 2,
+    "FootprintHeight": 2,
+    "CanGarrison": false,
+    "CanCrush": true,
+    "IsStealthed": false,
+    "IsDetector": false
+}

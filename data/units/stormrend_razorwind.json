@@ -1,0 +1,48 @@
+{
+    "Id": "stormrend_razorwind",
+    "DisplayName": "Razorwind",
+    "FactionId": "stormrend",
+    "Category": "Infantry",
+    "MovementClassId": "Infantry",
+    "MaxHealth": 50.0,
+    "ArmorValue": 1.0,
+    "ArmorClass": "Unarmored",
+    "SightRange": 15.0,
+    "BuildTime": 8.0,
+    "Cost": 200,
+    "SecondaryCost": 0,
+    "PopulationCost": 1,
+    "Weapons": [
+        {
+            "Id": "razorwind_primary",
+            "Type": "MachineGun",
+            "Damage": 8.0,
+            "RateOfFire": 2.5,
+            "Range": 7.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 0.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.8,
+                "Light": 1.0,
+                "Medium": 0.5,
+                "Heavy": 0.2,
+                "Unarmored": 1.5,
+                "Building": 0.2
+            }
+        }
+    ],
+    "SpecialAbilityId": "sprint",
+    "Description": "Lightning-fast assault infantry that hits and vanishes before the enemy can respond.",
+    "SpeedOverride": null,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 1,
+    "FootprintHeight": 1,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false
+}

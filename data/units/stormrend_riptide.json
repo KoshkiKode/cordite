@@ -1,0 +1,48 @@
+{
+    "Id": "stormrend_riptide",
+    "DisplayName": "Riptide",
+    "FactionId": "stormrend",
+    "Category": "Tank",
+    "MovementClassId": "Tank",
+    "MaxHealth": 330.0,
+    "ArmorValue": 5.0,
+    "ArmorClass": "Medium",
+    "SightRange": 8.0,
+    "BuildTime": 22.0,
+    "Cost": 1400,
+    "SecondaryCost": 100,
+    "PopulationCost": 3,
+    "Weapons": [
+        {
+            "Id": "riptide_primary",
+            "Type": "Cannon",
+            "Damage": 10.0,
+            "RateOfFire": 3.0,
+            "Range": 8.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 30.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.3,
+                "Light": 1.2,
+                "Medium": 1.0,
+                "Heavy": 0.8,
+                "Unarmored": 0.7,
+                "Building": 0.8
+            }
+        }
+    ],
+    "SpecialAbilityId": "flanking_bonus",
+    "Description": "A tank that fights best at full speed \u2014 Stormrend's answer to armored warfare.",
+    "SpeedOverride": null,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 2,
+    "FootprintHeight": 2,
+    "CanGarrison": false,
+    "CanCrush": true,
+    "IsStealthed": false,
+    "IsDetector": false
+}

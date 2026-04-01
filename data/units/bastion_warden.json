@@ -1,0 +1,48 @@
+{
+    "Id": "bastion_warden",
+    "DisplayName": "Warden",
+    "FactionId": "bastion",
+    "Category": "Infantry",
+    "MovementClassId": "Infantry",
+    "MaxHealth": 80.0,
+    "ArmorValue": 3.0,
+    "ArmorClass": "Unarmored",
+    "SightRange": 8.0,
+    "BuildTime": 12.0,
+    "Cost": 400,
+    "SecondaryCost": 0,
+    "PopulationCost": 1,
+    "Weapons": [
+        {
+            "Id": "warden_primary",
+            "Type": "MachineGun",
+            "Damage": 10.0,
+            "RateOfFire": 1.5,
+            "Range": 9.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 0.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.8,
+                "Light": 1.0,
+                "Medium": 0.5,
+                "Heavy": 0.2,
+                "Unarmored": 1.5,
+                "Building": 0.2
+            }
+        }
+    ],
+    "SpecialAbilityId": "garrison_bonus",
+    "Description": "Defensive infantry that excels from within structures but is mediocre in the open.",
+    "SpeedOverride": 0.12,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 1,
+    "FootprintHeight": 1,
+    "CanGarrison": true,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false
+}

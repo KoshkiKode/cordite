@@ -1,0 +1,48 @@
+{
+    "Id": "arcloft_apex",
+    "DisplayName": "Apex",
+    "FactionId": "arcloft",
+    "Category": "Jet",
+    "MovementClassId": "Jet",
+    "MaxHealth": 128.0,
+    "ArmorValue": 3.0,
+    "ArmorClass": "Aircraft",
+    "SightRange": 12.0,
+    "BuildTime": 25.0,
+    "Cost": 1800,
+    "SecondaryCost": 200,
+    "PopulationCost": 4,
+    "Weapons": [
+        {
+            "Id": "apex_primary",
+            "Type": "Missile",
+            "Damage": 42.0,
+            "RateOfFire": 0.6,
+            "Range": 10.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 20.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 2,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 1.5,
+                "Light": 0.3,
+                "Medium": 0.2,
+                "Heavy": 0.2,
+                "Unarmored": 0.4,
+                "Building": 0.1
+            }
+        }
+    ],
+    "SpecialAbilityId": "loadout_switch",
+    "Description": "Flexible fighter that adapts to the current threat.",
+    "SpeedOverride": 0.7,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 1,
+    "FootprintHeight": 1,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false
+}

@@ -1,0 +1,48 @@
+{
+    "Id": "valkyr_harrier",
+    "DisplayName": "Harrier",
+    "FactionId": "valkyr",
+    "Category": "Helicopter",
+    "MovementClassId": "Helicopter",
+    "MaxHealth": 190.0,
+    "ArmorValue": 4.0,
+    "ArmorClass": "Aircraft",
+    "SightRange": 12.0,
+    "BuildTime": 25.0,
+    "Cost": 1800,
+    "SecondaryCost": 200,
+    "PopulationCost": 4,
+    "Weapons": [
+        {
+            "Id": "harrier_primary",
+            "Type": "Missile",
+            "Damage": 58.0,
+            "RateOfFire": 0.6,
+            "Range": 9.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 20.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 1.2,
+                "Light": 1.0,
+                "Medium": 0.8,
+                "Heavy": 0.6,
+                "Unarmored": 1.5,
+                "Building": 0.5
+            }
+        }
+    ],
+    "SpecialAbilityId": "hover_lock",
+    "Description": "Dedicated tank-hunter helicopter; the backbone of Valkyr's anti-armor capability.",
+    "SpeedOverride": 0.33,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 2,
+    "FootprintHeight": 2,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false
+}

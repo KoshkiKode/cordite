@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnnamedRTS.Core;
+using UnnamedRTS.Game.Assets;
 using UnnamedRTS.Systems.Pathfinding;
 
 namespace UnnamedRTS.Game.Units;
@@ -633,5 +634,91 @@ public class CombatResolver
         FixedPoint absDelta = FixedPoint.Abs(delta);
 
         return absDelta <= halfArc;
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // REGISTRY INTEGRATION
+    // ═══════════════════════════════════════════════════════════════════════
+
+    /// <summary>
+    /// Builds an <see cref="AttackerInfo"/> using weapon data from the
+    /// <see cref="UnitDataRegistry"/>. Ensures weapon ranges, damage values,
+    /// and armor modifiers come from the loaded JSON data rather than
+    /// hard-coded values.
+    /// </summary>
+    /// <param name="unitId">Runtime unit instance ID.</param>
+    /// <param name="playerId">Owning player ID.</param>
+    /// <param name="dataId">Unit type ID for registry lookup.</param>
+    /// <param name="position">Current world position.</param>
+    /// <param name="facing">Current facing angle in radians.</param>
+    /// <param name="currentTargetId">Currently targeted unit, or null.</param>
+    /// <param name="weaponCooldowns">Per-weapon cooldown ticks remaining.</param>
+    /// <param name="registry">The unit data registry to look up weapon stats from.</param>
+    /// <returns>A fully populated <see cref="AttackerInfo"/>.</returns>
+    public static AttackerInfo BuildAttackerInfo(
+        int unitId,
+        int playerId,
+        string dataId,
+        FixedVector2 position,
+        FixedPoint facing,
+        int? currentTargetId,
+        List<FixedPoint> weaponCooldowns,
+        UnitDataRegistry registry)
+    {
+        UnitData unitData = registry.GetUnitData(dataId);
+        return new AttackerInfo
+        {
+            UnitId = unitId,
+            PlayerId = playerId,
+            Position = position,
+            Facing = facing,
+            CurrentTargetId = currentTargetId,
+            Weapons = unitData.Weapons,
+            WeaponCooldowns = weaponCooldowns
+        };
+    }
+
+    /// <summary>
+    /// Builds a <see cref="UnitCombatInfo"/> using stats from the
+    /// <see cref="UnitDataRegistry"/> and <see cref="AssetRegistry"/>.
+    /// </summary>
+    /// <param name="unitId">Runtime unit instance ID.</param>
+    /// <param name="playerId">Owning player ID.</param>
+    /// <param name="dataId">Unit type ID for registry lookup.</param>
+    /// <param name="position">Current world position.</param>
+    /// <param name="health">Current health.</param>
+    /// <param name="isAir">Whether this is an airborne unit.</param>
+    /// <param name="isBuilding">Whether this is a building.</param>
+    /// <param name="isStealthed">Whether this unit is currently stealthed.</param>
+    /// <param name="unitRegistry">The unit data registry for stats.</param>
+    /// <param name="assetRegistry">The asset registry for collision radius.</param>
+    /// <returns>A fully populated <see cref="UnitCombatInfo"/>.</returns>
+    public static UnitCombatInfo BuildCombatInfo(
+        int unitId,
+        int playerId,
+        string dataId,
+        FixedVector2 position,
+        FixedPoint health,
+        bool isAir,
+        bool isBuilding,
+        bool isStealthed,
+        UnitDataRegistry unitRegistry,
+        AssetRegistry assetRegistry)
+    {
+        UnitData unitData = unitRegistry.GetUnitData(dataId);
+        return new UnitCombatInfo
+        {
+            UnitId = unitId,
+            PlayerId = playerId,
+            Position = position,
+            Health = health,
+            MaxHealth = unitData.MaxHealth,
+            ArmorValue = unitData.ArmorValue,
+            ArmorClass = unitData.ArmorClass,
+            IsAir = isAir,
+            IsBuilding = isBuilding,
+            IsStealthed = isStealthed,
+            Radius = assetRegistry.GetCollisionRadius(dataId)
+        };
     }
 }

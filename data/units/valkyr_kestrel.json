@@ -1,0 +1,48 @@
+{
+    "Id": "valkyr_kestrel",
+    "DisplayName": "Kestrel",
+    "FactionId": "valkyr",
+    "Category": "Helicopter",
+    "MovementClassId": "Helicopter",
+    "MaxHealth": 160.0,
+    "ArmorValue": 3.0,
+    "ArmorClass": "Aircraft",
+    "SightRange": 15.0,
+    "BuildTime": 18.0,
+    "Cost": 1000,
+    "SecondaryCost": 50,
+    "PopulationCost": 2,
+    "Weapons": [
+        {
+            "Id": "kestrel_primary",
+            "Type": "GatlingGun",
+            "Damage": 7.0,
+            "RateOfFire": 3.0,
+            "Range": 9.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 0.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.8,
+                "Light": 1.0,
+                "Medium": 0.5,
+                "Heavy": 0.2,
+                "Unarmored": 1.5,
+                "Building": 0.2
+            }
+        }
+    ],
+    "SpecialAbilityId": "recon_pulse",
+    "Description": "Fast attack helicopter that doubles as Valkyr's primary scouting platform.",
+    "SpeedOverride": 0.36,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 2,
+    "FootprintHeight": 2,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": true
+}

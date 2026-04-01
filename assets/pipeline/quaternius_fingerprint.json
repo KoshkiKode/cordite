@@ -1,0 +1,1525 @@
+{
+  "source": "quaternius",
+  "model_count": 100,
+  "poly_stats": {
+    "median_face_count": 587.5,
+    "p25_face_count": 324.0,
+    "p75_face_count": 1339.25,
+    "mean_face_area": 0.125695
+  },
+  "edge_angle_histogram": {
+    "0-30": 0.673412,
+    "30-60": 0.131648,
+    "60-90": 0.089712,
+    "90-120": 0.100536,
+    "120-150": 0.004014,
+    "150-180": 0.00068
+  },
+  "color_palette": [
+    "#404040",
+    "#585858",
+    "#707070",
+    "#B8B8B8",
+    "#D0D0D0",
+    "#F0F0F0",
+    "#FFFFFF",
+    "#602020",
+    "#982020",
+    "#B00000",
+    "#D04030",
+    "#B87048",
+    "#A07050",
+    "#884818",
+    "#C89058",
+    "#C07020",
+    "#A87020",
+    "#F8B040",
+    "#D8B070",
+    "#E09818",
+    "#B89028",
+    "#C0B8A0",
+    "#A88810",
+    "#C0A018",
+    "#303820",
+    "#508028",
+    "#406830",
+    "#306820",
+    "#68A858",
+    "#202820",
+    "#68A8A8",
+    "#60C8C8",
+    "#50A8B0",
+    "#98C0C8",
+    "#2090A8",
+    "#206898",
+    "#788090",
+    "#A0A0A8",
+    "#302060",
+    "#8060D0",
+    "#8040A0",
+    "#9850B8",
+    "#601868",
+    "#804070",
+    "#B06098",
+    "#E888C0",
+    "#481028",
+    "#600028"
+  ],
+  "dominant_colors": [
+    "#404040",
+    "#585858",
+    "#707070",
+    "#B8B8B8",
+    "#D0D0D0",
+    "#F0F0F0",
+    "#FFFFFF",
+    "#602020",
+    "#982020",
+    "#B00000",
+    "#D04030",
+    "#B87048"
+  ],
+  "scale_stats": {
+    "median_extent_x": 3.2289,
+    "median_extent_y": 2.5499,
+    "median_extent_z": 3.5032
+  },
+  "shading": {
+    "flat_percentage": 0.95,
+    "smooth_percentage": 0.05
+  },
+  "per_model": [
+    {
+      "file": "mech_George.fbx",
+      "face_count": 4273,
+      "vertex_count": 4603,
+      "colors": [
+        "#1F3F2F",
+        "#4F1F00",
+        "#4F4F4F",
+        "#000000",
+        "#FFFFFF"
+      ],
+      "extent": [
+        3.8364,
+        2.917,
+        6.1726
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "mech_Leela.fbx",
+      "face_count": 1159,
+      "vertex_count": 1278,
+      "colors": [
+        "#0F0F0F",
+        "#4F1F00",
+        "#2F2F2F",
+        "#4F4F4F",
+        "#000000",
+        "#FFFFFF"
+      ],
+      "extent": [
+        3.8203,
+        2.9569,
+        4.9515
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "mech_Mike.fbx",
+      "face_count": 2977,
+      "vertex_count": 3242,
+      "colors": [
+        "#2F2F2F",
+        "#4F4F4F",
+        "#1F3F5F",
+        "#000000",
+        "#4F1F00",
+        "#FFFFFF"
+      ],
+      "extent": [
+        4.3762,
+        3.5476,
+        4.9632
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "mech_Stan.fbx",
+      "face_count": 2861,
+      "vertex_count": 3109,
+      "colors": [
+        "#2F2F2F",
+        "#000000",
+        "#3F0000",
+        "#4F1F00",
+        "#4F4F4F",
+        "#FFFFFF"
+      ],
+      "extent": [
+        4.301,
+        3.5293,
+        6.1033
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Astronaut_BarbaraTheBee.fbx",
+      "face_count": 4268,
+      "vertex_count": 4364,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.2289,
+        1.0521,
+        2.6296
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Astronaut_FernandoTheFlamingo.fbx",
+      "face_count": 3940,
+      "vertex_count": 4026,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.2289,
+        1.1374,
+        2.6688
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Astronaut_FinnTheFrog.fbx",
+      "face_count": 4274,
+      "vertex_count": 4362,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.2289,
+        1.4977,
+        2.5467
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Astronaut_RaeTheRedPanda.fbx",
+      "face_count": 4002,
+      "vertex_count": 4073,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.2289,
+        1.2478,
+        2.7773
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Base_Large.fbx",
+      "face_count": 1313,
+      "vertex_count": 1457,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        8.5299,
+        8.5299,
+        4.9713
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Building_L.fbx",
+      "face_count": 1414,
+      "vertex_count": 1478,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        7.798,
+        7.7946,
+        4.3147
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Bush_1.fbx",
+      "face_count": 1152,
+      "vertex_count": 1146,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.2554,
+        0.9791,
+        2.4772
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Bush_2.fbx",
+      "face_count": 752,
+      "vertex_count": 752,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        1.8219,
+        0.6207,
+        1.5981
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Bush_3.fbx",
+      "face_count": 320,
+      "vertex_count": 328,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        1.8619,
+        0.6274,
+        1.5848
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Connector.fbx",
+      "face_count": 254,
+      "vertex_count": 288,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.3681,
+        2.1706,
+        2.2131
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Enemy_ExtraSmall.fbx",
+      "face_count": 822,
+      "vertex_count": 792,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        0.9189,
+        0.9329,
+        1.6817
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Enemy_Flying.fbx",
+      "face_count": 2004,
+      "vertex_count": 1924,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        1.2568,
+        1.2354,
+        3.7046
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Enemy_Large.fbx",
+      "face_count": 2406,
+      "vertex_count": 2407,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.2341,
+        1.3274,
+        3.6064
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Enemy_Small.fbx",
+      "face_count": 972,
+      "vertex_count": 944,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        1.2518,
+        1.505,
+        2.3454
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_GeodesicDome.fbx",
+      "face_count": 708,
+      "vertex_count": 756,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        8.5299,
+        8.5299,
+        5.2808
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Grass_1.fbx",
+      "face_count": 123,
+      "vertex_count": 156,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        1.2699,
+        0.9104,
+        0.9905
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Grass_2.fbx",
+      "face_count": 56,
+      "vertex_count": 64,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        1.7031,
+        1.1713,
+        1.4029
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Grass_3.fbx",
+      "face_count": 216,
+      "vertex_count": 216,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        2.2251,
+        1.493,
+        2.3801
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_House_Cylinder.fbx",
+      "face_count": 585,
+      "vertex_count": 609,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        5.6086,
+        5.6086,
+        4.3239
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_House_Door.fbx",
+      "face_count": 42,
+      "vertex_count": 72,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        2.0291,
+        0.0642,
+        2.0296
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_House_Long.fbx",
+      "face_count": 1058,
+      "vertex_count": 1096,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.9939,
+        7.7911,
+        4.3056
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_House_Open.fbx",
+      "face_count": 578,
+      "vertex_count": 578,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.9939,
+        3.6145,
+        4.0
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_House_OpenBack.fbx",
+      "face_count": 590,
+      "vertex_count": 598,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.9939,
+        3.6145,
+        4.0
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_House_Single.fbx",
+      "face_count": 556,
+      "vertex_count": 566,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.9939,
+        3.8042,
+        4.0
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_House_Single_Support.fbx",
+      "face_count": 232,
+      "vertex_count": 256,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.5797,
+        3.5797,
+        0.8721
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Mech_BarbaraTheBee.fbx",
+      "face_count": 3406,
+      "vertex_count": 3487,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.1438,
+        2.5429,
+        2.615
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Mech_FernandoTheFlamingo.fbx",
+      "face_count": 1938,
+      "vertex_count": 2154,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.0158,
+        2.5565,
+        3.1845
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Mech_FinnTheFrog.fbx",
+      "face_count": 2780,
+      "vertex_count": 3076,
+      "colors": [
+        "#FFFFFF"
+      ],
+      "extent": [
+        4.4071,
+        2.5658,
+        2.7523
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Mech_RaeTheRedPanda.fbx",
+      "face_count": 1914,
+      "vertex_count": 2095,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.0158,
+        2.322,
+        2.7147
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_MetalSupport.fbx",
+      "face_count": 234,
+      "vertex_count": 248,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        0.1415,
+        5.9549,
+        1.2009
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Pickup_Bullets.fbx",
+      "face_count": 312,
+      "vertex_count": 318,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        0.8284,
+        0.2761,
+        0.8421
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Pickup_Crate.fbx",
+      "face_count": 685,
+      "vertex_count": 698,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        0.8729,
+        0.899,
+        0.8576
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Pickup_Health.fbx",
+      "face_count": 336,
+      "vertex_count": 350,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        0.9694,
+        0.4402,
+        1.0036
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Pickup_Jar.fbx",
+      "face_count": 146,
+      "vertex_count": 156,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        0.6919,
+        0.6919,
+        1.0236
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Pickup_KeyCard.fbx",
+      "face_count": 123,
+      "vertex_count": 160,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        1.0426,
+        0.0876,
+        0.674
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Pickup_Sphere.fbx",
+      "face_count": 928,
+      "vertex_count": 930,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        0.8856,
+        0.8856,
+        0.8856
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Pickup_Thunder.fbx",
+      "face_count": 115,
+      "vertex_count": 116,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        0.9728,
+        0.8832,
+        0.8618
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Planet_1.fbx",
+      "face_count": 5344,
+      "vertex_count": 5346,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.7895,
+        3.816,
+        3.9347
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Planet_10.fbx",
+      "face_count": 1718,
+      "vertex_count": 1295,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        5.7351,
+        5.7351,
+        4.6843
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Planet_11.fbx",
+      "face_count": 1085,
+      "vertex_count": 1107,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        5.595,
+        5.7443,
+        5.6712
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Planet_2.fbx",
+      "face_count": 5440,
+      "vertex_count": 5442,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.8092,
+        3.8496,
+        3.826
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Planet_3.fbx",
+      "face_count": 1200,
+      "vertex_count": 1202,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.6583,
+        3.4144,
+        3.6792
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Planet_4.fbx",
+      "face_count": 5649,
+      "vertex_count": 5246,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        4.493,
+        3.9699,
+        4.089
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Planet_5.fbx",
+      "face_count": 1064,
+      "vertex_count": 662,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        4.2334,
+        4.0261,
+        4.5164
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Planet_6.fbx",
+      "face_count": 1206,
+      "vertex_count": 801,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.7584,
+        3.7584,
+        3.7461
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Planet_7.fbx",
+      "face_count": 1531,
+      "vertex_count": 1007,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        4.8074,
+        4.455,
+        2.8671
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Planet_8.fbx",
+      "face_count": 1070,
+      "vertex_count": 535,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.4492,
+        3.7455,
+        3.7506
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Planet_9.fbx",
+      "face_count": 1864,
+      "vertex_count": 934,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.8227,
+        3.8088,
+        3.7461
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Plant_1.fbx",
+      "face_count": 297,
+      "vertex_count": 306,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        1.8037,
+        0.6419,
+        2.1805
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Plant_2.fbx",
+      "face_count": 100,
+      "vertex_count": 104,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        1.0567,
+        1.01,
+        1.9742
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Plant_3.fbx",
+      "face_count": 804,
+      "vertex_count": 816,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        2.1199,
+        1.4436,
+        2.9782
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Ramp.fbx",
+      "face_count": 96,
+      "vertex_count": 133,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        1.8747,
+        3.1145,
+        1.3918
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Rock_1.fbx",
+      "face_count": 111,
+      "vertex_count": 114,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.0954,
+        2.8301,
+        3.6088
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Rock_2.fbx",
+      "face_count": 111,
+      "vertex_count": 107,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        2.7418,
+        2.5185,
+        2.711
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Rock_3.fbx",
+      "face_count": 111,
+      "vertex_count": 114,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.3024,
+        3.0119,
+        3.8322
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Rock_4.fbx",
+      "face_count": 228,
+      "vertex_count": 232,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        2.156,
+        1.7005,
+        3.4636
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Rock_Large_1.fbx",
+      "face_count": 109,
+      "vertex_count": 113,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        7.6707,
+        7.3325,
+        3.2885
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Rock_Large_2.fbx",
+      "face_count": 220,
+      "vertex_count": 220,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        8.5429,
+        7.6188,
+        8.2064
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Rock_Large_3.fbx",
+      "face_count": 222,
+      "vertex_count": 228,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        5.3135,
+        5.1935,
+        7.4273
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Roof_Antenna.fbx",
+      "face_count": 208,
+      "vertex_count": 256,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        1.4117,
+        1.4335,
+        3.5428
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Roof_Opening.fbx",
+      "face_count": 162,
+      "vertex_count": 177,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        1.4117,
+        1.4335,
+        1.1958
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Roof_Radar.fbx",
+      "face_count": 487,
+      "vertex_count": 504,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        1.6266,
+        1.6493,
+        2.7133
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Roof_VentL.fbx",
+      "face_count": 56,
+      "vertex_count": 72,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        1.1485,
+        1.4335,
+        1.1485
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Rover_1.fbx",
+      "face_count": 3485,
+      "vertex_count": 3739,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.1388,
+        4.8278,
+        4.2926
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Rover_2.fbx",
+      "face_count": 3772,
+      "vertex_count": 4078,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        2.7445,
+        6.1923,
+        4.2926
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Rover_Round.fbx",
+      "face_count": 3415,
+      "vertex_count": 3612,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.9505,
+        3.4589,
+        4.8904
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_SolarPanel_Ground.fbx",
+      "face_count": 186,
+      "vertex_count": 208,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        1.289,
+        1.6667,
+        1.0958
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_SolarPanel_Roof.fbx",
+      "face_count": 406,
+      "vertex_count": 463,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        2.727,
+        1.7334,
+        1.7006
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_SolarPanel_Structure.fbx",
+      "face_count": 705,
+      "vertex_count": 772,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        4.0,
+        4.0,
+        3.0687
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Spaceship_BarbaraTheBee.fbx",
+      "face_count": 3222,
+      "vertex_count": 3153,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        7.3369,
+        4.9578,
+        5.7034
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Spaceship_FernandoTheFlamingo.fbx",
+      "face_count": 1348,
+      "vertex_count": 1524,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        11.1391,
+        8.6566,
+        2.5273
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Spaceship_FinnTheFrog.fbx",
+      "face_count": 1641,
+      "vertex_count": 1825,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        11.621,
+        4.1088,
+        3.0564
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Spaceship_RaeTheRedPanda.fbx",
+      "face_count": 798,
+      "vertex_count": 843,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        9.9488,
+        11.1662,
+        2.35
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Stairs.fbx",
+      "face_count": 128,
+      "vertex_count": 168,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        1.8747,
+        3.1145,
+        1.3918
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Tree_Blob_1.fbx",
+      "face_count": 3572,
+      "vertex_count": 3106,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.8627,
+        3.8627,
+        5.8756
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Tree_Blob_2.fbx",
+      "face_count": 3401,
+      "vertex_count": 2938,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.6869,
+        3.8627,
+        4.6091
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Tree_Blob_3.fbx",
+      "face_count": 1023,
+      "vertex_count": 980,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        2.804,
+        2.772,
+        3.4208
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Tree_Floating_1.fbx",
+      "face_count": 1220,
+      "vertex_count": 1219,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        2.0885,
+        0.8259,
+        4.6114
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Tree_Floating_2.fbx",
+      "face_count": 2024,
+      "vertex_count": 2028,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        2.6275,
+        0.843,
+        5.8663
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Tree_Floating_3.fbx",
+      "face_count": 2040,
+      "vertex_count": 2044,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.872,
+        0.843,
+        5.211
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Tree_Lava_1.fbx",
+      "face_count": 700,
+      "vertex_count": 650,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        1.1986,
+        1.1956,
+        3.2421
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Tree_Lava_2.fbx",
+      "face_count": 647,
+      "vertex_count": 598,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        1.2263,
+        1.1507,
+        3.0827
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Tree_Lava_3.fbx",
+      "face_count": 549,
+      "vertex_count": 553,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        1.1162,
+        1.1253,
+        2.0865
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Tree_Light_1.fbx",
+      "face_count": 1200,
+      "vertex_count": 1170,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        2.6343,
+        1.9563,
+        3.7642
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Tree_Light_2.fbx",
+      "face_count": 560,
+      "vertex_count": 558,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        1.445,
+        1.5096,
+        2.5101
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Tree_Spikes_1.fbx",
+      "face_count": 1384,
+      "vertex_count": 1306,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        4.0503,
+        4.0503,
+        5.1529
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Tree_Spikes_2.fbx",
+      "face_count": 923,
+      "vertex_count": 876,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        2.4208,
+        2.1149,
+        4.4924
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Tree_Spiral_1.fbx",
+      "face_count": 378,
+      "vertex_count": 381,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        2.3637,
+        2.2276,
+        4.4913
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Tree_Spiral_2.fbx",
+      "face_count": 753,
+      "vertex_count": 754,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.802,
+        2.2037,
+        6.1874
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Tree_Spiral_3.fbx",
+      "face_count": 640,
+      "vertex_count": 655,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        4.2203,
+        2.5434,
+        4.0539
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Tree_Swirl_1.fbx",
+      "face_count": 1005,
+      "vertex_count": 1032,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        4.6058,
+        1.6789,
+        7.3493
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "space_Tree_Swirl_2.fbx",
+      "face_count": 560,
+      "vertex_count": 569,
+      "colors": [
+        "#CFCFCF"
+      ],
+      "extent": [
+        3.0734,
+        1.1483,
+        5.1523
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "tank_Tank.fbx",
+      "face_count": 2921,
+      "vertex_count": 3220,
+      "colors": [
+        "#FFFFFF",
+        "#1F1F1F"
+      ],
+      "extent": [
+        14.7462,
+        10.0925,
+        4.6491
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "tank_Tank2.fbx",
+      "face_count": 3463,
+      "vertex_count": 3816,
+      "colors": [
+        "#FFFFFF",
+        "#1F1F0F",
+        "#4F3F2F"
+      ],
+      "extent": [
+        14.7462,
+        10.0925,
+        3.6791
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "tank_Tank3.fbx",
+      "face_count": 3149,
+      "vertex_count": 3471,
+      "colors": [
+        "#FFFFFF",
+        "#0F0F0F",
+        "#3F2F2F"
+      ],
+      "extent": [
+        14.7462,
+        10.5427,
+        4.5161
+      ],
+      "flat_shaded": false
+    },
+    {
+      "file": "tank_Tank4.fbx",
+      "face_count": 5474,
+      "vertex_count": 6027,
+      "colors": [
+        "#FFFFFF",
+        "#1F0F0F",
+        "#7F4F2F"
+      ],
+      "extent": [
+        14.7462,
+        9.8778,
+        4.0129
+      ],
+      "flat_shaded": false
+    }
+  ],
+  "material_properties": {
+    "metallic": 0.0,
+    "roughness": 0.69,
+    "specular": 0.2,
+    "ior": 1.45
+  }
+}

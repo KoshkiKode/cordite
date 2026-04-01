@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnnamedRTS.Core;
+using UnnamedRTS.Game.Assets;
 using UnnamedRTS.Game.Units;
 
 namespace UnnamedRTS.Systems.Pathfinding;
@@ -758,6 +759,47 @@ public class CollisionResolver
             // If no free cell found within 10 cells, leave the unit in place.
             // This is a degenerate case that shouldn't occur in normal gameplay.
         }
+    }
+
+    // ── AssetRegistry Integration ───────────────────────────────────────────
+
+    /// <summary>
+    /// Builds a <see cref="UnitCollisionInfo"/> using data from the
+    /// <see cref="AssetRegistry"/> instead of hard-coded values.
+    /// The collision radius, mass, and crush strength are all read from the
+    /// asset manifest via the unit's data ID.
+    /// </summary>
+    /// <param name="unitId">Runtime unit instance ID.</param>
+    /// <param name="playerId">Owning player ID.</param>
+    /// <param name="dataId">Unit type ID for registry lookup (e.g., "valkyr_windrunner").</param>
+    /// <param name="position">Current world position.</param>
+    /// <param name="isAirUnit">Whether this unit is airborne.</param>
+    /// <param name="height">Flight altitude (0 for ground units).</param>
+    /// <param name="armorClass">Armor classification for crush eligibility.</param>
+    /// <param name="registry">The asset registry to look up physics data from.</param>
+    /// <returns>A fully populated <see cref="UnitCollisionInfo"/>.</returns>
+    public static UnitCollisionInfo BuildCollisionInfo(
+        int unitId,
+        int playerId,
+        string dataId,
+        FixedVector2 position,
+        bool isAirUnit,
+        FixedPoint height,
+        ArmorType armorClass,
+        AssetRegistry registry)
+    {
+        return new UnitCollisionInfo
+        {
+            UnitId = unitId,
+            PlayerId = playerId,
+            Position = position,
+            Radius = registry.GetCollisionRadius(dataId),
+            Mass = registry.GetMass(dataId),
+            CrushStrength = registry.GetCrushStrength(dataId),
+            ArmorClass = armorClass,
+            IsAirUnit = isAirUnit,
+            Height = height
+        };
     }
 
     /// <summary>

@@ -1,0 +1,48 @@
+{
+    "Id": "stormrend_sparkrunner",
+    "DisplayName": "Sparkrunner",
+    "FactionId": "stormrend",
+    "Category": "Infantry",
+    "MovementClassId": "Infantry",
+    "MaxHealth": 50.0,
+    "ArmorValue": 1.0,
+    "ArmorClass": "Unarmored",
+    "SightRange": 8.0,
+    "BuildTime": 12.0,
+    "Cost": 400,
+    "SecondaryCost": 0,
+    "PopulationCost": 1,
+    "Weapons": [
+        {
+            "Id": "sparkrunner_primary",
+            "Type": "SAM",
+            "Damage": 50.0,
+            "RateOfFire": 0.5,
+            "Range": 10.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 22.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 2,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 1.5,
+                "Light": 0.3,
+                "Medium": 0.2,
+                "Heavy": 0.2,
+                "Unarmored": 0.4,
+                "Building": 0.1
+            }
+        }
+    ],
+    "SpecialAbilityId": "fast_lock",
+    "Description": "AA infantry that keeps pace with Stormrend's relentless advance.",
+    "SpeedOverride": 0.135,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 1,
+    "FootprintHeight": 1,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false
+}

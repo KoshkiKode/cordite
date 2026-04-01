@@ -1,5 +1,6 @@
 using System;
 using UnnamedRTS.Core;
+using UnnamedRTS.Game.Assets;
 
 namespace UnnamedRTS.Systems.Pathfinding;
 
@@ -373,5 +374,59 @@ public class OccupancyGrid
             return -1;
 
         return Cells[x, y].OccupantId;
+    }
+
+    // ── AssetRegistry Integration ───────────────────────────────────────
+
+    /// <summary>
+    /// Occupies a unit's footprint using the <see cref="AssetRegistry"/> to look up
+    /// the correct footprint size for the unit type, instead of hard-coded values.
+    /// The unit's center position is converted to the top-left grid cell of its footprint.
+    /// </summary>
+    /// <param name="centerX">Grid X coordinate of the unit's center cell.</param>
+    /// <param name="centerY">Grid Y coordinate of the unit's center cell.</param>
+    /// <param name="dataId">Unit type ID for registry lookup (e.g., "valkyr_zephyr_buggy").</param>
+    /// <param name="occupantId">The runtime unit instance ID.</param>
+    /// <param name="playerId">The owning player ID.</param>
+    /// <param name="registry">The asset registry to look up footprint size from.</param>
+    public void OccupyUnitFootprint(int centerX, int centerY, string dataId, int occupantId, int playerId, AssetRegistry registry)
+    {
+        var (width, height) = registry.GetFootprint(dataId);
+        int topLeftX = centerX - width / 2;
+        int topLeftY = centerY - height / 2;
+        OccupyFootprint(topLeftX, topLeftY, width, height, OccupancyType.Unit, occupantId, playerId);
+    }
+
+    /// <summary>
+    /// Vacates a unit's footprint using the <see cref="AssetRegistry"/> to look up
+    /// the correct footprint size.
+    /// </summary>
+    /// <param name="centerX">Grid X coordinate of the unit's center cell.</param>
+    /// <param name="centerY">Grid Y coordinate of the unit's center cell.</param>
+    /// <param name="dataId">Unit type ID for registry lookup.</param>
+    /// <param name="registry">The asset registry to look up footprint size from.</param>
+    public void VacateUnitFootprint(int centerX, int centerY, string dataId, AssetRegistry registry)
+    {
+        var (width, height) = registry.GetFootprint(dataId);
+        int topLeftX = centerX - width / 2;
+        int topLeftY = centerY - height / 2;
+        VacateFootprint(topLeftX, topLeftY, width, height);
+    }
+
+    /// <summary>
+    /// Checks if a unit's full footprint is free, using the <see cref="AssetRegistry"/>
+    /// to look up the correct footprint size.
+    /// </summary>
+    /// <param name="centerX">Grid X coordinate of the unit's center cell.</param>
+    /// <param name="centerY">Grid Y coordinate of the unit's center cell.</param>
+    /// <param name="dataId">Unit type ID for registry lookup.</param>
+    /// <param name="registry">The asset registry to look up footprint size from.</param>
+    /// <returns>True if every cell in the footprint is empty.</returns>
+    public bool IsUnitFootprintFree(int centerX, int centerY, string dataId, AssetRegistry registry)
+    {
+        var (width, height) = registry.GetFootprint(dataId);
+        int topLeftX = centerX - width / 2;
+        int topLeftY = centerY - height / 2;
+        return IsFootprintFree(topLeftX, topLeftY, width, height);
     }
 }

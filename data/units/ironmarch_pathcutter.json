@@ -1,0 +1,48 @@
+{
+    "Id": "ironmarch_pathcutter",
+    "DisplayName": "Pathcutter",
+    "FactionId": "ironmarch",
+    "Category": "LightVehicle",
+    "MovementClassId": "LightVehicle",
+    "MaxHealth": 104.0,
+    "ArmorValue": 2.0,
+    "ArmorClass": "Light",
+    "SightRange": 15.0,
+    "BuildTime": 12.0,
+    "Cost": 400,
+    "SecondaryCost": 0,
+    "PopulationCost": 1,
+    "Weapons": [
+        {
+            "Id": "pathcutter_primary",
+            "Type": "Cannon",
+            "Damage": 5.0,
+            "RateOfFire": 2.0,
+            "Range": 8.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 30.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.3,
+                "Light": 1.2,
+                "Medium": 1.0,
+                "Heavy": 0.8,
+                "Unarmored": 0.7,
+                "Building": 0.8
+            }
+        }
+    ],
+    "SpecialAbilityId": "road_builder",
+    "Description": "Scout that literally paves the way for the main army.",
+    "SpeedOverride": 0.385,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 2,
+    "FootprintHeight": 2,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false
+}

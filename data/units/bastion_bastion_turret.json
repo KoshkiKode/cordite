@@ -1,0 +1,48 @@
+{
+    "Id": "bastion_bastion_turret",
+    "DisplayName": "Bastion Turret",
+    "FactionId": "bastion",
+    "Category": "Special",
+    "MovementClassId": "Static",
+    "MaxHealth": 375.0,
+    "ArmorValue": 6.0,
+    "ArmorClass": "Building",
+    "SightRange": 8.0,
+    "BuildTime": 22.0,
+    "Cost": 1400,
+    "SecondaryCost": 100,
+    "PopulationCost": 0,
+    "Weapons": [
+        {
+            "Id": "bastion_turret_primary",
+            "Type": "Cannon",
+            "Damage": 70.0,
+            "RateOfFire": 0.5,
+            "Range": 11.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 30.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.3,
+                "Light": 1.2,
+                "Medium": 1.0,
+                "Heavy": 0.8,
+                "Unarmored": 0.7,
+                "Building": 0.8
+            }
+        }
+    ],
+    "SpecialAbilityId": "upgradeable",
+    "Description": "The gold-standard turret \u2014 high damage, high range, built to last.",
+    "SpeedOverride": null,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 2,
+    "FootprintHeight": 2,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false
+}

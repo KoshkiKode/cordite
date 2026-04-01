@@ -1,0 +1,48 @@
+{
+    "Id": "ironmarch_wire_field",
+    "DisplayName": "Wire Field",
+    "FactionId": "ironmarch",
+    "Category": "Defense",
+    "MovementClassId": "Static",
+    "MaxHealth": 150.0,
+    "ArmorValue": 1.0,
+    "ArmorClass": "Building",
+    "SightRange": 8.0,
+    "BuildTime": 8.0,
+    "Cost": 200,
+    "SecondaryCost": 0,
+    "PopulationCost": 0,
+    "Weapons": [
+        {
+            "Id": "wire_field_primary",
+            "Type": "None",
+            "Damage": 5.0,
+            "RateOfFire": 1.0,
+            "Range": 3.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 0.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.5,
+                "Light": 1.0,
+                "Medium": 0.8,
+                "Heavy": 0.5,
+                "Unarmored": 1.0,
+                "Building": 0.5
+            }
+        }
+    ],
+    "SpecialAbilityId": "slow_field",
+    "Description": "Cheap, effective area denial that channels enemy movement into kill zones.",
+    "SpeedOverride": null,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 1,
+    "FootprintHeight": 1,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false
+}

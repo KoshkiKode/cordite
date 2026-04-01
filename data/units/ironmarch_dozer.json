@@ -1,0 +1,48 @@
+{
+    "Id": "ironmarch_dozer",
+    "DisplayName": "Dozer",
+    "FactionId": "ironmarch",
+    "Category": "HeavyVehicle",
+    "MovementClassId": "HeavyVehicle",
+    "MaxHealth": 500.0,
+    "ArmorValue": 6.0,
+    "ArmorClass": "Heavy",
+    "SightRange": 7.0,
+    "BuildTime": 18.0,
+    "Cost": 1000,
+    "SecondaryCost": 50,
+    "PopulationCost": 2,
+    "Weapons": [
+        {
+            "Id": "dozer_primary",
+            "Type": "None",
+            "Damage": 10.0,
+            "RateOfFire": 1.0,
+            "Range": 5.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 0.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.5,
+                "Light": 1.0,
+                "Medium": 0.8,
+                "Heavy": 0.5,
+                "Unarmored": 1.0,
+                "Building": 0.5
+            }
+        }
+    ],
+    "SpecialAbilityId": "terrain_modify",
+    "Description": "Engineering vehicle that reshapes the battlefield to favor Ironmarch's advance.",
+    "SpeedOverride": 0.07,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 3,
+    "FootprintHeight": 3,
+    "CanGarrison": false,
+    "CanCrush": true,
+    "IsStealthed": false,
+    "IsDetector": false
+}

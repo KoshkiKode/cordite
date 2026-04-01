@@ -1,0 +1,48 @@
+{
+    "Id": "stormrend_flickerhawk",
+    "DisplayName": "Flickerhawk",
+    "FactionId": "stormrend",
+    "Category": "Helicopter",
+    "MovementClassId": "Helicopter",
+    "MaxHealth": 130.0,
+    "ArmorValue": 2.0,
+    "ArmorClass": "Aircraft",
+    "SightRange": 12.0,
+    "BuildTime": 15.0,
+    "Cost": 700,
+    "SecondaryCost": 0,
+    "PopulationCost": 2,
+    "Weapons": [
+        {
+            "Id": "flickerhawk_primary",
+            "Type": "GatlingGun",
+            "Damage": 7.0,
+            "RateOfFire": 3.0,
+            "Range": 8.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 0.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.8,
+                "Light": 1.0,
+                "Medium": 0.5,
+                "Heavy": 0.2,
+                "Unarmored": 1.5,
+                "Building": 0.2
+            }
+        }
+    ],
+    "SpecialAbilityId": "strafe_run",
+    "Description": "Fast, fragile attack helicopter that excels at chewing up infantry and harvesters.",
+    "SpeedOverride": 0.36,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 2,
+    "FootprintHeight": 2,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false
+}

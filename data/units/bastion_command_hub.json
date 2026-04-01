@@ -1,0 +1,48 @@
+{
+    "Id": "bastion_command_hub",
+    "DisplayName": "Command Hub",
+    "FactionId": "bastion",
+    "Category": "Defense",
+    "MovementClassId": "Static",
+    "MaxHealth": 510.0,
+    "ArmorValue": 9.0,
+    "ArmorClass": "Building",
+    "SightRange": 8.0,
+    "BuildTime": 30.0,
+    "Cost": 2200,
+    "SecondaryCost": 300,
+    "PopulationCost": 0,
+    "Weapons": [
+        {
+            "Id": "command_hub_primary",
+            "Type": "Laser",
+            "Damage": 10.0,
+            "RateOfFire": 1.5,
+            "Range": 10.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 0.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 1.0,
+                "Light": 1.0,
+                "Medium": 1.0,
+                "Heavy": 0.8,
+                "Unarmored": 1.0,
+                "Building": 0.5
+            }
+        }
+    ],
+    "SpecialAbilityId": "fortification_network",
+    "Description": "The beating heart of Bastion's defense network \u2014 protect it at all costs.",
+    "SpeedOverride": null,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 3,
+    "FootprintHeight": 3,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false
+}

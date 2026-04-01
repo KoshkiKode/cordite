@@ -1,0 +1,342 @@
+{
+  "fingerprint": "processed/quaternius_fingerprint.json",
+  "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files",
+  "output_dir": "processed/majadroid",
+  "preserve_animations": false,
+  "aggressive": false,
+  "total": 66,
+  "success": 66,
+  "failed": 0,
+  "results": [
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-accessories/bullet.obj",
+      "output": "processed/majadroid/bullet_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-accessories/healthbox.obj",
+      "output": "processed/majadroid/healthbox_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-accessories/laser-blue.obj",
+      "output": "processed/majadroid/laser-blue_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-accessories/laser-green.obj",
+      "output": "processed/majadroid/laser-green_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-accessories/laser-red.obj",
+      "output": "processed/majadroid/laser-red_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-accessories/laser-yellow.obj",
+      "output": "processed/majadroid/laser-yellow_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-accessories/missile.obj",
+      "output": "processed/majadroid/missile_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-01/m1-part01.obj",
+      "output": "processed/majadroid/m1-part01_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-01/m1-part02.obj",
+      "output": "processed/majadroid/m1-part02_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-01/m1-part03.obj",
+      "output": "processed/majadroid/m1-part03_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-01/m1-part04.obj",
+      "output": "processed/majadroid/m1-part04_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-01/m1-part05.obj",
+      "output": "processed/majadroid/m1-part05_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-01/m1-part06.obj",
+      "output": "processed/majadroid/m1-part06_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-01/m1-part07.obj",
+      "output": "processed/majadroid/m1-part07_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-01/m1-part08.obj",
+      "output": "processed/majadroid/m1-part08_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-01/m1-part09.obj",
+      "output": "processed/majadroid/m1-part09_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-01/m1-part10.obj",
+      "output": "processed/majadroid/m1-part10_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-01/m1-part11.obj",
+      "output": "processed/majadroid/m1-part11_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-02/m2-part01.obj",
+      "output": "processed/majadroid/m2-part01_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-02/m2-part02.obj",
+      "output": "processed/majadroid/m2-part02_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-02/m2-part03.obj",
+      "output": "processed/majadroid/m2-part03_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-02/m2-part04.obj",
+      "output": "processed/majadroid/m2-part04_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-02/m2-part05.obj",
+      "output": "processed/majadroid/m2-part05_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-02/m2-part06.obj",
+      "output": "processed/majadroid/m2-part06_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-02/m2-part07.obj",
+      "output": "processed/majadroid/m2-part07_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-02/m2-part08.obj",
+      "output": "processed/majadroid/m2-part08_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-02/m2-part09.obj",
+      "output": "processed/majadroid/m2-part09_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-02/m2-part10.obj",
+      "output": "processed/majadroid/m2-part10_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-02/m2-part11.obj",
+      "output": "processed/majadroid/m2-part11_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-03/m3-part01.obj",
+      "output": "processed/majadroid/m3-part01_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-03/m3-part02.obj",
+      "output": "processed/majadroid/m3-part02_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-03/m3-part03.obj",
+      "output": "processed/majadroid/m3-part03_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-03/m3-part04.obj",
+      "output": "processed/majadroid/m3-part04_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-03/m3-part05.obj",
+      "output": "processed/majadroid/m3-part05_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-03/m3-part06.obj",
+      "output": "processed/majadroid/m3-part06_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-03/m3-part07.obj",
+      "output": "processed/majadroid/m3-part07_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-03/m3-part08.obj",
+      "output": "processed/majadroid/m3-part08_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-03/m3-part09.obj",
+      "output": "processed/majadroid/m3-part09_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-03/m3-part10.obj",
+      "output": "processed/majadroid/m3-part10_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-03/m3-part11.obj",
+      "output": "processed/majadroid/m3-part11_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-04/m4-part00.obj",
+      "output": "processed/majadroid/m4-part00_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-04/m4-part01.obj",
+      "output": "processed/majadroid/m4-part01_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-04/m4-part02.obj",
+      "output": "processed/majadroid/m4-part02_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-04/m4-part03.obj",
+      "output": "processed/majadroid/m4-part03_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-04/m4-part04.obj",
+      "output": "processed/majadroid/m4-part04_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-04/m4-part05.obj",
+      "output": "processed/majadroid/m4-part05_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-04/m4-part06.obj",
+      "output": "processed/majadroid/m4-part06_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-04/m4-part07.obj",
+      "output": "processed/majadroid/m4-part07_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-04/m4-part08.obj",
+      "output": "processed/majadroid/m4-part08_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-04/m4-part09.obj",
+      "output": "processed/majadroid/m4-part09_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-04/m4-part10.obj",
+      "output": "processed/majadroid/m4-part10_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-components/material-04/m4-part11.obj",
+      "output": "processed/majadroid/m4-part11_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-ships/material-01/m1-ship1.obj",
+      "output": "processed/majadroid/m1-ship1_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-ships/material-01/m1-ship2.obj",
+      "output": "processed/majadroid/m1-ship2_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-ships/material-01/m1-ship3.obj",
+      "output": "processed/majadroid/m1-ship3_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-ships/material-01/m1-ship4.obj",
+      "output": "processed/majadroid/m1-ship4_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-ships/material-01/m1-ship5.obj",
+      "output": "processed/majadroid/m1-ship5_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-ships/material-02/m2-ship1.obj",
+      "output": "processed/majadroid/m2-ship1_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-ships/material-02/m2-ship2.obj",
+      "output": "processed/majadroid/m2-ship2_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-ships/material-02/m2-ship3.obj",
+      "output": "processed/majadroid/m2-ship3_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-ships/material-03/m3-ship1.obj",
+      "output": "processed/majadroid/m3-ship1_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-ships/material-03/m3-ship2.obj",
+      "output": "processed/majadroid/m3-ship2_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-ships/material-03/m3-ship3.obj",
+      "output": "processed/majadroid/m3-ship3_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-ships/material-04/m4-ship1.obj",
+      "output": "processed/majadroid/m4-ship1_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-ships/material-04/m4-ship2.obj",
+      "output": "processed/majadroid/m4-ship2_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "raw/majadroid-ships/LowPoly-Spaceships-By-Majadroid/obj-files/obj-ships/material-04/m4-ship3.obj",
+      "output": "processed/majadroid/m4-ship3_cohesive.glb",
+      "status": "ok"
+    }
+  ]
+}

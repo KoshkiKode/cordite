@@ -1,0 +1,48 @@
+{
+    "Id": "valkyr_shriek",
+    "DisplayName": "Shriek",
+    "FactionId": "valkyr",
+    "Category": "Jet",
+    "MovementClassId": "Jet",
+    "MaxHealth": 104.0,
+    "ArmorValue": 2.0,
+    "ArmorClass": "Aircraft",
+    "SightRange": 12.0,
+    "BuildTime": 22.0,
+    "Cost": 1400,
+    "SecondaryCost": 100,
+    "PopulationCost": 3,
+    "Weapons": [
+        {
+            "Id": "shriek_primary",
+            "Type": "Cannon",
+            "Damage": 8.0,
+            "RateOfFire": 3.0,
+            "Range": 13.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 30.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 2,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 1.5,
+                "Light": 0.4,
+                "Medium": 0.3,
+                "Heavy": 0.2,
+                "Unarmored": 0.2,
+                "Building": 0.2
+            }
+        }
+    ],
+    "SpecialAbilityId": "afterburner_intercept",
+    "Description": "Fast interceptor jet that patrols airspace and shreds anything that enters.",
+    "SpeedOverride": 0.8,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 1,
+    "FootprintHeight": 1,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false
+}

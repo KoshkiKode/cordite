@@ -1,0 +1,48 @@
+{
+    "Id": "bastion_denial_field",
+    "DisplayName": "Denial Field",
+    "FactionId": "bastion",
+    "Category": "Defense",
+    "MovementClassId": "Static",
+    "MaxHealth": 195.0,
+    "ArmorValue": 2.0,
+    "ArmorClass": "Building",
+    "SightRange": 8.0,
+    "BuildTime": 12.0,
+    "Cost": 400,
+    "SecondaryCost": 0,
+    "PopulationCost": 0,
+    "Weapons": [
+        {
+            "Id": "denial_field_primary",
+            "Type": "MachineGun",
+            "Damage": 15.0,
+            "RateOfFire": 1.0,
+            "Range": 3.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 0.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.8,
+                "Light": 1.0,
+                "Medium": 0.5,
+                "Heavy": 0.2,
+                "Unarmored": 1.5,
+                "Building": 0.2
+            }
+        }
+    ],
+    "SpecialAbilityId": "reusable_mine",
+    "Description": "Reusable energy mine that slows and damages \u2014 forces enemies into kill zones.",
+    "SpeedOverride": null,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 1,
+    "FootprintHeight": 1,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": true,
+    "IsDetector": false
+}

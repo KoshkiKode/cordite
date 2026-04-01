@@ -1,0 +1,48 @@
+{
+    "Id": "stormrend_vortex",
+    "DisplayName": "Vortex",
+    "FactionId": "stormrend",
+    "Category": "Helicopter",
+    "MovementClassId": "Helicopter",
+    "MaxHealth": 160.0,
+    "ArmorValue": 3.0,
+    "ArmorClass": "Aircraft",
+    "SightRange": 12.0,
+    "BuildTime": 22.0,
+    "Cost": 1400,
+    "SecondaryCost": 100,
+    "PopulationCost": 3,
+    "Weapons": [
+        {
+            "Id": "vortex_primary",
+            "Type": "Missile",
+            "Damage": 50.0,
+            "RateOfFire": 0.6,
+            "Range": 9.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 20.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 1.2,
+                "Light": 1.0,
+                "Medium": 0.8,
+                "Heavy": 0.6,
+                "Unarmored": 1.5,
+                "Building": 0.5
+            }
+        }
+    ],
+    "SpecialAbilityId": "alpha_strike",
+    "Description": "Alpha-strike helicopter that dumps its entire payload and retreats to reload.",
+    "SpeedOverride": 0.33,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 2,
+    "FootprintHeight": 2,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false
+}

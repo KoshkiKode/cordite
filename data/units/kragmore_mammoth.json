@@ -1,0 +1,48 @@
+{
+    "Id": "kragmore_mammoth",
+    "DisplayName": "Mammoth",
+    "FactionId": "kragmore",
+    "Category": "HeavyVehicle",
+    "MovementClassId": "HeavyVehicle",
+    "MaxHealth": 740.0,
+    "ArmorValue": 10.0,
+    "ArmorClass": "Heavy",
+    "SightRange": 7.0,
+    "BuildTime": 40.0,
+    "Cost": 3500,
+    "SecondaryCost": 600,
+    "PopulationCost": 8,
+    "Weapons": [
+        {
+            "Id": "mammoth_primary",
+            "Type": "Cannon",
+            "Damage": 90.0,
+            "RateOfFire": 0.5,
+            "Range": 10.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 30.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.3,
+                "Light": 1.2,
+                "Medium": 1.0,
+                "Heavy": 0.8,
+                "Unarmored": 0.7,
+                "Building": 0.8
+            }
+        }
+    ],
+    "SpecialAbilityId": "regeneration",
+    "Description": "The king of the battlefield \u2014 a mobile fortress that demands an answer or it wins the game.",
+    "SpeedOverride": 0.06,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 3,
+    "FootprintHeight": 3,
+    "CanGarrison": false,
+    "CanCrush": true,
+    "IsStealthed": false,
+    "IsDetector": false
+}

@@ -1,0 +1,50 @@
+{
+    "Id": "arcloft",
+    "DisplayName": "Arcloft",
+    "Archetype": "AirDefense",
+    "Description": "The Arcloft Sovereignty controls the skies above and the vaults below. The sky is their blade, the fortress is their shield.",
+    "AestheticTheme": "elevated_angular",
+    "ColorIndex": 3,
+    "HarvesterSpeedMod": 1.1,
+    "BuildSpeedMod": 1.05,
+    "UnitBuildSpeedMod": 0.95,
+    "IncomeMod": 1.0,
+    "DefenseCostMod": 0.9,
+    "AirUnitCostMod": 0.9,
+    "GroundUnitCostMod": 1.1,
+    "RepairRateMod": 1.1,
+    "FactionMechanicId": "overwatch_protocol",
+    "AvailableBuildingIds": [
+        "arcloft_command_center",
+        "arcloft_airstrip",
+        "arcloft_barracks",
+        "arcloft_refinery",
+        "arcloft_reactor",
+        "arcloft_radar_dome",
+        "arcloft_tech_lab",
+        "arcloft_rampart_wall",
+        "arcloft_flak_citadel",
+        "arcloft_arc_turret"
+    ],
+    "TechTreeUnlocks": {
+        "expanded_overwatch": 1800,
+        "network_relay": 1500,
+        "interceptor_grid": 2000,
+        "sky_fortress_upgrade": 3000
+    },
+    "AvailableUnitIds": [
+        "arcloft_aether_relay",
+        "arcloft_apex",
+        "arcloft_cirrus_runner",
+        "arcloft_horizon_guard",
+        "arcloft_interceptor_battery",
+        "arcloft_nimbus_transport",
+        "arcloft_patch_drone",
+        "arcloft_sky_bastion",
+        "arcloft_sky_marshal",
+        "arcloft_stormshot",
+        "arcloft_stratos",
+        "arcloft_templar",
+        "arcloft_vigilant"
+    ]
+}

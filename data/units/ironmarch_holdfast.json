@@ -1,0 +1,48 @@
+{
+    "Id": "ironmarch_holdfast",
+    "DisplayName": "Holdfast",
+    "FactionId": "ironmarch",
+    "Category": "Infantry",
+    "MovementClassId": "Infantry",
+    "MaxHealth": 95.0,
+    "ArmorValue": 4.0,
+    "ArmorClass": "Unarmored",
+    "SightRange": 8.0,
+    "BuildTime": 12.0,
+    "Cost": 400,
+    "SecondaryCost": 0,
+    "PopulationCost": 1,
+    "Weapons": [
+        {
+            "Id": "holdfast_primary",
+            "Type": "MachineGun",
+            "Damage": 13.0,
+            "RateOfFire": 1.5,
+            "Range": 8.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 0.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.8,
+                "Light": 1.0,
+                "Medium": 0.5,
+                "Heavy": 0.2,
+                "Unarmored": 1.5,
+                "Building": 0.2
+            }
+        }
+    ],
+    "SpecialAbilityId": "foxhole_dig",
+    "Description": "Tough defensive infantry that literally digs in wherever they stop.",
+    "SpeedOverride": 0.12,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 1,
+    "FootprintHeight": 1,
+    "CanGarrison": true,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false
+}

@@ -1,0 +1,48 @@
+{
+    "Id": "bastion_guardian_drone",
+    "DisplayName": "Guardian Drone",
+    "FactionId": "bastion",
+    "Category": "Helicopter",
+    "MovementClassId": "Helicopter",
+    "MaxHealth": 130.0,
+    "ArmorValue": 2.0,
+    "ArmorClass": "Aircraft",
+    "SightRange": 12.0,
+    "BuildTime": 15.0,
+    "Cost": 700,
+    "SecondaryCost": 0,
+    "PopulationCost": 2,
+    "Weapons": [
+        {
+            "Id": "guardian_drone_primary",
+            "Type": "SAM",
+            "Damage": 33.0,
+            "RateOfFire": 0.6,
+            "Range": 10.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 22.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 2,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 1.5,
+                "Light": 0.3,
+                "Medium": 0.2,
+                "Heavy": 0.2,
+                "Unarmored": 0.4,
+                "Building": 0.1
+            }
+        }
+    ],
+    "SpecialAbilityId": "autonomous_patrol",
+    "Description": "Set-and-forget AA drone that patrols the base perimeter autonomously.",
+    "SpeedOverride": null,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 2,
+    "FootprintHeight": 2,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false
+}

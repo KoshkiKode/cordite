@@ -1,0 +1,48 @@
+{
+    "Id": "bastion_rampart",
+    "DisplayName": "Rampart",
+    "FactionId": "bastion",
+    "Category": "Tank",
+    "MovementClassId": "Tank",
+    "MaxHealth": 465.0,
+    "ArmorValue": 8.0,
+    "ArmorClass": "Medium",
+    "SightRange": 8.0,
+    "BuildTime": 22.0,
+    "Cost": 1400,
+    "SecondaryCost": 100,
+    "PopulationCost": 3,
+    "Weapons": [
+        {
+            "Id": "rampart_primary",
+            "Type": "Cannon",
+            "Damage": 40.0,
+            "RateOfFire": 0.5,
+            "Range": 9.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 30.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.3,
+                "Light": 1.2,
+                "Medium": 1.0,
+                "Heavy": 0.8,
+                "Unarmored": 0.7,
+                "Building": 0.8
+            }
+        }
+    ],
+    "SpecialAbilityId": "entrench_mode",
+    "Description": "A tank that wants to stop moving. Best used as a mobile hardpoint in a defensive line.",
+    "SpeedOverride": 0.126,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 2,
+    "FootprintHeight": 2,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false
+}

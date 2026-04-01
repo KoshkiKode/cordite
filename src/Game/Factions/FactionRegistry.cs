@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Godot;
@@ -91,13 +90,13 @@ public sealed class FactionRegistry
     // ── Public Data Stores ───────────────────────────────────────────
 
     /// <summary>All factions keyed by ID.</summary>
-    public Dictionary<string, FactionData> Factions { get; } = new();
+    public SortedList<string, FactionData> Factions { get; } = new();
 
     /// <summary>All units keyed by ID.</summary>
-    public Dictionary<string, UnitData> Units { get; } = new();
+    public SortedList<string, UnitData> Units { get; } = new();
 
     /// <summary>All buildings keyed by ID.</summary>
-    public Dictionary<string, BuildingData> Buildings { get; } = new();
+    public SortedList<string, BuildingData> Buildings { get; } = new();
 
     // ── Shared Serialiser Options ────────────────────────────────────
 
@@ -143,24 +142,33 @@ public sealed class FactionRegistry
 
         LoadDirectory<FactionData>(factionsPath, entry =>
         {
-            if (Factions.TryAdd(entry.Id, entry))
+            if (!Factions.ContainsKey(entry.Id))
+            {
+                Factions.Add(entry.Id, entry);
                 GD.Print($"[FactionRegistry] Loaded faction '{entry.Id}'.");
+            }
             else
                 GD.PushWarning($"[FactionRegistry] Duplicate faction ID '{entry.Id}' — skipped.");
         });
 
         LoadDirectory<UnitData>(unitsPath, entry =>
         {
-            if (Units.TryAdd(entry.Id, entry))
+            if (!Units.ContainsKey(entry.Id))
+            {
+                Units.Add(entry.Id, entry);
                 GD.Print($"[FactionRegistry] Loaded unit '{entry.Id}'.");
+            }
             else
                 GD.PushWarning($"[FactionRegistry] Duplicate unit ID '{entry.Id}' — skipped.");
         });
 
         LoadDirectory<BuildingData>(buildingsPath, entry =>
         {
-            if (Buildings.TryAdd(entry.Id, entry))
+            if (!Buildings.ContainsKey(entry.Id))
+            {
+                Buildings.Add(entry.Id, entry);
                 GD.Print($"[FactionRegistry] Loaded building '{entry.Id}'.");
+            }
             else
                 GD.PushWarning($"[FactionRegistry] Duplicate building ID '{entry.Id}' — skipped.");
         });
@@ -200,17 +208,27 @@ public sealed class FactionRegistry
     /// <summary>Returns all units belonging to the specified faction.</summary>
     public List<UnitData> GetUnitsForFaction(string factionId)
     {
-        return Units.Values
-            .Where(u => u.FactionId == factionId)
-            .ToList();
+        var result = new List<UnitData>();
+        for (int i = 0; i < Units.Count; i++)
+        {
+            UnitData unit = Units.Values[i];
+            if (unit.FactionId == factionId)
+                result.Add(unit);
+        }
+        return result;
     }
 
     /// <summary>Returns all buildings belonging to the specified faction.</summary>
     public List<BuildingData> GetBuildingsForFaction(string factionId)
     {
-        return Buildings.Values
-            .Where(b => b.FactionId == factionId)
-            .ToList();
+        var result = new List<BuildingData>();
+        for (int i = 0; i < Buildings.Count; i++)
+        {
+            BuildingData building = Buildings.Values[i];
+            if (building.FactionId == factionId)
+                result.Add(building);
+        }
+        return result;
     }
 
     /// <summary>
@@ -363,8 +381,16 @@ public sealed class FactionRegistry
                 { "Infantry", "LightVehicle", "HeavyVehicle", "APC",
                   "Tank", "Artillery", "Helicopter", "Jet" };
 
-            if (!string.IsNullOrEmpty(unit.MovementClassId) &&
-                !validClasses.Contains(unit.MovementClassId))
+            bool validClass = false;
+            for (int i = 0; i < validClasses.Length; i++)
+            {
+                if (validClasses[i] == unit.MovementClassId)
+                {
+                    validClass = true;
+                    break;
+                }
+            }
+            if (!string.IsNullOrEmpty(unit.MovementClassId) && !validClass)
             {
                 GD.PushWarning(
                     $"[FactionRegistry] Unit '{unit.Id}' has unknown " +

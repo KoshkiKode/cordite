@@ -2,7 +2,7 @@
     "Id": "valkyr",
     "DisplayName": "Valkyr",
     "Archetype": "AirPrimary",
-    "Description": "Masters of vertical warfare. The Valkyr Ascendancy projects power from above — their doctrine of air supremacy treats the sky as sovereign territory. Swift, precise, and devastating from altitude, they trade ground durability for unmatched aerial dominance.",
+    "Description": "Masters of vertical warfare. The Valkyr Ascendancy projects power from above \u2014 their doctrine of air supremacy treats the sky as sovereign territory.",
     "AestheticTheme": "sleek_hightech",
     "ColorIndex": 0,
     "HarvesterSpeedMod": 1.1,
@@ -14,22 +14,6 @@
     "GroundUnitCostMod": 1.15,
     "RepairRateMod": 1.0,
     "FactionMechanicId": "sortie_system",
-    "AvailableUnitIds": [
-        "valkyr_windrunner",
-        "valkyr_skyguard",
-        "valkyr_gale_trooper",
-        "valkyr_zephyr_buggy",
-        "valkyr_mistral_apc",
-        "valkyr_kestrel",
-        "valkyr_harrier",
-        "valkyr_peregrine",
-        "valkyr_tempest",
-        "valkyr_shriek",
-        "valkyr_updraft",
-        "valkyr_overwatch_drone",
-        "valkyr_stormcaller",
-        "valkyr_valkyrie_carrier"
-    ],
     "AvailableBuildingIds": [
         "valkyr_command_center",
         "valkyr_airstrip",
@@ -47,5 +31,21 @@
         "precision_munitions": 2000,
         "sortie_optimization": 1200,
         "stealth_coating": 2500
-    }
+    },
+    "AvailableUnitIds": [
+        "valkyr_gale_trooper",
+        "valkyr_harrier",
+        "valkyr_kestrel",
+        "valkyr_mistral_apc",
+        "valkyr_overwatch_drone",
+        "valkyr_peregrine",
+        "valkyr_shriek",
+        "valkyr_skyguard",
+        "valkyr_stormcaller",
+        "valkyr_tempest",
+        "valkyr_updraft",
+        "valkyr_valkyrie_carrier",
+        "valkyr_windrunner",
+        "valkyr_zephyr_buggy"
+    ]
 }

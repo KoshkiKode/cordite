@@ -1,0 +1,51 @@
+{
+    "Id": "ironmarch",
+    "DisplayName": "Ironmarch",
+    "Archetype": "GroundDefense",
+    "Description": "The Ironmarch Compact fights wars like they build roads \u2014 one mile at a time, paved in steel. They've never lost a war of attrition.",
+    "AestheticTheme": "rugged_modular",
+    "ColorIndex": 4,
+    "HarvesterSpeedMod": 1.0,
+    "BuildSpeedMod": 1.1,
+    "UnitBuildSpeedMod": 1.0,
+    "IncomeMod": 1.0,
+    "DefenseCostMod": 0.85,
+    "AirUnitCostMod": 1.3,
+    "GroundUnitCostMod": 0.95,
+    "RepairRateMod": 1.15,
+    "FactionMechanicId": "forward_operations",
+    "AvailableBuildingIds": [
+        "ironmarch_command_center",
+        "ironmarch_war_factory",
+        "ironmarch_barracks",
+        "ironmarch_refinery",
+        "ironmarch_power_plant",
+        "ironmarch_helipad",
+        "ironmarch_tech_lab",
+        "ironmarch_fieldwork_wall",
+        "ironmarch_watchtower",
+        "ironmarch_wire_field"
+    ],
+    "TechTreeUnlocks": {
+        "reinforced_fob": 2000,
+        "field_expedience": 1500,
+        "fortified_advance": 1800,
+        "heavy_rails": 2500
+    },
+    "AvailableUnitIds": [
+        "ironmarch_basalt",
+        "ironmarch_breacher",
+        "ironmarch_bullfrog",
+        "ironmarch_dozer",
+        "ironmarch_field_engineer",
+        "ironmarch_field_hospital",
+        "ironmarch_fob_truck",
+        "ironmarch_holdfast",
+        "ironmarch_juggernaut",
+        "ironmarch_pathcutter",
+        "ironmarch_siegebreaker",
+        "ironmarch_signal_truck",
+        "ironmarch_stonehail",
+        "ironmarch_trenchline_apc"
+    ]
+}

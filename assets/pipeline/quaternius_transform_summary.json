@@ -1,0 +1,512 @@
+{
+  "fingerprint": "processed/quaternius_fingerprint.json",
+  "input": "processed/.quaternius_reference",
+  "output_dir": "processed/quaternius",
+  "preserve_animations": true,
+  "aggressive": false,
+  "total": 100,
+  "success": 100,
+  "failed": 0,
+  "results": [
+    {
+      "input": "processed/.quaternius_reference/mech_George.fbx",
+      "output": "processed/quaternius/mech_George_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/mech_Leela.fbx",
+      "output": "processed/quaternius/mech_Leela_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/mech_Mike.fbx",
+      "output": "processed/quaternius/mech_Mike_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/mech_Stan.fbx",
+      "output": "processed/quaternius/mech_Stan_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Astronaut_BarbaraTheBee.fbx",
+      "output": "processed/quaternius/space_Astronaut_BarbaraTheBee_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Astronaut_FernandoTheFlamingo.fbx",
+      "output": "processed/quaternius/space_Astronaut_FernandoTheFlamingo_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Astronaut_FinnTheFrog.fbx",
+      "output": "processed/quaternius/space_Astronaut_FinnTheFrog_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Astronaut_RaeTheRedPanda.fbx",
+      "output": "processed/quaternius/space_Astronaut_RaeTheRedPanda_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Base_Large.fbx",
+      "output": "processed/quaternius/space_Base_Large_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Building_L.fbx",
+      "output": "processed/quaternius/space_Building_L_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Bush_1.fbx",
+      "output": "processed/quaternius/space_Bush_1_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Bush_2.fbx",
+      "output": "processed/quaternius/space_Bush_2_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Bush_3.fbx",
+      "output": "processed/quaternius/space_Bush_3_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Connector.fbx",
+      "output": "processed/quaternius/space_Connector_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Enemy_ExtraSmall.fbx",
+      "output": "processed/quaternius/space_Enemy_ExtraSmall_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Enemy_Flying.fbx",
+      "output": "processed/quaternius/space_Enemy_Flying_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Enemy_Large.fbx",
+      "output": "processed/quaternius/space_Enemy_Large_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Enemy_Small.fbx",
+      "output": "processed/quaternius/space_Enemy_Small_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_GeodesicDome.fbx",
+      "output": "processed/quaternius/space_GeodesicDome_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Grass_1.fbx",
+      "output": "processed/quaternius/space_Grass_1_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Grass_2.fbx",
+      "output": "processed/quaternius/space_Grass_2_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Grass_3.fbx",
+      "output": "processed/quaternius/space_Grass_3_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_House_Cylinder.fbx",
+      "output": "processed/quaternius/space_House_Cylinder_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_House_Door.fbx",
+      "output": "processed/quaternius/space_House_Door_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_House_Long.fbx",
+      "output": "processed/quaternius/space_House_Long_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_House_Open.fbx",
+      "output": "processed/quaternius/space_House_Open_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_House_OpenBack.fbx",
+      "output": "processed/quaternius/space_House_OpenBack_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_House_Single.fbx",
+      "output": "processed/quaternius/space_House_Single_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_House_Single_Support.fbx",
+      "output": "processed/quaternius/space_House_Single_Support_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Mech_BarbaraTheBee.fbx",
+      "output": "processed/quaternius/space_Mech_BarbaraTheBee_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Mech_FernandoTheFlamingo.fbx",
+      "output": "processed/quaternius/space_Mech_FernandoTheFlamingo_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Mech_FinnTheFrog.fbx",
+      "output": "processed/quaternius/space_Mech_FinnTheFrog_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Mech_RaeTheRedPanda.fbx",
+      "output": "processed/quaternius/space_Mech_RaeTheRedPanda_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_MetalSupport.fbx",
+      "output": "processed/quaternius/space_MetalSupport_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Pickup_Bullets.fbx",
+      "output": "processed/quaternius/space_Pickup_Bullets_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Pickup_Crate.fbx",
+      "output": "processed/quaternius/space_Pickup_Crate_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Pickup_Health.fbx",
+      "output": "processed/quaternius/space_Pickup_Health_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Pickup_Jar.fbx",
+      "output": "processed/quaternius/space_Pickup_Jar_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Pickup_KeyCard.fbx",
+      "output": "processed/quaternius/space_Pickup_KeyCard_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Pickup_Sphere.fbx",
+      "output": "processed/quaternius/space_Pickup_Sphere_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Pickup_Thunder.fbx",
+      "output": "processed/quaternius/space_Pickup_Thunder_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Planet_1.fbx",
+      "output": "processed/quaternius/space_Planet_1_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Planet_10.fbx",
+      "output": "processed/quaternius/space_Planet_10_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Planet_11.fbx",
+      "output": "processed/quaternius/space_Planet_11_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Planet_2.fbx",
+      "output": "processed/quaternius/space_Planet_2_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Planet_3.fbx",
+      "output": "processed/quaternius/space_Planet_3_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Planet_4.fbx",
+      "output": "processed/quaternius/space_Planet_4_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Planet_5.fbx",
+      "output": "processed/quaternius/space_Planet_5_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Planet_6.fbx",
+      "output": "processed/quaternius/space_Planet_6_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Planet_7.fbx",
+      "output": "processed/quaternius/space_Planet_7_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Planet_8.fbx",
+      "output": "processed/quaternius/space_Planet_8_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Planet_9.fbx",
+      "output": "processed/quaternius/space_Planet_9_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Plant_1.fbx",
+      "output": "processed/quaternius/space_Plant_1_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Plant_2.fbx",
+      "output": "processed/quaternius/space_Plant_2_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Plant_3.fbx",
+      "output": "processed/quaternius/space_Plant_3_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Ramp.fbx",
+      "output": "processed/quaternius/space_Ramp_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Rock_1.fbx",
+      "output": "processed/quaternius/space_Rock_1_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Rock_2.fbx",
+      "output": "processed/quaternius/space_Rock_2_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Rock_3.fbx",
+      "output": "processed/quaternius/space_Rock_3_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Rock_4.fbx",
+      "output": "processed/quaternius/space_Rock_4_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Rock_Large_1.fbx",
+      "output": "processed/quaternius/space_Rock_Large_1_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Rock_Large_2.fbx",
+      "output": "processed/quaternius/space_Rock_Large_2_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Rock_Large_3.fbx",
+      "output": "processed/quaternius/space_Rock_Large_3_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Roof_Antenna.fbx",
+      "output": "processed/quaternius/space_Roof_Antenna_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Roof_Opening.fbx",
+      "output": "processed/quaternius/space_Roof_Opening_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Roof_Radar.fbx",
+      "output": "processed/quaternius/space_Roof_Radar_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Roof_VentL.fbx",
+      "output": "processed/quaternius/space_Roof_VentL_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Rover_1.fbx",
+      "output": "processed/quaternius/space_Rover_1_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Rover_2.fbx",
+      "output": "processed/quaternius/space_Rover_2_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Rover_Round.fbx",
+      "output": "processed/quaternius/space_Rover_Round_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_SolarPanel_Ground.fbx",
+      "output": "processed/quaternius/space_SolarPanel_Ground_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_SolarPanel_Roof.fbx",
+      "output": "processed/quaternius/space_SolarPanel_Roof_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_SolarPanel_Structure.fbx",
+      "output": "processed/quaternius/space_SolarPanel_Structure_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Spaceship_BarbaraTheBee.fbx",
+      "output": "processed/quaternius/space_Spaceship_BarbaraTheBee_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Spaceship_FernandoTheFlamingo.fbx",
+      "output": "processed/quaternius/space_Spaceship_FernandoTheFlamingo_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Spaceship_FinnTheFrog.fbx",
+      "output": "processed/quaternius/space_Spaceship_FinnTheFrog_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Spaceship_RaeTheRedPanda.fbx",
+      "output": "processed/quaternius/space_Spaceship_RaeTheRedPanda_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Stairs.fbx",
+      "output": "processed/quaternius/space_Stairs_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Tree_Blob_1.fbx",
+      "output": "processed/quaternius/space_Tree_Blob_1_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Tree_Blob_2.fbx",
+      "output": "processed/quaternius/space_Tree_Blob_2_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Tree_Blob_3.fbx",
+      "output": "processed/quaternius/space_Tree_Blob_3_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Tree_Floating_1.fbx",
+      "output": "processed/quaternius/space_Tree_Floating_1_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Tree_Floating_2.fbx",
+      "output": "processed/quaternius/space_Tree_Floating_2_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Tree_Floating_3.fbx",
+      "output": "processed/quaternius/space_Tree_Floating_3_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Tree_Lava_1.fbx",
+      "output": "processed/quaternius/space_Tree_Lava_1_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Tree_Lava_2.fbx",
+      "output": "processed/quaternius/space_Tree_Lava_2_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Tree_Lava_3.fbx",
+      "output": "processed/quaternius/space_Tree_Lava_3_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Tree_Light_1.fbx",
+      "output": "processed/quaternius/space_Tree_Light_1_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Tree_Light_2.fbx",
+      "output": "processed/quaternius/space_Tree_Light_2_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Tree_Spikes_1.fbx",
+      "output": "processed/quaternius/space_Tree_Spikes_1_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Tree_Spikes_2.fbx",
+      "output": "processed/quaternius/space_Tree_Spikes_2_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Tree_Spiral_1.fbx",
+      "output": "processed/quaternius/space_Tree_Spiral_1_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Tree_Spiral_2.fbx",
+      "output": "processed/quaternius/space_Tree_Spiral_2_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Tree_Spiral_3.fbx",
+      "output": "processed/quaternius/space_Tree_Spiral_3_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Tree_Swirl_1.fbx",
+      "output": "processed/quaternius/space_Tree_Swirl_1_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/space_Tree_Swirl_2.fbx",
+      "output": "processed/quaternius/space_Tree_Swirl_2_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/tank_Tank.fbx",
+      "output": "processed/quaternius/tank_Tank_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/tank_Tank2.fbx",
+      "output": "processed/quaternius/tank_Tank2_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/tank_Tank3.fbx",
+      "output": "processed/quaternius/tank_Tank3_cohesive.glb",
+      "status": "ok"
+    },
+    {
+      "input": "processed/.quaternius_reference/tank_Tank4.fbx",
+      "output": "processed/quaternius/tank_Tank4_cohesive.glb",
+      "status": "ok"
+    }
+  ]
+}

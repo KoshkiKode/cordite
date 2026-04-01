@@ -1,0 +1,48 @@
+{
+    "Id": "ironmarch_juggernaut",
+    "DisplayName": "Juggernaut",
+    "FactionId": "ironmarch",
+    "Category": "Special",
+    "MovementClassId": "HeavyVehicle",
+    "MaxHealth": 680.0,
+    "ArmorValue": 9.0,
+    "ArmorClass": "Heavy",
+    "SightRange": 7.0,
+    "BuildTime": 40.0,
+    "Cost": 3500,
+    "SecondaryCost": 600,
+    "PopulationCost": 8,
+    "Weapons": [
+        {
+            "Id": "juggernaut_primary",
+            "Type": "Cannon",
+            "Damage": 40.0,
+            "RateOfFire": 1.0,
+            "Range": 13.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 30.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.3,
+                "Light": 1.2,
+                "Medium": 1.0,
+                "Heavy": 0.8,
+                "Unarmored": 0.7,
+                "Building": 0.8
+            }
+        }
+    ],
+    "SpecialAbilityId": "deploy_turret",
+    "Description": "A turret with an engine. It moves to a position, deploys, and nothing survives in its line of fire.",
+    "SpeedOverride": 0.05,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 3,
+    "FootprintHeight": 3,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false
+}

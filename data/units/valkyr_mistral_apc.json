@@ -1,0 +1,48 @@
+{
+    "Id": "valkyr_mistral_apc",
+    "DisplayName": "Mistral APC",
+    "FactionId": "valkyr",
+    "Category": "APC",
+    "MovementClassId": "APC",
+    "MaxHealth": 192.0,
+    "ArmorValue": 3.0,
+    "ArmorClass": "Medium",
+    "SightRange": 9.0,
+    "BuildTime": 15.0,
+    "Cost": 700,
+    "SecondaryCost": 0,
+    "PopulationCost": 2,
+    "Weapons": [
+        {
+            "Id": "mistral_apc_primary",
+            "Type": "MachineGun",
+            "Damage": 4.0,
+            "RateOfFire": 2.5,
+            "Range": 7.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 0.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 1,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.8,
+                "Light": 1.0,
+                "Medium": 0.5,
+                "Heavy": 0.2,
+                "Unarmored": 1.5,
+                "Building": 0.2
+            }
+        }
+    ],
+    "SpecialAbilityId": "instant_deploy",
+    "Description": "Fast-deploying transport that keeps infantry relevant for Valkyr.",
+    "SpeedOverride": 0.22,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 2,
+    "FootprintHeight": 2,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false
+}

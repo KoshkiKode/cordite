@@ -1,0 +1,52 @@
+{
+    "Id": "stormrend",
+    "DisplayName": "Stormrend",
+    "Archetype": "AirGroundOffense",
+    "Description": "The Stormrend Pact was forged by mercenary companies who believed the best defense is an overwhelming offense. They don't build empires \u2014 they shatter them.",
+    "AestheticTheme": "sharp_aggressive",
+    "ColorIndex": 5,
+    "HarvesterSpeedMod": 1.2,
+    "BuildSpeedMod": 0.85,
+    "UnitBuildSpeedMod": 0.8,
+    "IncomeMod": 0.9,
+    "DefenseCostMod": 1.3,
+    "AirUnitCostMod": 0.95,
+    "GroundUnitCostMod": 0.95,
+    "RepairRateMod": 0.9,
+    "FactionMechanicId": "blitz_doctrine",
+    "AvailableBuildingIds": [
+        "stormrend_command_center",
+        "stormrend_war_factory",
+        "stormrend_barracks",
+        "stormrend_refinery",
+        "stormrend_reactor",
+        "stormrend_airstrip",
+        "stormrend_tech_lab",
+        "stormrend_chainlink_barrier",
+        "stormrend_snap_turret",
+        "stormrend_flicker_mine"
+    ],
+    "TechTreeUnlocks": {
+        "overdrive": 1500,
+        "momentum_cascade": 2000,
+        "blitz_training": 1200,
+        "storm_surge": 2500
+    },
+    "AvailableUnitIds": [
+        "stormrend_bolt",
+        "stormrend_cyclone",
+        "stormrend_flickerhawk",
+        "stormrend_gust_apc",
+        "stormrend_razorbeak",
+        "stormrend_razorwind",
+        "stormrend_riptide",
+        "stormrend_scrap_hawk",
+        "stormrend_sparkrunner",
+        "stormrend_stormbreaker",
+        "stormrend_surge_node",
+        "stormrend_tempest_raider",
+        "stormrend_thunderclap",
+        "stormrend_thunderjaw",
+        "stormrend_vortex"
+    ]
+}
