@@ -1,0 +1,53 @@
+# Godot 4 specific
+.godot/
+*.translation
+
+# Godot C# / .NET
+.mono/
+.dotnet/
+data_*/
+*.DotSettings.user
+
+# .NET build artifacts
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.userprefs
+
+# NuGet
+*.nupkg
+packages/
+.nuget/
+
+# OS generated
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Export
+export/
+builds/
+*.pck
+*.zip
+
+# Logs
+*.log
+
+# Temporary
+tmp/
+temp/

@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://boot_scene"]
+
+[node name="Boot" type="Node"]
+script = ExtResource("res://src/Core/BootLoader.cs")
