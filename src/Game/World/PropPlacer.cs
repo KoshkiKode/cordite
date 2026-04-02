@@ -11,8 +11,8 @@ namespace UnnamedRTS.Game.World;
 /// </summary>
 public sealed class DestructibleProp
 {
-    public Node3D Node { get; set; }
-    public string ModelId { get; set; }
+    public Node3D Node { get; set; } = null!;
+    public string ModelId { get; set; } = string.Empty;
     public int MaxHealth { get; set; }
     public int CurrentHealth { get; set; }
     public int GridX { get; set; }
@@ -66,7 +66,7 @@ public partial class PropPlacer : Node3D
     /// </summary>
     public bool DamageProp(int propId, int damage, OccupancyGrid occupancyGrid)
     {
-        if (!_destructibles.TryGetValue(propId, out DestructibleProp prop))
+        if (!_destructibles.TryGetValue(propId, out DestructibleProp? prop))
             return false;
 
         prop.CurrentHealth -= damage;
@@ -81,9 +81,9 @@ public partial class PropPlacer : Node3D
     /// <summary>
     /// Returns destructible prop info, or null if not found.
     /// </summary>
-    public DestructibleProp GetDestructible(int propId)
+    public DestructibleProp? GetDestructible(int propId)
     {
-        return _destructibles.TryGetValue(propId, out DestructibleProp prop) ? prop : null;
+        return _destructibles.TryGetValue(propId, out DestructibleProp? prop) ? prop : null;
     }
 
     // ── Placement Logic ────────────────────────────────────────────────────
@@ -113,7 +113,7 @@ public partial class PropPlacer : Node3D
         float modelScale = entry.ModelScale.ToFloat();
         float finalScale = scale * modelScale;
 
-        Node3D instance = LoadModel(entry.ModelPath);
+        Node3D? instance = LoadModel(entry.ModelPath);
         if (instance == null)
         {
             // Create placeholder cube
@@ -181,7 +181,7 @@ public partial class PropPlacer : Node3D
         float modelScale = entry.ModelScale.ToFloat();
         float finalScale = scale * modelScale;
 
-        Node3D instance = LoadModel(entry.ModelPath);
+        Node3D? instance = LoadModel(entry.ModelPath);
         if (instance == null)
         {
             instance = CreatePlaceholder(finalScale);
@@ -221,7 +221,7 @@ public partial class PropPlacer : Node3D
 
     // ── Model Loading ──────────────────────────────────────────────────────
 
-    private static Node3D LoadModel(string modelPath)
+    private static Node3D? LoadModel(string modelPath)
     {
         if (string.IsNullOrEmpty(modelPath)) return null;
 

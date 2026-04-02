@@ -337,15 +337,54 @@ public partial class SkirmishLobby : Control
     private void OnStartPressed()
     {
         GD.Print("[SkirmishLobby] Starting skirmish game...");
-        GD.Print($"  Map: {_mapSelector.GetItemText(_mapSelector.Selected)}");
-        GD.Print($"  Players: {_playerCount}");
+        
+        var playerConfigs = new System.Collections.Generic.List<UnnamedRTS.Game.PlayerConfig>();
         for (int i = 0; i < _playerCount; i++)
         {
             string faction = _slotFaction[i].GetItemText(_slotFaction[i].Selected);
-            string diff = i == 0 ? "Human" : DifficultyNames[_slotDifficulty[i].Selected];
-            GD.Print($"  Slot {i + 1}: {faction} ({diff})");
+            if (faction == "Random") 
+            {
+                // Simple random: pick a random faction (1 through length-1)
+                faction = _slotFaction[i].GetItemText(GD.RandRange(1, UITheme.FactionNames.Length));
+            }
+            // Normalize generic name into internal ID (lowercase, no spaces)
+            faction = faction.ToLower().Replace(" ", "_");
+
+            bool isAI = i > 0;
+            int diff = isAI ? _slotDifficulty[i].Selected : 0;
+            string name = isAI ? $"AI {faction}" : "Player 1";
+
+            playerConfigs.Add(new UnnamedRTS.Game.PlayerConfig
+            {
+                PlayerId = i + 1,
+                FactionId = faction,
+                IsAI = isAI,
+                AIDifficulty = diff,
+                PlayerName = name
+            });
+            GD.Print($"  Slot {i + 1}: {faction} (AI: {isAI}, Diff: {diff})");
         }
-        // TODO: Transition to game scene
+
+        int corditeOpt = _startingCordite.Selected;
+        int startingCordite = corditeOpt switch {
+            0 => 3000,
+            1 => 5000,
+            2 => 10000,
+            _ => 5000
+        };
+
+        var config = new UnnamedRTS.Game.MatchConfig
+        {
+            MapId = _mapIds[_mapSelector.Selected],
+            MatchSeed = (ulong)System.DateTime.Now.Ticks,
+            GameSpeed = 1,
+            FogOfWar = _fogOfWar.ButtonPressed,
+            StartingCordite = startingCordite,
+            PlayerConfigs = playerConfigs.ToArray()
+        };
+
+        UnnamedRTS.Game.Main.PendingConfig = config;
+        SceneTransition.TransitionTo(GetTree(), "res://scenes/Game/Main.tscn");
     }
 
     private static HBoxContainer MakeSettingRow(string labelText, Control control)

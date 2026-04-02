@@ -1,4 +1,6 @@
 using Godot;
+using UnnamedRTS.Core;
+using UnnamedRTS.Game;
 using UnnamedRTS.Systems.Networking;
 
 namespace UnnamedRTS.UI;
@@ -198,6 +200,11 @@ public partial class MultiplayerLobby : Control
         AddChild(_discovery);
         _discovery.GameFound += OnGameFound;
         _discovery.GameLost += OnGameLost;
+
+        if (EventBus.Instance != null)
+        {
+            EventBus.Instance.Connect(EventBus.SignalName.MatchCountdown, Callable.From<int>(OnMatchCountdown));
+        }
     }
 
     public override void _Process(double delta)
@@ -435,12 +442,63 @@ public partial class MultiplayerLobby : Control
         }
 
         _discovery?.StopListening();
+
+        if (EventBus.Instance != null)
+        {
+            EventBus.Instance.Disconnect(EventBus.SignalName.MatchCountdown, Callable.From<int>(OnMatchCountdown));
+        }
+
         GetTree().ChangeSceneToFile("res://scenes/UI/MainMenu.tscn");
+    }
+
+    private void OnMatchCountdown(int ticks)
+    {
+        if (_lobbyManager == null || ticks != 3) return; // Only transition on initial countdown
+
+        // Generate MatchConfig from lobby slots
+        var slots = _lobbyManager.GetPlayerSlots();
+        var players = new System.Collections.Generic.List<PlayerConfig>();
+
+        for (int i = 0; i < slots.Count; i++)
+        {
+            var slot = slots.Values[i];
+            players.Add(new PlayerConfig
+            {
+                PlayerId = slot.PlayerId,
+                FactionId = string.IsNullOrEmpty(slot.FactionId) ? "valkyr" : slot.FactionId,
+                IsAI = false,
+                PlayerName = slot.PlayerName
+            });
+        }
+
+        var config = new MatchConfig
+        {
+            MapId = string.IsNullOrEmpty(_lobbyManager.SelectedMap) ? "Crossroads" : _lobbyManager.SelectedMap,
+            MatchSeed = _lobbyManager.MatchSeed,
+            GameSpeed = 1,
+            FogOfWar = true,
+            StartingCordite = 5000,
+            PlayerConfigs = players.ToArray()
+        };
+
+        UnnamedRTS.Game.Main.PendingConfig = config;
+
+        if (EventBus.Instance != null)
+        {
+            EventBus.Instance.Disconnect(EventBus.SignalName.MatchCountdown, Callable.From<int>(OnMatchCountdown));
+        }
+
+        SceneTransition.TransitionTo(GetTree(), "res://scenes/Game/Main.tscn");
     }
 
     public override void _ExitTree()
     {
         _discovery?.StopBroadcasting();
         _discovery?.StopListening();
+
+        if (EventBus.Instance != null && EventBus.Instance.IsConnected(EventBus.SignalName.MatchCountdown, Callable.From<int>(OnMatchCountdown)))
+        {
+            EventBus.Instance.Disconnect(EventBus.SignalName.MatchCountdown, Callable.From<int>(OnMatchCountdown));
+        }
     }
 }

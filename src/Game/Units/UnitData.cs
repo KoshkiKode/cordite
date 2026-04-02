@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnnamedRTS.Core;
+using UnnamedRTS.Systems.Pathfinding;
 
 namespace UnnamedRTS.Game.Units;
 
@@ -218,4 +219,36 @@ public sealed class UnitData
 
     /// <summary>Can reveal stealthed units within sight range.</summary>
     public bool IsDetector { get; init; }
+
+    /// <summary>
+    /// Computes the MovementProfile dynamically based on this unit's base class
+    /// and any per-unit overrides defined.
+    /// </summary>
+    public MovementProfile GetMovementProfile()
+    {
+        MovementProfile profile = MovementClassId switch
+        {
+            "Infantry"     => MovementProfile.Infantry(),
+            "LightVehicle" => MovementProfile.LightVehicle(),
+            "HeavyVehicle" => MovementProfile.HeavyVehicle(),
+            "APC"          => MovementProfile.APC(),
+            "Tank"         => MovementProfile.Tank(),
+            "Artillery"    => MovementProfile.Artillery(),
+            "Helicopter"   => MovementProfile.Helicopter(),
+            "Jet"          => MovementProfile.Jet(),
+            _ => throw new ArgumentException(
+                $"Unknown MovementClassId '{MovementClassId}' on unit '{Id}'.")
+        };
+
+        if (SpeedOverride.HasValue)
+            profile = profile.WithSpeed(SpeedOverride.Value);
+
+        if (TurnRateOverride.HasValue)
+            profile = profile.WithTurnRate(TurnRateOverride.Value);
+
+        if (MassOverride.HasValue)
+            profile = profile.WithMass(MassOverride.Value);
+
+        return profile;
+    }
 }

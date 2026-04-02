@@ -375,13 +375,9 @@ public partial class SelectionManager : Node
         // Look up from unit spawner — local player's faction is determined by their units
         if (_unitSpawner is null) return string.Empty;
         var allUnits = _unitSpawner.GetAllUnits();
-        for (int i = 0; i < allUnits.Count; i++)
-        {
-            // Convention: playerId is encoded via spawn context, faction is stored on unit
-            // For now we trust that local player owns units with their faction
-            return allUnits[i].FactionId;
-        }
-        return string.Empty;
+        // Convention: playerId is encoded via spawn context, faction is stored on unit
+        // For now we trust that local player owns units with their faction
+        return allUnits.Count > 0 ? allUnits[0].FactionId : string.Empty;
     }
 
     // ── Box Select Drawing (called from HUD) ─────────────────────────

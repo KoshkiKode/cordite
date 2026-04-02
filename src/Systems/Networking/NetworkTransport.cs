@@ -21,7 +21,7 @@ public partial class NetworkTransport : Node
     private int _localPeerId;
 
     /// <summary>Whether this transport is currently connected (host or client).</summary>
-    public bool IsConnected => _peer != null && _peer.GetConnectionStatus() != MultiplayerPeer.ConnectionStatus.Disconnected;
+    public new bool IsConnected => _peer != null && _peer.GetConnectionStatus() != MultiplayerPeer.ConnectionStatus.Disconnected;
 
     /// <summary>Whether this peer is the server/host.</summary>
     public bool IsHost => _isHost;

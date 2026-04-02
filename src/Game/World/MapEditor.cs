@@ -42,9 +42,9 @@ public sealed class EditorAction
     public string Description { get; init; } = string.Empty;
 
     // Snapshot of affected data before the action
-    public byte[] BeforeState { get; init; }
+    public byte[] BeforeState { get; init; } = null!;
     // Snapshot of affected data after the action
-    public byte[] AfterState { get; init; }
+    public byte[] AfterState { get; init; } = null!;
 
     // Action-specific metadata
     public int AffectedX { get; init; }
@@ -76,10 +76,10 @@ public partial class MapEditor : Node3D
     private int _maxPlayers = 4;
 
     // Elevation grid (float for editor use)
-    private float[] _elevation;
+    private float[] _elevation = null!;
 
     // Biome per-cell (stored as string for flexibility)
-    private string[] _biomeMap;
+    private string[] _biomeMap = null!;
 
     // Placed objects
     private readonly SortedList<int, PropPlacement> _props = new();
@@ -109,9 +109,9 @@ public partial class MapEditor : Node3D
     private int _redoNextKey;
 
     // Rendering
-    private TerrainRenderer _terrainRenderer;
-    private WaterRenderer _waterRenderer;
-    private PropPlacer _propPlacer;
+    private TerrainRenderer _terrainRenderer = null!;
+    private WaterRenderer _waterRenderer = null!;
+    private PropPlacer _propPlacer = null!;
 
     // Signals
     [Signal] public delegate void MapModifiedEventHandler();
@@ -998,7 +998,7 @@ public partial class MapEditor : Node3D
         MapData data;
         try
         {
-            data = JsonSerializer.Deserialize<MapData>(json, JsonOptions);
+            data = JsonSerializer.Deserialize<MapData>(json, JsonOptions)!;
         }
         catch (Exception e)
         {

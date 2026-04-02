@@ -111,7 +111,7 @@ public partial class DebugTestScene : Node3D
                     FixedPoint.FromFloat(x),
                     FixedPoint.FromFloat(z));
 
-                _spawner.SpawnUnit(unitTypeId, factionId, pos, FixedPoint.Zero);
+                _spawner.SpawnUnit(unitTypeId, factionId, factionIdx + 1, pos, FixedPoint.Zero);
             }
         }
 

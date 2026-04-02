@@ -273,6 +273,7 @@ public partial class ProductionQueue : Node
         UnitNode3D? unit = _unitSpawner.SpawnUnit(
             completedType,
             factionId,
+            _building.PlayerId,
             spawnPos,
             FixedPoint.Zero);
 

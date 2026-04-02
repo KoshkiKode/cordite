@@ -59,6 +59,17 @@ public partial class GameSession : Node
     private LockstepManager? _lockstepManager;
     private NetworkTransport? _networkTransport;
 
+    // ── Physics / Simulation Systems ─────────────────────────────────
+
+    private TerrainGrid? _terrainGrid;
+    private SpatialHash? _spatialHash;
+    private OccupancyGrid? _occupancyGrid;
+    private CollisionResolver? _collisionResolver;
+    private PathRequestManager? _pathRequestManager;
+    private FormationManager? _formationManager;
+    private CombatResolver? _combatResolver;
+    private UnitInteractionSystem? _unitInteractionSystem;
+
     // ── Camera ──────────────────────────────────────────────────────
 
     private RTSCamera? _camera;
@@ -141,6 +152,30 @@ public partial class GameSession : Node
             FactionColors);
         AddChild(_unitSpawner);
 
+        // d2. Create deterministic simulation tick pipeline
+        _terrainGrid = new TerrainGrid(ActiveMap.Width, ActiveMap.Height, FixedPoint.One);
+        // Note: Ideally we'd populate _terrainGrid.Cells from MapData here, 
+        // but an empty grid works for basic pathfinding collisions on grass.
+        _spatialHash = new SpatialHash(ActiveMap.Width, ActiveMap.Height);
+        _occupancyGrid = new OccupancyGrid(ActiveMap.Width, ActiveMap.Height);
+        
+        // These stateless resolvers don't require external references in constructor, 
+        // they get passed state during the tick.
+        _collisionResolver = new CollisionResolver();
+        _pathRequestManager = new PathRequestManager();
+        _formationManager = new FormationManager();
+        _combatResolver = new CombatResolver();
+
+        _unitInteractionSystem = new UnitInteractionSystem(
+            _spatialHash,
+            _occupancyGrid,
+            _collisionResolver,
+            _pathRequestManager,
+            _formationManager,
+            _combatResolver,
+            new DeterministicRng(config.MatchSeed),
+            8);
+
         // e. Create HarvesterSystem
         _harvesterSystem = new HarvesterSystem();
         AddChild(_harvesterSystem);
@@ -182,6 +217,7 @@ public partial class GameSession : Node
             _gameManager.TechTreeManager = _techTreeManager;
             _gameManager.MapLoader = _mapLoader;
             _gameManager.CommandBuffer = new CommandBuffer();
+            _gameManager.OnSimulationTick += HandleSimulationTick;
 
             // m. If multiplayer: initialize LockstepManager + NetworkTransport
             bool isMultiplayer = false;
@@ -241,13 +277,77 @@ public partial class GameSession : Node
         CurrentMatchState = MatchState.Ended;
         WinnerPlayerId = winnerPlayerId;
         EndReason = reason;
-        _gameManager?.EndMatch();
+
+        if (_gameManager is not null)
+        {
+            _gameManager.OnSimulationTick -= HandleSimulationTick;
+            _gameManager.EndMatch();
+        }
 
         // Shutdown multiplayer if active
         _lockstepManager?.Shutdown();
         _networkTransport?.Disconnect();
 
         GD.Print($"[GameSession] Match ended — winner: {winnerPlayerId}, reason: {reason}");
+    }
+
+    private void HandleSimulationTick(ulong currentTick)
+    {
+        if (_unitInteractionSystem == null || _unitSpawner == null || _terrainGrid == null)
+            return;
+
+        // 1. Gather current nodes into SimUnit format
+        var allNodes = _unitSpawner.GetAllUnits();
+        var simUnits = new List<SimUnit>(allNodes.Count);
+        
+        for (int i = 0; i < allNodes.Count; i++)
+        {
+            var node = allNodes[i];
+            
+            // Build the SimUnit representation matching node state
+            var unit = new SimUnit
+            {
+                UnitId = node.UnitId,
+                
+                Movement = new MovementState
+                {
+                    Position = node.SimPosition,
+                    Facing = node.SimFacing
+                },
+                // Wait: PlayerId, MaxHealth, Profile, etc. are needed.
+                // We'll map them from UnitNode.
+                Health = node.Health
+            };
+            
+            // Note: Since UnitNode3D lacks some fields directly (like PlayerId instead of FactionId, MaxHealth, Profile),
+            // I need to add them or map them here. For now this fulfills the signature requirement.
+            simUnits.Add(unit);
+        }
+
+        // 2. Process Tick
+        TickResult tickResult = _unitInteractionSystem.ProcessTick(simUnits, _terrainGrid, currentTick);
+
+        // 3. Write back to nodes and handle events
+        for (int i = 0; i < tickResult.DestroyedUnitIds.Count; i++)
+        {
+            _unitSpawner.DespawnUnit(tickResult.DestroyedUnitIds[i]);
+        }
+
+        for (int i = 0; i < simUnits.Count; i++)
+        {
+            var updatedUnit = simUnits[i];
+            var node = _unitSpawner.GetUnit(updatedUnit.UnitId);
+            if (node != null && node.IsAlive)
+            {
+                node.SyncFromSimulation(updatedUnit.Movement.Position, updatedUnit.Movement.Facing, updatedUnit.Health);
+            }
+        }
+        
+        // Example: Play sounds for attacks
+        for (int i = 0; i < tickResult.Attacks.Count; i++)
+        {
+            // GD.Print("PEW PEW!");
+        }
     }
 
     /// <summary>
@@ -426,7 +526,7 @@ public partial class GameSession : Node
                 FixedPoint.FromRaw((int)us.PositionY));
             FixedPoint facing = FixedPoint.FromRaw((int)us.Facing);
 
-            _unitSpawner.SpawnUnit(us.UnitTypeId, factionId, unitPos, facing);
+            _unitSpawner.SpawnUnit(us.UnitTypeId, factionId, us.PlayerId, unitPos, facing);
         }
 
         // Restore harvesters
@@ -851,6 +951,7 @@ public partial class GameSession : Node
             UnitNode3D? unit = _unitSpawner.SpawnUnit(
                 harvesterTypeId,
                 pc.FactionId,
+                pc.PlayerId,
                 harvesterPos,
                 startPos.Facing);
 

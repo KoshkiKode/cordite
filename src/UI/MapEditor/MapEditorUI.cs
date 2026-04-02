@@ -16,41 +16,41 @@ namespace UnnamedRTS.UI.MapEditor;
 public partial class MapEditorUI : Control
 {
     // ── References ──────────────────────────────────────────────────────────
-    private Game.World.MapEditor _editor;
-    private TerrainManifest _manifest;
-    private Camera3D _camera;
+    private Game.World.MapEditor _editor = null!;
+    private TerrainManifest _manifest = null!;
+    private Camera3D _camera = null!;
 
     // ── UI Containers ──────────────────────────────────────────────────────
-    private VBoxContainer _leftPanel;
-    private VBoxContainer _rightPanel;
-    private HBoxContainer _topBar;
-    private HBoxContainer _bottomBar;
-    private PanelContainer _propertiesPanel;
+    private VBoxContainer _leftPanel = null!;
+    private VBoxContainer _rightPanel = null!;
+    private HBoxContainer _topBar = null!;
+    private HBoxContainer _bottomBar = null!;
+    private PanelContainer _propertiesPanel = null!;
 
     // ── Tool Buttons ───────────────────────────────────────────────────────
     private readonly SortedList<int, Button> _toolButtons = new();
-    private Button _activeToolButton;
+    private Button _activeToolButton = null!;
 
     // ── Brush Settings Controls ────────────────────────────────────────────
-    private HSlider _brushSizeSlider;
-    private HSlider _brushIntensitySlider;
-    private Label _brushSizeLabel;
-    private Label _brushIntensityLabel;
-    private OptionButton _biomeSelector;
+    private HSlider _brushSizeSlider = null!;
+    private HSlider _brushIntensitySlider = null!;
+    private Label _brushSizeLabel = null!;
+    private Label _brushIntensityLabel = null!;
+    private OptionButton _biomeSelector = null!;
 
     // ── Prop Browser ───────────────────────────────────────────────────────
-    private OptionButton _propCategorySelector;
-    private ItemList _propList;
+    private OptionButton _propCategorySelector = null!;
+    private ItemList _propList = null!;
 
     // ── Undo/Redo Buttons ──────────────────────────────────────────────────
-    private Button _undoButton;
-    private Button _redoButton;
+    private Button _undoButton = null!;
+    private Button _redoButton = null!;
 
     // ── Properties Panel Fields ────────────────────────────────────────────
-    private SpinBox _propRotation;
-    private SpinBox _propScale;
-    private SpinBox _corditeAmount;
-    private Label _statusLabel;
+    private SpinBox _propRotation = null!;
+    private SpinBox _propScale = null!;
+    private SpinBox _corditeAmount = null!;
+    private Label _statusLabel = null!;
 
     // ── Mouse State (for terrain editing) ──────────────────────────────────
     private bool _isDragging;

@@ -54,7 +54,7 @@ void fragment() {
 }
 ";
 
-    private ShaderMaterial _waterMaterial;
+    private ShaderMaterial _waterMaterial = null!;
 
     /// <summary>
     /// Generates water planes for all river features in the map data.

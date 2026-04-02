@@ -13,9 +13,9 @@ namespace UnnamedRTS.Game.World;
 /// </summary>
 public partial class TerrainRenderer : Node3D
 {
-    private MeshInstance3D _meshInstance;
-    private MapData _mapData;
-    private float[] _elevationMap;
+    private MeshInstance3D _meshInstance = null!;
+    private MapData _mapData = null!;
+    private float[] _elevationMap = null!;
 
     // Biome base colors
     private static readonly Color TemperateGrass = new(0.28f, 0.52f, 0.15f);
@@ -59,7 +59,7 @@ void fragment() {
         if (_meshInstance != null)
         {
             _meshInstance.QueueFree();
-            _meshInstance = null;
+            _meshInstance = null!;
         }
 
         int width = _mapData.Width;

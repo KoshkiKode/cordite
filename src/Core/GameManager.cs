@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using UnnamedRTS.Game.Economy;
 using UnnamedRTS.Game.Tech;
@@ -77,6 +78,13 @@ public partial class GameManager : Node
     /// </summary>
     public MapLoader? MapLoader { get; set; }
 
+    /// <summary>
+    /// Event fired once per simulation frame after economy updates.
+    /// This is where the core physics, pathfinding, and combat pipeline runs.
+    /// Passes the new tick count.
+    /// </summary>
+    public event Action<ulong>? OnSimulationTick;
+
     public override void _Ready()
     {
         GD.Print("[GameManager] Initialized.");
@@ -117,6 +125,9 @@ public partial class GameManager : Node
         EconomyManager?.ProcessTick(economyDelta);
         HarvesterSystem?.ProcessTick(economyDelta);
         TechTreeManager?.ProcessTick(economyDelta);
+
+        // Run core physics and combat deterministic tick
+        OnSimulationTick?.Invoke(CurrentTick);
 
         if (IsMultiplayer && Lockstep != null)
         {

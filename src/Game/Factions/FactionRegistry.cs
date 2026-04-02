@@ -231,40 +231,6 @@ public sealed class FactionRegistry
         return result;
     }
 
-    /// <summary>
-    /// Resolves a <see cref="MovementProfile"/> for the given unit by
-    /// mapping its <see cref="UnitData.MovementClassId"/> to the
-    /// corresponding factory method, then applying any per-unit overrides.
-    /// </summary>
-    public MovementProfile GetMovementProfileForUnit(UnitData unit)
-    {
-        MovementProfile profile = unit.MovementClassId switch
-        {
-            "Infantry"     => MovementProfile.Infantry(),
-            "LightVehicle" => MovementProfile.LightVehicle(),
-            "HeavyVehicle" => MovementProfile.HeavyVehicle(),
-            "APC"          => MovementProfile.APC(),
-            "Tank"         => MovementProfile.Tank(),
-            "Artillery"    => MovementProfile.Artillery(),
-            "Helicopter"   => MovementProfile.Helicopter(),
-            "Jet"          => MovementProfile.Jet(),
-            _ => throw new ArgumentException(
-                $"Unknown MovementClassId '{unit.MovementClassId}' on unit '{unit.Id}'.")
-        };
-
-        // Apply per-unit overrides when present.
-        if (unit.SpeedOverride.HasValue)
-            profile = profile.WithSpeed(unit.SpeedOverride.Value);
-
-        if (unit.TurnRateOverride.HasValue)
-            profile = profile.WithTurnRate(unit.TurnRateOverride.Value);
-
-        if (unit.MassOverride.HasValue)
-            profile = profile.WithMass(unit.MassOverride.Value);
-
-        return profile;
-    }
-
     // ── Private Helpers ──────────────────────────────────────────────
 
     /// <summary>

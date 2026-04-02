@@ -1,6 +1,7 @@
 using Godot;
 using UnnamedRTS.Core;
 using UnnamedRTS.Game.Assets;
+using UnnamedRTS.Systems.Pathfinding;
 
 namespace UnnamedRTS.Game.Units;
 
@@ -19,10 +20,20 @@ public partial class UnitNode3D : Node3D
     public int UnitId { get; private set; }
     public string UnitTypeId { get; private set; } = string.Empty;
     public string FactionId { get; private set; } = string.Empty;
+    public int PlayerId { get; private set; }
+    
     public FixedVector2 SimPosition { get; private set; }
     public FixedPoint SimFacing { get; private set; }
     public FixedPoint Health { get; private set; }
+    public FixedPoint MaxHealth { get; private set; }
     public bool IsAlive { get; private set; } = true;
+
+    // Fixed combat and movement traits
+    public FixedPoint Radius { get; private set; }
+    public FixedPoint ArmorValue { get; private set; }
+    public ArmorType ArmorClass { get; private set; }
+    public UnitCategory Category { get; private set; }
+    public MovementProfile? MovementProfile { get; private set; }
 
     // ── Child Nodes ──────────────────────────────────────────────────
     private Node3D? _meshRoot;
@@ -40,12 +51,21 @@ public partial class UnitNode3D : Node3D
         string unitTypeId,
         UnitData data,
         AssetEntry asset,
-        Color teamColor)
+        Color teamColor,
+        int playerId)
     {
         UnitId = unitId;
         UnitTypeId = unitTypeId;
         FactionId = data.FactionId;
+        PlayerId = playerId;
         Health = data.MaxHealth;
+        MaxHealth = data.MaxHealth;
+        Radius = asset.CollisionRadius;
+        ArmorValue = data.ArmorValue;
+        ArmorClass = data.ArmorClass;
+        Category = data.Category;
+        MovementProfile = data.GetMovementProfile();
+
         _isAirUnit = asset.Domain == "Air";
         _collisionRadius = asset.CollisionRadius.ToFloat();
 

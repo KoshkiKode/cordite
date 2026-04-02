@@ -45,6 +45,7 @@ public partial class UnitSpawner : Node
     public UnitNode3D? SpawnUnit(
         string unitTypeId,
         string factionId,
+        int playerId,
         FixedVector2 position,
         FixedPoint facing)
     {
@@ -72,7 +73,7 @@ public partial class UnitSpawner : Node
         int unitId = _nextUnitId++;
 
         var unitNode = new UnitNode3D();
-        unitNode.Initialize(unitId, unitTypeId, data, asset, teamColor);
+        unitNode.Initialize(unitId, unitTypeId, data, asset, teamColor, playerId);
         unitNode.SyncFromSimulation(position, facing, data.MaxHealth);
 
         if (_unitsParent is not null)
