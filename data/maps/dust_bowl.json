@@ -1,0 +1,2907 @@
+{
+  "Id": "dust_bowl",
+  "DisplayName": "Dust Bowl",
+  "Description": "An arid wasteland scorched by centuries of war. No rivers run here — only the whisper of sand across ancient ruins. The central oasis is the last freshwater source, and the Cordite beneath it is priceless.",
+  "Author": "Cordite Wars Team",
+  "MaxPlayers": 4,
+  "Width": 200,
+  "Height": 200,
+  "Biome": "desert",
+  "StartingPositions": [
+    {
+      "PlayerId": 0,
+      "X": 22,
+      "Y": 22,
+      "Facing": 0.785
+    },
+    {
+      "PlayerId": 1,
+      "X": 178,
+      "Y": 22,
+      "Facing": 2.356
+    },
+    {
+      "PlayerId": 2,
+      "X": 178,
+      "Y": 178,
+      "Facing": 3.927
+    },
+    {
+      "PlayerId": 3,
+      "X": 22,
+      "Y": 178,
+      "Facing": 5.498
+    }
+  ],
+  "CorditeNodes": [
+    {
+      "NodeId": 0,
+      "X": 29.071067811865476,
+      "Y": 29.071067811865476,
+      "Amount": 10000
+    },
+    {
+      "NodeId": 1,
+      "X": 36.071067811865476,
+      "Y": 25.071067811865476,
+      "Amount": 8000
+    },
+    {
+      "NodeId": 2,
+      "X": 170.92893218813452,
+      "Y": 29.071067811865476,
+      "Amount": 10000
+    },
+    {
+      "NodeId": 3,
+      "X": 177.92893218813452,
+      "Y": 25.071067811865476,
+      "Amount": 8000
+    },
+    {
+      "NodeId": 4,
+      "X": 170.92893218813452,
+      "Y": 170.92893218813452,
+      "Amount": 10000
+    },
+    {
+      "NodeId": 5,
+      "X": 177.92893218813452,
+      "Y": 166.92893218813452,
+      "Amount": 8000
+    },
+    {
+      "NodeId": 6,
+      "X": 29.071067811865476,
+      "Y": 170.92893218813452,
+      "Amount": 10000
+    },
+    {
+      "NodeId": 7,
+      "X": 36.071067811865476,
+      "Y": 166.92893218813452,
+      "Amount": 8000
+    },
+    {
+      "NodeId": 8,
+      "X": 100,
+      "Y": 100,
+      "Amount": 20000
+    }
+  ],
+  "TerrainFeatures": [
+    {
+      "Type": "oasis",
+      "Points": [
+        [
+          88,
+          88
+        ],
+        [
+          112,
+          88
+        ],
+        [
+          112,
+          112
+        ],
+        [
+          88,
+          112
+        ]
+      ]
+    }
+  ],
+  "Props": [
+    {
+      "ModelId": "palm_detailed_bend",
+      "X": 104.2,
+      "Y": 86.4,
+      "Rotation": 166.2,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "tree_palmDetailedShort",
+      "X": 96.6,
+      "Y": 98.2,
+      "Rotation": 92.0,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "tree_palmDetailedShort",
+      "X": 100.2,
+      "Y": 94.4,
+      "Rotation": 76.6,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "palm_detailed_bend",
+      "X": 101.6,
+      "Y": 95.2,
+      "Rotation": 205.5,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "tree_palm",
+      "X": 89.3,
+      "Y": 94.9,
+      "Rotation": 72.9,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "palm_detailed_bend",
+      "X": 104.9,
+      "Y": 100.6,
+      "Rotation": 106.2,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "tree_palm",
+      "X": 96.5,
+      "Y": 102.6,
+      "Rotation": 117.0,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "tree_palmTall",
+      "X": 100.9,
+      "Y": 99.5,
+      "Rotation": 48.2,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "tree_palmBend",
+      "X": 95.6,
+      "Y": 101.5,
+      "Rotation": 133.2,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "tree_palmTall",
+      "X": 101.2,
+      "Y": 101.3,
+      "Rotation": 131.8,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "palm_bend",
+      "X": 104.3,
+      "Y": 96.5,
+      "Rotation": 28.8,
+      "Scale": 0.85
+    },
+    {
+      "ModelId": "palm_detailed_bend",
+      "X": 104.9,
+      "Y": 97.3,
+      "Rotation": 304.1,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "tree_palmDetailedShort",
+      "X": 98.6,
+      "Y": 102.4,
+      "Rotation": 259.7,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "palm_bend",
+      "X": 100.1,
+      "Y": 100.1,
+      "Rotation": 324.6,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "tree_palmDetailedShort",
+      "X": 101.4,
+      "Y": 86.7,
+      "Rotation": 198.9,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "palm_bend",
+      "X": 110.1,
+      "Y": 96.1,
+      "Rotation": 195.3,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "lily_small",
+      "X": 95.2,
+      "Y": 94.2,
+      "Rotation": 226.3,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "hanging_moss",
+      "X": 100.6,
+      "Y": 109.7,
+      "Rotation": 121.1,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "hanging_moss",
+      "X": 97.7,
+      "Y": 103.7,
+      "Rotation": 126.6,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "lily_small",
+      "X": 99.2,
+      "Y": 95.9,
+      "Rotation": 3.8,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "hanging_moss",
+      "X": 105.2,
+      "Y": 98.2,
+      "Rotation": 76.9,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "pirate_grass_plant",
+      "X": 99.8,
+      "Y": 100.2,
+      "Rotation": 168.0,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "lily_large",
+      "X": 100.1,
+      "Y": 97.4,
+      "Rotation": 133.2,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "pirate_grass_plant",
+      "X": 92.2,
+      "Y": 102.2,
+      "Rotation": 238.2,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "pirate_patch_grass_foliage",
+      "X": 88.8,
+      "Y": 102.4,
+      "Rotation": 54.9,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "pirate_grass_plant",
+      "X": 96.6,
+      "Y": 102.7,
+      "Rotation": 67.7,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "hanging_moss",
+      "X": 100.3,
+      "Y": 100.2,
+      "Rotation": 341.0,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "pirate_patch_sand_foliage",
+      "X": 105.1,
+      "Y": 104.6,
+      "Rotation": 149.9,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "pirate_patch_grass_foliage",
+      "X": 104.5,
+      "Y": 104.0,
+      "Rotation": 224.8,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "lily_large",
+      "X": 105.6,
+      "Y": 107.7,
+      "Rotation": 65.4,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "lily_large",
+      "X": 109.1,
+      "Y": 102.1,
+      "Rotation": 303.1,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "lily_large",
+      "X": 110.4,
+      "Y": 95.5,
+      "Rotation": 125.7,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "pirate_patch_grass_foliage",
+      "X": 90.5,
+      "Y": 102.0,
+      "Rotation": 132.8,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "lily_small",
+      "X": 105.5,
+      "Y": 110.1,
+      "Rotation": 96.5,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "pirate_grass_plant",
+      "X": 108.5,
+      "Y": 98.7,
+      "Rotation": 127.3,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "pirate_grass_plant",
+      "X": 107.3,
+      "Y": 98.5,
+      "Rotation": 280.9,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 16.8,
+      "Y": 26.2,
+      "Rotation": 161.5,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 17.0,
+      "Y": 32.9,
+      "Rotation": 198.7,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 29.1,
+      "Y": 38.8,
+      "Rotation": 206.2,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 33.6,
+      "Y": 23.2,
+      "Rotation": 359.2,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 39.7,
+      "Y": 38.5,
+      "Rotation": 260.0,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 21.6,
+      "Y": 17.8,
+      "Rotation": 145.6,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 30.6,
+      "Y": 29.7,
+      "Rotation": 21.5,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 32.2,
+      "Y": 32.3,
+      "Rotation": 291.3,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 29.7,
+      "Y": 28.3,
+      "Rotation": 339.5,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 33.8,
+      "Y": 24.8,
+      "Rotation": 23.4,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 23.0,
+      "Y": 34.0,
+      "Rotation": 188.7,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "rocks_sand_c",
+      "X": 17.6,
+      "Y": 35.3,
+      "Rotation": 243.1,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "stone_tallA",
+      "X": 41.6,
+      "Y": 22.5,
+      "Rotation": 335.5,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "rocks_sand_a",
+      "X": 23.0,
+      "Y": 28.5,
+      "Rotation": 2.1,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "rocks_sand_a",
+      "X": 47.2,
+      "Y": 30.6,
+      "Rotation": 211.7,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "rocks_sand_a",
+      "X": 35.3,
+      "Y": 32.9,
+      "Rotation": 105.7,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "rocks_sand_c",
+      "X": 34.9,
+      "Y": 33.3,
+      "Rotation": 292.8,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "rocks_sand_b",
+      "X": 34.5,
+      "Y": 32.2,
+      "Rotation": 238.1,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 30.9,
+      "Y": 43.1,
+      "Rotation": 54.5,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 29.8,
+      "Y": 29.7,
+      "Rotation": 128.4,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 21.4,
+      "Y": 35.2,
+      "Rotation": 55.4,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 23.2,
+      "Y": 39.0,
+      "Rotation": 136.8,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 28.2,
+      "Y": 30.2,
+      "Rotation": 154.3,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 23.5,
+      "Y": 33.6,
+      "Rotation": 238.4,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 30.4,
+      "Y": 28.5,
+      "Rotation": 238.7,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 31.9,
+      "Y": 22.4,
+      "Rotation": 343.1,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 29.8,
+      "Y": 21.8,
+      "Rotation": 21.4,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 20.7,
+      "Y": 29.7,
+      "Rotation": 43.5,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 32.4,
+      "Y": 34.0,
+      "Rotation": 269.2,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 41.6,
+      "Y": 26.7,
+      "Rotation": 56.9,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 38.7,
+      "Y": 27.4,
+      "Rotation": 118.1,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 30.8,
+      "Y": 29.9,
+      "Rotation": 58.3,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 39.4,
+      "Y": 25.7,
+      "Rotation": 290.7,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 170.8,
+      "Y": 28.5,
+      "Rotation": 38.3,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 175.9,
+      "Y": 17.0,
+      "Rotation": 70.1,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 166.9,
+      "Y": 29.9,
+      "Rotation": 206.5,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 180.9,
+      "Y": 35.6,
+      "Rotation": 130.6,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 167.5,
+      "Y": 28.8,
+      "Rotation": 150.8,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 174.5,
+      "Y": 32.4,
+      "Rotation": 345.8,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 169.2,
+      "Y": 18.8,
+      "Rotation": 250.5,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 170.5,
+      "Y": 34.5,
+      "Rotation": 176.9,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 159.6,
+      "Y": 41.3,
+      "Rotation": 328.3,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 162.6,
+      "Y": 16.5,
+      "Rotation": 189.7,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "rocks_sand_c",
+      "X": 167.9,
+      "Y": 46.8,
+      "Rotation": 8.6,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "rocks_sand_c",
+      "X": 188.7,
+      "Y": 24.8,
+      "Rotation": 349.8,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "rocks_sand_b",
+      "X": 170.5,
+      "Y": 34.3,
+      "Rotation": 139.3,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "stone_tallA",
+      "X": 181.9,
+      "Y": 27.4,
+      "Rotation": 54.1,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "rock_largeB",
+      "X": 172.5,
+      "Y": 33.5,
+      "Rotation": 110.8,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 152.4,
+      "Y": 24.4,
+      "Rotation": 105.6,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "rocks_sand_b",
+      "X": 172.6,
+      "Y": 24.7,
+      "Rotation": 38.3,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 167.5,
+      "Y": 32.8,
+      "Rotation": 154.4,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 169.1,
+      "Y": 41.0,
+      "Rotation": 290.4,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 162.9,
+      "Y": 28.7,
+      "Rotation": 238.0,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 164.1,
+      "Y": 20.5,
+      "Rotation": 224.2,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 166.1,
+      "Y": 35.8,
+      "Rotation": 140.0,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 164.6,
+      "Y": 29.7,
+      "Rotation": 317.9,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 173.2,
+      "Y": 22.7,
+      "Rotation": 148.2,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 177.1,
+      "Y": 23.5,
+      "Rotation": 177.7,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 174.8,
+      "Y": 26.8,
+      "Rotation": 75.7,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 171.7,
+      "Y": 28.8,
+      "Rotation": 45.1,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 168.5,
+      "Y": 38.1,
+      "Rotation": 175.7,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 171.0,
+      "Y": 23.0,
+      "Rotation": 25.2,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 172.9,
+      "Y": 29.4,
+      "Rotation": 168.0,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 175.9,
+      "Y": 29.2,
+      "Rotation": 115.8,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 163.3,
+      "Y": 41.4,
+      "Rotation": 217.1,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 161.5,
+      "Y": 30.6,
+      "Rotation": 288.5,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 171.5,
+      "Y": 168.8,
+      "Rotation": 209.7,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 157.7,
+      "Y": 171.6,
+      "Rotation": 274.2,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 170.5,
+      "Y": 163.4,
+      "Rotation": 92.2,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 169.0,
+      "Y": 171.3,
+      "Rotation": 327.0,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 167.0,
+      "Y": 170.7,
+      "Rotation": 314.7,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 171.4,
+      "Y": 166.4,
+      "Rotation": 79.4,
+      "Scale": 1.15
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 176.3,
+      "Y": 163.6,
+      "Rotation": 187.1,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 160.7,
+      "Y": 180.4,
+      "Rotation": 130.6,
+      "Scale": 0.89
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 174.0,
+      "Y": 177.3,
+      "Rotation": 239.8,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 157.6,
+      "Y": 162.4,
+      "Rotation": 267.6,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "rock_largeB",
+      "X": 160.4,
+      "Y": 169.8,
+      "Rotation": 293.3,
+      "Scale": 1.15
+    },
+    {
+      "ModelId": "stone_tallA",
+      "X": 181.2,
+      "Y": 178.7,
+      "Rotation": 67.6,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "rocks_sand_c",
+      "X": 169.8,
+      "Y": 169.3,
+      "Rotation": 4.2,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 184.9,
+      "Y": 171.1,
+      "Rotation": 326.3,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 174.3,
+      "Y": 156.6,
+      "Rotation": 294.2,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "rock_largeB",
+      "X": 160.1,
+      "Y": 157.0,
+      "Rotation": 101.0,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 182.0,
+      "Y": 172.1,
+      "Rotation": 198.9,
+      "Scale": 0.85
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 167.4,
+      "Y": 172.2,
+      "Rotation": 132.4,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 170.0,
+      "Y": 169.8,
+      "Rotation": 93.5,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 163.7,
+      "Y": 162.7,
+      "Rotation": 331.5,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 180.1,
+      "Y": 164.5,
+      "Rotation": 148.9,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 168.4,
+      "Y": 171.8,
+      "Rotation": 307.1,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 180.3,
+      "Y": 176.0,
+      "Rotation": 56.6,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 177.6,
+      "Y": 159.5,
+      "Rotation": 267.7,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 175.6,
+      "Y": 178.5,
+      "Rotation": 171.8,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 170.3,
+      "Y": 176.4,
+      "Rotation": 349.7,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 166.1,
+      "Y": 180.0,
+      "Rotation": 221.4,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 171.4,
+      "Y": 169.6,
+      "Rotation": 243.7,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 169.9,
+      "Y": 170.1,
+      "Rotation": 336.5,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 180.7,
+      "Y": 168.1,
+      "Rotation": 224.4,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 171.7,
+      "Y": 171.4,
+      "Rotation": 136.2,
+      "Scale": 0.89
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 172.1,
+      "Y": 160.8,
+      "Rotation": 176.0,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 167.6,
+      "Y": 174.7,
+      "Rotation": 182.5,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 41.3,
+      "Y": 171.4,
+      "Rotation": 266.9,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 31.5,
+      "Y": 170.6,
+      "Rotation": 36.7,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 21.0,
+      "Y": 168.7,
+      "Rotation": 332.2,
+      "Scale": 0.85
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 32.1,
+      "Y": 162.8,
+      "Rotation": 111.9,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 28.4,
+      "Y": 183.3,
+      "Rotation": 142.5,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 24.6,
+      "Y": 183.4,
+      "Rotation": 293.5,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 45.8,
+      "Y": 168.6,
+      "Rotation": 279.3,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 30.9,
+      "Y": 170.4,
+      "Rotation": 223.6,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 42.0,
+      "Y": 175.5,
+      "Rotation": 107.5,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 36.0,
+      "Y": 156.2,
+      "Rotation": 286.5,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "stone_tallA",
+      "X": 22.9,
+      "Y": 159.7,
+      "Rotation": 192.1,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 46.4,
+      "Y": 173.6,
+      "Rotation": 301.5,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 29.4,
+      "Y": 179.4,
+      "Rotation": 178.2,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "rocks_sand_a",
+      "X": 33.4,
+      "Y": 170.1,
+      "Rotation": 350.6,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "rocks_sand_c",
+      "X": 43.2,
+      "Y": 167.8,
+      "Rotation": 260.0,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "stone_tallA",
+      "X": 25.2,
+      "Y": 179.5,
+      "Rotation": 312.1,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "stone_tallA",
+      "X": 35.5,
+      "Y": 153.6,
+      "Rotation": 312.6,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "rocks_sand_a",
+      "X": 31.4,
+      "Y": 151.4,
+      "Rotation": 37.5,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 30.3,
+      "Y": 171.0,
+      "Rotation": 246.3,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 30.5,
+      "Y": 159.6,
+      "Rotation": 268.7,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 30.0,
+      "Y": 170.0,
+      "Rotation": 118.0,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 18.3,
+      "Y": 162.7,
+      "Rotation": 340.7,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 34.7,
+      "Y": 168.4,
+      "Rotation": 255.5,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 29.0,
+      "Y": 173.4,
+      "Rotation": 66.1,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 27.3,
+      "Y": 168.5,
+      "Rotation": 46.7,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 31.3,
+      "Y": 172.9,
+      "Rotation": 295.0,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 39.3,
+      "Y": 179.8,
+      "Rotation": 300.2,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 19.4,
+      "Y": 169.6,
+      "Rotation": 61.6,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 33.1,
+      "Y": 163.4,
+      "Rotation": 238.5,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 24.3,
+      "Y": 168.9,
+      "Rotation": 119.1,
+      "Scale": 0.89
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 26.9,
+      "Y": 172.5,
+      "Rotation": 221.3,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 35.2,
+      "Y": 179.5,
+      "Rotation": 238.3,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 38.2,
+      "Y": 165.6,
+      "Rotation": 36.9,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "Rock_Medium_2",
+      "X": 64.0,
+      "Y": 66.1,
+      "Rotation": 201.8,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "Rock_Medium_2",
+      "X": 65.7,
+      "Y": 66.6,
+      "Rotation": 101.5,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "rock_tallA",
+      "X": 60.9,
+      "Y": 69.3,
+      "Rotation": 86.5,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "stone_tallA",
+      "X": 60.6,
+      "Y": 79.5,
+      "Rotation": 195.0,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "rock_largeB",
+      "X": 54.7,
+      "Y": 70.9,
+      "Rotation": 246.3,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 51.3,
+      "Y": 70.6,
+      "Rotation": 94.9,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 57.8,
+      "Y": 65.1,
+      "Rotation": 117.7,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "rock_tallA",
+      "X": 59.7,
+      "Y": 67.4,
+      "Rotation": 300.7,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 60.7,
+      "Y": 70.8,
+      "Rotation": 334.1,
+      "Scale": 0.89
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 60.2,
+      "Y": 71.0,
+      "Rotation": 43.8,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 66.5,
+      "Y": 73.4,
+      "Rotation": 107.5,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 59.1,
+      "Y": 69.1,
+      "Rotation": 135.3,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "Rock_Medium_1",
+      "X": 139.1,
+      "Y": 69.4,
+      "Rotation": 47.5,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "rock_tallA",
+      "X": 140.5,
+      "Y": 69.3,
+      "Rotation": 30.5,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 140.0,
+      "Y": 70.0,
+      "Rotation": 88.5,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "Rock_Medium_1",
+      "X": 140.1,
+      "Y": 69.2,
+      "Rotation": 176.9,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "rock_largeC",
+      "X": 139.2,
+      "Y": 69.6,
+      "Rotation": 33.0,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "rock_tallC",
+      "X": 139.4,
+      "Y": 70.6,
+      "Rotation": 196.1,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "rock_tallB",
+      "X": 136.8,
+      "Y": 71.9,
+      "Rotation": 153.0,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "rock_tallA",
+      "X": 140.8,
+      "Y": 73.0,
+      "Rotation": 176.7,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 141.2,
+      "Y": 68.4,
+      "Rotation": 39.7,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 137.2,
+      "Y": 72.0,
+      "Rotation": 132.2,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 140.0,
+      "Y": 70.2,
+      "Rotation": 300.9,
+      "Scale": 0.85
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 141.3,
+      "Y": 66.1,
+      "Rotation": 263.9,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "rock_tallD",
+      "X": 72.7,
+      "Y": 139.1,
+      "Rotation": 102.1,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "rock_tallA",
+      "X": 63.1,
+      "Y": 142.9,
+      "Rotation": 212.0,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "rock_largeB",
+      "X": 69.8,
+      "Y": 139.9,
+      "Rotation": 198.5,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "rock_largeB",
+      "X": 73.8,
+      "Y": 142.4,
+      "Rotation": 187.0,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "rock_largeB",
+      "X": 68.2,
+      "Y": 146.6,
+      "Rotation": 194.4,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "Rock_Medium_1",
+      "X": 66.5,
+      "Y": 139.6,
+      "Rotation": 231.1,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 71.5,
+      "Y": 140.8,
+      "Rotation": 11.1,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "rock_largeB",
+      "X": 74.7,
+      "Y": 135.7,
+      "Rotation": 317.4,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 63.0,
+      "Y": 143.1,
+      "Rotation": 339.9,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 68.0,
+      "Y": 144.2,
+      "Rotation": 198.3,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 67.7,
+      "Y": 139.2,
+      "Rotation": 130.3,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 71.9,
+      "Y": 137.8,
+      "Rotation": 230.7,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "Rock_Medium_2",
+      "X": 129.3,
+      "Y": 139.3,
+      "Rotation": 126.6,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 134.3,
+      "Y": 144.3,
+      "Rotation": 219.9,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "rock_tallD",
+      "X": 127.8,
+      "Y": 148.3,
+      "Rotation": 346.2,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "Rock_Medium_2",
+      "X": 134.9,
+      "Y": 138.8,
+      "Rotation": 15.1,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 128.3,
+      "Y": 136.0,
+      "Rotation": 64.0,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "rock_largeB",
+      "X": 128.3,
+      "Y": 139.5,
+      "Rotation": 178.7,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "rock_tallC",
+      "X": 121.2,
+      "Y": 140.4,
+      "Rotation": 83.0,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "rock_largeB",
+      "X": 126.8,
+      "Y": 140.1,
+      "Rotation": 9.1,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 130.4,
+      "Y": 141.4,
+      "Rotation": 234.7,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 126.7,
+      "Y": 140.7,
+      "Rotation": 151.4,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 129.8,
+      "Y": 138.4,
+      "Rotation": 235.6,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 123.1,
+      "Y": 141.9,
+      "Rotation": 346.9,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "stone_tallA",
+      "X": 62.4,
+      "Y": 89.9,
+      "Rotation": 288.6,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "stone_tallA",
+      "X": 74.5,
+      "Y": 174.0,
+      "Rotation": 171.3,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "stone_tallA",
+      "X": 173.8,
+      "Y": 118.5,
+      "Rotation": 76.2,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 117.7,
+      "Y": 180.1,
+      "Rotation": 8.5,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 42.3,
+      "Y": 83.8,
+      "Rotation": 153.1,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "rock_largeB",
+      "X": 174.7,
+      "Y": 45.7,
+      "Rotation": 266.3,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "rocks_sand_b",
+      "X": 39.8,
+      "Y": 86.1,
+      "Rotation": 252.1,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "rocks_sand_c",
+      "X": 85.9,
+      "Y": 77.4,
+      "Rotation": 271.1,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "rocks_sand_c",
+      "X": 184.1,
+      "Y": 58.4,
+      "Rotation": 220.8,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "rocks_sand_a",
+      "X": 183.7,
+      "Y": 138.9,
+      "Rotation": 217.5,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "rocks_sand_a",
+      "X": 39.5,
+      "Y": 44.8,
+      "Rotation": 52.9,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "rock_largeB",
+      "X": 53.9,
+      "Y": 21.9,
+      "Rotation": 82.7,
+      "Scale": 1.15
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 148.8,
+      "Y": 65.7,
+      "Rotation": 171.6,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 77.1,
+      "Y": 180.7,
+      "Rotation": 280.9,
+      "Scale": 1.15
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 66.6,
+      "Y": 47.1,
+      "Rotation": 201.7,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 161.2,
+      "Y": 79.7,
+      "Rotation": 87.5,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "rocks_sand_a",
+      "X": 26.2,
+      "Y": 107.6,
+      "Rotation": 158.0,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "stone_tallA",
+      "X": 72.7,
+      "Y": 10.7,
+      "Rotation": 50.3,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "rocks_sand_a",
+      "X": 63.6,
+      "Y": 149.1,
+      "Rotation": 280.8,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "rocks_sand_b",
+      "X": 40.4,
+      "Y": 177.3,
+      "Rotation": 18.8,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 135.2,
+      "Y": 15.4,
+      "Rotation": 225.5,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "stone_tallA",
+      "X": 181.2,
+      "Y": 33.9,
+      "Rotation": 359.3,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 47.6,
+      "Y": 57.8,
+      "Rotation": 70.2,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "rocks_sand_b",
+      "X": 41.7,
+      "Y": 21.9,
+      "Rotation": 319.1,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "stone_tallA",
+      "X": 156.8,
+      "Y": 140.8,
+      "Rotation": 275.5,
+      "Scale": 0.89
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 92.1,
+      "Y": 32.2,
+      "Rotation": 349.7,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "rock_largeB",
+      "X": 130.2,
+      "Y": 149.3,
+      "Rotation": 4.7,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "rocks_sand_c",
+      "X": 185.2,
+      "Y": 106.7,
+      "Rotation": 331.3,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "rocks_sand_a",
+      "X": 112.7,
+      "Y": 49.9,
+      "Rotation": 216.7,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 21.3,
+      "Y": 65.7,
+      "Rotation": 187.4,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 154.0,
+      "Y": 125.5,
+      "Rotation": 334.4,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "rocks_sand_c",
+      "X": 36.4,
+      "Y": 109.5,
+      "Rotation": 240.1,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "rocks_sand_a",
+      "X": 91.1,
+      "Y": 173.9,
+      "Rotation": 37.8,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "rocks_sand_b",
+      "X": 107.5,
+      "Y": 10.9,
+      "Rotation": 356.3,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 57.1,
+      "Y": 12.5,
+      "Rotation": 8.1,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "rocks_sand_a",
+      "X": 161.9,
+      "Y": 24.8,
+      "Rotation": 331.0,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 153.5,
+      "Y": 114.4,
+      "Rotation": 251.0,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "stone_tallA",
+      "X": 95.2,
+      "Y": 10.8,
+      "Rotation": 175.4,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 80.2,
+      "Y": 48.8,
+      "Rotation": 163.8,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 101.1,
+      "Y": 66.4,
+      "Rotation": 80.4,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "rocks_sand_a",
+      "X": 113.4,
+      "Y": 113.6,
+      "Rotation": 223.5,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 174.4,
+      "Y": 133.3,
+      "Rotation": 177.9,
+      "Scale": 0.89
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 120.7,
+      "Y": 166.9,
+      "Rotation": 332.7,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "rocks_sand_b",
+      "X": 190.0,
+      "Y": 50.2,
+      "Rotation": 321.2,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "rocks_sand_a",
+      "X": 52.0,
+      "Y": 82.3,
+      "Rotation": 56.3,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "rocks_sand_b",
+      "X": 71.0,
+      "Y": 63.8,
+      "Rotation": 10.2,
+      "Scale": 0.89
+    },
+    {
+      "ModelId": "rocks_sand_b",
+      "X": 51.8,
+      "Y": 92.3,
+      "Rotation": 317.7,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 34.1,
+      "Y": 66.8,
+      "Rotation": 73.6,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 96.4,
+      "Y": 142.0,
+      "Rotation": 211.7,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 94.1,
+      "Y": 50.3,
+      "Rotation": 104.8,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 86.1,
+      "Y": 132.9,
+      "Rotation": 0.4,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 183.9,
+      "Y": 100.8,
+      "Rotation": 30.1,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "rock_largeB",
+      "X": 82.1,
+      "Y": 142.8,
+      "Rotation": 347.5,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 33.7,
+      "Y": 48.4,
+      "Rotation": 37.8,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "rocks_sand_a",
+      "X": 184.6,
+      "Y": 159.2,
+      "Rotation": 73.4,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 157.2,
+      "Y": 74.5,
+      "Rotation": 231.0,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 153.7,
+      "Y": 20.6,
+      "Rotation": 104.5,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 104.1,
+      "Y": 183.9,
+      "Rotation": 176.6,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "rocks_sand_c",
+      "X": 64.2,
+      "Y": 160.3,
+      "Rotation": 211.1,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "rocks_sand_b",
+      "X": 52.8,
+      "Y": 10.0,
+      "Rotation": 353.1,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 45.4,
+      "Y": 124.0,
+      "Rotation": 1.3,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 142.7,
+      "Y": 91.8,
+      "Rotation": 274.7,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 11.9,
+      "Y": 156.2,
+      "Rotation": 155.1,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 81.9,
+      "Y": 120.5,
+      "Rotation": 40.1,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 151.8,
+      "Y": 149.4,
+      "Rotation": 186.6,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 22.2,
+      "Y": 51.2,
+      "Rotation": 86.5,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 187.3,
+      "Y": 114.1,
+      "Rotation": 32.7,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 88.9,
+      "Y": 147.2,
+      "Rotation": 132.1,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 149.9,
+      "Y": 171.3,
+      "Rotation": 122.1,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 68.4,
+      "Y": 25.8,
+      "Rotation": 116.4,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 89.7,
+      "Y": 63.4,
+      "Rotation": 306.8,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 181.9,
+      "Y": 189.6,
+      "Rotation": 125.9,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 23.2,
+      "Y": 119.4,
+      "Rotation": 250.5,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 167.4,
+      "Y": 118.9,
+      "Rotation": 109.0,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 142.7,
+      "Y": 89.7,
+      "Rotation": 136.8,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 69.6,
+      "Y": 61.9,
+      "Rotation": 133.8,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 75.0,
+      "Y": 42.2,
+      "Rotation": 247.1,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 151.5,
+      "Y": 41.7,
+      "Rotation": 315.7,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 106.9,
+      "Y": 131.3,
+      "Rotation": 13.2,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 131.4,
+      "Y": 121.2,
+      "Rotation": 277.1,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 10.2,
+      "Y": 183.1,
+      "Rotation": 162.7,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 144.0,
+      "Y": 157.9,
+      "Rotation": 88.4,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 104.4,
+      "Y": 186.7,
+      "Rotation": 245.5,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 53.9,
+      "Y": 87.8,
+      "Rotation": 54.8,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 91.1,
+      "Y": 164.1,
+      "Rotation": 152.2,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 79.2,
+      "Y": 131.0,
+      "Rotation": 139.6,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 83.6,
+      "Y": 68.8,
+      "Rotation": 238.4,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 168.1,
+      "Y": 98.7,
+      "Rotation": 344.7,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 43.2,
+      "Y": 46.1,
+      "Rotation": 43.4,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 175.3,
+      "Y": 112.9,
+      "Rotation": 104.8,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 39.1,
+      "Y": 157.2,
+      "Rotation": 66.1,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 186.2,
+      "Y": 189.4,
+      "Rotation": 37.3,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 146.5,
+      "Y": 112.5,
+      "Rotation": 341.2,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 40.7,
+      "Y": 153.9,
+      "Rotation": 338.0,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 118.5,
+      "Y": 14.5,
+      "Rotation": 285.6,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 61.9,
+      "Y": 147.3,
+      "Rotation": 167.9,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 118.7,
+      "Y": 111.1,
+      "Rotation": 108.4,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 153.6,
+      "Y": 19.0,
+      "Rotation": 49.2,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 85.2,
+      "Y": 128.3,
+      "Rotation": 266.7,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 77.4,
+      "Y": 167.4,
+      "Rotation": 110.1,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 176.5,
+      "Y": 54.0,
+      "Rotation": 339.5,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 171.8,
+      "Y": 137.5,
+      "Rotation": 105.2,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 46.9,
+      "Y": 107.4,
+      "Rotation": 87.0,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 35.4,
+      "Y": 63.7,
+      "Rotation": 357.4,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 153.8,
+      "Y": 78.1,
+      "Rotation": 216.8,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 110.7,
+      "Y": 57.0,
+      "Rotation": 202.0,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 80.9,
+      "Y": 180.7,
+      "Rotation": 349.1,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 124.7,
+      "Y": 125.3,
+      "Rotation": 202.2,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 152.1,
+      "Y": 70.2,
+      "Rotation": 34.1,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 148.6,
+      "Y": 164.0,
+      "Rotation": 192.4,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 186.1,
+      "Y": 73.4,
+      "Rotation": 34.2,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 39.3,
+      "Y": 63.6,
+      "Rotation": 150.7,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 16.1,
+      "Y": 51.9,
+      "Rotation": 193.7,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 114.8,
+      "Y": 42.7,
+      "Rotation": 170.6,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 38.2,
+      "Y": 151.3,
+      "Rotation": 71.9,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 48.0,
+      "Y": 134.6,
+      "Rotation": 66.2,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 156.8,
+      "Y": 157.7,
+      "Rotation": 224.2,
+      "Scale": 1.15
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 189.8,
+      "Y": 132.3,
+      "Rotation": 257.2,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 149.6,
+      "Y": 115.2,
+      "Rotation": 183.6,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 70.5,
+      "Y": 131.6,
+      "Rotation": 61.2,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 163.9,
+      "Y": 112.2,
+      "Rotation": 13.2,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 134.4,
+      "Y": 184.9,
+      "Rotation": 226.3,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 162.2,
+      "Y": 176.5,
+      "Rotation": 213.1,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 63.3,
+      "Y": 21.8,
+      "Rotation": 26.6,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 39.2,
+      "Y": 132.8,
+      "Rotation": 243.8,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 48.6,
+      "Y": 51.1,
+      "Rotation": 150.5,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 31.0,
+      "Y": 149.9,
+      "Rotation": 222.8,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 102.8,
+      "Y": 52.4,
+      "Rotation": 220.1,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 145.7,
+      "Y": 159.0,
+      "Rotation": 122.8,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 49.2,
+      "Y": 64.5,
+      "Rotation": 169.4,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 116.7,
+      "Y": 74.7,
+      "Rotation": 85.1,
+      "Scale": 0.89
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 174.3,
+      "Y": 134.9,
+      "Rotation": 79.3,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 75.0,
+      "Y": 45.2,
+      "Rotation": 349.8,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 22.9,
+      "Y": 95.6,
+      "Rotation": 229.9,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 120.3,
+      "Y": 31.6,
+      "Rotation": 314.7,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "Grass_Wispy_Short",
+      "X": 103.0,
+      "Y": 64.2,
+      "Rotation": 86.8,
+      "Scale": 0.85
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 75.0,
+      "Y": 50.2,
+      "Rotation": 259.9,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "plant_flatShort",
+      "X": 91.1,
+      "Y": 46.4,
+      "Rotation": 291.0,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "cactus_tall",
+      "X": 113.6,
+      "Y": 52.6,
+      "Rotation": 126.3,
+      "Scale": 0.89
+    },
+    {
+      "ModelId": "cactus_short",
+      "X": 63.4,
+      "Y": 29.9,
+      "Rotation": 268.3,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "desert_crate",
+      "X": 41.6,
+      "Y": 39.8,
+      "Rotation": 55.6,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "desert_barrel",
+      "X": 41.2,
+      "Y": 44.7,
+      "Rotation": 212.3,
+      "Scale": 0.85
+    },
+    {
+      "ModelId": "desert_barrel",
+      "X": 40.6,
+      "Y": 40.5,
+      "Rotation": 313.0,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "desert_crate",
+      "X": 158.6,
+      "Y": 40.3,
+      "Rotation": 339.5,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "desert_barrel",
+      "X": 160.1,
+      "Y": 39.2,
+      "Rotation": 144.1,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "desert_barrel",
+      "X": 159.1,
+      "Y": 41.9,
+      "Rotation": 303.6,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "desert_well",
+      "X": 159.7,
+      "Y": 159.1,
+      "Rotation": 65.9,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "desert_barrel",
+      "X": 159.0,
+      "Y": 156.1,
+      "Rotation": 291.8,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "desert_crate",
+      "X": 158.3,
+      "Y": 159.3,
+      "Rotation": 342.9,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "desert_crate",
+      "X": 37.9,
+      "Y": 160.4,
+      "Rotation": 212.0,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "desert_crate",
+      "X": 43.9,
+      "Y": 161.9,
+      "Rotation": 37.0,
+      "Scale": 0.89
+    },
+    {
+      "ModelId": "desert_barrel",
+      "X": 40.5,
+      "Y": 160.4,
+      "Rotation": 301.2,
+      "Scale": 1.02
+    }
+  ],
+  "Structures": [
+    {
+      "ModelId": "desert_well",
+      "X": 100,
+      "Y": 92,
+      "Rotation": 0.0,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "desert_awning_a",
+      "X": 106,
+      "Y": 100,
+      "Rotation": 90.0,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "desert_awning_b",
+      "X": 94,
+      "Y": 100,
+      "Rotation": 270.0,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "desert_small_building_a",
+      "X": 114,
+      "Y": 108,
+      "Rotation": 45.0,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "desert_medium_building_a",
+      "X": 84,
+      "Y": 88,
+      "Rotation": 180.0,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "desert_wall_a",
+      "X": 60,
+      "Y": 65,
+      "Rotation": 0.0,
+      "Scale": 1.2
+    },
+    {
+      "ModelId": "desert_wall_a",
+      "X": 60,
+      "Y": 70,
+      "Rotation": 0.0,
+      "Scale": 1.2
+    },
+    {
+      "ModelId": "desert_wall_a",
+      "X": 60,
+      "Y": 75,
+      "Rotation": 0.0,
+      "Scale": 1.2
+    },
+    {
+      "ModelId": "desert_wall_a",
+      "X": 140,
+      "Y": 65,
+      "Rotation": 0.0,
+      "Scale": 1.2
+    },
+    {
+      "ModelId": "desert_wall_a",
+      "X": 140,
+      "Y": 70,
+      "Rotation": 0.0,
+      "Scale": 1.2
+    },
+    {
+      "ModelId": "desert_wall_a",
+      "X": 140,
+      "Y": 75,
+      "Rotation": 0.0,
+      "Scale": 1.2
+    },
+    {
+      "ModelId": "desert_wall_b",
+      "X": 65,
+      "Y": 140,
+      "Rotation": 90.0,
+      "Scale": 1.2
+    },
+    {
+      "ModelId": "desert_wall_b",
+      "X": 70,
+      "Y": 140,
+      "Rotation": 90.0,
+      "Scale": 1.2
+    },
+    {
+      "ModelId": "desert_wall_b",
+      "X": 75,
+      "Y": 140,
+      "Rotation": 90.0,
+      "Scale": 1.2
+    },
+    {
+      "ModelId": "desert_wall_b",
+      "X": 125,
+      "Y": 140,
+      "Rotation": 90.0,
+      "Scale": 1.2
+    },
+    {
+      "ModelId": "desert_wall_b",
+      "X": 130,
+      "Y": 140,
+      "Rotation": 90.0,
+      "Scale": 1.2
+    },
+    {
+      "ModelId": "desert_wall_b",
+      "X": 135,
+      "Y": 140,
+      "Rotation": 90.0,
+      "Scale": 1.2
+    },
+    {
+      "ModelId": "desert_large_building_c",
+      "X": 40,
+      "Y": 40,
+      "Rotation": 0.0,
+      "Scale": 0.8
+    },
+    {
+      "ModelId": "desert_large_building_d",
+      "X": 160,
+      "Y": 40,
+      "Rotation": 90.0,
+      "Scale": 0.8
+    },
+    {
+      "ModelId": "desert_medium_building_b",
+      "X": 160,
+      "Y": 160,
+      "Rotation": 180.0,
+      "Scale": 0.8
+    },
+    {
+      "ModelId": "desert_medium_building_a",
+      "X": 40,
+      "Y": 160,
+      "Rotation": 270.0,
+      "Scale": 0.8
+    }
+  ],
+  "ElevationZones": [
+    {
+      "Type": "dune",
+      "CenterX": 50,
+      "CenterY": 50,
+      "Radius": 22,
+      "Height": 4.0
+    },
+    {
+      "Type": "dune",
+      "CenterX": 150,
+      "CenterY": 50,
+      "Radius": 22,
+      "Height": 4.0
+    },
+    {
+      "Type": "dune",
+      "CenterX": 50,
+      "CenterY": 150,
+      "Radius": 22,
+      "Height": 4.0
+    },
+    {
+      "Type": "dune",
+      "CenterX": 150,
+      "CenterY": 150,
+      "Radius": 22,
+      "Height": 4.0
+    },
+    {
+      "Type": "dune",
+      "CenterX": 100,
+      "CenterY": 30,
+      "Radius": 14,
+      "Height": 3.0
+    },
+    {
+      "Type": "dune",
+      "CenterX": 100,
+      "CenterY": 170,
+      "Radius": 14,
+      "Height": 3.0
+    },
+    {
+      "Type": "dune",
+      "CenterX": 30,
+      "CenterY": 100,
+      "Radius": 14,
+      "Height": 3.0
+    },
+    {
+      "Type": "dune",
+      "CenterX": 170,
+      "CenterY": 100,
+      "Radius": 14,
+      "Height": 3.0
+    },
+    {
+      "Type": "plateau",
+      "CenterX": 100,
+      "CenterY": 100,
+      "Radius": 14,
+      "Height": -1.0
+    }
+  ]
+}

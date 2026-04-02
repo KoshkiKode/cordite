@@ -1,0 +1,3630 @@
+{
+  "trees": {
+    "tree_default": {
+      "ModelPath": "assets/models/kenney-nature/tree_default.glb",
+      "CollisionRadius": 0.35,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_default_dark": {
+      "ModelPath": "assets/models/kenney-nature/tree_default_dark.glb",
+      "CollisionRadius": 0.35,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_default_fall": {
+      "ModelPath": "assets/models/kenney-nature/tree_default_fall.glb",
+      "CollisionRadius": 0.35,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_simple": {
+      "ModelPath": "assets/models/kenney-nature/tree_simple.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_simple_dark": {
+      "ModelPath": "assets/models/kenney-nature/tree_simple_dark.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_simple_fall": {
+      "ModelPath": "assets/models/kenney-nature/tree_simple_fall.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_small": {
+      "ModelPath": "assets/models/kenney-nature/tree_small.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_small_dark": {
+      "ModelPath": "assets/models/kenney-nature/tree_small_dark.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_small_fall": {
+      "ModelPath": "assets/models/kenney-nature/tree_small_fall.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_tall": {
+      "ModelPath": "assets/models/kenney-nature/tree_tall.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 80,
+      "ModelScale": 1.0
+    },
+    "tree_tall_dark": {
+      "ModelPath": "assets/models/kenney-nature/tree_tall_dark.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 80,
+      "ModelScale": 1.0
+    },
+    "tree_tall_fall": {
+      "ModelPath": "assets/models/kenney-nature/tree_tall_fall.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 80,
+      "ModelScale": 1.0
+    },
+    "tree_thin": {
+      "ModelPath": "assets/models/kenney-nature/tree_thin.glb",
+      "CollisionRadius": 0.25,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_thin_dark": {
+      "ModelPath": "assets/models/kenney-nature/tree_thin_dark.glb",
+      "CollisionRadius": 0.25,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_thin_fall": {
+      "ModelPath": "assets/models/kenney-nature/tree_thin_fall.glb",
+      "CollisionRadius": 0.25,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_fat": {
+      "ModelPath": "assets/models/kenney-nature/tree_fat.glb",
+      "CollisionRadius": 0.45,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_fat_dark": {
+      "ModelPath": "assets/models/kenney-nature/tree_fat_darkh.glb",
+      "CollisionRadius": 0.45,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_fat_fall": {
+      "ModelPath": "assets/models/kenney-nature/tree_fat_fall.glb",
+      "CollisionRadius": 0.45,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_oak": {
+      "ModelPath": "assets/models/kenney-nature/tree_oak.glb",
+      "CollisionRadius": 0.45,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 130,
+      "ModelScale": 1.0
+    },
+    "tree_oak_dark": {
+      "ModelPath": "assets/models/kenney-nature/tree_oak_dark.glb",
+      "CollisionRadius": 0.45,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 130,
+      "ModelScale": 1.0
+    },
+    "tree_oak_fall": {
+      "ModelPath": "assets/models/kenney-nature/tree_oak_fall.glb",
+      "CollisionRadius": 0.45,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 130,
+      "ModelScale": 1.0
+    },
+    "tree_detailed": {
+      "ModelPath": "assets/models/kenney-nature/tree_detailed.glb",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 110,
+      "ModelScale": 1.0
+    },
+    "tree_detailed_dark": {
+      "ModelPath": "assets/models/kenney-nature/tree_detailed_dark.glb",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 110,
+      "ModelScale": 1.0
+    },
+    "tree_detailed_fall": {
+      "ModelPath": "assets/models/kenney-nature/tree_detailed_fall.glb",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 110,
+      "ModelScale": 1.0
+    },
+    "tree_blocks": {
+      "ModelPath": "assets/models/kenney-nature/tree_blocks.glb",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_blocks_dark": {
+      "ModelPath": "assets/models/kenney-nature/tree_blocks_dark.glb",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_blocks_fall": {
+      "ModelPath": "assets/models/kenney-nature/tree_blocks_fall.glb",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_cone": {
+      "ModelPath": "assets/models/kenney-nature/tree_cone.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_cone_dark": {
+      "ModelPath": "assets/models/kenney-nature/tree_cone_dark.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_cone_fall": {
+      "ModelPath": "assets/models/kenney-nature/tree_cone_fall.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_plateau": {
+      "ModelPath": "assets/models/kenney-nature/tree_plateau.glb",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 150,
+      "ModelScale": 1.0
+    },
+    "tree_plateau_dark": {
+      "ModelPath": "assets/models/kenney-nature/tree_plateau_dark.glb",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 150,
+      "ModelScale": 1.0
+    },
+    "tree_plateau_fall": {
+      "ModelPath": "assets/models/kenney-nature/tree_plateau_fall.glb",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 150,
+      "ModelScale": 1.0
+    },
+    "tree_pineDefaultA": {
+      "ModelPath": "assets/models/kenney-nature/tree_pineDefaultA.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 80,
+      "ModelScale": 1.0
+    },
+    "tree_pineDefaultB": {
+      "ModelPath": "assets/models/kenney-nature/tree_pineDefaultB.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 80,
+      "ModelScale": 1.0
+    },
+    "tree_pineGroundA": {
+      "ModelPath": "assets/models/kenney-nature/tree_pineGroundA.glb",
+      "CollisionRadius": 0.35,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_pineGroundB": {
+      "ModelPath": "assets/models/kenney-nature/tree_pineGroundB.glb",
+      "CollisionRadius": 0.35,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_pineRoundA": {
+      "ModelPath": "assets/models/kenney-nature/tree_pineRoundA.glb",
+      "CollisionRadius": 0.35,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_pineRoundB": {
+      "ModelPath": "assets/models/kenney-nature/tree_pineRoundB.glb",
+      "CollisionRadius": 0.35,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_pineRoundC": {
+      "ModelPath": "assets/models/kenney-nature/tree_pineRoundC.glb",
+      "CollisionRadius": 0.35,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_pineRoundD": {
+      "ModelPath": "assets/models/kenney-nature/tree_pineRoundD.glb",
+      "CollisionRadius": 0.35,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_pineRoundE": {
+      "ModelPath": "assets/models/kenney-nature/tree_pineRoundE.glb",
+      "CollisionRadius": 0.35,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_pineRoundF": {
+      "ModelPath": "assets/models/kenney-nature/tree_pineRoundF.glb",
+      "CollisionRadius": 0.35,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_pineSmallA": {
+      "ModelPath": "assets/models/kenney-nature/tree_pineSmallA.glb",
+      "CollisionRadius": 0.25,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_pineSmallB": {
+      "ModelPath": "assets/models/kenney-nature/tree_pineSmallB.glb",
+      "CollisionRadius": 0.25,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_pineSmallC": {
+      "ModelPath": "assets/models/kenney-nature/tree_pineSmallC.glb",
+      "CollisionRadius": 0.25,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_pineSmallD": {
+      "ModelPath": "assets/models/kenney-nature/tree_pineSmallD.glb",
+      "CollisionRadius": 0.25,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_pineTallA": {
+      "ModelPath": "assets/models/kenney-nature/tree_pineTallA.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 90,
+      "ModelScale": 1.0
+    },
+    "tree_pineTallA_detailed": {
+      "ModelPath": "assets/models/kenney-nature/tree_pineTallA_detailed.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 90,
+      "ModelScale": 1.0
+    },
+    "tree_pineTallB": {
+      "ModelPath": "assets/models/kenney-nature/tree_pineTallB.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 90,
+      "ModelScale": 1.0
+    },
+    "tree_pineTallB_detailed": {
+      "ModelPath": "assets/models/kenney-nature/tree_pineTallB_detailed.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 90,
+      "ModelScale": 1.0
+    },
+    "tree_pineTallC": {
+      "ModelPath": "assets/models/kenney-nature/tree_pineTallC.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 90,
+      "ModelScale": 1.0
+    },
+    "tree_pineTallC_detailed": {
+      "ModelPath": "assets/models/kenney-nature/tree_pineTallC_detailed.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 90,
+      "ModelScale": 1.0
+    },
+    "tree_pineTallD": {
+      "ModelPath": "assets/models/kenney-nature/tree_pineTallD.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 90,
+      "ModelScale": 1.0
+    },
+    "tree_pineTallD_detailed": {
+      "ModelPath": "assets/models/kenney-nature/tree_pineTallD_detailed.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 90,
+      "ModelScale": 1.0
+    },
+    "tree_palm": {
+      "ModelPath": "assets/models/kenney-nature/tree_palm.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 70,
+      "ModelScale": 1.0
+    },
+    "tree_palmBend": {
+      "ModelPath": "assets/models/kenney-nature/tree_palmBend.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 70,
+      "ModelScale": 1.0
+    },
+    "tree_palmShort": {
+      "ModelPath": "assets/models/kenney-nature/tree_palmShort.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_palmTall": {
+      "ModelPath": "assets/models/kenney-nature/tree_palmTall.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_palmDetailedShort": {
+      "ModelPath": "assets/models/kenney-nature/tree_palmDetailedShort.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_palmDetailedTall": {
+      "ModelPath": "assets/models/kenney-nature/tree_palmDetailedTall.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "palm_bend": {
+      "ModelPath": "assets/models/kenney-pirate/palm-bend.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 70,
+      "ModelScale": 1.0
+    },
+    "palm_straight": {
+      "ModelPath": "assets/models/kenney-pirate/palm-straight.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 70,
+      "ModelScale": 1.0
+    },
+    "palm_detailed_bend": {
+      "ModelPath": "assets/models/kenney-pirate/palm-detailed-bend.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 70,
+      "ModelScale": 1.0
+    },
+    "palm_detailed_straight": {
+      "ModelPath": "assets/models/kenney-pirate/palm-detailed-straight.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 70,
+      "ModelScale": 1.0
+    },
+    "CommonTree_1": {
+      "ModelPath": "assets/models/quaternius-nature/CommonTree_1.gltf",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 110,
+      "ModelScale": 1.0
+    },
+    "CommonTree_2": {
+      "ModelPath": "assets/models/quaternius-nature/CommonTree_2.gltf",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 110,
+      "ModelScale": 1.0
+    },
+    "CommonTree_3": {
+      "ModelPath": "assets/models/quaternius-nature/CommonTree_3.gltf",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 110,
+      "ModelScale": 1.0
+    },
+    "CommonTree_4": {
+      "ModelPath": "assets/models/quaternius-nature/CommonTree_4.gltf",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 110,
+      "ModelScale": 1.0
+    },
+    "CommonTree_5": {
+      "ModelPath": "assets/models/quaternius-nature/CommonTree_5.gltf",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 110,
+      "ModelScale": 1.0
+    },
+    "DeadTree_1": {
+      "ModelPath": "assets/models/quaternius-nature/DeadTree_1.gltf",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": true,
+      "Health": 50,
+      "ModelScale": 1.0
+    },
+    "DeadTree_2": {
+      "ModelPath": "assets/models/quaternius-nature/DeadTree_2.gltf",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": true,
+      "Health": 50,
+      "ModelScale": 1.0
+    },
+    "DeadTree_3": {
+      "ModelPath": "assets/models/quaternius-nature/DeadTree_3.gltf",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": true,
+      "Health": 50,
+      "ModelScale": 1.0
+    },
+    "DeadTree_4": {
+      "ModelPath": "assets/models/quaternius-nature/DeadTree_4.gltf",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": true,
+      "Health": 50,
+      "ModelScale": 1.0
+    },
+    "DeadTree_5": {
+      "ModelPath": "assets/models/quaternius-nature/DeadTree_5.gltf",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": true,
+      "Health": 50,
+      "ModelScale": 1.0
+    },
+    "TwistedTree_1": {
+      "ModelPath": "assets/models/quaternius-nature/TwistedTree_1.gltf",
+      "CollisionRadius": 0.35,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 80,
+      "ModelScale": 1.0
+    },
+    "TwistedTree_2": {
+      "ModelPath": "assets/models/quaternius-nature/TwistedTree_2.gltf",
+      "CollisionRadius": 0.35,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 80,
+      "ModelScale": 1.0
+    },
+    "TwistedTree_3": {
+      "ModelPath": "assets/models/quaternius-nature/TwistedTree_3.gltf",
+      "CollisionRadius": 0.35,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 80,
+      "ModelScale": 1.0
+    },
+    "TwistedTree_4": {
+      "ModelPath": "assets/models/quaternius-nature/TwistedTree_4.gltf",
+      "CollisionRadius": 0.35,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 80,
+      "ModelScale": 1.0
+    },
+    "TwistedTree_5": {
+      "ModelPath": "assets/models/quaternius-nature/TwistedTree_5.gltf",
+      "CollisionRadius": 0.35,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 80,
+      "ModelScale": 1.0
+    },
+    "Pine_1": {
+      "ModelPath": "assets/models/quaternius-nature/Pine_1.gltf",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 90,
+      "ModelScale": 1.0
+    },
+    "Pine_2": {
+      "ModelPath": "assets/models/quaternius-nature/Pine_2.gltf",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 90,
+      "ModelScale": 1.0
+    },
+    "Pine_3": {
+      "ModelPath": "assets/models/quaternius-nature/Pine_3.gltf",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 90,
+      "ModelScale": 1.0
+    },
+    "Pine_4": {
+      "ModelPath": "assets/models/quaternius-nature/Pine_4.gltf",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 90,
+      "ModelScale": 1.0
+    },
+    "Pine_5": {
+      "ModelPath": "assets/models/quaternius-nature/Pine_5.gltf",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 90,
+      "ModelScale": 1.0
+    },
+    "tree_urban_large": {
+      "ModelPath": "assets/models/kenney-urban/tree-large.glb",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 120,
+      "ModelScale": 1.0
+    },
+    "tree_urban_small": {
+      "ModelPath": "assets/models/kenney-urban/tree-small.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_urban_pine_large": {
+      "ModelPath": "assets/models/kenney-urban/tree-pine-large.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 90,
+      "ModelScale": 1.0
+    },
+    "tree_urban_pine_small": {
+      "ModelPath": "assets/models/kenney-urban/tree-pine-small.glb",
+      "CollisionRadius": 0.25,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    },
+    "tree_urban_park_large": {
+      "ModelPath": "assets/models/kenney-urban/tree-park-large.glb",
+      "CollisionRadius": 0.45,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 120,
+      "ModelScale": 1.0
+    },
+    "tree_urban_park_pine": {
+      "ModelPath": "assets/models/kenney-urban/tree-park-pine-large.glb",
+      "CollisionRadius": 0.35,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": true,
+      "Health": 90,
+      "ModelScale": 1.0
+    },
+    "tree_urban_shrub": {
+      "ModelPath": "assets/models/kenney-urban/tree-shrub.glb",
+      "CollisionRadius": 0.25,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": true,
+      "Health": 100,
+      "ModelScale": 1.0
+    }
+  },
+  "rocks": {
+    "rock_largeA": {
+      "ModelPath": "assets/models/kenney-nature/rock_largeA.glb",
+      "CollisionRadius": 0.7,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_largeB": {
+      "ModelPath": "assets/models/kenney-nature/rock_largeB.glb",
+      "CollisionRadius": 0.7,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_largeC": {
+      "ModelPath": "assets/models/kenney-nature/rock_largeC.glb",
+      "CollisionRadius": 0.7,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_largeD": {
+      "ModelPath": "assets/models/kenney-nature/rock_largeD.glb",
+      "CollisionRadius": 0.7,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_largeE": {
+      "ModelPath": "assets/models/kenney-nature/rock_largeE.glb",
+      "CollisionRadius": 0.8,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_largeF": {
+      "ModelPath": "assets/models/kenney-nature/rock_largeF.glb",
+      "CollisionRadius": 0.8,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_smallA": {
+      "ModelPath": "assets/models/kenney-nature/rock_smallA.glb",
+      "CollisionRadius": 0.2,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_smallB": {
+      "ModelPath": "assets/models/kenney-nature/rock_smallB.glb",
+      "CollisionRadius": 0.2,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_smallC": {
+      "ModelPath": "assets/models/kenney-nature/rock_smallC.glb",
+      "CollisionRadius": 0.2,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_smallD": {
+      "ModelPath": "assets/models/kenney-nature/rock_smallD.glb",
+      "CollisionRadius": 0.2,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_smallE": {
+      "ModelPath": "assets/models/kenney-nature/rock_smallE.glb",
+      "CollisionRadius": 0.2,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_smallF": {
+      "ModelPath": "assets/models/kenney-nature/rock_smallF.glb",
+      "CollisionRadius": 0.2,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_smallG": {
+      "ModelPath": "assets/models/kenney-nature/rock_smallG.glb",
+      "CollisionRadius": 0.2,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_smallH": {
+      "ModelPath": "assets/models/kenney-nature/rock_smallH.glb",
+      "CollisionRadius": 0.2,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_smallI": {
+      "ModelPath": "assets/models/kenney-nature/rock_smallI.glb",
+      "CollisionRadius": 0.2,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_smallFlatA": {
+      "ModelPath": "assets/models/kenney-nature/rock_smallFlatA.glb",
+      "CollisionRadius": 0.2,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_smallFlatB": {
+      "ModelPath": "assets/models/kenney-nature/rock_smallFlatB.glb",
+      "CollisionRadius": 0.2,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_smallFlatC": {
+      "ModelPath": "assets/models/kenney-nature/rock_smallFlatC.glb",
+      "CollisionRadius": 0.2,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_smallTopA": {
+      "ModelPath": "assets/models/kenney-nature/rock_smallTopA.glb",
+      "CollisionRadius": 0.25,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_smallTopB": {
+      "ModelPath": "assets/models/kenney-nature/rock_smallTopB.glb",
+      "CollisionRadius": 0.25,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_tallA": {
+      "ModelPath": "assets/models/kenney-nature/rock_tallA.glb",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_tallB": {
+      "ModelPath": "assets/models/kenney-nature/rock_tallB.glb",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_tallC": {
+      "ModelPath": "assets/models/kenney-nature/rock_tallC.glb",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_tallD": {
+      "ModelPath": "assets/models/kenney-nature/rock_tallD.glb",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_tallE": {
+      "ModelPath": "assets/models/kenney-nature/rock_tallE.glb",
+      "CollisionRadius": 0.6,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_tallF": {
+      "ModelPath": "assets/models/kenney-nature/rock_tallF.glb",
+      "CollisionRadius": 0.6,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_tallG": {
+      "ModelPath": "assets/models/kenney-nature/rock_tallG.glb",
+      "CollisionRadius": 0.6,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_tallH": {
+      "ModelPath": "assets/models/kenney-nature/rock_tallH.glb",
+      "CollisionRadius": 0.6,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_tallI": {
+      "ModelPath": "assets/models/kenney-nature/rock_tallI.glb",
+      "CollisionRadius": 0.7,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rock_tallJ": {
+      "ModelPath": "assets/models/kenney-nature/rock_tallJ.glb",
+      "CollisionRadius": 0.7,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_largeA": {
+      "ModelPath": "assets/models/kenney-nature/stone_largeA.glb",
+      "CollisionRadius": 0.7,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_largeB": {
+      "ModelPath": "assets/models/kenney-nature/stone_largeB.glb",
+      "CollisionRadius": 0.7,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_largeC": {
+      "ModelPath": "assets/models/kenney-nature/stone_largeC.glb",
+      "CollisionRadius": 0.7,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_largeD": {
+      "ModelPath": "assets/models/kenney-nature/stone_largeD.glb",
+      "CollisionRadius": 0.7,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_largeE": {
+      "ModelPath": "assets/models/kenney-nature/stone_largeE.glb",
+      "CollisionRadius": 0.8,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_largeF": {
+      "ModelPath": "assets/models/kenney-nature/stone_largeF.glb",
+      "CollisionRadius": 0.8,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_smallA": {
+      "ModelPath": "assets/models/kenney-nature/stone_smallA.glb",
+      "CollisionRadius": 0.2,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_smallB": {
+      "ModelPath": "assets/models/kenney-nature/stone_smallB.glb",
+      "CollisionRadius": 0.2,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_smallC": {
+      "ModelPath": "assets/models/kenney-nature/stone_smallC.glb",
+      "CollisionRadius": 0.2,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_smallD": {
+      "ModelPath": "assets/models/kenney-nature/stone_smallD.glb",
+      "CollisionRadius": 0.2,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_smallE": {
+      "ModelPath": "assets/models/kenney-nature/stone_smallE.glb",
+      "CollisionRadius": 0.2,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_smallF": {
+      "ModelPath": "assets/models/kenney-nature/stone_smallF.glb",
+      "CollisionRadius": 0.2,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_smallG": {
+      "ModelPath": "assets/models/kenney-nature/stone_smallG.glb",
+      "CollisionRadius": 0.2,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_smallH": {
+      "ModelPath": "assets/models/kenney-nature/stone_smallH.glb",
+      "CollisionRadius": 0.2,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_smallI": {
+      "ModelPath": "assets/models/kenney-nature/stone_smallI.glb",
+      "CollisionRadius": 0.2,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_smallFlatA": {
+      "ModelPath": "assets/models/kenney-nature/stone_smallFlatA.glb",
+      "CollisionRadius": 0.2,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_smallFlatB": {
+      "ModelPath": "assets/models/kenney-nature/stone_smallFlatB.glb",
+      "CollisionRadius": 0.2,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_smallFlatC": {
+      "ModelPath": "assets/models/kenney-nature/stone_smallFlatC.glb",
+      "CollisionRadius": 0.2,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_smallTopA": {
+      "ModelPath": "assets/models/kenney-nature/stone_smallTopA.glb",
+      "CollisionRadius": 0.25,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_smallTopB": {
+      "ModelPath": "assets/models/kenney-nature/stone_smallTopB.glb",
+      "CollisionRadius": 0.25,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_tallA": {
+      "ModelPath": "assets/models/kenney-nature/stone_tallA.glb",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_tallB": {
+      "ModelPath": "assets/models/kenney-nature/stone_tallB.glb",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_tallC": {
+      "ModelPath": "assets/models/kenney-nature/stone_tallC.glb",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_tallD": {
+      "ModelPath": "assets/models/kenney-nature/stone_tallD.glb",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_tallE": {
+      "ModelPath": "assets/models/kenney-nature/stone_tallE.glb",
+      "CollisionRadius": 0.6,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_tallF": {
+      "ModelPath": "assets/models/kenney-nature/stone_tallF.glb",
+      "CollisionRadius": 0.6,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_tallG": {
+      "ModelPath": "assets/models/kenney-nature/stone_tallG.glb",
+      "CollisionRadius": 0.6,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_tallH": {
+      "ModelPath": "assets/models/kenney-nature/stone_tallH.glb",
+      "CollisionRadius": 0.6,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_tallI": {
+      "ModelPath": "assets/models/kenney-nature/stone_tallI.glb",
+      "CollisionRadius": 0.7,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "stone_tallJ": {
+      "ModelPath": "assets/models/kenney-nature/stone_tallJ.glb",
+      "CollisionRadius": 0.7,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rocks_a": {
+      "ModelPath": "assets/models/kenney-pirate/rocks-a.glb",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rocks_b": {
+      "ModelPath": "assets/models/kenney-pirate/rocks-b.glb",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rocks_c": {
+      "ModelPath": "assets/models/kenney-pirate/rocks-c.glb",
+      "CollisionRadius": 0.6,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rocks_sand_a": {
+      "ModelPath": "assets/models/kenney-pirate/rocks-sand-a.glb",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rocks_sand_b": {
+      "ModelPath": "assets/models/kenney-pirate/rocks-sand-b.glb",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "rocks_sand_c": {
+      "ModelPath": "assets/models/kenney-pirate/rocks-sand-c.glb",
+      "CollisionRadius": 0.6,
+      "Passable": false,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "Rock_Medium_1": {
+      "ModelPath": "assets/models/quaternius-nature/Rock_Medium_1.gltf",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "Rock_Medium_2": {
+      "ModelPath": "assets/models/quaternius-nature/Rock_Medium_2.gltf",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "Rock_Medium_3": {
+      "ModelPath": "assets/models/quaternius-nature/Rock_Medium_3.gltf",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "Pebble_Round_1": {
+      "ModelPath": "assets/models/quaternius-nature/Pebble_Round_1.gltf",
+      "CollisionRadius": 0.1,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "Pebble_Round_2": {
+      "ModelPath": "assets/models/quaternius-nature/Pebble_Round_2.gltf",
+      "CollisionRadius": 0.1,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "Pebble_Round_3": {
+      "ModelPath": "assets/models/quaternius-nature/Pebble_Round_3.gltf",
+      "CollisionRadius": 0.1,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "Pebble_Round_4": {
+      "ModelPath": "assets/models/quaternius-nature/Pebble_Round_4.gltf",
+      "CollisionRadius": 0.1,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "Pebble_Round_5": {
+      "ModelPath": "assets/models/quaternius-nature/Pebble_Round_5.gltf",
+      "CollisionRadius": 0.1,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "Pebble_Square_1": {
+      "ModelPath": "assets/models/quaternius-nature/Pebble_Square_1.gltf",
+      "CollisionRadius": 0.1,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "Pebble_Square_2": {
+      "ModelPath": "assets/models/quaternius-nature/Pebble_Square_2.gltf",
+      "CollisionRadius": 0.1,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "Pebble_Square_3": {
+      "ModelPath": "assets/models/quaternius-nature/Pebble_Square_3.gltf",
+      "CollisionRadius": 0.1,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "Pebble_Square_4": {
+      "ModelPath": "assets/models/quaternius-nature/Pebble_Square_4.gltf",
+      "CollisionRadius": 0.1,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "Pebble_Square_5": {
+      "ModelPath": "assets/models/quaternius-nature/Pebble_Square_5.gltf",
+      "CollisionRadius": 0.1,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "Pebble_Square_6": {
+      "ModelPath": "assets/models/quaternius-nature/Pebble_Square_6.gltf",
+      "CollisionRadius": 0.1,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "RockPath_Round_Small_1": {
+      "ModelPath": "assets/models/quaternius-nature/RockPath_Round_Small_1.gltf",
+      "CollisionRadius": 0.2,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "RockPath_Round_Small_2": {
+      "ModelPath": "assets/models/quaternius-nature/RockPath_Round_Small_2.gltf",
+      "CollisionRadius": 0.2,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "RockPath_Round_Small_3": {
+      "ModelPath": "assets/models/quaternius-nature/RockPath_Round_Small_3.gltf",
+      "CollisionRadius": 0.2,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "RockPath_Round_Thin": {
+      "ModelPath": "assets/models/quaternius-nature/RockPath_Round_Thin.gltf",
+      "CollisionRadius": 0.2,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "RockPath_Round_Wide": {
+      "ModelPath": "assets/models/quaternius-nature/RockPath_Round_Wide.gltf",
+      "CollisionRadius": 0.25,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "RockPath_Square_Small_1": {
+      "ModelPath": "assets/models/quaternius-nature/RockPath_Square_Small_1.gltf",
+      "CollisionRadius": 0.2,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "RockPath_Square_Small_2": {
+      "ModelPath": "assets/models/quaternius-nature/RockPath_Square_Small_2.gltf",
+      "CollisionRadius": 0.2,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "RockPath_Square_Small_3": {
+      "ModelPath": "assets/models/quaternius-nature/RockPath_Square_Small_3.gltf",
+      "CollisionRadius": 0.2,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "RockPath_Square_Thin": {
+      "ModelPath": "assets/models/quaternius-nature/RockPath_Square_Thin.gltf",
+      "CollisionRadius": 0.2,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "RockPath_Square_Wide": {
+      "ModelPath": "assets/models/quaternius-nature/RockPath_Square_Wide.gltf",
+      "CollisionRadius": 0.25,
+      "Passable": true,
+      "BlocksVision": false,
+      "Destructible": false,
+      "ModelScale": 1.0
+    }
+  },
+  "cliffs": {
+    "cliff_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_rock.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_stone.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_block_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_block_rock.glb",
+      "CollisionRadius": 1.2,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_block_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_block_stone.glb",
+      "CollisionRadius": 1.2,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_blockCave_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_blockCave_rock.glb",
+      "CollisionRadius": 1.5,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_blockCave_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_blockCave_stone.glb",
+      "CollisionRadius": 1.5,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_blockDiagonal_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_blockDiagonal_rock.glb",
+      "CollisionRadius": 1.2,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_blockDiagonal_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_blockDiagonal_stone.glb",
+      "CollisionRadius": 1.2,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_blockHalf_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_blockHalf_rock.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_blockHalf_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_blockHalf_stone.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_blockQuarter_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_blockQuarter_rock.glb",
+      "CollisionRadius": 0.8,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_blockQuarter_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_blockQuarter_stone.glb",
+      "CollisionRadius": 0.8,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_blockSlope_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_blockSlope_rock.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_blockSlope_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_blockSlope_stone.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_blockSlopeHalfWalls_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_blockSlopeHalfWalls_rock.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_blockSlopeHalfWalls_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_blockSlopeHalfWalls_stone.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_blockSlopeWalls_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_blockSlopeWalls_rock.glb",
+      "CollisionRadius": 1.2,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_blockSlopeWalls_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_blockSlopeWalls_stone.glb",
+      "CollisionRadius": 1.2,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_cave_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_cave_rock.glb",
+      "CollisionRadius": 2.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_cave_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_cave_stone.glb",
+      "CollisionRadius": 2.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_corner_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_corner_rock.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_corner_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_corner_stone.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_cornerInner_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_cornerInner_rock.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_cornerInner_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_cornerInner_stone.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_cornerInnerLarge_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_cornerInnerLarge_rock.glb",
+      "CollisionRadius": 1.5,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_cornerInnerLarge_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_cornerInnerLarge_stone.glb",
+      "CollisionRadius": 1.5,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_cornerInnerTop_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_cornerInnerTop_rock.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_cornerInnerTop_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_cornerInnerTop_stone.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_cornerLarge_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_cornerLarge_rock.glb",
+      "CollisionRadius": 1.5,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_cornerLarge_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_cornerLarge_stone.glb",
+      "CollisionRadius": 1.5,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_cornerTop_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_cornerTop_rock.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_cornerTop_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_cornerTop_stone.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_diagonal_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_diagonal_rock.glb",
+      "CollisionRadius": 1.2,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_diagonal_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_diagonal_stone.glb",
+      "CollisionRadius": 1.2,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_half_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_half_rock.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_half_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_half_stone.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_halfCorner_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_halfCorner_rock.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_halfCorner_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_halfCorner_stone.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_halfCornerInner_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_halfCornerInner_rock.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_halfCornerInner_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_halfCornerInner_stone.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_large_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_large_rock.glb",
+      "CollisionRadius": 2.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_large_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_large_stone.glb",
+      "CollisionRadius": 2.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_steps_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_steps_rock.glb",
+      "CollisionRadius": 1.2,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_steps_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_steps_stone.glb",
+      "CollisionRadius": 1.2,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_stepsCorner_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_stepsCorner_rock.glb",
+      "CollisionRadius": 1.2,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_stepsCorner_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_stepsCorner_stone.glb",
+      "CollisionRadius": 1.2,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_stepsCornerInner_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_stepsCornerInner_rock.glb",
+      "CollisionRadius": 1.2,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_stepsCornerInner_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_stepsCornerInner_stone.glb",
+      "CollisionRadius": 1.2,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_top_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_top_rock.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_top_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_top_stone.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_topDiagonal_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_topDiagonal_rock.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_topDiagonal_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_topDiagonal_stone.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_waterfallTop_rock": {
+      "ModelPath": "assets/models/kenney-nature/cliff_waterfallTop_rock.glb",
+      "CollisionRadius": 1.5,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_waterfallTop_stone": {
+      "ModelPath": "assets/models/kenney-nature/cliff_waterfallTop_stone.glb",
+      "CollisionRadius": 1.5,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_urban_corner": {
+      "ModelPath": "assets/models/kenney-urban/cliff-corner.glb",
+      "CollisionRadius": 1.2,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    },
+    "cliff_urban_side": {
+      "ModelPath": "assets/models/kenney-urban/cliff-side.glb",
+      "CollisionRadius": 1.2,
+      "Passable": false,
+      "BlocksVision": true,
+      "Destructible": false,
+      "ModelScale": 1.0
+    }
+  },
+  "rivers": {
+    "ground_riverStraight": {
+      "ModelPath": "assets/models/kenney-nature/ground_riverStraight.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 0.5,
+      "TerrainType": "water",
+      "ModelScale": 1.0
+    },
+    "ground_riverBend": {
+      "ModelPath": "assets/models/kenney-nature/ground_riverBend.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 0.5,
+      "TerrainType": "water",
+      "ModelScale": 1.0
+    },
+    "ground_riverBendBank": {
+      "ModelPath": "assets/models/kenney-nature/ground_riverBendBank.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 0.5,
+      "TerrainType": "water",
+      "ModelScale": 1.0
+    },
+    "ground_riverCorner": {
+      "ModelPath": "assets/models/kenney-nature/ground_riverCorner.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 0.5,
+      "TerrainType": "water",
+      "ModelScale": 1.0
+    },
+    "ground_riverCornerSmall": {
+      "ModelPath": "assets/models/kenney-nature/ground_riverCornerSmall.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 0.5,
+      "TerrainType": "water",
+      "ModelScale": 1.0
+    },
+    "ground_riverCross": {
+      "ModelPath": "assets/models/kenney-nature/ground_riverCross.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 0.5,
+      "TerrainType": "water",
+      "ModelScale": 1.0
+    },
+    "ground_riverEnd": {
+      "ModelPath": "assets/models/kenney-nature/ground_riverEnd.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 0.5,
+      "TerrainType": "water",
+      "ModelScale": 1.0
+    },
+    "ground_riverEndClosed": {
+      "ModelPath": "assets/models/kenney-nature/ground_riverEndClosed.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 0.5,
+      "TerrainType": "water",
+      "ModelScale": 1.0
+    },
+    "ground_riverOpen": {
+      "ModelPath": "assets/models/kenney-nature/ground_riverOpen.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 0.5,
+      "TerrainType": "water",
+      "ModelScale": 1.0
+    },
+    "ground_riverRocks": {
+      "ModelPath": "assets/models/kenney-nature/ground_riverRocks.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 0.5,
+      "TerrainType": "water",
+      "ModelScale": 1.0
+    },
+    "ground_riverSide": {
+      "ModelPath": "assets/models/kenney-nature/ground_riverSide.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 0.5,
+      "TerrainType": "water",
+      "ModelScale": 1.0
+    },
+    "ground_riverSideOpen": {
+      "ModelPath": "assets/models/kenney-nature/ground_riverSideOpen.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 0.5,
+      "TerrainType": "water",
+      "ModelScale": 1.0
+    },
+    "ground_riverSplit": {
+      "ModelPath": "assets/models/kenney-nature/ground_riverSplit.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 0.5,
+      "TerrainType": "water",
+      "ModelScale": 1.0
+    }
+  },
+  "bridges": {
+    "bridge_stone": {
+      "ModelPath": "assets/models/kenney-nature/bridge_stone.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "NegatesRiverSlow": true,
+      "ModelScale": 1.0
+    },
+    "bridge_stoneNarrow": {
+      "ModelPath": "assets/models/kenney-nature/bridge_stoneNarrow.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "NegatesRiverSlow": true,
+      "ModelScale": 1.0
+    },
+    "bridge_stoneRound": {
+      "ModelPath": "assets/models/kenney-nature/bridge_stoneRound.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "NegatesRiverSlow": true,
+      "ModelScale": 1.0
+    },
+    "bridge_stoneRoundNarrow": {
+      "ModelPath": "assets/models/kenney-nature/bridge_stoneRoundNarrow.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "NegatesRiverSlow": true,
+      "ModelScale": 1.0
+    },
+    "bridge_wood": {
+      "ModelPath": "assets/models/kenney-nature/bridge_wood.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "NegatesRiverSlow": true,
+      "ModelScale": 1.0
+    },
+    "bridge_woodNarrow": {
+      "ModelPath": "assets/models/kenney-nature/bridge_woodNarrow.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "NegatesRiverSlow": true,
+      "ModelScale": 1.0
+    },
+    "bridge_woodRound": {
+      "ModelPath": "assets/models/kenney-nature/bridge_woodRound.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "NegatesRiverSlow": true,
+      "ModelScale": 1.0
+    },
+    "bridge_woodRoundNarrow": {
+      "ModelPath": "assets/models/kenney-nature/bridge_woodRoundNarrow.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "NegatesRiverSlow": true,
+      "ModelScale": 1.0
+    },
+    "bridge_center_stone": {
+      "ModelPath": "assets/models/kenney-nature/bridge_center_stone.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "NegatesRiverSlow": true,
+      "ModelScale": 1.0
+    },
+    "bridge_center_stoneRound": {
+      "ModelPath": "assets/models/kenney-nature/bridge_center_stoneRound.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "NegatesRiverSlow": true,
+      "ModelScale": 1.0
+    },
+    "bridge_center_wood": {
+      "ModelPath": "assets/models/kenney-nature/bridge_center_wood.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "NegatesRiverSlow": true,
+      "ModelScale": 1.0
+    },
+    "bridge_center_woodRound": {
+      "ModelPath": "assets/models/kenney-nature/bridge_center_woodRound.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "NegatesRiverSlow": true,
+      "ModelScale": 1.0
+    },
+    "bridge_side_stone": {
+      "ModelPath": "assets/models/kenney-nature/bridge_side_stone.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "NegatesRiverSlow": true,
+      "ModelScale": 1.0
+    },
+    "bridge_side_stoneRound": {
+      "ModelPath": "assets/models/kenney-nature/bridge_side_stoneRound.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "NegatesRiverSlow": true,
+      "ModelScale": 1.0
+    },
+    "bridge_side_wood": {
+      "ModelPath": "assets/models/kenney-nature/bridge_side_wood.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "NegatesRiverSlow": true,
+      "ModelScale": 1.0
+    },
+    "bridge_side_woodRound": {
+      "ModelPath": "assets/models/kenney-nature/bridge_side_woodRound.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "NegatesRiverSlow": true,
+      "ModelScale": 1.0
+    },
+    "pirate_dock": {
+      "ModelPath": "assets/models/kenney-pirate/structure-platform-dock.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "NegatesRiverSlow": true,
+      "ModelScale": 1.0
+    },
+    "pirate_dock_small": {
+      "ModelPath": "assets/models/kenney-pirate/structure-platform-dock-small.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "NegatesRiverSlow": true,
+      "ModelScale": 1.0
+    },
+    "platform_beach": {
+      "ModelPath": "assets/models/kenney-nature/platform_beach.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "NegatesRiverSlow": true,
+      "ModelScale": 1.0
+    }
+  },
+  "paths": {
+    "ground_pathStraight": {
+      "ModelPath": "assets/models/kenney-nature/ground_pathStraight.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 1.25,
+      "ModelScale": 1.0
+    },
+    "ground_pathBend": {
+      "ModelPath": "assets/models/kenney-nature/ground_pathBend.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 1.25,
+      "ModelScale": 1.0
+    },
+    "ground_pathBendBank": {
+      "ModelPath": "assets/models/kenney-nature/ground_pathBendBank.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 1.25,
+      "ModelScale": 1.0
+    },
+    "ground_pathCorner": {
+      "ModelPath": "assets/models/kenney-nature/ground_pathCorner.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 1.25,
+      "ModelScale": 1.0
+    },
+    "ground_pathCornerSmall": {
+      "ModelPath": "assets/models/kenney-nature/ground_pathCornerSmall.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 1.25,
+      "ModelScale": 1.0
+    },
+    "ground_pathCross": {
+      "ModelPath": "assets/models/kenney-nature/ground_pathCross.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 1.25,
+      "ModelScale": 1.0
+    },
+    "ground_pathEnd": {
+      "ModelPath": "assets/models/kenney-nature/ground_pathEnd.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 1.25,
+      "ModelScale": 1.0
+    },
+    "ground_pathEndClosed": {
+      "ModelPath": "assets/models/kenney-nature/ground_pathEndClosed.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 1.25,
+      "ModelScale": 1.0
+    },
+    "ground_pathOpen": {
+      "ModelPath": "assets/models/kenney-nature/ground_pathOpen.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 1.25,
+      "ModelScale": 1.0
+    },
+    "ground_pathRocks": {
+      "ModelPath": "assets/models/kenney-nature/ground_pathRocks.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 1.25,
+      "ModelScale": 1.0
+    },
+    "ground_pathSide": {
+      "ModelPath": "assets/models/kenney-nature/ground_pathSide.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 1.25,
+      "ModelScale": 1.0
+    },
+    "ground_pathSideOpen": {
+      "ModelPath": "assets/models/kenney-nature/ground_pathSideOpen.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 1.25,
+      "ModelScale": 1.0
+    },
+    "ground_pathSplit": {
+      "ModelPath": "assets/models/kenney-nature/ground_pathSplit.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 1.25,
+      "ModelScale": 1.0
+    },
+    "ground_pathTile": {
+      "ModelPath": "assets/models/kenney-nature/ground_pathTile.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 1.25,
+      "ModelScale": 1.0
+    },
+    "ground_grass": {
+      "ModelPath": "assets/models/kenney-nature/ground_grass.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 1.25,
+      "ModelScale": 1.0
+    },
+    "path_wood": {
+      "ModelPath": "assets/models/kenney-nature/path_wood.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 1.25,
+      "ModelScale": 1.0
+    },
+    "path_woodCorner": {
+      "ModelPath": "assets/models/kenney-nature/path_woodCorner.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 1.25,
+      "ModelScale": 1.0
+    },
+    "path_woodEnd": {
+      "ModelPath": "assets/models/kenney-nature/path_woodEnd.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 1.25,
+      "ModelScale": 1.0
+    },
+    "road_asphalt_straight": {
+      "ModelPath": "assets/models/kenney-urban/road-asphalt-straight.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 1.25,
+      "ModelScale": 1.0
+    },
+    "road_asphalt_corner": {
+      "ModelPath": "assets/models/kenney-urban/road-asphalt-corner.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 1.25,
+      "ModelScale": 1.0
+    },
+    "road_dirt_straight": {
+      "ModelPath": "assets/models/kenney-urban/road-dirt-straight.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 1.25,
+      "ModelScale": 1.0
+    },
+    "road_dirt_corner": {
+      "ModelPath": "assets/models/kenney-urban/road-dirt-corner.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "SpeedModifier": 1.25,
+      "ModelScale": 1.0
+    }
+  },
+  "vegetation": {
+    "grass": {
+      "ModelPath": "assets/models/kenney-nature/grass.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "grass_large": {
+      "ModelPath": "assets/models/kenney-nature/grass_large.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "grass_leafs": {
+      "ModelPath": "assets/models/kenney-nature/grass_leafs.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "grass_leafsLarge": {
+      "ModelPath": "assets/models/kenney-nature/grass_leafsLarge.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "Grass_Common_Short": {
+      "ModelPath": "assets/models/quaternius-nature/Grass_Common_Short.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "Grass_Common_Tall": {
+      "ModelPath": "assets/models/quaternius-nature/Grass_Common_Tall.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "Grass_Wispy_Short": {
+      "ModelPath": "assets/models/quaternius-nature/Grass_Wispy_Short.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "Grass_Wispy_Tall": {
+      "ModelPath": "assets/models/quaternius-nature/Grass_Wispy_Tall.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "pirate_grass": {
+      "ModelPath": "assets/models/kenney-pirate/grass.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "pirate_grass_patch": {
+      "ModelPath": "assets/models/kenney-pirate/grass-patch.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "pirate_grass_plant": {
+      "ModelPath": "assets/models/kenney-pirate/grass-plant.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "pirate_patch_grass": {
+      "ModelPath": "assets/models/kenney-pirate/patch-grass.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "pirate_patch_grass_foliage": {
+      "ModelPath": "assets/models/kenney-pirate/patch-grass-foliage.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "pirate_patch_sand": {
+      "ModelPath": "assets/models/kenney-pirate/patch-sand.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "pirate_patch_sand_foliage": {
+      "ModelPath": "assets/models/kenney-pirate/patch-sand-foliage.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "urban_grass": {
+      "ModelPath": "assets/models/kenney-urban/grass.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "urban_grass_hill": {
+      "ModelPath": "assets/models/kenney-urban/grass-hill.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "urban_grass_corner": {
+      "ModelPath": "assets/models/kenney-urban/grass-corner.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "flower_purpleA": {
+      "ModelPath": "assets/models/kenney-nature/flower_purpleA.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "flower_purpleB": {
+      "ModelPath": "assets/models/kenney-nature/flower_purpleB.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "flower_purpleC": {
+      "ModelPath": "assets/models/kenney-nature/flower_purpleC.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "flower_redA": {
+      "ModelPath": "assets/models/kenney-nature/flower_redA.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "flower_redB": {
+      "ModelPath": "assets/models/kenney-nature/flower_redB.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "flower_redC": {
+      "ModelPath": "assets/models/kenney-nature/flower_redC.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "flower_yellowA": {
+      "ModelPath": "assets/models/kenney-nature/flower_yellowA.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "flower_yellowB": {
+      "ModelPath": "assets/models/kenney-nature/flower_yellowB.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "flower_yellowC": {
+      "ModelPath": "assets/models/kenney-nature/flower_yellowC.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "Flower_3_Group": {
+      "ModelPath": "assets/models/quaternius-nature/Flower_3_Group.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "Flower_3_Single": {
+      "ModelPath": "assets/models/quaternius-nature/Flower_3_Single.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "Flower_4_Group": {
+      "ModelPath": "assets/models/quaternius-nature/Flower_4_Group.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "Flower_4_Single": {
+      "ModelPath": "assets/models/quaternius-nature/Flower_4_Single.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "Petal_1": {
+      "ModelPath": "assets/models/quaternius-nature/Petal_1.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "Petal_2": {
+      "ModelPath": "assets/models/quaternius-nature/Petal_2.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "Petal_3": {
+      "ModelPath": "assets/models/quaternius-nature/Petal_3.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "Petal_4": {
+      "ModelPath": "assets/models/quaternius-nature/Petal_4.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "Petal_5": {
+      "ModelPath": "assets/models/quaternius-nature/Petal_5.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "plant_bush": {
+      "ModelPath": "assets/models/kenney-nature/plant_bush.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "plant_bushDetailed": {
+      "ModelPath": "assets/models/kenney-nature/plant_bushDetailed.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "plant_bushLarge": {
+      "ModelPath": "assets/models/kenney-nature/plant_bushLarge.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "plant_bushLargeTriangle": {
+      "ModelPath": "assets/models/kenney-nature/plant_bushLargeTriangle.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "plant_bushSmall": {
+      "ModelPath": "assets/models/kenney-nature/plant_bushSmall.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "plant_bushTriangle": {
+      "ModelPath": "assets/models/kenney-nature/plant_bushTriangle.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "plant_flatShort": {
+      "ModelPath": "assets/models/kenney-nature/plant_flatShort.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "plant_flatTall": {
+      "ModelPath": "assets/models/kenney-nature/plant_flatTall.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "Bush_Common": {
+      "ModelPath": "assets/models/quaternius-nature/Bush_Common.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "Bush_Common_Flowers": {
+      "ModelPath": "assets/models/quaternius-nature/Bush_Common_Flowers.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "kaykit_bush": {
+      "ModelPath": "assets/models/kaykit-city/bush.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "mushroom_red": {
+      "ModelPath": "assets/models/kenney-nature/mushroom_red.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "mushroom_redGroup": {
+      "ModelPath": "assets/models/kenney-nature/mushroom_redGroup.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "mushroom_redTall": {
+      "ModelPath": "assets/models/kenney-nature/mushroom_redTall.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "mushroom_tan": {
+      "ModelPath": "assets/models/kenney-nature/mushroom_tan.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "mushroom_tanGroup": {
+      "ModelPath": "assets/models/kenney-nature/mushroom_tanGroup.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "mushroom_tanTall": {
+      "ModelPath": "assets/models/kenney-nature/mushroom_tanTall.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "Mushroom_Common": {
+      "ModelPath": "assets/models/quaternius-nature/Mushroom_Common.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "Mushroom_Laetiporus": {
+      "ModelPath": "assets/models/quaternius-nature/Mushroom_Laetiporus.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "Fern_1": {
+      "ModelPath": "assets/models/quaternius-nature/Fern_1.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "Clover_1": {
+      "ModelPath": "assets/models/quaternius-nature/Clover_1.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "Clover_2": {
+      "ModelPath": "assets/models/quaternius-nature/Clover_2.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "Plant_1": {
+      "ModelPath": "assets/models/quaternius-nature/Plant_1.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "Plant_1_Big": {
+      "ModelPath": "assets/models/quaternius-nature/Plant_1_Big.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "Plant_7": {
+      "ModelPath": "assets/models/quaternius-nature/Plant_7.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "Plant_7_Big": {
+      "ModelPath": "assets/models/quaternius-nature/Plant_7_Big.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "hanging_moss": {
+      "ModelPath": "assets/models/kenney-nature/hanging_moss.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "lily_large": {
+      "ModelPath": "assets/models/kenney-nature/lily_large.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "lily_small": {
+      "ModelPath": "assets/models/kenney-nature/lily_small.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "crops_cornStageD": {
+      "ModelPath": "assets/models/kenney-nature/crops_cornStageD.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "crops_wheatStageB": {
+      "ModelPath": "assets/models/kenney-nature/crops_wheatStageB.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "crops_bambooStageB": {
+      "ModelPath": "assets/models/kenney-nature/crops_bambooStageB.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "crops_leafsStageB": {
+      "ModelPath": "assets/models/kenney-nature/crops_leafsStageB.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "cactus_short": {
+      "ModelPath": "assets/models/kenney-nature/cactus_short.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    },
+    "cactus_tall": {
+      "ModelPath": "assets/models/kenney-nature/cactus_tall.glb",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "Decorative": true,
+      "ModelScale": 1.0
+    }
+  },
+  "props": {
+    "fence_simple": {
+      "ModelPath": "assets/models/kenney-nature/fence_simple.glb",
+      "CollisionRadius": 0.2,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "fence_planks": {
+      "ModelPath": "assets/models/kenney-nature/fence_planks.glb",
+      "CollisionRadius": 0.2,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "fence_corner": {
+      "ModelPath": "assets/models/kenney-nature/fence_corner.glb",
+      "CollisionRadius": 0.2,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "fence_gate": {
+      "ModelPath": "assets/models/kenney-nature/fence_gate.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "fence_simpleHigh": {
+      "ModelPath": "assets/models/kenney-nature/fence_simpleHigh.glb",
+      "CollisionRadius": 0.2,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "fence_simpleLow": {
+      "ModelPath": "assets/models/kenney-nature/fence_simpleLow.glb",
+      "CollisionRadius": 0.15,
+      "Passable": true,
+      "ModelScale": 1.0
+    },
+    "MetalFence_Simple": {
+      "ModelPath": "assets/models/quaternius-medieval/Prop_MetalFence_Simple.gltf",
+      "CollisionRadius": 0.2,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "MetalFence_Ornament": {
+      "ModelPath": "assets/models/quaternius-medieval/Prop_MetalFence_Ornament.gltf",
+      "CollisionRadius": 0.2,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "WoodenFence_Single": {
+      "ModelPath": "assets/models/quaternius-medieval/Prop_WoodenFence_Single.gltf",
+      "CollisionRadius": 0.2,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "pirate_fence": {
+      "ModelPath": "assets/models/kenney-pirate/structure-fence.glb",
+      "CollisionRadius": 0.2,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "pirate_fence_sides": {
+      "ModelPath": "assets/models/kenney-pirate/structure-fence-sides.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "campfire_bricks": {
+      "ModelPath": "assets/models/kenney-nature/campfire_bricks.glb",
+      "CollisionRadius": 0.3,
+      "Passable": true,
+      "ModelScale": 1.0
+    },
+    "campfire_logs": {
+      "ModelPath": "assets/models/kenney-nature/campfire_logs.glb",
+      "CollisionRadius": 0.3,
+      "Passable": true,
+      "ModelScale": 1.0
+    },
+    "campfire_planks": {
+      "ModelPath": "assets/models/kenney-nature/campfire_planks.glb",
+      "CollisionRadius": 0.3,
+      "Passable": true,
+      "ModelScale": 1.0
+    },
+    "campfire_stones": {
+      "ModelPath": "assets/models/kenney-nature/campfire_stones.glb",
+      "CollisionRadius": 0.3,
+      "Passable": true,
+      "ModelScale": 1.0
+    },
+    "tent_detailedClosed": {
+      "ModelPath": "assets/models/kenney-nature/tent_detailedClosed.glb",
+      "CollisionRadius": 0.8,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "tent_detailedOpen": {
+      "ModelPath": "assets/models/kenney-nature/tent_detailedOpen.glb",
+      "CollisionRadius": 0.8,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "tent_smallClosed": {
+      "ModelPath": "assets/models/kenney-nature/tent_smallClosed.glb",
+      "CollisionRadius": 0.6,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "tent_smallOpen": {
+      "ModelPath": "assets/models/kenney-nature/tent_smallOpen.glb",
+      "CollisionRadius": 0.6,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "sign": {
+      "ModelPath": "assets/models/kenney-nature/sign.glb",
+      "CollisionRadius": 0.1,
+      "Passable": true,
+      "ModelScale": 1.0
+    },
+    "statue_block": {
+      "ModelPath": "assets/models/kenney-nature/statue_block.glb",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "statue_column": {
+      "ModelPath": "assets/models/kenney-nature/statue_column.glb",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "statue_columnDamaged": {
+      "ModelPath": "assets/models/kenney-nature/statue_columnDamaged.glb",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "statue_head": {
+      "ModelPath": "assets/models/kenney-nature/statue_head.glb",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "statue_obelisk": {
+      "ModelPath": "assets/models/kenney-nature/statue_obelisk.glb",
+      "CollisionRadius": 0.35,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "statue_ring": {
+      "ModelPath": "assets/models/kenney-nature/statue_ring.glb",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "stump_old": {
+      "ModelPath": "assets/models/kenney-nature/stump_old.glb",
+      "CollisionRadius": 0.3,
+      "Passable": true,
+      "ModelScale": 1.0
+    },
+    "stump_oldTall": {
+      "ModelPath": "assets/models/kenney-nature/stump_oldTall.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "stump_round": {
+      "ModelPath": "assets/models/kenney-nature/stump_round.glb",
+      "CollisionRadius": 0.3,
+      "Passable": true,
+      "ModelScale": 1.0
+    },
+    "stump_roundDetailed": {
+      "ModelPath": "assets/models/kenney-nature/stump_roundDetailed.glb",
+      "CollisionRadius": 0.3,
+      "Passable": true,
+      "ModelScale": 1.0
+    },
+    "stump_square": {
+      "ModelPath": "assets/models/kenney-nature/stump_square.glb",
+      "CollisionRadius": 0.3,
+      "Passable": true,
+      "ModelScale": 1.0
+    },
+    "stump_squareDetailed": {
+      "ModelPath": "assets/models/kenney-nature/stump_squareDetailed.glb",
+      "CollisionRadius": 0.3,
+      "Passable": true,
+      "ModelScale": 1.0
+    },
+    "stump_squareDetailedWide": {
+      "ModelPath": "assets/models/kenney-nature/stump_squareDetailedWide.glb",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "log": {
+      "ModelPath": "assets/models/kenney-nature/log.glb",
+      "CollisionRadius": 0.3,
+      "Passable": true,
+      "ModelScale": 1.0
+    },
+    "log_large": {
+      "ModelPath": "assets/models/kenney-nature/log_large.glb",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "log_stack": {
+      "ModelPath": "assets/models/kenney-nature/log_stack.glb",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "log_stackLarge": {
+      "ModelPath": "assets/models/kenney-nature/log_stackLarge.glb",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "pot_large": {
+      "ModelPath": "assets/models/kenney-nature/pot_large.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "pot_small": {
+      "ModelPath": "assets/models/kenney-nature/pot_small.glb",
+      "CollisionRadius": 0.2,
+      "Passable": true,
+      "ModelScale": 1.0
+    },
+    "canoe": {
+      "ModelPath": "assets/models/kenney-nature/canoe.glb",
+      "CollisionRadius": 0.6,
+      "Passable": true,
+      "ModelScale": 1.0
+    },
+    "canoe_paddle": {
+      "ModelPath": "assets/models/kenney-nature/canoe_paddle.glb",
+      "CollisionRadius": 0.1,
+      "Passable": true,
+      "ModelScale": 1.0
+    },
+    "bed": {
+      "ModelPath": "assets/models/kenney-nature/bed.glb",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "bed_floor": {
+      "ModelPath": "assets/models/kenney-nature/bed_floor.glb",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "barrel": {
+      "ModelPath": "assets/models/kenney-pirate/barrel.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "crate": {
+      "ModelPath": "assets/models/kenney-pirate/crate.glb",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "crate_bottles": {
+      "ModelPath": "assets/models/kenney-pirate/crate-bottles.glb",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "chest": {
+      "ModelPath": "assets/models/kenney-pirate/chest.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "cannon": {
+      "ModelPath": "assets/models/kenney-pirate/cannon.glb",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "cannon_mobile": {
+      "ModelPath": "assets/models/kenney-pirate/cannon-mobile.glb",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "cannon_ball": {
+      "ModelPath": "assets/models/kenney-pirate/cannon-ball.glb",
+      "CollisionRadius": 0.1,
+      "Passable": true,
+      "ModelScale": 1.0
+    },
+    "mast": {
+      "ModelPath": "assets/models/kenney-pirate/mast.glb",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "flag_high": {
+      "ModelPath": "assets/models/kenney-pirate/flag-high.glb",
+      "CollisionRadius": 0.1,
+      "Passable": true,
+      "ModelScale": 1.0
+    },
+    "flag_pirate_high": {
+      "ModelPath": "assets/models/kenney-pirate/flag-pirate-high.glb",
+      "CollisionRadius": 0.1,
+      "Passable": true,
+      "ModelScale": 1.0
+    },
+    "boat_row_small": {
+      "ModelPath": "assets/models/kenney-pirate/boat-row-small.glb",
+      "CollisionRadius": 0.6,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "boat_row_large": {
+      "ModelPath": "assets/models/kenney-pirate/boat-row-large.glb",
+      "CollisionRadius": 0.8,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "pirate_ship_wreck": {
+      "ModelPath": "assets/models/kenney-pirate/ship-wreck.glb",
+      "CollisionRadius": 1.5,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "pirate_tower_watch": {
+      "ModelPath": "assets/models/kenney-pirate/tower-watch.glb",
+      "CollisionRadius": 0.8,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "pirate_tower_small": {
+      "ModelPath": "assets/models/kenney-pirate/tower-complete-small.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "urban_barrel": {
+      "ModelPath": "assets/models/kenney-urban/detail-dumpster-closed.glb",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "urban_pallet": {
+      "ModelPath": "assets/models/kenney-urban/pallet.glb",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "urban_barrier_a": {
+      "ModelPath": "assets/models/kenney-urban/detail-barrier-type-a.glb",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "urban_barrier_b": {
+      "ModelPath": "assets/models/kenney-urban/detail-barrier-type-b.glb",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "urban_bench": {
+      "ModelPath": "assets/models/kenney-urban/detail-bench.glb",
+      "CollisionRadius": 0.3,
+      "Passable": true,
+      "ModelScale": 1.0
+    },
+    "urban_block": {
+      "ModelPath": "assets/models/kenney-urban/detail-block.glb",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "kaykit_watertower": {
+      "ModelPath": "assets/models/kaykit-city/watertower.gltf",
+      "CollisionRadius": 0.8,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "kaykit_streetlight": {
+      "ModelPath": "assets/models/kaykit-city/streetlight.gltf",
+      "CollisionRadius": 0.1,
+      "Passable": true,
+      "ModelScale": 1.0
+    },
+    "kaykit_bench": {
+      "ModelPath": "assets/models/kaykit-city/bench.gltf",
+      "CollisionRadius": 0.4,
+      "Passable": true,
+      "ModelScale": 1.0
+    },
+    "kaykit_trash_a": {
+      "ModelPath": "assets/models/kaykit-city/trash_A.gltf",
+      "CollisionRadius": 0.2,
+      "Passable": true,
+      "ModelScale": 1.0
+    },
+    "kaykit_dumpster": {
+      "ModelPath": "assets/models/kaykit-city/dumpster.gltf",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "medieval_crate": {
+      "ModelPath": "assets/models/quaternius-medieval/Prop_Crate.gltf",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "medieval_wagon": {
+      "ModelPath": "assets/models/quaternius-medieval/Prop_Wagon.gltf",
+      "CollisionRadius": 0.8,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "medieval_chimney": {
+      "ModelPath": "assets/models/quaternius-medieval/Prop_Chimney.gltf",
+      "CollisionRadius": 0.2,
+      "Passable": true,
+      "ModelScale": 1.0
+    },
+    "medieval_vine1": {
+      "ModelPath": "assets/models/quaternius-medieval/Prop_Vine1.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": true,
+      "ModelScale": 1.0
+    },
+    "medieval_brick1": {
+      "ModelPath": "assets/models/quaternius-medieval/Prop_Brick1.gltf",
+      "CollisionRadius": 0.2,
+      "Passable": true,
+      "ModelScale": 1.0
+    },
+    "desert_barrel": {
+      "ModelPath": "assets/models/desert-buildings/Barrel.fbx",
+      "CollisionRadius": 0.3,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "desert_crate": {
+      "ModelPath": "assets/models/desert-buildings/Crate.fbx",
+      "CollisionRadius": 0.4,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "desert_well": {
+      "ModelPath": "assets/models/desert-buildings/Well.fbx",
+      "CollisionRadius": 0.6,
+      "Passable": false,
+      "ModelScale": 1.0
+    }
+  },
+  "structures": {
+    "pirate_structure": {
+      "ModelPath": "assets/models/kenney-pirate/structure.glb",
+      "CollisionRadius": 1.5,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "pirate_structure_roof": {
+      "ModelPath": "assets/models/kenney-pirate/structure-roof.glb",
+      "CollisionRadius": 1.5,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "pirate_platform": {
+      "ModelPath": "assets/models/kenney-pirate/platform.glb",
+      "CollisionRadius": 1.2,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "pirate_platform_planks": {
+      "ModelPath": "assets/models/kenney-pirate/platform-planks.glb",
+      "CollisionRadius": 1.2,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "pirate_platform_small": {
+      "ModelPath": "assets/models/kenney-pirate/structure-platform-small.glb",
+      "CollisionRadius": 0.8,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "pirate_castle_wall": {
+      "ModelPath": "assets/models/kenney-pirate/castle-wall.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "pirate_castle_gate": {
+      "ModelPath": "assets/models/kenney-pirate/castle-gate.glb",
+      "CollisionRadius": 1.2,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "pirate_castle_door": {
+      "ModelPath": "assets/models/kenney-pirate/castle-door.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "pirate_castle_window": {
+      "ModelPath": "assets/models/kenney-pirate/castle-window.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "pirate_tower_base": {
+      "ModelPath": "assets/models/kenney-pirate/tower-base.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "pirate_tower_base_door": {
+      "ModelPath": "assets/models/kenney-pirate/tower-base-door.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "pirate_tower_middle": {
+      "ModelPath": "assets/models/kenney-pirate/tower-middle.glb",
+      "CollisionRadius": 0.8,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "pirate_tower_roof": {
+      "ModelPath": "assets/models/kenney-pirate/tower-roof.glb",
+      "CollisionRadius": 0.8,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "pirate_tower_top": {
+      "ModelPath": "assets/models/kenney-pirate/tower-top.glb",
+      "CollisionRadius": 0.8,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "pirate_tower_complete_large": {
+      "ModelPath": "assets/models/kenney-pirate/tower-complete-large.glb",
+      "CollisionRadius": 1.5,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "pirate_lighthouse": {
+      "ModelPath": "assets/models/kenney-pirate/tower-complete-large.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "ModelScale": 1.6
+    },
+    "urban_wall_a": {
+      "ModelPath": "assets/models/kenney-urban/wall-a.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "urban_wall_a_painted": {
+      "ModelPath": "assets/models/kenney-urban/wall-a-painted.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "urban_wall_b": {
+      "ModelPath": "assets/models/kenney-urban/wall-b-flat.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "urban_roof_metal_a": {
+      "ModelPath": "assets/models/kenney-urban/roof-metal-type-a.glb",
+      "CollisionRadius": 1.0,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "urban_scaffolding": {
+      "ModelPath": "assets/models/kenney-urban/scaffolding-structure.glb",
+      "CollisionRadius": 0.8,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "desert_small_building_a": {
+      "ModelPath": "assets/models/desert-buildings/Small Building A.fbx",
+      "CollisionRadius": 1.5,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "desert_medium_building_a": {
+      "ModelPath": "assets/models/desert-buildings/Medium Building A.fbx",
+      "CollisionRadius": 2.0,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "desert_medium_building_b": {
+      "ModelPath": "assets/models/desert-buildings/Medium Building B.fbx",
+      "CollisionRadius": 2.0,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "desert_large_building_a": {
+      "ModelPath": "assets/models/desert-buildings/Large Building A.fbx",
+      "CollisionRadius": 3.0,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "desert_large_building_b": {
+      "ModelPath": "assets/models/desert-buildings/Large Building B.fbx",
+      "CollisionRadius": 3.0,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "desert_large_building_c": {
+      "ModelPath": "assets/models/desert-buildings/Large Building C.fbx",
+      "CollisionRadius": 3.0,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "desert_large_building_d": {
+      "ModelPath": "assets/models/desert-buildings/Large Building D.fbx",
+      "CollisionRadius": 3.0,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "desert_awning_a": {
+      "ModelPath": "assets/models/desert-buildings/Awning A.fbx",
+      "CollisionRadius": 0.8,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "desert_awning_b": {
+      "ModelPath": "assets/models/desert-buildings/Awning B.fbx",
+      "CollisionRadius": 0.8,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "desert_door_frame_a": {
+      "ModelPath": "assets/models/desert-buildings/Door Frame A.fbx",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "desert_wall_a": {
+      "ModelPath": "assets/models/desert-buildings/Wall A.fbx",
+      "CollisionRadius": 0.8,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "desert_wall_b": {
+      "ModelPath": "assets/models/desert-buildings/Wall B.fbx",
+      "CollisionRadius": 0.8,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "city_building_a": {
+      "ModelPath": "assets/models/kaykit-city/building_A.gltf",
+      "CollisionRadius": 2.0,
+      "Passable": false,
+      "ModelScale": 1.2
+    },
+    "city_building_b": {
+      "ModelPath": "assets/models/kaykit-city/building_B.gltf",
+      "CollisionRadius": 2.0,
+      "Passable": false,
+      "ModelScale": 1.2
+    },
+    "city_building_c": {
+      "ModelPath": "assets/models/kaykit-city/building_C.gltf",
+      "CollisionRadius": 2.0,
+      "Passable": false,
+      "ModelScale": 1.2
+    },
+    "city_building_d": {
+      "ModelPath": "assets/models/kaykit-city/building_D.gltf",
+      "CollisionRadius": 2.0,
+      "Passable": false,
+      "ModelScale": 1.2
+    },
+    "medieval_wall_plaster": {
+      "ModelPath": "assets/models/quaternius-medieval/Wall_Plaster_Straight.gltf",
+      "CollisionRadius": 0.8,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "medieval_wall_unevenbrick": {
+      "ModelPath": "assets/models/quaternius-medieval/Wall_UnevenBrick_Straight.gltf",
+      "CollisionRadius": 0.8,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "medieval_wall_arch": {
+      "ModelPath": "assets/models/quaternius-medieval/Wall_Arch.gltf",
+      "CollisionRadius": 0.8,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "medieval_floor_1": {
+      "ModelPath": "assets/models/quaternius-medieval/Floor_Plaster_1x1.gltf",
+      "CollisionRadius": 0.0,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "medieval_exterior_border": {
+      "ModelPath": "assets/models/quaternius-medieval/Prop_ExteriorBorder_Straight1.gltf",
+      "CollisionRadius": 0.5,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "medieval_tower_round": {
+      "ModelPath": "assets/models/quaternius-medieval/Tower_Round_Plaster.gltf",
+      "CollisionRadius": 1.2,
+      "Passable": false,
+      "ModelScale": 1.0
+    },
+    "medieval_tower_square": {
+      "ModelPath": "assets/models/quaternius-medieval/Tower_Square_Plaster.gltf",
+      "CollisionRadius": 1.2,
+      "Passable": false,
+      "ModelScale": 1.0
+    }
+  }
+}

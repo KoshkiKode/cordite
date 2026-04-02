@@ -1,0 +1,2188 @@
+{
+  "Id": "iron_ridge",
+  "DisplayName": "Iron Ridge",
+  "Description": "A brutal 1v1 proving ground carved from ancient stone. A central ridgeline grants artillery supremacy to whoever holds it. Three lanes — north open, center contested bridge, south cliff maze — demand tactical flexibility from both commanders.",
+  "Author": "Cordite Wars Team",
+  "MaxPlayers": 2,
+  "Width": 160,
+  "Height": 160,
+  "Biome": "rocky",
+  "StartingPositions": [
+    {
+      "PlayerId": 0,
+      "X": 18,
+      "Y": 18,
+      "Facing": 0.785
+    },
+    {
+      "PlayerId": 1,
+      "X": 142,
+      "Y": 142,
+      "Facing": 3.927
+    }
+  ],
+  "CorditeNodes": [
+    {
+      "NodeId": 0,
+      "X": 32,
+      "Y": 32,
+      "Amount": 10000
+    },
+    {
+      "NodeId": 1,
+      "X": 40,
+      "Y": 20,
+      "Amount": 8000
+    },
+    {
+      "NodeId": 2,
+      "X": 128,
+      "Y": 128,
+      "Amount": 10000
+    },
+    {
+      "NodeId": 3,
+      "X": 120,
+      "Y": 140,
+      "Amount": 8000
+    },
+    {
+      "NodeId": 4,
+      "X": 68,
+      "Y": 88,
+      "Amount": 12000
+    },
+    {
+      "NodeId": 5,
+      "X": 92,
+      "Y": 72,
+      "Amount": 12000
+    }
+  ],
+  "TerrainFeatures": [
+    {
+      "Type": "river",
+      "Points": [
+        [
+          50,
+          0
+        ],
+        [
+          55,
+          20
+        ],
+        [
+          62,
+          40
+        ],
+        [
+          70,
+          58
+        ],
+        [
+          80,
+          75
+        ],
+        [
+          90,
+          92
+        ],
+        [
+          98,
+          110
+        ],
+        [
+          105,
+          130
+        ],
+        [
+          110,
+          160
+        ]
+      ]
+    },
+    {
+      "Type": "river",
+      "Points": [
+        [
+          52,
+          0
+        ],
+        [
+          57,
+          20
+        ],
+        [
+          64,
+          40
+        ],
+        [
+          72,
+          58
+        ],
+        [
+          82,
+          75
+        ],
+        [
+          92,
+          92
+        ],
+        [
+          100,
+          110
+        ],
+        [
+          107,
+          130
+        ],
+        [
+          112,
+          160
+        ]
+      ]
+    },
+    {
+      "Type": "ridgeline",
+      "Points": [
+        [
+          0,
+          80
+        ],
+        [
+          20,
+          78
+        ],
+        [
+          40,
+          75
+        ],
+        [
+          60,
+          78
+        ],
+        [
+          80,
+          80
+        ],
+        [
+          100,
+          82
+        ],
+        [
+          120,
+          85
+        ],
+        [
+          140,
+          82
+        ],
+        [
+          160,
+          80
+        ]
+      ]
+    }
+  ],
+  "Props": [
+    {
+      "ModelId": "rock_largeB",
+      "X": 18.1,
+      "Y": 66.8,
+      "Rotation": 171.7,
+      "Scale": 1.15
+    },
+    {
+      "ModelId": "cliff_block_rock",
+      "X": 14.9,
+      "Y": 64.7,
+      "Rotation": 13.1,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "rock_tallD",
+      "X": 11.9,
+      "Y": 65.8,
+      "Rotation": 36.8,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "cliff_cornerTop_rock",
+      "X": 18.4,
+      "Y": 71.2,
+      "Rotation": 172.0,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 9.6,
+      "Y": 65.8,
+      "Rotation": 103.7,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "stone_tallA",
+      "X": 17.7,
+      "Y": 56.1,
+      "Rotation": 312.9,
+      "Scale": 1.15
+    },
+    {
+      "ModelId": "rock_tallB",
+      "X": 31.2,
+      "Y": 59.6,
+      "Rotation": 130.0,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "stone_tallA",
+      "X": 21.5,
+      "Y": 59.2,
+      "Rotation": 59.9,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "rock_tallD",
+      "X": 23.5,
+      "Y": 55.3,
+      "Rotation": 16.6,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "cliff_cornerTop_rock",
+      "X": 25.3,
+      "Y": 55.1,
+      "Rotation": 39.7,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "rock_largeB",
+      "X": 35.6,
+      "Y": 45.4,
+      "Rotation": 14.0,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "cliff_block_rock",
+      "X": 31.6,
+      "Y": 44.8,
+      "Rotation": 153.3,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "rock_largeC",
+      "X": 35.6,
+      "Y": 46.3,
+      "Rotation": 95.5,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 36.3,
+      "Y": 44.5,
+      "Rotation": 230.6,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "stone_tallA",
+      "X": 37.0,
+      "Y": 45.6,
+      "Rotation": 6.0,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 35.6,
+      "Y": 53.9,
+      "Rotation": 267.9,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "rock_tallD",
+      "X": 41.0,
+      "Y": 55.6,
+      "Rotation": 53.2,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 44.9,
+      "Y": 50.0,
+      "Rotation": 92.7,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "cliff_cornerTop_rock",
+      "X": 40.2,
+      "Y": 54.9,
+      "Rotation": 47.3,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "rock_tallA",
+      "X": 47.1,
+      "Y": 57.2,
+      "Rotation": 243.3,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "rock_tallD",
+      "X": 52.1,
+      "Y": 60.8,
+      "Rotation": 212.6,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "rock_tallB",
+      "X": 52.0,
+      "Y": 66.4,
+      "Rotation": 66.5,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 52.0,
+      "Y": 62.0,
+      "Rotation": 31.2,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "cliff_block_rock",
+      "X": 54.4,
+      "Y": 67.7,
+      "Rotation": 334.2,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "rock_tallD",
+      "X": 49.2,
+      "Y": 61.0,
+      "Rotation": 180.0,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "Rock_Medium_2",
+      "X": 114.5,
+      "Y": 114.2,
+      "Rotation": 142.6,
+      "Scale": 0.85
+    },
+    {
+      "ModelId": "rock_tallB",
+      "X": 111.5,
+      "Y": 120.1,
+      "Rotation": 192.6,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "Rock_Medium_2",
+      "X": 107.4,
+      "Y": 113.3,
+      "Rotation": 174.9,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "rock_tallB",
+      "X": 118.0,
+      "Y": 112.5,
+      "Rotation": 344.5,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "Rock_Medium_2",
+      "X": 112.8,
+      "Y": 115.1,
+      "Rotation": 108.2,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "Rock_Medium_2",
+      "X": 121.4,
+      "Y": 98.3,
+      "Rotation": 190.4,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 132.6,
+      "Y": 105.3,
+      "Rotation": 340.4,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "Rock_Medium_2",
+      "X": 123.2,
+      "Y": 110.0,
+      "Rotation": 30.3,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "rock_tallA",
+      "X": 131.0,
+      "Y": 108.2,
+      "Rotation": 216.5,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "rock_largeC",
+      "X": 120.5,
+      "Y": 101.6,
+      "Rotation": 316.7,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "rock_tallA",
+      "X": 135.8,
+      "Y": 93.4,
+      "Rotation": 288.8,
+      "Scale": 0.85
+    },
+    {
+      "ModelId": "rock_tallD",
+      "X": 134.8,
+      "Y": 95.8,
+      "Rotation": 122.8,
+      "Scale": 1.15
+    },
+    {
+      "ModelId": "Rock_Medium_1",
+      "X": 130.7,
+      "Y": 101.6,
+      "Rotation": 155.5,
+      "Scale": 0.89
+    },
+    {
+      "ModelId": "rock_largeB",
+      "X": 138.6,
+      "Y": 92.1,
+      "Rotation": 223.9,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "Rock_Medium_1",
+      "X": 139.6,
+      "Y": 98.3,
+      "Rotation": 94.8,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 100.3,
+      "Y": 117.2,
+      "Rotation": 124.5,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 99.8,
+      "Y": 120.4,
+      "Rotation": 108.9,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "Rock_Medium_2",
+      "X": 101.0,
+      "Y": 119.2,
+      "Rotation": 306.5,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 104.5,
+      "Y": 114.0,
+      "Rotation": 336.2,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 95.1,
+      "Y": 119.3,
+      "Rotation": 267.9,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "rock_tallB",
+      "X": 88.7,
+      "Y": 122.7,
+      "Rotation": 332.8,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 86.9,
+      "Y": 127.2,
+      "Rotation": 196.3,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "rock_largeC",
+      "X": 94.0,
+      "Y": 127.3,
+      "Rotation": 69.3,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "rock_tallA",
+      "X": 90.4,
+      "Y": 130.9,
+      "Rotation": 295.2,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "rock_tallB",
+      "X": 88.6,
+      "Y": 128.9,
+      "Rotation": 321.8,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "tree_pineRoundC",
+      "X": 46.0,
+      "Y": 20.6,
+      "Rotation": 314.7,
+      "Scale": 0.85
+    },
+    {
+      "ModelId": "tree_pineTallB",
+      "X": 43.5,
+      "Y": 21.2,
+      "Rotation": 188.4,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "tree_pineRoundB",
+      "X": 45.8,
+      "Y": 24.7,
+      "Rotation": 108.1,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "Pine_3",
+      "X": 45.3,
+      "Y": 25.1,
+      "Rotation": 96.3,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "tree_pineTallB",
+      "X": 62.7,
+      "Y": 19.6,
+      "Rotation": 1.2,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "Pine_3",
+      "X": 60.3,
+      "Y": 21.3,
+      "Rotation": 105.8,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "tree_pineRoundC",
+      "X": 61.2,
+      "Y": 26.5,
+      "Rotation": 8.2,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "tree_pineTallB",
+      "X": 59.2,
+      "Y": 21.7,
+      "Rotation": 211.3,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "stone_smallC",
+      "X": 56.9,
+      "Y": 19.6,
+      "Rotation": 137.9,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "rock_smallD",
+      "X": 59.4,
+      "Y": 20.8,
+      "Rotation": 152.0,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "stump_round",
+      "X": 51.5,
+      "Y": 21.9,
+      "Rotation": 242.2,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "tree_pineTallD",
+      "X": 57.7,
+      "Y": 47.6,
+      "Rotation": 93.5,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "tree_pineTallD",
+      "X": 57.9,
+      "Y": 47.6,
+      "Rotation": 142.4,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "tree_pineRoundA",
+      "X": 52.8,
+      "Y": 43.3,
+      "Rotation": 243.6,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "tree_pineTallA",
+      "X": 56.9,
+      "Y": 47.5,
+      "Rotation": 105.8,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "tree_pineRoundB",
+      "X": 75.6,
+      "Y": 44.8,
+      "Rotation": 252.9,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "tree_pineRoundB",
+      "X": 70.1,
+      "Y": 46.4,
+      "Rotation": 280.1,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "Pine_2",
+      "X": 74.0,
+      "Y": 39.6,
+      "Rotation": 219.1,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "tree_pineRoundC",
+      "X": 66.9,
+      "Y": 44.9,
+      "Rotation": 11.6,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "stone_smallA",
+      "X": 64.6,
+      "Y": 47.7,
+      "Rotation": 59.1,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "rock_smallD",
+      "X": 64.1,
+      "Y": 44.2,
+      "Rotation": 82.9,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "rock_smallC",
+      "X": 64.9,
+      "Y": 45.8,
+      "Rotation": 326.1,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "Pine_2",
+      "X": 63.7,
+      "Y": 56.3,
+      "Rotation": 140.8,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "Pine_2",
+      "X": 60.6,
+      "Y": 64.8,
+      "Rotation": 160.0,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "tree_pineRoundC",
+      "X": 58.9,
+      "Y": 61.9,
+      "Rotation": 129.5,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "Pine_1",
+      "X": 62.1,
+      "Y": 61.1,
+      "Rotation": 42.1,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "tree_pineRoundA",
+      "X": 80.0,
+      "Y": 60.1,
+      "Rotation": 22.7,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "tree_pineTallA",
+      "X": 81.2,
+      "Y": 58.7,
+      "Rotation": 92.7,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "tree_pineRoundA",
+      "X": 78.6,
+      "Y": 61.1,
+      "Rotation": 190.7,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "tree_pineRoundB",
+      "X": 83.5,
+      "Y": 62.4,
+      "Rotation": 336.4,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "rock_smallA",
+      "X": 73.7,
+      "Y": 60.3,
+      "Rotation": 130.4,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "stump_round",
+      "X": 69.1,
+      "Y": 61.6,
+      "Rotation": 109.9,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "stump_round",
+      "X": 75.9,
+      "Y": 58.8,
+      "Rotation": 223.1,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "tree_pineRoundC",
+      "X": 71.7,
+      "Y": 75.2,
+      "Rotation": 80.1,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "Pine_1",
+      "X": 74.9,
+      "Y": 71.5,
+      "Rotation": 237.3,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "tree_pineRoundC",
+      "X": 75.0,
+      "Y": 80.3,
+      "Rotation": 58.3,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "tree_pineTallB",
+      "X": 74.5,
+      "Y": 79.1,
+      "Rotation": 189.7,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "Pine_2",
+      "X": 87.8,
+      "Y": 70.6,
+      "Rotation": 165.9,
+      "Scale": 0.85
+    },
+    {
+      "ModelId": "tree_pineRoundC",
+      "X": 88.0,
+      "Y": 75.0,
+      "Rotation": 89.4,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "tree_pineTallC",
+      "X": 86.3,
+      "Y": 72.7,
+      "Rotation": 249.1,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "tree_pineRoundC",
+      "X": 88.1,
+      "Y": 70.3,
+      "Rotation": 44.1,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "rock_smallD",
+      "X": 80.4,
+      "Y": 74.9,
+      "Rotation": 27.9,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "stump_round",
+      "X": 78.4,
+      "Y": 79.3,
+      "Rotation": 46.3,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "rock_smallB",
+      "X": 78.7,
+      "Y": 72.9,
+      "Rotation": 48.5,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "Pine_1",
+      "X": 83.0,
+      "Y": 94.5,
+      "Rotation": 58.9,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "tree_pineRoundC",
+      "X": 80.5,
+      "Y": 99.8,
+      "Rotation": 177.7,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "tree_pineRoundB",
+      "X": 80.3,
+      "Y": 95.1,
+      "Rotation": 282.6,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "tree_pineTallA",
+      "X": 79.8,
+      "Y": 97.5,
+      "Rotation": 139.1,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "tree_pineTallB",
+      "X": 98.4,
+      "Y": 95.3,
+      "Rotation": 45.4,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "tree_pineRoundA",
+      "X": 102.8,
+      "Y": 95.6,
+      "Rotation": 247.4,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "tree_pineTallA",
+      "X": 98.5,
+      "Y": 100.2,
+      "Rotation": 307.7,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "tree_pineRoundC",
+      "X": 101.4,
+      "Y": 90.6,
+      "Rotation": 30.6,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "RockPath_Round_Small_1",
+      "X": 90.0,
+      "Y": 95.0,
+      "Rotation": 243.6,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "stump_round",
+      "X": 91.8,
+      "Y": 98.0,
+      "Rotation": 250.8,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "rock_smallC",
+      "X": 89.2,
+      "Y": 95.3,
+      "Rotation": 167.7,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "Pine_2",
+      "X": 88.5,
+      "Y": 109.6,
+      "Rotation": 349.3,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "tree_pineTallC",
+      "X": 93.0,
+      "Y": 111.5,
+      "Rotation": 93.1,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "tree_pineTallA",
+      "X": 92.2,
+      "Y": 109.9,
+      "Rotation": 200.3,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "tree_pineRoundC",
+      "X": 88.4,
+      "Y": 105.9,
+      "Rotation": 273.6,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "tree_pineRoundB",
+      "X": 106.5,
+      "Y": 113.5,
+      "Rotation": 347.2,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "tree_pineTallB",
+      "X": 101.8,
+      "Y": 111.3,
+      "Rotation": 328.2,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "tree_pineTallA",
+      "X": 105.8,
+      "Y": 103.4,
+      "Rotation": 96.1,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "tree_pineTallA",
+      "X": 109.2,
+      "Y": 108.5,
+      "Rotation": 229.1,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "RockPath_Round_Small_1",
+      "X": 96.2,
+      "Y": 107.2,
+      "Rotation": 275.5,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "rock_smallC",
+      "X": 95.6,
+      "Y": 111.3,
+      "Rotation": 329.9,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "Pebble_Round_1",
+      "X": 98.1,
+      "Y": 107.0,
+      "Rotation": 133.2,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "tree_pineRoundA",
+      "X": 106.3,
+      "Y": 128.8,
+      "Rotation": 330.3,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "tree_pineRoundB",
+      "X": 98.4,
+      "Y": 131.6,
+      "Rotation": 27.2,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "Pine_1",
+      "X": 100.5,
+      "Y": 129.6,
+      "Rotation": 148.9,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "tree_pineTallD",
+      "X": 99.7,
+      "Y": 130.2,
+      "Rotation": 125.1,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "tree_pineTallD",
+      "X": 116.3,
+      "Y": 131.5,
+      "Rotation": 33.1,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "Pine_1",
+      "X": 121.5,
+      "Y": 127.9,
+      "Rotation": 89.8,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "tree_pineTallA",
+      "X": 116.6,
+      "Y": 126.8,
+      "Rotation": 222.4,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "Pine_3",
+      "X": 116.9,
+      "Y": 125.0,
+      "Rotation": 13.9,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "Pebble_Round_2",
+      "X": 104.3,
+      "Y": 128.5,
+      "Rotation": 192.0,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "stone_smallB",
+      "X": 105.6,
+      "Y": 131.6,
+      "Rotation": 207.6,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "rock_smallD",
+      "X": 106.9,
+      "Y": 130.1,
+      "Rotation": 121.9,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "rock_tallC",
+      "X": 21.8,
+      "Y": 79.8,
+      "Rotation": 111.2,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 19.9,
+      "Y": 79.9,
+      "Rotation": 35.9,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "Rock_Medium_2",
+      "X": 16.0,
+      "Y": 79.0,
+      "Rotation": 334.9,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "stone_tallA",
+      "X": 21.6,
+      "Y": 79.2,
+      "Rotation": 147.0,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 43.7,
+      "Y": 78.9,
+      "Rotation": 277.0,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "Rock_Medium_1",
+      "X": 45.8,
+      "Y": 77.7,
+      "Rotation": 29.8,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "rock_tallD",
+      "X": 36.3,
+      "Y": 75.9,
+      "Rotation": 342.8,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "rock_tallA",
+      "X": 34.3,
+      "Y": 78.4,
+      "Rotation": 297.5,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "rock_tallD",
+      "X": 57.4,
+      "Y": 82.1,
+      "Rotation": 99.8,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 54.6,
+      "Y": 80.1,
+      "Rotation": 323.9,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "rock_tallD",
+      "X": 57.6,
+      "Y": 75.3,
+      "Rotation": 63.4,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "rock_tallA",
+      "X": 62.3,
+      "Y": 84.7,
+      "Rotation": 21.7,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "stone_tallA",
+      "X": 74.2,
+      "Y": 80.3,
+      "Rotation": 36.7,
+      "Scale": 0.85
+    },
+    {
+      "ModelId": "rock_largeC",
+      "X": 79.1,
+      "Y": 78.9,
+      "Rotation": 86.1,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "rock_tallA",
+      "X": 79.5,
+      "Y": 78.9,
+      "Rotation": 169.4,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 77.2,
+      "Y": 75.7,
+      "Rotation": 41.2,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "rock_tallA",
+      "X": 100.4,
+      "Y": 87.6,
+      "Rotation": 54.5,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 99.9,
+      "Y": 81.9,
+      "Rotation": 128.4,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "rock_tallC",
+      "X": 96.3,
+      "Y": 84.2,
+      "Rotation": 55.4,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 97.1,
+      "Y": 85.9,
+      "Rotation": 47.4,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "rock_tallB",
+      "X": 121.2,
+      "Y": 78.6,
+      "Rotation": 219.2,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "Rock_Medium_1",
+      "X": 123.1,
+      "Y": 80.2,
+      "Rotation": 331.8,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "rock_tallB",
+      "X": 120.1,
+      "Y": 77.6,
+      "Rotation": 129.3,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "rock_largeC",
+      "X": 119.0,
+      "Y": 84.4,
+      "Rotation": 309.6,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "rock_largeC",
+      "X": 140.7,
+      "Y": 81.2,
+      "Rotation": 237.8,
+      "Scale": 1.15
+    },
+    {
+      "ModelId": "Rock_Medium_1",
+      "X": 140.8,
+      "Y": 83.4,
+      "Rotation": 67.7,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "rock_largeB",
+      "X": 136.2,
+      "Y": 77.5,
+      "Rotation": 310.4,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 142.1,
+      "Y": 77.5,
+      "Rotation": 314.7,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "tree_pineRoundC",
+      "X": 68.2,
+      "Y": 29.2,
+      "Rotation": 176.8,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "stone_smallB",
+      "X": 130.3,
+      "Y": 123.4,
+      "Rotation": 338.9,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "rock_smallA",
+      "X": 118.2,
+      "Y": 44.1,
+      "Rotation": 181.6,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "tree_pineTallD",
+      "X": 60.8,
+      "Y": 144.0,
+      "Rotation": 252.4,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "RockPath_Round_Small_1",
+      "X": 22.5,
+      "Y": 94.6,
+      "Rotation": 227.3,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "tree_pineRoundC",
+      "X": 30.3,
+      "Y": 86.7,
+      "Rotation": 316.2,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "tree_pineTallC",
+      "X": 58.7,
+      "Y": 133.4,
+      "Rotation": 137.3,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "stone_smallB",
+      "X": 130.2,
+      "Y": 92.1,
+      "Rotation": 280.8,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "tree_pineTallC",
+      "X": 100.8,
+      "Y": 33.6,
+      "Rotation": 261.4,
+      "Scale": 0.85
+    },
+    {
+      "ModelId": "rock_smallA",
+      "X": 121.2,
+      "Y": 28.2,
+      "Rotation": 290.6,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "rock_smallB",
+      "X": 106.0,
+      "Y": 118.8,
+      "Rotation": 284.4,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "stone_smallC",
+      "X": 13.7,
+      "Y": 82.1,
+      "Rotation": 264.9,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "Pine_1",
+      "X": 35.6,
+      "Y": 42.5,
+      "Rotation": 57.9,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "rock_smallB",
+      "X": 83.0,
+      "Y": 39.5,
+      "Rotation": 52.3,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "stone_smallC",
+      "X": 21.6,
+      "Y": 145.9,
+      "Rotation": 84.5,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "Pebble_Round_2",
+      "X": 136.9,
+      "Y": 65.8,
+      "Rotation": 346.1,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "tree_pineRoundB",
+      "X": 115.8,
+      "Y": 108.3,
+      "Rotation": 53.7,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "stone_smallA",
+      "X": 58.6,
+      "Y": 72.7,
+      "Rotation": 69.0,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "tree_pineTallA",
+      "X": 68.2,
+      "Y": 95.0,
+      "Rotation": 262.3,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "Pine_2",
+      "X": 111.0,
+      "Y": 30.3,
+      "Rotation": 197.6,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "tree_pineRoundA",
+      "X": 103.6,
+      "Y": 69.5,
+      "Rotation": 105.0,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "RockPath_Round_Small_1",
+      "X": 51.3,
+      "Y": 121.0,
+      "Rotation": 295.0,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "stone_smallB",
+      "X": 141.0,
+      "Y": 100.8,
+      "Rotation": 167.3,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "tree_pineRoundC",
+      "X": 113.7,
+      "Y": 127.2,
+      "Rotation": 28.0,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "stone_smallB",
+      "X": 140.8,
+      "Y": 82.7,
+      "Rotation": 240.7,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "stone_smallA",
+      "X": 148.6,
+      "Y": 51.5,
+      "Rotation": 194.5,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "Pine_2",
+      "X": 95.8,
+      "Y": 37.8,
+      "Rotation": 218.7,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "stone_smallA",
+      "X": 143.8,
+      "Y": 53.7,
+      "Rotation": 215.3,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "tree_pineTallC",
+      "X": 75.8,
+      "Y": 149.9,
+      "Rotation": 81.7,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "rock_smallD",
+      "X": 142.6,
+      "Y": 72.3,
+      "Rotation": 131.0,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "tree_pineRoundA",
+      "X": 84.2,
+      "Y": 107.3,
+      "Rotation": 52.9,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "Pebble_Round_2",
+      "X": 119.6,
+      "Y": 78.0,
+      "Rotation": 191.6,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "tree_pineRoundA",
+      "X": 44.7,
+      "Y": 49.3,
+      "Rotation": 304.3,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "tree_pineRoundB",
+      "X": 104.0,
+      "Y": 126.8,
+      "Rotation": 119.7,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "tree_pineRoundC",
+      "X": 14.7,
+      "Y": 51.9,
+      "Rotation": 276.6,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "Pebble_Round_1",
+      "X": 18.0,
+      "Y": 137.8,
+      "Rotation": 114.7,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "tree_pineTallC",
+      "X": 30.1,
+      "Y": 131.3,
+      "Rotation": 282.0,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "Pine_1",
+      "X": 100.5,
+      "Y": 38.3,
+      "Rotation": 131.7,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "tree_pineTallB",
+      "X": 145.8,
+      "Y": 75.1,
+      "Rotation": 251.2,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "tree_pineTallD",
+      "X": 87.0,
+      "Y": 130.4,
+      "Rotation": 136.7,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "tree_pineTallB",
+      "X": 16.6,
+      "Y": 76.3,
+      "Rotation": 233.9,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "tree_pineTallA",
+      "X": 14.4,
+      "Y": 50.1,
+      "Rotation": 121.4,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "Pine_3",
+      "X": 36.5,
+      "Y": 21.3,
+      "Rotation": 201.8,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "tree_pineTallC",
+      "X": 123.1,
+      "Y": 124.2,
+      "Rotation": 81.3,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "rock_smallD",
+      "X": 24.6,
+      "Y": 63.5,
+      "Rotation": 121.5,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "tree_pineTallA",
+      "X": 102.8,
+      "Y": 33.6,
+      "Rotation": 234.4,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "Pebble_Round_1",
+      "X": 55.0,
+      "Y": 130.5,
+      "Rotation": 36.2,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "Pine_3",
+      "X": 90.2,
+      "Y": 52.2,
+      "Rotation": 208.7,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "rock_smallD",
+      "X": 72.5,
+      "Y": 65.3,
+      "Rotation": 176.1,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "tree_pineTallC",
+      "X": 68.1,
+      "Y": 27.3,
+      "Rotation": 76.0,
+      "Scale": 0.85
+    },
+    {
+      "ModelId": "Pebble_Round_2",
+      "X": 72.7,
+      "Y": 56.7,
+      "Rotation": 277.2,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "rock_smallB",
+      "X": 85.7,
+      "Y": 57.5,
+      "Rotation": 181.3,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "rock_smallB",
+      "X": 21.2,
+      "Y": 118.4,
+      "Rotation": 163.2,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "tree_pineTallB",
+      "X": 119.2,
+      "Y": 78.2,
+      "Rotation": 313.4,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "tree_pineRoundA",
+      "X": 90.9,
+      "Y": 53.4,
+      "Rotation": 109.3,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "Pine_1",
+      "X": 124.1,
+      "Y": 60.1,
+      "Rotation": 137.1,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "tree_pineTallB",
+      "X": 56.3,
+      "Y": 111.5,
+      "Rotation": 270.2,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "stone_smallB",
+      "X": 87.7,
+      "Y": 127.8,
+      "Rotation": 219.8,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "Pine_3",
+      "X": 19.7,
+      "Y": 130.3,
+      "Rotation": 102.6,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "tree_pineTallD",
+      "X": 73.3,
+      "Y": 64.8,
+      "Rotation": 15.0,
+      "Scale": 1.15
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 141.5,
+      "Y": 109.0,
+      "Rotation": 290.8,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "Grass_Wispy_Tall",
+      "X": 118.2,
+      "Y": 116.8,
+      "Rotation": 261.5,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 118.8,
+      "Y": 148.9,
+      "Rotation": 105.0,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 9.9,
+      "Y": 76.1,
+      "Rotation": 199.2,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 42.3,
+      "Y": 130.0,
+      "Rotation": 223.3,
+      "Scale": 0.85
+    },
+    {
+      "ModelId": "Grass_Wispy_Tall",
+      "X": 65.1,
+      "Y": 147.1,
+      "Rotation": 6.1,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 138.5,
+      "Y": 63.3,
+      "Rotation": 286.1,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 9.5,
+      "Y": 85.9,
+      "Rotation": 73.2,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 95.2,
+      "Y": 9.9,
+      "Rotation": 310.0,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 50.7,
+      "Y": 126.2,
+      "Rotation": 354.1,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 65.0,
+      "Y": 144.2,
+      "Rotation": 91.4,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "Grass_Wispy_Tall",
+      "X": 74.5,
+      "Y": 7.2,
+      "Rotation": 175.1,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 116.5,
+      "Y": 36.2,
+      "Rotation": 75.0,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 70.8,
+      "Y": 145.9,
+      "Rotation": 285.3,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "Grass_Wispy_Tall",
+      "X": 136.3,
+      "Y": 101.0,
+      "Rotation": 118.4,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "Grass_Wispy_Tall",
+      "X": 35.6,
+      "Y": 37.6,
+      "Rotation": 207.5,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 67.2,
+      "Y": 37.1,
+      "Rotation": 81.6,
+      "Scale": 1.15
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 111.0,
+      "Y": 124.8,
+      "Rotation": 33.8,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 123.6,
+      "Y": 135.0,
+      "Rotation": 255.4,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 91.2,
+      "Y": 44.6,
+      "Rotation": 177.0,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 92.0,
+      "Y": 77.9,
+      "Rotation": 106.0,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 28.0,
+      "Y": 127.1,
+      "Rotation": 249.4,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 7.9,
+      "Y": 102.8,
+      "Rotation": 142.6,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "Grass_Wispy_Tall",
+      "X": 14.3,
+      "Y": 45.9,
+      "Rotation": 307.4,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 39.3,
+      "Y": 94.9,
+      "Rotation": 79.8,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 55.6,
+      "Y": 141.5,
+      "Rotation": 159.5,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "Grass_Wispy_Tall",
+      "X": 91.3,
+      "Y": 115.1,
+      "Rotation": 34.3,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 36.6,
+      "Y": 130.6,
+      "Rotation": 40.8,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 108.2,
+      "Y": 44.9,
+      "Rotation": 276.5,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "Grass_Wispy_Tall",
+      "X": 143.7,
+      "Y": 27.9,
+      "Rotation": 300.0,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 37.4,
+      "Y": 97.5,
+      "Rotation": 225.7,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 69.5,
+      "Y": 136.4,
+      "Rotation": 307.6,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 148.4,
+      "Y": 57.8,
+      "Rotation": 303.9,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 78.8,
+      "Y": 48.9,
+      "Rotation": 329.2,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 153.7,
+      "Y": 69.6,
+      "Rotation": 269.4,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 98.9,
+      "Y": 84.3,
+      "Rotation": 199.4,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 141.1,
+      "Y": 57.2,
+      "Rotation": 112.6,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 130.0,
+      "Y": 130.9,
+      "Rotation": 145.9,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 26.5,
+      "Y": 71.4,
+      "Rotation": 113.9,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 65.9,
+      "Y": 63.2,
+      "Rotation": 209.0,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "Grass_Wispy_Tall",
+      "X": 117.8,
+      "Y": 45.7,
+      "Rotation": 83.1,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 19.7,
+      "Y": 57.6,
+      "Rotation": 345.0,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 96.4,
+      "Y": 113.3,
+      "Rotation": 174.3,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 94.7,
+      "Y": 151.9,
+      "Rotation": 246.5,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 63.8,
+      "Y": 90.0,
+      "Rotation": 198.0,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "Grass_Wispy_Tall",
+      "X": 114.6,
+      "Y": 36.7,
+      "Rotation": 73.9,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "Grass_Wispy_Tall",
+      "X": 16.2,
+      "Y": 53.4,
+      "Rotation": 186.7,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 84.2,
+      "Y": 9.8,
+      "Rotation": 63.4,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 46.2,
+      "Y": 104.6,
+      "Rotation": 14.7,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 25.5,
+      "Y": 83.9,
+      "Rotation": 317.4,
+      "Scale": 0.96
+    }
+  ],
+  "Structures": [
+    {
+      "ModelId": "bridge_wood",
+      "X": 68,
+      "Y": 46,
+      "Rotation": 50.0,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "bridge_stone",
+      "X": 88,
+      "Y": 88,
+      "Rotation": 50.0,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "cliff_blockSlopeWalls_stone",
+      "X": 40,
+      "Y": 80,
+      "Rotation": 0.0,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "cliff_blockSlopeWalls_stone",
+      "X": 55,
+      "Y": 80,
+      "Rotation": 0.0,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "cliff_block_stone",
+      "X": 70,
+      "Y": 80,
+      "Rotation": 0.0,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "cliff_block_stone",
+      "X": 90,
+      "Y": 80,
+      "Rotation": 0.0,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "cliff_blockSlopeWalls_stone",
+      "X": 105,
+      "Y": 80,
+      "Rotation": 180.0,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "cliff_blockSlopeWalls_stone",
+      "X": 120,
+      "Y": 80,
+      "Rotation": 180.0,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "pirate_tower_watch",
+      "X": 80,
+      "Y": 75,
+      "Rotation": 45.0,
+      "Scale": 1.0
+    }
+  ],
+  "ElevationZones": [
+    {
+      "Type": "ridge",
+      "CenterX": 0,
+      "CenterY": 78,
+      "Radius": 10,
+      "Height": 5.0
+    },
+    {
+      "Type": "ridge",
+      "CenterX": 20,
+      "CenterY": 78,
+      "Radius": 10,
+      "Height": 5.0
+    },
+    {
+      "Type": "ridge",
+      "CenterX": 40,
+      "CenterY": 78,
+      "Radius": 10,
+      "Height": 5.0
+    },
+    {
+      "Type": "ridge",
+      "CenterX": 60,
+      "CenterY": 78,
+      "Radius": 10,
+      "Height": 5.0
+    },
+    {
+      "Type": "ridge",
+      "CenterX": 80,
+      "CenterY": 80,
+      "Radius": 10,
+      "Height": 5.0
+    },
+    {
+      "Type": "ridge",
+      "CenterX": 100,
+      "CenterY": 80,
+      "Radius": 10,
+      "Height": 5.0
+    },
+    {
+      "Type": "ridge",
+      "CenterX": 120,
+      "CenterY": 80,
+      "Radius": 10,
+      "Height": 5.0
+    },
+    {
+      "Type": "ridge",
+      "CenterX": 140,
+      "CenterY": 80,
+      "Radius": 10,
+      "Height": 5.0
+    },
+    {
+      "Type": "ridge",
+      "CenterX": 160,
+      "CenterY": 80,
+      "Radius": 10,
+      "Height": 5.0
+    },
+    {
+      "Type": "hill",
+      "CenterX": 20,
+      "CenterY": 20,
+      "Radius": 12,
+      "Height": 2.0
+    },
+    {
+      "Type": "hill",
+      "CenterX": 140,
+      "CenterY": 140,
+      "Radius": 12,
+      "Height": 2.0
+    }
+  ]
+}

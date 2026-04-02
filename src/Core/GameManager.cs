@@ -1,6 +1,7 @@
 using Godot;
 using UnnamedRTS.Game.Economy;
 using UnnamedRTS.Game.Tech;
+using UnnamedRTS.Game.World;
 using UnnamedRTS.Systems.Networking;
 
 namespace UnnamedRTS.Core;
@@ -69,6 +70,12 @@ public partial class GameManager : Node
     /// Set externally during match setup.
     /// </summary>
     public TechTreeManager? TechTreeManager { get; set; }
+
+    /// <summary>
+    /// Map loader for reading map data from JSON files.
+    /// Set externally during initialization.
+    /// </summary>
+    public MapLoader? MapLoader { get; set; }
 
     public override void _Ready()
     {

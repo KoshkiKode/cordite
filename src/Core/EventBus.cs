@@ -80,6 +80,10 @@ public partial class EventBus : Node
     [Signal] public delegate void UpgradeCompletedEventHandler(int playerId, string upgradeId);
     [Signal] public delegate void TechRequirementNotMetEventHandler(int playerId, string reason);
 
+    // ── Map Events ─────────────────────────────────────────────────
+
+    [Signal] public delegate void MapLoadedEventHandler(string mapId);
+
     // ── UI Events ────────────────────────────────────────────────────
 
     [Signal] public delegate void TooltipRequestedEventHandler(string text, Vector2 position);
@@ -146,6 +150,10 @@ public partial class EventBus : Node
         EmitSignal(SignalName.UpgradeCompleted, playerId, upgradeId);
     public void EmitTechRequirementNotMet(int playerId, string reason) =>
         EmitSignal(SignalName.TechRequirementNotMet, playerId, reason);
+
+    // ── Map Emit Helpers ───────────────────────────────────────────
+
+    public void EmitMapLoaded(string mapId) => EmitSignal(SignalName.MapLoaded, mapId);
 
     // ── Networking Emit Helpers ──────────────────────────────────────
 

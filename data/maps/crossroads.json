@@ -1,0 +1,3282 @@
+{
+  "Id": "crossroads",
+  "DisplayName": "Crossroads",
+  "Description": "A contested valley where ancient trade routes intersect. Two rivers split the map into quadrants, connected by stone bridges. The central island sits at the confluence — whoever controls it controls the war.",
+  "Author": "Cordite Wars Team",
+  "MaxPlayers": 6,
+  "Width": 256,
+  "Height": 256,
+  "Biome": "temperate",
+  "StartingPositions": [
+    {
+      "PlayerId": 0,
+      "X": 28,
+      "Y": 28,
+      "Facing": 0.785
+    },
+    {
+      "PlayerId": 1,
+      "X": 228,
+      "Y": 28,
+      "Facing": 2.356
+    },
+    {
+      "PlayerId": 2,
+      "X": 228,
+      "Y": 228,
+      "Facing": 3.927
+    },
+    {
+      "PlayerId": 3,
+      "X": 28,
+      "Y": 228,
+      "Facing": 5.498
+    },
+    {
+      "PlayerId": 4,
+      "X": 128,
+      "Y": 18,
+      "Facing": 1.571
+    },
+    {
+      "PlayerId": 5,
+      "X": 128,
+      "Y": 238,
+      "Facing": 4.712
+    }
+  ],
+  "CorditeNodes": [
+    {
+      "NodeId": 0,
+      "X": 35.071067811865476,
+      "Y": 35.071067811865476,
+      "Amount": 10000
+    },
+    {
+      "NodeId": 1,
+      "X": 41.071067811865476,
+      "Y": 32.071067811865476,
+      "Amount": 8000
+    },
+    {
+      "NodeId": 2,
+      "X": 220.92893218813452,
+      "Y": 35.071067811865476,
+      "Amount": 10000
+    },
+    {
+      "NodeId": 3,
+      "X": 226.92893218813452,
+      "Y": 32.071067811865476,
+      "Amount": 8000
+    },
+    {
+      "NodeId": 4,
+      "X": 220.92893218813452,
+      "Y": 220.92893218813452,
+      "Amount": 10000
+    },
+    {
+      "NodeId": 5,
+      "X": 226.92893218813452,
+      "Y": 217.92893218813452,
+      "Amount": 8000
+    },
+    {
+      "NodeId": 6,
+      "X": 35.071067811865476,
+      "Y": 220.92893218813452,
+      "Amount": 10000
+    },
+    {
+      "NodeId": 7,
+      "X": 41.071067811865476,
+      "Y": 217.92893218813452,
+      "Amount": 8000
+    },
+    {
+      "NodeId": 8,
+      "X": 128.0,
+      "Y": 28.0,
+      "Amount": 10000
+    },
+    {
+      "NodeId": 9,
+      "X": 134.0,
+      "Y": 25.0,
+      "Amount": 8000
+    },
+    {
+      "NodeId": 10,
+      "X": 128.0,
+      "Y": 228.0,
+      "Amount": 10000
+    },
+    {
+      "NodeId": 11,
+      "X": 134.0,
+      "Y": 225.0,
+      "Amount": 8000
+    },
+    {
+      "NodeId": 12,
+      "X": 113,
+      "Y": 113,
+      "Amount": 15000
+    },
+    {
+      "NodeId": 13,
+      "X": 143,
+      "Y": 113,
+      "Amount": 15000
+    },
+    {
+      "NodeId": 14,
+      "X": 143,
+      "Y": 143,
+      "Amount": 15000
+    },
+    {
+      "NodeId": 15,
+      "X": 113,
+      "Y": 143,
+      "Amount": 15000
+    }
+  ],
+  "TerrainFeatures": [
+    {
+      "Type": "river",
+      "Points": [
+        [
+          0,
+          125
+        ],
+        [
+          40,
+          126
+        ],
+        [
+          90,
+          127
+        ],
+        [
+          128,
+          128
+        ],
+        [
+          165,
+          129
+        ],
+        [
+          210,
+          128
+        ],
+        [
+          256,
+          128
+        ]
+      ]
+    },
+    {
+      "Type": "river",
+      "Points": [
+        [
+          125,
+          0
+        ],
+        [
+          126,
+          40
+        ],
+        [
+          127,
+          90
+        ],
+        [
+          128,
+          128
+        ],
+        [
+          129,
+          165
+        ],
+        [
+          128,
+          210
+        ],
+        [
+          128,
+          256
+        ]
+      ]
+    },
+    {
+      "Type": "river",
+      "Points": [
+        [
+          0,
+          128
+        ],
+        [
+          40,
+          129
+        ],
+        [
+          90,
+          130
+        ],
+        [
+          128,
+          130
+        ],
+        [
+          165,
+          131
+        ],
+        [
+          210,
+          130
+        ],
+        [
+          256,
+          131
+        ]
+      ]
+    },
+    {
+      "Type": "river",
+      "Points": [
+        [
+          128,
+          0
+        ],
+        [
+          129,
+          40
+        ],
+        [
+          130,
+          90
+        ],
+        [
+          130,
+          128
+        ],
+        [
+          131,
+          165
+        ],
+        [
+          130,
+          210
+        ],
+        [
+          131,
+          256
+        ]
+      ]
+    }
+  ],
+  "Props": [
+    {
+      "ModelId": "tree_tall",
+      "X": 128.0,
+      "Y": 50.2,
+      "Rotation": 347.7,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "CommonTree_1",
+      "X": 132.1,
+      "Y": 45.8,
+      "Rotation": 265.1,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "tree_default",
+      "X": 128.3,
+      "Y": 50.1,
+      "Rotation": 189.6,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "CommonTree_1",
+      "X": 121.4,
+      "Y": 47.9,
+      "Rotation": 24.3,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "tree_default",
+      "X": 132.1,
+      "Y": 51.9,
+      "Rotation": 49.4,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "CommonTree_2",
+      "X": 130.1,
+      "Y": 50.4,
+      "Rotation": 140.9,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 129.5,
+      "Y": 47.1,
+      "Rotation": 197.1,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "plant_bushSmall",
+      "X": 131.2,
+      "Y": 54.4,
+      "Rotation": 228.3,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "Clover_1",
+      "X": 126.3,
+      "Y": 48.1,
+      "Rotation": 71.5,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "plant_bushSmall",
+      "X": 132.6,
+      "Y": 48.9,
+      "Rotation": 68.8,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 128.2,
+      "Y": 50.5,
+      "Rotation": 209.6,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "mushroom_red",
+      "X": 127.0,
+      "Y": 50.9,
+      "Rotation": 15.3,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "Grass_Common_Short",
+      "X": 130.1,
+      "Y": 52.8,
+      "Rotation": 223.5,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "flower_redA",
+      "X": 130.4,
+      "Y": 55.2,
+      "Rotation": 127.0,
+      "Scale": 1.15
+    },
+    {
+      "ModelId": "tree_pineRoundA",
+      "X": 123.9,
+      "Y": 86.8,
+      "Rotation": 74.7,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "tree_fat",
+      "X": 128.3,
+      "Y": 79.2,
+      "Rotation": 39.1,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "TwistedTree_2",
+      "X": 129.8,
+      "Y": 86.3,
+      "Rotation": 36.4,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "tree_oak",
+      "X": 127.3,
+      "Y": 81.6,
+      "Rotation": 28.1,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "tree_pineRoundA",
+      "X": 134.7,
+      "Y": 83.6,
+      "Rotation": 340.5,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "tree_pineRoundB",
+      "X": 126.8,
+      "Y": 82.4,
+      "Rotation": 208.8,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "flower_redA",
+      "X": 128.2,
+      "Y": 76.5,
+      "Rotation": 208.8,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "flower_purpleA",
+      "X": 128.5,
+      "Y": 78.3,
+      "Rotation": 67.7,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "Grass_Common_Tall",
+      "X": 132.8,
+      "Y": 80.9,
+      "Rotation": 25.7,
+      "Scale": 0.85
+    },
+    {
+      "ModelId": "Grass_Common_Short",
+      "X": 125.3,
+      "Y": 74.7,
+      "Rotation": 63.3,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "flower_yellowA",
+      "X": 127.0,
+      "Y": 79.6,
+      "Rotation": 211.8,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "mushroom_red",
+      "X": 126.7,
+      "Y": 79.5,
+      "Rotation": 209.1,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "flower_redA",
+      "X": 128.1,
+      "Y": 83.5,
+      "Rotation": 292.6,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 127.1,
+      "Y": 79.5,
+      "Rotation": 115.7,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "CommonTree_1",
+      "X": 124.9,
+      "Y": 98.8,
+      "Rotation": 187.5,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "tree_fat",
+      "X": 127.8,
+      "Y": 100.5,
+      "Rotation": 25.1,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "tree_fat",
+      "X": 126.4,
+      "Y": 101.3,
+      "Rotation": 359.0,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "tree_detailed",
+      "X": 124.9,
+      "Y": 103.4,
+      "Rotation": 128.4,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "tree_pineDefaultA",
+      "X": 125.5,
+      "Y": 103.2,
+      "Rotation": 90.1,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "tree_tall",
+      "X": 123.2,
+      "Y": 100.8,
+      "Rotation": 179.1,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "plant_bushSmall",
+      "X": 127.4,
+      "Y": 100.6,
+      "Rotation": 329.4,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 130.0,
+      "Y": 99.8,
+      "Rotation": 118.5,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "grass",
+      "X": 128.1,
+      "Y": 99.8,
+      "Rotation": 266.7,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "mushroom_red",
+      "X": 125.6,
+      "Y": 100.2,
+      "Rotation": 287.4,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "grass",
+      "X": 129.1,
+      "Y": 96.5,
+      "Rotation": 95.9,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "grass_large",
+      "X": 128.6,
+      "Y": 100.2,
+      "Rotation": 235.6,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "flower_purpleA",
+      "X": 128.1,
+      "Y": 103.9,
+      "Rotation": 48.4,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "Grass_Common_Tall",
+      "X": 126.9,
+      "Y": 101.2,
+      "Rotation": 287.7,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "tree_oak",
+      "X": 133.2,
+      "Y": 158.4,
+      "Rotation": 306.1,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "tree_fat",
+      "X": 129.0,
+      "Y": 157.9,
+      "Rotation": 137.4,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "tree_fat",
+      "X": 130.0,
+      "Y": 154.5,
+      "Rotation": 104.2,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "TwistedTree_2",
+      "X": 127.9,
+      "Y": 155.3,
+      "Rotation": 209.4,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "TwistedTree_2",
+      "X": 124.6,
+      "Y": 153.1,
+      "Rotation": 0.7,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "tree_oak",
+      "X": 128.8,
+      "Y": 153.8,
+      "Rotation": 296.2,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 126.8,
+      "Y": 157.0,
+      "Rotation": 74.3,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 124.6,
+      "Y": 152.2,
+      "Rotation": 266.3,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "Grass_Common_Short",
+      "X": 131.1,
+      "Y": 156.9,
+      "Rotation": 202.9,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "flower_redA",
+      "X": 127.8,
+      "Y": 160.2,
+      "Rotation": 2.6,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "grass",
+      "X": 131.5,
+      "Y": 155.2,
+      "Rotation": 313.2,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "flower_redA",
+      "X": 128.1,
+      "Y": 155.0,
+      "Rotation": 256.9,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "grass",
+      "X": 124.5,
+      "Y": 157.5,
+      "Rotation": 358.4,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "Grass_Common_Short",
+      "X": 127.8,
+      "Y": 154.9,
+      "Rotation": 18.0,
+      "Scale": 1.15
+    },
+    {
+      "ModelId": "tree_default",
+      "X": 131.8,
+      "Y": 179.2,
+      "Rotation": 176.8,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "tree_oak",
+      "X": 125.9,
+      "Y": 173.5,
+      "Rotation": 224.4,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "CommonTree_4",
+      "X": 123.3,
+      "Y": 184.2,
+      "Rotation": 297.9,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "CommonTree_1",
+      "X": 128.4,
+      "Y": 177.2,
+      "Rotation": 100.7,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "tree_detailed",
+      "X": 124.2,
+      "Y": 177.4,
+      "Rotation": 179.6,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "tree_fat",
+      "X": 124.1,
+      "Y": 178.8,
+      "Rotation": 193.5,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "Grass_Common_Short",
+      "X": 131.7,
+      "Y": 177.4,
+      "Rotation": 288.3,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "Clover_1",
+      "X": 127.1,
+      "Y": 177.9,
+      "Rotation": 98.0,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "flower_purpleA",
+      "X": 128.0,
+      "Y": 178.1,
+      "Rotation": 119.1,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "flower_redA",
+      "X": 127.1,
+      "Y": 181.1,
+      "Rotation": 211.6,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "flower_yellowA",
+      "X": 124.5,
+      "Y": 178.2,
+      "Rotation": 274.8,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "grass_large",
+      "X": 127.0,
+      "Y": 178.9,
+      "Rotation": 60.5,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "flower_purpleA",
+      "X": 129.4,
+      "Y": 173.9,
+      "Rotation": 253.8,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "flower_redA",
+      "X": 128.4,
+      "Y": 177.8,
+      "Rotation": 189.5,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "CommonTree_1",
+      "X": 130.5,
+      "Y": 199.7,
+      "Rotation": 111.1,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "tree_pineRoundB",
+      "X": 131.3,
+      "Y": 200.8,
+      "Rotation": 123.7,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "CommonTree_1",
+      "X": 126.0,
+      "Y": 197.1,
+      "Rotation": 200.2,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "tree_detailed",
+      "X": 122.4,
+      "Y": 197.9,
+      "Rotation": 249.6,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "TwistedTree_2",
+      "X": 130.9,
+      "Y": 205.0,
+      "Rotation": 313.0,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "CommonTree_4",
+      "X": 134.8,
+      "Y": 198.8,
+      "Rotation": 93.0,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "grass",
+      "X": 128.4,
+      "Y": 200.0,
+      "Rotation": 21.7,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "plant_bushSmall",
+      "X": 129.6,
+      "Y": 198.2,
+      "Rotation": 336.9,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "plant_bushSmall",
+      "X": 129.7,
+      "Y": 202.0,
+      "Rotation": 318.9,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "plant_bushSmall",
+      "X": 128.3,
+      "Y": 194.7,
+      "Rotation": 61.9,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "grass_large",
+      "X": 128.1,
+      "Y": 202.5,
+      "Rotation": 130.8,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "grass",
+      "X": 123.3,
+      "Y": 196.5,
+      "Rotation": 137.0,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "mushroom_red",
+      "X": 128.7,
+      "Y": 199.9,
+      "Rotation": 60.1,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "grass_large",
+      "X": 127.4,
+      "Y": 201.1,
+      "Rotation": 241.8,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "tree_oak",
+      "X": 54.4,
+      "Y": 131.8,
+      "Rotation": 183.3,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "tree_pineRoundA",
+      "X": 53.0,
+      "Y": 125.1,
+      "Rotation": 189.2,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "tree_fat",
+      "X": 47.8,
+      "Y": 127.5,
+      "Rotation": 184.6,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "tree_detailed",
+      "X": 48.0,
+      "Y": 130.0,
+      "Rotation": 173.3,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "CommonTree_3",
+      "X": 43.6,
+      "Y": 128.8,
+      "Rotation": 322.9,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "tree_fat",
+      "X": 48.0,
+      "Y": 124.8,
+      "Rotation": 254.0,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "flower_purpleA",
+      "X": 48.1,
+      "Y": 133.1,
+      "Rotation": 288.2,
+      "Scale": 1.15
+    },
+    {
+      "ModelId": "grass",
+      "X": 44.4,
+      "Y": 126.7,
+      "Rotation": 347.5,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 50.0,
+      "Y": 130.2,
+      "Rotation": 219.1,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "flower_purpleA",
+      "X": 50.0,
+      "Y": 128.0,
+      "Rotation": 308.2,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "flower_yellowA",
+      "X": 52.6,
+      "Y": 124.7,
+      "Rotation": 123.2,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 50.9,
+      "Y": 132.9,
+      "Rotation": 208.8,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "plant_bushSmall",
+      "X": 51.8,
+      "Y": 127.3,
+      "Rotation": 12.3,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "flower_yellowA",
+      "X": 44.9,
+      "Y": 128.4,
+      "Rotation": 317.4,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "TwistedTree_2",
+      "X": 81.9,
+      "Y": 123.4,
+      "Rotation": 7.1,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "CommonTree_4",
+      "X": 81.8,
+      "Y": 127.9,
+      "Rotation": 80.0,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "TwistedTree_1",
+      "X": 73.9,
+      "Y": 128.2,
+      "Rotation": 241.4,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "tree_tall",
+      "X": 78.9,
+      "Y": 127.4,
+      "Rotation": 69.5,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "tree_fat",
+      "X": 80.3,
+      "Y": 128.8,
+      "Rotation": 24.6,
+      "Scale": 0.85
+    },
+    {
+      "ModelId": "tree_pineRoundA",
+      "X": 79.2,
+      "Y": 132.2,
+      "Rotation": 271.2,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "Grass_Common_Tall",
+      "X": 79.7,
+      "Y": 127.5,
+      "Rotation": 147.2,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "plant_bushSmall",
+      "X": 85.9,
+      "Y": 128.9,
+      "Rotation": 357.1,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 81.4,
+      "Y": 130.8,
+      "Rotation": 223.7,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 84.6,
+      "Y": 124.8,
+      "Rotation": 240.4,
+      "Scale": 0.89
+    },
+    {
+      "ModelId": "mushroom_red",
+      "X": 79.6,
+      "Y": 127.3,
+      "Rotation": 312.2,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "grass",
+      "X": 82.2,
+      "Y": 126.6,
+      "Rotation": 145.8,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "flower_purpleA",
+      "X": 80.8,
+      "Y": 131.3,
+      "Rotation": 61.9,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "flower_redA",
+      "X": 76.7,
+      "Y": 130.2,
+      "Rotation": 41.8,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "tree_tall",
+      "X": 102.6,
+      "Y": 134.6,
+      "Rotation": 73.5,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "TwistedTree_2",
+      "X": 104.3,
+      "Y": 125.4,
+      "Rotation": 228.4,
+      "Scale": 0.85
+    },
+    {
+      "ModelId": "tree_detailed",
+      "X": 101.5,
+      "Y": 128.0,
+      "Rotation": 307.6,
+      "Scale": 0.85
+    },
+    {
+      "ModelId": "TwistedTree_1",
+      "X": 102.4,
+      "Y": 129.0,
+      "Rotation": 76.3,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "tree_default",
+      "X": 100.9,
+      "Y": 131.7,
+      "Rotation": 296.4,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "tree_oak",
+      "X": 105.0,
+      "Y": 128.7,
+      "Rotation": 1.3,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "Grass_Common_Short",
+      "X": 97.1,
+      "Y": 125.6,
+      "Rotation": 320.0,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "grass",
+      "X": 100.3,
+      "Y": 127.8,
+      "Rotation": 201.5,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "Grass_Common_Short",
+      "X": 100.7,
+      "Y": 128.5,
+      "Rotation": 133.0,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "Grass_Common_Tall",
+      "X": 97.7,
+      "Y": 126.4,
+      "Rotation": 23.9,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "flower_redA",
+      "X": 97.3,
+      "Y": 125.1,
+      "Rotation": 152.6,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 104.3,
+      "Y": 131.1,
+      "Rotation": 259.7,
+      "Scale": 0.85
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 96.2,
+      "Y": 130.0,
+      "Rotation": 171.2,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "flower_yellowA",
+      "X": 95.9,
+      "Y": 126.5,
+      "Rotation": 159.9,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "tree_pineRoundA",
+      "X": 152.3,
+      "Y": 131.2,
+      "Rotation": 25.0,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "CommonTree_1",
+      "X": 150.0,
+      "Y": 132.1,
+      "Rotation": 293.3,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "tree_pineDefaultA",
+      "X": 158.6,
+      "Y": 128.5,
+      "Rotation": 259.9,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "tree_pineRoundA",
+      "X": 153.9,
+      "Y": 128.5,
+      "Rotation": 199.0,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "tree_default",
+      "X": 149.0,
+      "Y": 125.9,
+      "Rotation": 121.5,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "tree_detailed",
+      "X": 155.6,
+      "Y": 128.1,
+      "Rotation": 34.7,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "grass",
+      "X": 156.7,
+      "Y": 128.3,
+      "Rotation": 0.2,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "Grass_Common_Tall",
+      "X": 151.7,
+      "Y": 130.5,
+      "Rotation": 202.7,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "plant_bushSmall",
+      "X": 154.4,
+      "Y": 127.6,
+      "Rotation": 332.0,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "plant_bushSmall",
+      "X": 155.1,
+      "Y": 127.9,
+      "Rotation": 134.5,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "mushroom_red",
+      "X": 150.5,
+      "Y": 130.5,
+      "Rotation": 70.9,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 152.1,
+      "Y": 128.7,
+      "Rotation": 222.2,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "Clover_1",
+      "X": 154.4,
+      "Y": 129.5,
+      "Rotation": 268.4,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "flower_redA",
+      "X": 152.2,
+      "Y": 125.5,
+      "Rotation": 84.8,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "TwistedTree_2",
+      "X": 182.9,
+      "Y": 122.3,
+      "Rotation": 283.8,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "TwistedTree_2",
+      "X": 185.3,
+      "Y": 129.3,
+      "Rotation": 333.4,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "tree_default",
+      "X": 178.2,
+      "Y": 127.7,
+      "Rotation": 141.9,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "tree_pineDefaultA",
+      "X": 176.9,
+      "Y": 125.5,
+      "Rotation": 351.8,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "tree_detailed",
+      "X": 182.6,
+      "Y": 127.3,
+      "Rotation": 284.4,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "CommonTree_3",
+      "X": 181.9,
+      "Y": 133.9,
+      "Rotation": 112.5,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 175.3,
+      "Y": 133.1,
+      "Rotation": 72.3,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "grass_large",
+      "X": 179.6,
+      "Y": 127.6,
+      "Rotation": 100.1,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "flower_purpleA",
+      "X": 174.1,
+      "Y": 132.2,
+      "Rotation": 186.7,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "Clover_1",
+      "X": 172.3,
+      "Y": 127.3,
+      "Rotation": 233.5,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "plant_bushSmall",
+      "X": 181.8,
+      "Y": 127.4,
+      "Rotation": 304.9,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "Grass_Common_Tall",
+      "X": 172.4,
+      "Y": 130.1,
+      "Rotation": 172.0,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "grass",
+      "X": 179.3,
+      "Y": 126.2,
+      "Rotation": 70.8,
+      "Scale": 0.89
+    },
+    {
+      "ModelId": "Grass_Common_Tall",
+      "X": 176.5,
+      "Y": 125.2,
+      "Rotation": 311.3,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "tree_pineRoundB",
+      "X": 193.8,
+      "Y": 131.9,
+      "Rotation": 180.5,
+      "Scale": 0.89
+    },
+    {
+      "ModelId": "CommonTree_4",
+      "X": 207.6,
+      "Y": 129.1,
+      "Rotation": 345.3,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "TwistedTree_2",
+      "X": 194.8,
+      "Y": 123.7,
+      "Rotation": 180.6,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "tree_oak",
+      "X": 197.2,
+      "Y": 128.8,
+      "Rotation": 273.4,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "tree_tall",
+      "X": 200.1,
+      "Y": 125.6,
+      "Rotation": 326.9,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "CommonTree_4",
+      "X": 201.0,
+      "Y": 131.9,
+      "Rotation": 344.3,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "grass_large",
+      "X": 204.1,
+      "Y": 132.0,
+      "Rotation": 168.0,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "flower_yellowA",
+      "X": 198.5,
+      "Y": 128.2,
+      "Rotation": 88.1,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "flower_yellowA",
+      "X": 199.7,
+      "Y": 126.7,
+      "Rotation": 354.9,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 204.5,
+      "Y": 128.5,
+      "Rotation": 74.0,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "flower_purpleA",
+      "X": 201.1,
+      "Y": 131.9,
+      "Rotation": 152.7,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "Grass_Common_Short",
+      "X": 199.6,
+      "Y": 131.7,
+      "Rotation": 29.2,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 202.3,
+      "Y": 130.5,
+      "Rotation": 35.7,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "flower_redA",
+      "X": 199.9,
+      "Y": 129.2,
+      "Rotation": 331.5,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "CommonTree_3",
+      "X": 43.0,
+      "Y": 37.4,
+      "Rotation": 60.1,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "tree_oak",
+      "X": 53.7,
+      "Y": 51.9,
+      "Rotation": 124.7,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "tree_pineDefaultA",
+      "X": 50.7,
+      "Y": 56.6,
+      "Rotation": 248.2,
+      "Scale": 0.89
+    },
+    {
+      "ModelId": "TwistedTree_2",
+      "X": 60.9,
+      "Y": 53.0,
+      "Rotation": 287.4,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "tree_default",
+      "X": 52.3,
+      "Y": 34.2,
+      "Rotation": 194.5,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "TwistedTree_2",
+      "X": 53.4,
+      "Y": 49.1,
+      "Rotation": 156.0,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "tree_pineRoundA",
+      "X": 51.7,
+      "Y": 40.2,
+      "Rotation": 66.6,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "CommonTree_4",
+      "X": 52.7,
+      "Y": 43.5,
+      "Rotation": 42.9,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "Rock_Medium_2",
+      "X": 46.2,
+      "Y": 42.7,
+      "Rotation": 133.7,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "rock_tallC",
+      "X": 43.4,
+      "Y": 50.7,
+      "Rotation": 37.9,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "Rock_Medium_2",
+      "X": 46.0,
+      "Y": 51.5,
+      "Rotation": 37.0,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "Rock_Medium_1",
+      "X": 48.2,
+      "Y": 46.5,
+      "Rotation": 81.1,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 44.1,
+      "Y": 52.8,
+      "Rotation": 3.7,
+      "Scale": 1.15
+    },
+    {
+      "ModelId": "flower_redA",
+      "X": 43.0,
+      "Y": 36.6,
+      "Rotation": 249.3,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "flower_redA",
+      "X": 44.9,
+      "Y": 46.8,
+      "Rotation": 69.1,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 37.9,
+      "Y": 43.6,
+      "Rotation": 291.8,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "plant_bushSmall",
+      "X": 48.5,
+      "Y": 46.8,
+      "Rotation": 227.5,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "grass_large",
+      "X": 44.4,
+      "Y": 51.5,
+      "Rotation": 16.8,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "Clover_1",
+      "X": 47.8,
+      "Y": 47.2,
+      "Rotation": 269.1,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "Grass_Common_Tall",
+      "X": 36.7,
+      "Y": 55.3,
+      "Rotation": 79.3,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "flower_redA",
+      "X": 52.4,
+      "Y": 56.3,
+      "Rotation": 21.8,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "plant_bushSmall",
+      "X": 51.2,
+      "Y": 65.0,
+      "Rotation": 334.2,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "mushroom_red",
+      "X": 54.1,
+      "Y": 59.6,
+      "Rotation": 141.9,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 64.4,
+      "Y": 44.8,
+      "Rotation": 224.6,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "CommonTree_4",
+      "X": 203.6,
+      "Y": 30.5,
+      "Rotation": 352.2,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "CommonTree_1",
+      "X": 226.7,
+      "Y": 50.0,
+      "Rotation": 339.1,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "tree_default",
+      "X": 208.5,
+      "Y": 47.0,
+      "Rotation": 343.2,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "tree_oak",
+      "X": 213.6,
+      "Y": 32.9,
+      "Rotation": 67.6,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "tree_pineRoundA",
+      "X": 215.4,
+      "Y": 66.0,
+      "Rotation": 157.2,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "tree_fat",
+      "X": 202.1,
+      "Y": 54.8,
+      "Rotation": 248.5,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "tree_fat",
+      "X": 200.2,
+      "Y": 36.6,
+      "Rotation": 256.5,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "tree_detailed",
+      "X": 207.9,
+      "Y": 42.4,
+      "Rotation": 98.9,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 202.4,
+      "Y": 45.8,
+      "Rotation": 110.7,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 213.4,
+      "Y": 41.7,
+      "Rotation": 199.0,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "rock_tallC",
+      "X": 202.5,
+      "Y": 48.7,
+      "Rotation": 10.6,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "rock_tallA",
+      "X": 217.5,
+      "Y": 38.3,
+      "Rotation": 45.2,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 214.4,
+      "Y": 33.2,
+      "Rotation": 321.5,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "grass_large",
+      "X": 219.8,
+      "Y": 39.7,
+      "Rotation": 171.9,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "grass_large",
+      "X": 202.6,
+      "Y": 48.8,
+      "Rotation": 355.1,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "Grass_Common_Tall",
+      "X": 218.5,
+      "Y": 36.8,
+      "Rotation": 264.0,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "flower_purpleA",
+      "X": 214.5,
+      "Y": 47.4,
+      "Rotation": 181.4,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "Grass_Common_Short",
+      "X": 202.7,
+      "Y": 41.5,
+      "Rotation": 167.1,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "grass_large",
+      "X": 208.5,
+      "Y": 42.9,
+      "Rotation": 276.0,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "Clover_1",
+      "X": 192.3,
+      "Y": 39.9,
+      "Rotation": 8.2,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "mushroom_red",
+      "X": 202.5,
+      "Y": 49.3,
+      "Rotation": 193.4,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "mushroom_red",
+      "X": 215.2,
+      "Y": 36.3,
+      "Rotation": 288.5,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "plant_bushSmall",
+      "X": 220.3,
+      "Y": 51.9,
+      "Rotation": 210.2,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 212.9,
+      "Y": 44.4,
+      "Rotation": 48.5,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "CommonTree_3",
+      "X": 37.9,
+      "Y": 195.3,
+      "Rotation": 262.6,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "CommonTree_1",
+      "X": 44.8,
+      "Y": 205.9,
+      "Rotation": 69.6,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "tree_pineRoundA",
+      "X": 40.6,
+      "Y": 209.0,
+      "Rotation": 3.2,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "tree_pineRoundB",
+      "X": 39.7,
+      "Y": 204.1,
+      "Rotation": 167.9,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "tree_fat",
+      "X": 47.3,
+      "Y": 208.1,
+      "Rotation": 48.4,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "tree_pineRoundA",
+      "X": 46.6,
+      "Y": 214.3,
+      "Rotation": 256.6,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "CommonTree_1",
+      "X": 52.9,
+      "Y": 194.6,
+      "Rotation": 32.7,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "CommonTree_1",
+      "X": 39.2,
+      "Y": 214.0,
+      "Rotation": 134.6,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "rock_largeB",
+      "X": 48.9,
+      "Y": 207.0,
+      "Rotation": 124.8,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "rock_tallB",
+      "X": 47.4,
+      "Y": 207.3,
+      "Rotation": 129.9,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "Rock_Medium_2",
+      "X": 47.6,
+      "Y": 210.0,
+      "Rotation": 61.1,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 50.3,
+      "Y": 209.1,
+      "Rotation": 118.4,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 41.7,
+      "Y": 220.7,
+      "Rotation": 123.0,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "Clover_1",
+      "X": 61.1,
+      "Y": 210.0,
+      "Rotation": 97.2,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "Grass_Common_Tall",
+      "X": 48.1,
+      "Y": 208.2,
+      "Rotation": 193.0,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 42.8,
+      "Y": 197.6,
+      "Rotation": 215.7,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "flower_purpleA",
+      "X": 57.2,
+      "Y": 202.4,
+      "Rotation": 7.9,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "flower_yellowA",
+      "X": 43.1,
+      "Y": 210.8,
+      "Rotation": 254.9,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "mushroom_red",
+      "X": 50.7,
+      "Y": 208.2,
+      "Rotation": 234.5,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 45.3,
+      "Y": 198.2,
+      "Rotation": 218.3,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "Grass_Common_Short",
+      "X": 37.0,
+      "Y": 210.9,
+      "Rotation": 345.1,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "plant_bushSmall",
+      "X": 47.4,
+      "Y": 218.9,
+      "Rotation": 252.0,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "grass",
+      "X": 57.2,
+      "Y": 202.0,
+      "Rotation": 283.8,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "flower_redA",
+      "X": 62.0,
+      "Y": 216.8,
+      "Rotation": 0.5,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "tree_default",
+      "X": 216.8,
+      "Y": 209.9,
+      "Rotation": 148.9,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "tree_pineDefaultA",
+      "X": 204.1,
+      "Y": 199.5,
+      "Rotation": 167.5,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "tree_pineRoundA",
+      "X": 206.4,
+      "Y": 215.1,
+      "Rotation": 151.3,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "tree_tall",
+      "X": 210.3,
+      "Y": 219.6,
+      "Rotation": 110.2,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "tree_default",
+      "X": 208.2,
+      "Y": 209.4,
+      "Rotation": 71.8,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "tree_pineRoundA",
+      "X": 211.3,
+      "Y": 210.2,
+      "Rotation": 57.4,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "TwistedTree_1",
+      "X": 210.7,
+      "Y": 202.0,
+      "Rotation": 127.4,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "TwistedTree_2",
+      "X": 214.6,
+      "Y": 200.3,
+      "Rotation": 46.4,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "rock_tallD",
+      "X": 197.5,
+      "Y": 217.7,
+      "Rotation": 271.7,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 206.1,
+      "Y": 211.8,
+      "Rotation": 103.3,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "Rock_Medium_1",
+      "X": 214.2,
+      "Y": 218.9,
+      "Rotation": 114.2,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "rock_largeC",
+      "X": 204.0,
+      "Y": 216.9,
+      "Rotation": 251.8,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 211.0,
+      "Y": 202.5,
+      "Rotation": 43.2,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "flower_redA",
+      "X": 203.8,
+      "Y": 202.7,
+      "Rotation": 333.0,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "plant_bushSmall",
+      "X": 215.7,
+      "Y": 204.1,
+      "Rotation": 37.5,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "Clover_1",
+      "X": 207.5,
+      "Y": 208.4,
+      "Rotation": 229.8,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "flower_yellowA",
+      "X": 207.1,
+      "Y": 190.8,
+      "Rotation": 249.9,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "Clover_1",
+      "X": 202.7,
+      "Y": 201.7,
+      "Rotation": 90.2,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "Grass_Common_Short",
+      "X": 208.9,
+      "Y": 211.8,
+      "Rotation": 24.3,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "grass",
+      "X": 212.3,
+      "Y": 206.6,
+      "Rotation": 148.8,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "flower_yellowA",
+      "X": 197.7,
+      "Y": 208.0,
+      "Rotation": 340.7,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "Grass_Common_Short",
+      "X": 196.9,
+      "Y": 196.7,
+      "Rotation": 65.7,
+      "Scale": 0.9
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 197.8,
+      "Y": 214.2,
+      "Rotation": 255.6,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "flower_redA",
+      "X": 220.2,
+      "Y": 196.1,
+      "Rotation": 141.8,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "TwistedTree_1",
+      "X": 128.3,
+      "Y": 49.0,
+      "Rotation": 334.3,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "tree_tall",
+      "X": 129.0,
+      "Y": 34.5,
+      "Rotation": 310.6,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "tree_pineRoundB",
+      "X": 141.6,
+      "Y": 58.8,
+      "Rotation": 282.9,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "tree_pineRoundA",
+      "X": 129.6,
+      "Y": 42.9,
+      "Rotation": 203.1,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "TwistedTree_1",
+      "X": 119.8,
+      "Y": 58.3,
+      "Rotation": 206.0,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "tree_default",
+      "X": 119.6,
+      "Y": 56.0,
+      "Rotation": 11.0,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "CommonTree_4",
+      "X": 127.3,
+      "Y": 49.4,
+      "Rotation": 332.0,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "CommonTree_3",
+      "X": 127.0,
+      "Y": 37.3,
+      "Rotation": 220.6,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "CommonTree_1",
+      "X": 139.4,
+      "Y": 44.0,
+      "Rotation": 264.1,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "tree_detailed",
+      "X": 120.6,
+      "Y": 39.0,
+      "Rotation": 6.8,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "CommonTree_1",
+      "X": 120.5,
+      "Y": 205.0,
+      "Rotation": 214.5,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "tree_detailed",
+      "X": 128.4,
+      "Y": 208.3,
+      "Rotation": 46.9,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "CommonTree_3",
+      "X": 116.8,
+      "Y": 207.1,
+      "Rotation": 210.0,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "tree_pineRoundB",
+      "X": 118.8,
+      "Y": 197.2,
+      "Rotation": 183.6,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "TwistedTree_1",
+      "X": 127.2,
+      "Y": 206.3,
+      "Rotation": 14.5,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "CommonTree_1",
+      "X": 130.2,
+      "Y": 220.0,
+      "Rotation": 243.5,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "tree_detailed",
+      "X": 119.1,
+      "Y": 210.8,
+      "Rotation": 112.3,
+      "Scale": 1.08
+    },
+    {
+      "ModelId": "TwistedTree_1",
+      "X": 121.9,
+      "Y": 193.8,
+      "Rotation": 336.5,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "TwistedTree_2",
+      "X": 132.4,
+      "Y": 213.2,
+      "Rotation": 305.6,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "CommonTree_2",
+      "X": 118.3,
+      "Y": 192.2,
+      "Rotation": 235.6,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "stump_round",
+      "X": 149.0,
+      "Y": 99.7,
+      "Rotation": 31.2,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "RockPath_Round_Small_1",
+      "X": 196.5,
+      "Y": 29.4,
+      "Rotation": 268.4,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "log",
+      "X": 156.4,
+      "Y": 75.6,
+      "Rotation": 23.0,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "rock_smallC",
+      "X": 97.9,
+      "Y": 57.7,
+      "Rotation": 237.9,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "rock_smallC",
+      "X": 102.7,
+      "Y": 223.4,
+      "Rotation": 137.0,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "stone_smallB",
+      "X": 28.7,
+      "Y": 117.3,
+      "Rotation": 223.8,
+      "Scale": 0.89
+    },
+    {
+      "ModelId": "log",
+      "X": 194.6,
+      "Y": 203.5,
+      "Rotation": 146.7,
+      "Scale": 0.89
+    },
+    {
+      "ModelId": "Pebble_Round_1",
+      "X": 119.1,
+      "Y": 221.4,
+      "Rotation": 247.9,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "stone_smallB",
+      "X": 92.7,
+      "Y": 201.0,
+      "Rotation": 261.7,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "RockPath_Round_Small_1",
+      "X": 226.7,
+      "Y": 156.5,
+      "Rotation": 343.5,
+      "Scale": 1.15
+    },
+    {
+      "ModelId": "stump_round",
+      "X": 92.9,
+      "Y": 41.2,
+      "Rotation": 272.3,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "rock_smallA",
+      "X": 182.0,
+      "Y": 195.8,
+      "Rotation": 62.4,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "stone_smallC",
+      "X": 224.3,
+      "Y": 143.7,
+      "Rotation": 161.1,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "rock_smallB",
+      "X": 201.6,
+      "Y": 91.2,
+      "Rotation": 71.9,
+      "Scale": 1.07
+    },
+    {
+      "ModelId": "stone_smallA",
+      "X": 208.3,
+      "Y": 64.0,
+      "Rotation": 243.3,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "log_large",
+      "X": 229.2,
+      "Y": 63.7,
+      "Rotation": 350.0,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "stone_smallA",
+      "X": 218.9,
+      "Y": 148.1,
+      "Rotation": 28.3,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "stone_smallA",
+      "X": 182.5,
+      "Y": 97.0,
+      "Rotation": 302.5,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "stone_smallA",
+      "X": 92.2,
+      "Y": 209.2,
+      "Rotation": 289.8,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "Pebble_Round_1",
+      "X": 61.9,
+      "Y": 207.3,
+      "Rotation": 203.6,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "stone_smallB",
+      "X": 195.7,
+      "Y": 216.5,
+      "Rotation": 328.5,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "RockPath_Round_Small_1",
+      "X": 36.8,
+      "Y": 73.0,
+      "Rotation": 75.0,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "log_large",
+      "X": 69.0,
+      "Y": 113.1,
+      "Rotation": 30.7,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "rock_smallA",
+      "X": 26.0,
+      "Y": 204.8,
+      "Rotation": 359.0,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "log",
+      "X": 32.5,
+      "Y": 224.9,
+      "Rotation": 342.0,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "stone_smallC",
+      "X": 183.0,
+      "Y": 44.0,
+      "Rotation": 304.1,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "stump_old",
+      "X": 168.8,
+      "Y": 237.9,
+      "Rotation": 123.9,
+      "Scale": 0.89
+    },
+    {
+      "ModelId": "rock_smallC",
+      "X": 146.3,
+      "Y": 145.4,
+      "Rotation": 310.9,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "rock_smallB",
+      "X": 42.7,
+      "Y": 97.5,
+      "Rotation": 284.0,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "log_stack",
+      "X": 228.4,
+      "Y": 181.1,
+      "Rotation": 66.1,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "flower_purpleA",
+      "X": 193.5,
+      "Y": 143.1,
+      "Rotation": 318.6,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 10.4,
+      "Y": 73.1,
+      "Rotation": 110.9,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 90.5,
+      "Y": 95.7,
+      "Rotation": 9.6,
+      "Scale": 0.85
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 51.3,
+      "Y": 103.6,
+      "Rotation": 218.6,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "mushroom_red",
+      "X": 156.4,
+      "Y": 178.7,
+      "Rotation": 194.0,
+      "Scale": 0.85
+    },
+    {
+      "ModelId": "mushroom_red",
+      "X": 92.7,
+      "Y": 242.6,
+      "Rotation": 214.6,
+      "Scale": 1.15
+    },
+    {
+      "ModelId": "flower_purpleA",
+      "X": 195.8,
+      "Y": 87.0,
+      "Rotation": 328.3,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "Clover_1",
+      "X": 157.4,
+      "Y": 37.2,
+      "Rotation": 140.2,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "flower_redA",
+      "X": 201.5,
+      "Y": 29.7,
+      "Rotation": 70.5,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "flower_purpleA",
+      "X": 134.1,
+      "Y": 154.9,
+      "Rotation": 52.6,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "flower_purpleA",
+      "X": 141.6,
+      "Y": 89.5,
+      "Rotation": 8.8,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 68.2,
+      "Y": 159.4,
+      "Rotation": 123.1,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "Clover_1",
+      "X": 45.1,
+      "Y": 182.2,
+      "Rotation": 222.7,
+      "Scale": 0.85
+    },
+    {
+      "ModelId": "flower_yellowA",
+      "X": 160.1,
+      "Y": 176.4,
+      "Rotation": 319.4,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "mushroom_red",
+      "X": 89.9,
+      "Y": 155.4,
+      "Rotation": 327.0,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "Clover_1",
+      "X": 212.5,
+      "Y": 76.1,
+      "Rotation": 266.1,
+      "Scale": 1.1
+    },
+    {
+      "ModelId": "flower_purpleA",
+      "X": 95.5,
+      "Y": 121.8,
+      "Rotation": 233.6,
+      "Scale": 1.15
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 222.0,
+      "Y": 176.5,
+      "Rotation": 128.6,
+      "Scale": 0.89
+    },
+    {
+      "ModelId": "Grass_Common_Tall",
+      "X": 232.8,
+      "Y": 223.7,
+      "Rotation": 215.0,
+      "Scale": 1.15
+    },
+    {
+      "ModelId": "plant_bushSmall",
+      "X": 175.7,
+      "Y": 83.4,
+      "Rotation": 87.9,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "mushroom_red",
+      "X": 224.7,
+      "Y": 68.0,
+      "Rotation": 267.9,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 93.2,
+      "Y": 46.8,
+      "Rotation": 83.4,
+      "Scale": 0.85
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 50.0,
+      "Y": 194.1,
+      "Rotation": 266.5,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "Clover_1",
+      "X": 101.3,
+      "Y": 126.7,
+      "Rotation": 263.0,
+      "Scale": 1.15
+    },
+    {
+      "ModelId": "plant_bushSmall",
+      "X": 180.2,
+      "Y": 95.6,
+      "Rotation": 200.3,
+      "Scale": 1.05
+    },
+    {
+      "ModelId": "Clover_1",
+      "X": 26.4,
+      "Y": 125.3,
+      "Rotation": 74.9,
+      "Scale": 1.13
+    },
+    {
+      "ModelId": "Grass_Common_Short",
+      "X": 160.0,
+      "Y": 160.8,
+      "Rotation": 96.5,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "flower_purpleA",
+      "X": 192.8,
+      "Y": 13.2,
+      "Rotation": 110.1,
+      "Scale": 0.96
+    },
+    {
+      "ModelId": "Clover_1",
+      "X": 187.4,
+      "Y": 73.4,
+      "Rotation": 195.1,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "grass_large",
+      "X": 225.3,
+      "Y": 48.2,
+      "Rotation": 281.0,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "grass",
+      "X": 219.6,
+      "Y": 125.6,
+      "Rotation": 62.2,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 29.9,
+      "Y": 206.4,
+      "Rotation": 33.0,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "mushroom_red",
+      "X": 41.0,
+      "Y": 16.9,
+      "Rotation": 73.0,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "grass",
+      "X": 201.1,
+      "Y": 198.2,
+      "Rotation": 211.7,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "Grass_Common_Tall",
+      "X": 75.8,
+      "Y": 235.3,
+      "Rotation": 303.3,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "grass",
+      "X": 232.8,
+      "Y": 52.8,
+      "Rotation": 84.0,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "flower_purpleA",
+      "X": 36.8,
+      "Y": 108.2,
+      "Rotation": 350.3,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "grass",
+      "X": 31.0,
+      "Y": 29.2,
+      "Rotation": 53.6,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "Grass_Common_Tall",
+      "X": 180.5,
+      "Y": 42.4,
+      "Rotation": 237.1,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "Grass_Common_Tall",
+      "X": 54.9,
+      "Y": 68.9,
+      "Rotation": 40.6,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "flower_redA",
+      "X": 199.4,
+      "Y": 135.1,
+      "Rotation": 265.6,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "plant_bushSmall",
+      "X": 169.7,
+      "Y": 106.0,
+      "Rotation": 281.9,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "plant_bushSmall",
+      "X": 219.8,
+      "Y": 216.5,
+      "Rotation": 138.0,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "flower_redA",
+      "X": 87.3,
+      "Y": 185.8,
+      "Rotation": 26.6,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "grass",
+      "X": 86.6,
+      "Y": 54.2,
+      "Rotation": 70.9,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "flower_yellowA",
+      "X": 34.0,
+      "Y": 185.8,
+      "Rotation": 51.9,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "mushroom_red",
+      "X": 152.8,
+      "Y": 130.3,
+      "Rotation": 125.3,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "Fern_1",
+      "X": 98.6,
+      "Y": 185.3,
+      "Rotation": 240.0,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "Clover_1",
+      "X": 24.7,
+      "Y": 90.8,
+      "Rotation": 162.6,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 111.8,
+      "Y": 61.1,
+      "Rotation": 117.2,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "grass",
+      "X": 171.4,
+      "Y": 210.5,
+      "Rotation": 337.6,
+      "Scale": 0.88
+    },
+    {
+      "ModelId": "plant_bush",
+      "X": 46.3,
+      "Y": 206.9,
+      "Rotation": 110.6,
+      "Scale": 0.97
+    },
+    {
+      "ModelId": "mushroom_red",
+      "X": 69.3,
+      "Y": 137.5,
+      "Rotation": 38.5,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "mushroom_red",
+      "X": 12.8,
+      "Y": 69.7,
+      "Rotation": 73.9,
+      "Scale": 0.87
+    },
+    {
+      "ModelId": "Clover_1",
+      "X": 129.8,
+      "Y": 151.2,
+      "Rotation": 54.3,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "flower_yellowA",
+      "X": 218.3,
+      "Y": 230.2,
+      "Rotation": 178.7,
+      "Scale": 0.93
+    },
+    {
+      "ModelId": "mushroom_red",
+      "X": 106.0,
+      "Y": 120.1,
+      "Rotation": 54.8,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "flower_redA",
+      "X": 90.8,
+      "Y": 183.4,
+      "Rotation": 5.2,
+      "Scale": 1.12
+    },
+    {
+      "ModelId": "Grass_Common_Tall",
+      "X": 173.9,
+      "Y": 71.6,
+      "Rotation": 92.9,
+      "Scale": 1.06
+    },
+    {
+      "ModelId": "plant_bushSmall",
+      "X": 111.9,
+      "Y": 206.8,
+      "Rotation": 284.6,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "rock_tallA",
+      "X": 60.0,
+      "Y": 66.2,
+      "Rotation": 112.9,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "stone_tallA",
+      "X": 55.5,
+      "Y": 54.0,
+      "Rotation": 335.7,
+      "Scale": 0.86
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 60.4,
+      "Y": 60.1,
+      "Rotation": 337.7,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "rock_tallC",
+      "X": 54.8,
+      "Y": 65.1,
+      "Rotation": 338.6,
+      "Scale": 1.02
+    },
+    {
+      "ModelId": "Rock_Medium_1",
+      "X": 195.1,
+      "Y": 59.5,
+      "Rotation": 231.7,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "rock_tallA",
+      "X": 196.2,
+      "Y": 60.2,
+      "Rotation": 12.5,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "rock_tallC",
+      "X": 195.4,
+      "Y": 62.5,
+      "Rotation": 114.8,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "rock_tallD",
+      "X": 197.2,
+      "Y": 57.9,
+      "Rotation": 308.2,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "rock_tallC",
+      "X": 61.0,
+      "Y": 193.5,
+      "Rotation": 106.3,
+      "Scale": 1.03
+    },
+    {
+      "ModelId": "Rock_Medium_1",
+      "X": 59.8,
+      "Y": 195.2,
+      "Rotation": 274.8,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "rock_largeB",
+      "X": 60.3,
+      "Y": 191.9,
+      "Rotation": 28.3,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 66.1,
+      "Y": 198.6,
+      "Rotation": 241.5,
+      "Scale": 0.94
+    },
+    {
+      "ModelId": "Rock_Medium_1",
+      "X": 190.9,
+      "Y": 192.7,
+      "Rotation": 217.5,
+      "Scale": 1.11
+    },
+    {
+      "ModelId": "rock_tallA",
+      "X": 199.3,
+      "Y": 190.0,
+      "Rotation": 310.5,
+      "Scale": 1.14
+    },
+    {
+      "ModelId": "stone_tallB",
+      "X": 200.0,
+      "Y": 195.1,
+      "Rotation": 70.6,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "rock_tallC",
+      "X": 196.5,
+      "Y": 196.3,
+      "Rotation": 292.6,
+      "Scale": 0.98
+    },
+    {
+      "ModelId": "Rock_Medium_1",
+      "X": 123.6,
+      "Y": 37.7,
+      "Rotation": 286.0,
+      "Scale": 1.01
+    },
+    {
+      "ModelId": "rock_tallB",
+      "X": 130.0,
+      "Y": 38.6,
+      "Rotation": 33.3,
+      "Scale": 0.92
+    },
+    {
+      "ModelId": "Rock_Medium_1",
+      "X": 134.8,
+      "Y": 37.0,
+      "Rotation": 211.9,
+      "Scale": 1.04
+    },
+    {
+      "ModelId": "rock_largeC",
+      "X": 123.7,
+      "Y": 37.3,
+      "Rotation": 128.5,
+      "Scale": 0.91
+    },
+    {
+      "ModelId": "Rock_Medium_2",
+      "X": 128.0,
+      "Y": 215.8,
+      "Rotation": 9.7,
+      "Scale": 0.99
+    },
+    {
+      "ModelId": "Rock_Medium_2",
+      "X": 120.9,
+      "Y": 217.9,
+      "Rotation": 277.6,
+      "Scale": 0.95
+    },
+    {
+      "ModelId": "Rock_Medium_1",
+      "X": 123.7,
+      "Y": 210.4,
+      "Rotation": 316.4,
+      "Scale": 1.09
+    },
+    {
+      "ModelId": "rock_largeA",
+      "X": 122.6,
+      "Y": 220.5,
+      "Rotation": 121.5,
+      "Scale": 1.08
+    }
+  ],
+  "Structures": [
+    {
+      "ModelId": "bridge_stone",
+      "X": 128,
+      "Y": 60,
+      "Rotation": 0.0,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "bridge_stone",
+      "X": 128,
+      "Y": 196,
+      "Rotation": 0.0,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "bridge_stoneRound",
+      "X": 60,
+      "Y": 128,
+      "Rotation": 90.0,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "bridge_stoneRound",
+      "X": 196,
+      "Y": 128,
+      "Rotation": 90.0,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "statue_obelisk",
+      "X": 128,
+      "Y": 128,
+      "Rotation": 0.0,
+      "Scale": 1.5
+    },
+    {
+      "ModelId": "city_building_a",
+      "X": 108,
+      "Y": 108,
+      "Rotation": 45.0,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "city_building_b",
+      "X": 146,
+      "Y": 110,
+      "Rotation": 135.0,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "city_building_c",
+      "X": 146,
+      "Y": 146,
+      "Rotation": 225.0,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "city_building_d",
+      "X": 110,
+      "Y": 146,
+      "Rotation": 315.0,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "pirate_castle_wall",
+      "X": 128,
+      "Y": 120,
+      "Rotation": 0.0,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "pirate_castle_wall",
+      "X": 128,
+      "Y": 136,
+      "Rotation": 180.0,
+      "Scale": 1.0
+    },
+    {
+      "ModelId": "city_building_a",
+      "X": 19.52275121999247,
+      "Y": 11.5642159452315,
+      "Rotation": 165.39295668186332,
+      "Scale": 0.8
+    },
+    {
+      "ModelId": "city_building_a",
+      "X": 14.493741862715536,
+      "Y": 43.202633393013755,
+      "Rotation": 28.368071308244943,
+      "Scale": 0.8
+    },
+    {
+      "ModelId": "city_building_a",
+      "X": 220.55441813065534,
+      "Y": 32.63103278179996,
+      "Rotation": 318.76262925725047,
+      "Scale": 0.8
+    },
+    {
+      "ModelId": "city_building_a",
+      "X": 223.01886094201114,
+      "Y": 16.922389249239757,
+      "Rotation": 25.039853576546733,
+      "Scale": 0.8
+    },
+    {
+      "ModelId": "city_building_a",
+      "X": 233.80547946843757,
+      "Y": 237.8304602683929,
+      "Rotation": 354.6797474378728,
+      "Scale": 0.8
+    },
+    {
+      "ModelId": "city_building_a",
+      "X": 240.79143795654528,
+      "Y": 241.1934120031897,
+      "Rotation": 136.8454410140998,
+      "Scale": 0.8
+    },
+    {
+      "ModelId": "city_building_a",
+      "X": 26.32277088526368,
+      "Y": 240.027975359067,
+      "Rotation": 58.55547497619053,
+      "Scale": 0.8
+    },
+    {
+      "ModelId": "city_building_a",
+      "X": 22.789745208190773,
+      "Y": 234.12630627759697,
+      "Rotation": 252.65531284507847,
+      "Scale": 0.8
+    },
+    {
+      "ModelId": "city_building_a",
+      "X": 134.60771595932002,
+      "Y": 2.570490344827739,
+      "Rotation": 228.5921837509417,
+      "Scale": 0.8
+    },
+    {
+      "ModelId": "city_building_a",
+      "X": 129.2290355730695,
+      "Y": 8.813193305451344,
+      "Rotation": 166.41367626640167,
+      "Scale": 0.8
+    },
+    {
+      "ModelId": "city_building_a",
+      "X": 119.71812176423401,
+      "Y": 253.31408246636386,
+      "Rotation": 247.73830503599274,
+      "Scale": 0.8
+    },
+    {
+      "ModelId": "city_building_a",
+      "X": 117.90614626292968,
+      "Y": 231.67417843895157,
+      "Rotation": 276.59288793325396,
+      "Scale": 0.8
+    }
+  ],
+  "ElevationZones": [
+    {
+      "Type": "hill",
+      "CenterX": 60,
+      "CenterY": 60,
+      "Radius": 18,
+      "Height": 3.5
+    },
+    {
+      "Type": "hill",
+      "CenterX": 196,
+      "CenterY": 60,
+      "Radius": 18,
+      "Height": 3.5
+    },
+    {
+      "Type": "hill",
+      "CenterX": 60,
+      "CenterY": 196,
+      "Radius": 18,
+      "Height": 3.5
+    },
+    {
+      "Type": "hill",
+      "CenterX": 196,
+      "CenterY": 196,
+      "Radius": 18,
+      "Height": 3.5
+    },
+    {
+      "Type": "hill",
+      "CenterX": 128,
+      "CenterY": 40,
+      "Radius": 12,
+      "Height": 2.5
+    },
+    {
+      "Type": "hill",
+      "CenterX": 128,
+      "CenterY": 216,
+      "Radius": 12,
+      "Height": 2.5
+    },
+    {
+      "Type": "plateau",
+      "CenterX": 128,
+      "CenterY": 128,
+      "Radius": 16,
+      "Height": 1.5
+    }
+  ]
+}
