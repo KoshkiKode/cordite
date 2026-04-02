@@ -1,0 +1,25 @@
+{
+  "Id": "stormrend_command_center",
+  "DisplayName": "Storm Command",
+  "FactionId": "stormrend",
+  "Category": "Production",
+  "MaxHealth": 3000,
+  "ArmorClass": "Building",
+  "ArmorValue": 5,
+  "Cost": 0,
+  "SecondaryCost": 0,
+  "BuildTime": 0.0,
+  "FootprintWidth": 5,
+  "FootprintHeight": 5,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 10,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [
+    "produce_harvester",
+    "produce_scout"
+  ],
+  "Prerequisites": [],
+  "Description": "Stormrend assault command center. Produces light harvesters and fast scout bikes."
+}

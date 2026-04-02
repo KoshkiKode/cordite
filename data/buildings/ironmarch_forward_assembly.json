@@ -1,0 +1,27 @@
+{
+  "Id": "ironmarch_forward_assembly",
+  "DisplayName": "Forward Assembly",
+  "FactionId": "ironmarch",
+  "Category": "Utility",
+  "MaxHealth": 1200,
+  "ArmorClass": "Building",
+  "ArmorValue": 5,
+  "Cost": 1000,
+  "SecondaryCost": 100,
+  "BuildTime": 20.0,
+  "FootprintWidth": 3,
+  "FootprintHeight": 3,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [
+    "forward_production",
+    "rally_point"
+  ],
+  "Prerequisites": [
+    "ironmarch_command_center"
+  ],
+  "Description": "Deployable forward operating base. Can be placed anywhere on the map and enables production of infantry and light vehicles at the front line. Defines Ironmarch's push-and-fortify strategy."
+}

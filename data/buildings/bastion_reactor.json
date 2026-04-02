@@ -1,0 +1,24 @@
+{
+  "Id": "bastion_reactor",
+  "DisplayName": "Bastion Reactor",
+  "FactionId": "bastion",
+  "Category": "Economy",
+  "MaxHealth": 800,
+  "ArmorClass": "Building",
+  "ArmorValue": 3,
+  "Cost": 1000,
+  "SecondaryCost": 0,
+  "BuildTime": 20.0,
+  "FootprintWidth": 2,
+  "FootprintHeight": 2,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 0,
+  "VCGeneration": 7,
+  "Abilities": [],
+  "Prerequisites": [
+    "bastion_refinery"
+  ],
+  "Description": "Superior Volt-Credit generator. Produces 7 VC/sec — 40% more than any other faction's reactor. Max 500 VC per Reactor."
+}

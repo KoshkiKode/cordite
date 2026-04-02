@@ -1,0 +1,27 @@
+{
+  "Id": "valkyr_carrier_pad",
+  "DisplayName": "Carrier Pad",
+  "FactionId": "valkyr",
+  "Category": "Superweapon",
+  "MaxHealth": 2000,
+  "ArmorClass": "Building",
+  "ArmorValue": 8,
+  "Cost": 3500,
+  "SecondaryCost": 600,
+  "BuildTime": 90.0,
+  "FootprintWidth": 6,
+  "FootprintHeight": 6,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [
+    "produce_carrier_superunit"
+  ],
+  "Prerequisites": [
+    "valkyr_tech_lab",
+    "valkyr_reactor"
+  ],
+  "Description": "Valkyr's superweapon platform. Constructs the Carrier — a flying fortress and match-defining superunit."
+}

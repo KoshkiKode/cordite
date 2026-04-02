@@ -1,0 +1,24 @@
+{
+  "Id": "stormrend_reactor",
+  "DisplayName": "Storm Reactor",
+  "FactionId": "stormrend",
+  "Category": "Economy",
+  "MaxHealth": 800,
+  "ArmorClass": "Building",
+  "ArmorValue": 3,
+  "Cost": 1250,
+  "SecondaryCost": 0,
+  "BuildTime": 20.0,
+  "FootprintWidth": 2,
+  "FootprintHeight": 2,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 0,
+  "VCGeneration": 5,
+  "Abilities": [],
+  "Prerequisites": [
+    "stormrend_refinery"
+  ],
+  "Description": "Expensive VC generator — 25% above standard cost. Stormrend should delay this and win with Tier 1 before needing VC."
+}

@@ -1,0 +1,25 @@
+{
+  "Id": "arcloft_command_center",
+  "DisplayName": "Sky Citadel",
+  "FactionId": "arcloft",
+  "Category": "Production",
+  "MaxHealth": 3000,
+  "ArmorClass": "Building",
+  "ArmorValue": 5,
+  "Cost": 0,
+  "SecondaryCost": 0,
+  "BuildTime": 0.0,
+  "FootprintWidth": 5,
+  "FootprintHeight": 5,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 10,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [
+    "produce_harvester",
+    "produce_scout"
+  ],
+  "Prerequisites": [],
+  "Description": "Arcloft elevated command center. Produces helicopter harvesters and aerial scouts. Max supply 180 (9 Depots)."
+}

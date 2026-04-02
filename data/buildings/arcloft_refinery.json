@@ -1,0 +1,26 @@
+{
+  "Id": "arcloft_refinery",
+  "DisplayName": "Cloud Refinery",
+  "FactionId": "arcloft",
+  "Category": "Economy",
+  "MaxHealth": 1500,
+  "ArmorClass": "Building",
+  "ArmorValue": 5,
+  "Cost": 1500,
+  "SecondaryCost": 0,
+  "BuildTime": 25.0,
+  "FootprintWidth": 3,
+  "FootprintHeight": 3,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [
+    "accept_harvester_delivery"
+  ],
+  "Prerequisites": [
+    "arcloft_command_center"
+  ],
+  "Description": "Receives Cordite from Arcloft helicopter harvesters. High efficiency due to fly-over capability."
+}

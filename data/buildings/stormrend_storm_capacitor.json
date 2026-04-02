@@ -1,0 +1,27 @@
+{
+  "Id": "stormrend_storm_capacitor",
+  "DisplayName": "Storm Capacitor",
+  "FactionId": "stormrend",
+  "Category": "Utility",
+  "MaxHealth": 1000,
+  "ArmorClass": "Building",
+  "ArmorValue": 3,
+  "Cost": 2000,
+  "SecondaryCost": 300,
+  "BuildTime": 40.0,
+  "FootprintWidth": 3,
+  "FootprintHeight": 3,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [
+    "charge_momentum",
+    "momentum_passive_gain"
+  ],
+  "Prerequisites": [
+    "stormrend_tech_lab"
+  ],
+  "Description": "Charges the Momentum resource over time and from unit kills. Momentum powers Stormrend's aggressive faction abilities. Destroying this resets accumulated Momentum."
+}

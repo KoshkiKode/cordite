@@ -1,0 +1,24 @@
+{
+  "Id": "valkyr_reactor",
+  "DisplayName": "Voltaic Spire",
+  "FactionId": "valkyr",
+  "Category": "Economy",
+  "MaxHealth": 800,
+  "ArmorClass": "Building",
+  "ArmorValue": 3,
+  "Cost": 800,
+  "SecondaryCost": 0,
+  "BuildTime": 20.0,
+  "FootprintWidth": 2,
+  "FootprintHeight": 2,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 0,
+  "VCGeneration": 5,
+  "Abilities": [],
+  "Prerequisites": [
+    "valkyr_refinery"
+  ],
+  "Description": "Generates 5 Volt-Credits per second. Valkyr engineering makes this 20% cheaper than standard. Max 500 VC stockpile."
+}

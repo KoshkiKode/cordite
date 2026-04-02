@@ -1,0 +1,27 @@
+{
+  "Id": "bastion_command_hub",
+  "DisplayName": "Command Hub",
+  "FactionId": "bastion",
+  "Category": "Defense",
+  "MaxHealth": 1800,
+  "ArmorClass": "Building",
+  "ArmorValue": 7,
+  "Cost": 2200,
+  "SecondaryCost": 300,
+  "BuildTime": 45.0,
+  "FootprintWidth": 4,
+  "FootprintHeight": 4,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [
+    "defense_network_link",
+    "passive_scan_radius"
+  ],
+  "Prerequisites": [
+    "bastion_tech_lab"
+  ],
+  "Description": "Extends Bastion's integrated defense network and provides a passive sensor scan radius. Prerequisite for the Aegis Generator."
+}

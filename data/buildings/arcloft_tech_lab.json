@@ -1,0 +1,27 @@
+{
+  "Id": "arcloft_tech_lab",
+  "DisplayName": "Arcloft Tech Lab",
+  "FactionId": "arcloft",
+  "Category": "Tech",
+  "MaxHealth": 800,
+  "ArmorClass": "Building",
+  "ArmorValue": 3,
+  "Cost": 1500,
+  "SecondaryCost": 200,
+  "BuildTime": 30.0,
+  "FootprintWidth": 3,
+  "FootprintHeight": 3,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [
+    "research_upgrade"
+  ],
+  "Prerequisites": [
+    "arcloft_barracks",
+    "arcloft_vehicle_factory"
+  ],
+  "Description": "Advanced research for Arcloft unit and system upgrades. Prerequisite for the Overwatch Tower network."
+}

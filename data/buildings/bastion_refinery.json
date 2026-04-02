@@ -1,0 +1,26 @@
+{
+  "Id": "bastion_refinery",
+  "DisplayName": "Shield Refinery",
+  "FactionId": "bastion",
+  "Category": "Economy",
+  "MaxHealth": 1500,
+  "ArmorClass": "Building",
+  "ArmorValue": 5,
+  "Cost": 1500,
+  "SecondaryCost": 0,
+  "BuildTime": 25.0,
+  "FootprintWidth": 3,
+  "FootprintHeight": 3,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 15,
+  "VCGeneration": 0,
+  "Abilities": [
+    "accept_harvester_delivery"
+  ],
+  "Prerequisites": [
+    "bastion_command_center"
+  ],
+  "Description": "Bastion refinery with integrated passive extraction. Generates 15 Cordite/sec regardless of harvester activity. Break-even vs. cost in 100 seconds."
+}

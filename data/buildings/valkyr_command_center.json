@@ -1,0 +1,25 @@
+{
+  "Id": "valkyr_command_center",
+  "DisplayName": "Aerie Command",
+  "FactionId": "valkyr",
+  "Category": "Production",
+  "MaxHealth": 3000,
+  "ArmorClass": "Building",
+  "ArmorValue": 5,
+  "Cost": 0,
+  "SecondaryCost": 0,
+  "BuildTime": 0.0,
+  "FootprintWidth": 5,
+  "FootprintHeight": 5,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 10,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [
+    "produce_harvester",
+    "produce_scout"
+  ],
+  "Prerequisites": [],
+  "Description": "Valkyr command and control center. Produces harvesters and scout units. Pre-placed at game start."
+}

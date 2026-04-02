@@ -1,0 +1,26 @@
+{
+  "Id": "valkyr_vehicle_factory",
+  "DisplayName": "Valkyr Motor Pool",
+  "FactionId": "valkyr",
+  "Category": "Production",
+  "MaxHealth": 1500,
+  "ArmorClass": "Building",
+  "ArmorValue": 5,
+  "Cost": 1500,
+  "SecondaryCost": 100,
+  "BuildTime": 30.0,
+  "FootprintWidth": 4,
+  "FootprintHeight": 4,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [
+    "produce_vehicle"
+  ],
+  "Prerequisites": [
+    "valkyr_barracks"
+  ],
+  "Description": "Produces Valkyr ground vehicles including scout buggies and support platforms."
+}

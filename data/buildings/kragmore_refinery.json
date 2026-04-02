@@ -1,0 +1,26 @@
+{
+  "Id": "kragmore_refinery",
+  "DisplayName": "Ore Refinery",
+  "FactionId": "kragmore",
+  "Category": "Economy",
+  "MaxHealth": 1500,
+  "ArmorClass": "Building",
+  "ArmorValue": 5,
+  "Cost": 1500,
+  "SecondaryCost": 0,
+  "BuildTime": 25.0,
+  "FootprintWidth": 4,
+  "FootprintHeight": 4,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [
+    "accept_harvester_delivery"
+  ],
+  "Prerequisites": [
+    "kragmore_command_center"
+  ],
+  "Description": "Processes Cordite from Kragmore heavy rigs. Place close to nodes — heavy rig trip times are extreme at long range."
+}

@@ -1,0 +1,27 @@
+{
+  "Id": "stormrend_tech_lab",
+  "DisplayName": "Storm Lab",
+  "FactionId": "stormrend",
+  "Category": "Tech",
+  "MaxHealth": 800,
+  "ArmorClass": "Building",
+  "ArmorValue": 3,
+  "Cost": 1500,
+  "SecondaryCost": 200,
+  "BuildTime": 30.0,
+  "FootprintWidth": 3,
+  "FootprintHeight": 3,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [
+    "research_upgrade"
+  ],
+  "Prerequisites": [
+    "stormrend_barracks",
+    "stormrend_vehicle_factory"
+  ],
+  "Description": "Stormrend field research. Unlocks Momentum-based upgrades and Storm Capacitor construction."
+}

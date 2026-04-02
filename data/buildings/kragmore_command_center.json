@@ -1,0 +1,25 @@
+{
+  "Id": "kragmore_command_center",
+  "DisplayName": "War Command",
+  "FactionId": "kragmore",
+  "Category": "Production",
+  "MaxHealth": 3000,
+  "ArmorClass": "Building",
+  "ArmorValue": 7,
+  "Cost": 0,
+  "SecondaryCost": 0,
+  "BuildTime": 0.0,
+  "FootprintWidth": 5,
+  "FootprintHeight": 5,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 20,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [
+    "produce_harvester",
+    "produce_scout"
+  ],
+  "Prerequisites": [],
+  "Description": "Kragmore forward command. Produces heavy harvesters. Provides 20 starting supply — equivalent to a free Supply Bunker."
+}

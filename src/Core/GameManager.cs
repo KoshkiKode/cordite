@@ -1,4 +1,5 @@
 using Godot;
+using UnnamedRTS.Game.Economy;
 using UnnamedRTS.Systems.Networking;
 
 namespace UnnamedRTS.Core;
@@ -51,6 +52,17 @@ public partial class GameManager : Node
     /// </summary>
     public CommandBuffer? CommandBuffer { get; set; }
 
+    /// <summary>
+    /// Economy manager for per-player resource state and passive income.
+    /// Set externally during match setup.
+    /// </summary>
+    public EconomyManager? EconomyManager { get; set; }
+
+    /// <summary>
+    /// Harvester AI system. Set externally during match setup.
+    /// </summary>
+    public HarvesterSystem? HarvesterSystem { get; set; }
+
     public override void _Ready()
     {
         GD.Print("[GameManager] Initialized.");
@@ -85,6 +97,11 @@ public partial class GameManager : Node
         }
 
         CurrentTick++;
+
+        // Economy simulation tick: 1/30 sec per tick as FixedPoint
+        FixedPoint economyDelta = FixedPoint.One / FixedPoint.FromInt(SimTickRate);
+        EconomyManager?.ProcessTick(economyDelta);
+        HarvesterSystem?.ProcessTick(economyDelta);
 
         if (IsMultiplayer && Lockstep != null)
         {

@@ -1,0 +1,26 @@
+{
+  "Id": "bastion_airfield",
+  "DisplayName": "Bastion Airfield",
+  "FactionId": "bastion",
+  "Category": "Production",
+  "MaxHealth": 1200,
+  "ArmorClass": "Building",
+  "ArmorValue": 5,
+  "Cost": 2000,
+  "SecondaryCost": 200,
+  "BuildTime": 35.0,
+  "FootprintWidth": 5,
+  "FootprintHeight": 4,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [
+    "produce_aircraft"
+  ],
+  "Prerequisites": [
+    "bastion_vehicle_factory"
+  ],
+  "Description": "Fortified airfield for Bastion interceptors and defensive gunships."
+}

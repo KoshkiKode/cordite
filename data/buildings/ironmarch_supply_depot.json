@@ -1,0 +1,24 @@
+{
+  "Id": "ironmarch_supply_depot",
+  "DisplayName": "March Depot",
+  "FactionId": "ironmarch",
+  "Category": "Utility",
+  "MaxHealth": 600,
+  "ArmorClass": "Building",
+  "ArmorValue": 5,
+  "Cost": 500,
+  "SecondaryCost": 0,
+  "BuildTime": 15.0,
+  "FootprintWidth": 2,
+  "FootprintHeight": 2,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 20,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [],
+  "Prerequisites": [
+    "ironmarch_command_center"
+  ],
+  "Description": "Increases supply ceiling by 20. Ironmarch has a 210 supply cap (HQ 10 + 10 Depots × 20, with +10 bonus from faction trait)."
+}

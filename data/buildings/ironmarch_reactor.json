@@ -1,0 +1,24 @@
+{
+  "Id": "ironmarch_reactor",
+  "DisplayName": "March Reactor",
+  "FactionId": "ironmarch",
+  "Category": "Economy",
+  "MaxHealth": 800,
+  "ArmorClass": "Building",
+  "ArmorValue": 3,
+  "Cost": 1000,
+  "SecondaryCost": 0,
+  "BuildTime": 20.0,
+  "FootprintWidth": 2,
+  "FootprintHeight": 2,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 0,
+  "VCGeneration": 5,
+  "Abilities": [],
+  "Prerequisites": [
+    "ironmarch_refinery"
+  ],
+  "Description": "Standard VC generator. Produces 5 VC/sec up to 500 VC stockpile."
+}

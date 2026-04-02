@@ -1,0 +1,24 @@
+{
+  "Id": "kragmore_supply_depot",
+  "DisplayName": "Supply Bunker",
+  "FactionId": "kragmore",
+  "Category": "Utility",
+  "MaxHealth": 600,
+  "ArmorClass": "Building",
+  "ArmorValue": 5,
+  "Cost": 500,
+  "SecondaryCost": 0,
+  "BuildTime": 15.0,
+  "FootprintWidth": 2,
+  "FootprintHeight": 2,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 20,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [],
+  "Prerequisites": [
+    "kragmore_command_center"
+  ],
+  "Description": "Extends Kragmore supply ceiling by 20. Kragmore's 220 supply cap (with 10 Bunkers) supports their heavier unit population costs."
+}

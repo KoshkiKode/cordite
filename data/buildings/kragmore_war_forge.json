@@ -1,0 +1,28 @@
+{
+  "Id": "kragmore_war_forge",
+  "DisplayName": "War Forge",
+  "FactionId": "kragmore",
+  "Category": "Tech",
+  "MaxHealth": 2000,
+  "ArmorClass": "Building",
+  "ArmorValue": 8,
+  "Cost": 2500,
+  "SecondaryCost": 400,
+  "BuildTime": 60.0,
+  "FootprintWidth": 5,
+  "FootprintHeight": 5,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [
+    "produce_mammoth",
+    "research_heavy_armor"
+  ],
+  "Prerequisites": [
+    "kragmore_tech_lab",
+    "kragmore_vehicle_factory"
+  ],
+  "Description": "Unlocks the Mammoth super-heavy tank and advanced armor upgrades. Building one signals a decisive late-game push."
+}

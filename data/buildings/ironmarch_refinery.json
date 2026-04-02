@@ -1,0 +1,27 @@
+{
+  "Id": "ironmarch_refinery",
+  "DisplayName": "March Refinery",
+  "FactionId": "ironmarch",
+  "Category": "Economy",
+  "MaxHealth": 2250,
+  "ArmorClass": "Building",
+  "ArmorValue": 7,
+  "Cost": 1500,
+  "SecondaryCost": 0,
+  "BuildTime": 25.0,
+  "FootprintWidth": 3,
+  "FootprintHeight": 3,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [
+    "accept_harvester_delivery",
+    "point_defense_turret"
+  ],
+  "Prerequisites": [
+    "ironmarch_command_center"
+  ],
+  "Description": "Ironmarch armored refinery with 50% more HP than standard (2250 vs 1500) and a built-in point-defense turret. Extremely raid-resistant."
+}

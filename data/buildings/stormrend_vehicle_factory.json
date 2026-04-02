@@ -1,0 +1,26 @@
+{
+  "Id": "stormrend_vehicle_factory",
+  "DisplayName": "Storm Garage",
+  "FactionId": "stormrend",
+  "Category": "Production",
+  "MaxHealth": 1500,
+  "ArmorClass": "Building",
+  "ArmorValue": 5,
+  "Cost": 1500,
+  "SecondaryCost": 100,
+  "BuildTime": 30.0,
+  "FootprintWidth": 4,
+  "FootprintHeight": 4,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [
+    "produce_vehicle"
+  ],
+  "Prerequisites": [
+    "stormrend_barracks"
+  ],
+  "Description": "Produces Stormrend fast-attack vehicles and armored strike bikes."
+}

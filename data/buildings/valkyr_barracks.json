@@ -1,0 +1,26 @@
+{
+  "Id": "valkyr_barracks",
+  "DisplayName": "Wing Barracks",
+  "FactionId": "valkyr",
+  "Category": "Production",
+  "MaxHealth": 1000,
+  "ArmorClass": "Building",
+  "ArmorValue": 5,
+  "Cost": 800,
+  "SecondaryCost": 0,
+  "BuildTime": 20.0,
+  "FootprintWidth": 3,
+  "FootprintHeight": 3,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [
+    "produce_infantry"
+  ],
+  "Prerequisites": [
+    "valkyr_refinery"
+  ],
+  "Description": "Trains Valkyr infantry units, including Skyguard troopers and Valkyr commandos."
+}

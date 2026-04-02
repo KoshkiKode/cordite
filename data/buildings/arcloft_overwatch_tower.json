@@ -1,0 +1,27 @@
+{
+  "Id": "arcloft_overwatch_tower",
+  "DisplayName": "Overwatch Tower",
+  "FactionId": "arcloft",
+  "Category": "Defense",
+  "MaxHealth": 900,
+  "ArmorClass": "Building",
+  "ArmorValue": 5,
+  "Cost": 1500,
+  "SecondaryCost": 150,
+  "BuildTime": 20.0,
+  "FootprintWidth": 2,
+  "FootprintHeight": 2,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [
+    "overwatch_zone_control",
+    "area_sensor"
+  ],
+  "Prerequisites": [
+    "arcloft_barracks"
+  ],
+  "Description": "Establishes an Overwatch Zone in a radius around the tower, granting vision and fire support to all Arcloft units within. Effective choke-point denial tool."
+}

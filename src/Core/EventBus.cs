@@ -67,6 +67,13 @@ public partial class EventBus : Node
     [Signal] public delegate void LobbyUpdatedEventHandler();
     [Signal] public delegate void MatchCountdownEventHandler(int secondsRemaining);
 
+    // ── Economy Events ─────────────────────────────────────────────────
+
+    [Signal] public delegate void HarvesterDeliveredEventHandler(int playerId, int corditeAmount);
+    [Signal] public delegate void EconomyBuildingCompletedEventHandler(int playerId, string buildingId);
+    [Signal] public delegate void InsufficientFundsEventHandler(int playerId);
+    [Signal] public delegate void NodeDepletedEventHandler(int nodeId);
+
     // ── UI Events ────────────────────────────────────────────────────
 
     [Signal] public delegate void TooltipRequestedEventHandler(string text, Vector2 position);
@@ -113,6 +120,17 @@ public partial class EventBus : Node
         EmitSignal(SignalName.MinimapClick, worldPosition);
     public void EmitBaseUnderAttack(int playerId, Vector3 position) =>
         EmitSignal(SignalName.BaseUnderAttack, playerId, position);
+
+    // ── Economy Emit Helpers ───────────────────────────────────────────
+
+    public void EmitHarvesterDelivered(int playerId, int corditeAmount) =>
+        EmitSignal(SignalName.HarvesterDelivered, playerId, corditeAmount);
+    public void EmitEconomyBuildingCompleted(int playerId, string buildingId) =>
+        EmitSignal(SignalName.EconomyBuildingCompleted, playerId, buildingId);
+    public void EmitInsufficientFunds(int playerId) =>
+        EmitSignal(SignalName.InsufficientFunds, playerId);
+    public void EmitNodeDepleted(int nodeId) =>
+        EmitSignal(SignalName.NodeDepleted, nodeId);
 
     // ── Networking Emit Helpers ──────────────────────────────────────
 

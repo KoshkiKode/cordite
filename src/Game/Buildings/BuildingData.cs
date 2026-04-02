@@ -78,6 +78,17 @@ public sealed class BuildingData
     /// <summary>Vision range in grid cells.</summary>
     public FixedPoint SightRange { get; init; }
 
+    // ── Economy ───────────────────────────────────────────────────────
+
+    /// <summary>Passive Cordite income per second (e.g., Bastion refinery bonus).</summary>
+    public FixedPoint PassiveIncome { get; init; }
+
+    /// <summary>Voltaic Charge generated per second (reactors).</summary>
+    public FixedPoint VCGeneration { get; init; }
+
+    /// <summary>Supply cap increase when this building is active.</summary>
+    public int SupplyProvided { get; init; }
+
     // ── Power ────────────────────────────────────────────────────────
 
     /// <summary>

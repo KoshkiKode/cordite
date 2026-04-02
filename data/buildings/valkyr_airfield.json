@@ -1,0 +1,26 @@
+{
+  "Id": "valkyr_airfield",
+  "DisplayName": "Valkyr Airstrip",
+  "FactionId": "valkyr",
+  "Category": "Production",
+  "MaxHealth": 1200,
+  "ArmorClass": "Building",
+  "ArmorValue": 5,
+  "Cost": 2000,
+  "SecondaryCost": 200,
+  "BuildTime": 35.0,
+  "FootprintWidth": 5,
+  "FootprintHeight": 4,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [
+    "produce_aircraft"
+  ],
+  "Prerequisites": [
+    "valkyr_vehicle_factory"
+  ],
+  "Description": "Launches and recovers Valkyr fixed-wing aircraft and advanced rotary gunships."
+}

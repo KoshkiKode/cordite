@@ -1,0 +1,24 @@
+{
+  "Id": "arcloft_reactor",
+  "DisplayName": "Arc Reactor",
+  "FactionId": "arcloft",
+  "Category": "Economy",
+  "MaxHealth": 800,
+  "ArmorClass": "Building",
+  "ArmorValue": 3,
+  "Cost": 1000,
+  "SecondaryCost": 0,
+  "BuildTime": 20.0,
+  "FootprintWidth": 2,
+  "FootprintHeight": 2,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 0,
+  "VCGeneration": 6,
+  "Abilities": [],
+  "Prerequisites": [
+    "arcloft_refinery"
+  ],
+  "Description": "Enhanced VC generator producing 6 VC/sec — 20% above standard. Supports Arcloft's quality-over-quantity tech dependency."
+}

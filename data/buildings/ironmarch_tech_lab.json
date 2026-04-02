@@ -1,0 +1,27 @@
+{
+  "Id": "ironmarch_tech_lab",
+  "DisplayName": "Ironmarch Lab",
+  "FactionId": "ironmarch",
+  "Category": "Tech",
+  "MaxHealth": 800,
+  "ArmorClass": "Building",
+  "ArmorValue": 3,
+  "Cost": 1500,
+  "SecondaryCost": 200,
+  "BuildTime": 30.0,
+  "FootprintWidth": 3,
+  "FootprintHeight": 3,
+  "PowerRequired": 0,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [
+    "research_upgrade"
+  ],
+  "Prerequisites": [
+    "ironmarch_barracks",
+    "ironmarch_vehicle_factory"
+  ],
+  "Description": "Research facility for Ironmarch armor, fortification, and assembly upgrades."
+}
