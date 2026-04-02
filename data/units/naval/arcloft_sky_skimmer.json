@@ -1,0 +1,49 @@
+{
+    "Id": "arcloft_sky_skimmer",
+    "DisplayName": "Sky Skimmer",
+    "FactionId": "arcloft",
+    "Category": "PatrolBoat",
+    "MovementClassId": "Naval",
+    "MaxHealth": 130.0,
+    "ArmorValue": 3.0,
+    "ArmorClass": "Light",
+    "SightRange": 11.0,
+    "BuildTime": 18.0,
+    "Cost": 500,
+    "SecondaryCost": 0,
+    "PopulationCost": 1,
+    "Weapons": [
+        {
+            "Id": "sky_skimmer_flak",
+            "Type": "Flak",
+            "Damage": 22.0,
+            "RateOfFire": 2.5,
+            "Range": 7.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 20.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 7,
+            "AccuracyPercent": 80.0,
+            "ArmorModifiers": {
+                "Aircraft": 1.6,
+                "Light": 1.0,
+                "Medium": 0.5,
+                "Heavy": 0.2,
+                "Unarmored": 1.2,
+                "Building": 0.3
+            }
+        }
+    ],
+    "SpecialAbilityId": "overwatch_zone_naval",
+    "Description": "Arcloft's AA-focused patrol boat. Its rapid-fire flak gun makes it the best anti-air patrol vessel in the game. Overwatch Zone Naval: the Sky Skimmer can designate a naval Overwatch Zone, making it an AA-patrolling asset on water.",
+    "SpeedOverride": 0.28,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 2,
+    "FootprintHeight": 2,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false,
+    "NavalExpansionNote": "Staged for Naval Expansion DLC. Not in active tech tree."
+}

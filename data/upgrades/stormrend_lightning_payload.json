@@ -1,0 +1,26 @@
+{
+    "Id": "stormrend_lightning_payload",
+    "DisplayName": "Lightning Payload",
+    "FactionId": "stormrend",
+    "Tier": 3,
+    "Cost": 2000,
+    "SecondaryCost": 300,
+    "ResearchTime": 50.0,
+    "PrerequisiteBuilding": "stormrend_storm_citadel",
+    "PrerequisiteUpgrades": [],
+    "Effects": [
+        {
+            "TargetCategory": "stormrend_stormbreaker",
+            "Stat": "BombPathWidth",
+            "Modifier": "add_flat",
+            "Value": 12.0
+        },
+        {
+            "TargetCategory": "stormrend_stormbreaker",
+            "Stat": "Damage",
+            "Modifier": "multiply",
+            "Value": 1.25
+        }
+    ],
+    "Description": "Stormbreaker carpet bomb path width increases from 30 to 42 cells. Cluster bomb damage +25%. The superweapon becomes a true map-erasing event."
+}

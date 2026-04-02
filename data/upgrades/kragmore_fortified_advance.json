@@ -1,0 +1,26 @@
+{
+    "Id": "kragmore_fortified_advance",
+    "DisplayName": "Fortified Advance",
+    "FactionId": "kragmore",
+    "Tier": 3,
+    "Cost": 1800,
+    "SecondaryCost": 250,
+    "ResearchTime": 45.0,
+    "PrerequisiteBuilding": "kragmore_lab_lv2",
+    "PrerequisiteUpgrades": [],
+    "Effects": [
+        {
+            "TargetCategory": "kragmore_ironwall",
+            "Stat": "MaxHealth",
+            "Modifier": "multiply",
+            "Value": 1.3
+        },
+        {
+            "TargetCategory": "kragmore_bunker",
+            "Stat": "MaxHealth",
+            "Modifier": "multiply",
+            "Value": 1.3
+        }
+    ],
+    "Description": "Kragmore walls and bunkers gain 30% more health. Turns Kragmore from pure offence into a faction that holds what it takes."
+}

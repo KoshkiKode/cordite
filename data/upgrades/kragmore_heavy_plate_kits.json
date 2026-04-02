@@ -1,0 +1,20 @@
+{
+    "Id": "kragmore_heavy_plate_kits",
+    "DisplayName": "Heavy Plate Kits",
+    "FactionId": "kragmore",
+    "Tier": 1,
+    "Cost": 600,
+    "SecondaryCost": 0,
+    "ResearchTime": 25.0,
+    "PrerequisiteBuilding": "kragmore_drill_barracks",
+    "PrerequisiteUpgrades": [],
+    "Effects": [
+        {
+            "TargetCategory": "Infantry",
+            "Stat": "MaxHealth",
+            "Modifier": "multiply",
+            "Value": 1.15
+        }
+    ],
+    "Description": "All Kragmore infantry gain 15% maximum health. Attrition fights cost the enemy significantly more."
+}

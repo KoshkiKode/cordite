@@ -1,0 +1,44 @@
+{
+    "Id": "stormrend_raid_protocol",
+    "DisplayName": "Raid Protocol",
+    "FactionId": "stormrend",
+    "Tier": 2,
+    "Cost": 900,
+    "SecondaryCost": 50,
+    "ResearchTime": 35.0,
+    "PrerequisiteBuilding": "stormrend_storm_lab",
+    "PrerequisiteUpgrades": [],
+    "Effects": [
+        {
+            "TargetCategory": "stormrend_bolt",
+            "Stat": "HarvesterDamageBonus",
+            "Modifier": "add_flat",
+            "Value": 0.25
+        },
+        {
+            "TargetCategory": "stormrend_tempest_raider",
+            "Stat": "HarvesterDamageBonus",
+            "Modifier": "add_flat",
+            "Value": 0.25
+        },
+        {
+            "TargetCategory": "stormrend_flickerhawk",
+            "Stat": "HarvesterDamageBonus",
+            "Modifier": "add_flat",
+            "Value": 0.25
+        },
+        {
+            "TargetCategory": "stormrend_bolt",
+            "Stat": "RefineryDamageBonus",
+            "Modifier": "add_flat",
+            "Value": 0.2
+        },
+        {
+            "TargetCategory": "stormrend_tempest_raider",
+            "Stat": "RefineryDamageBonus",
+            "Modifier": "add_flat",
+            "Value": 0.2
+        }
+    ],
+    "Description": "Bolt, Tempest Raider, and Flickerhawk deal +25% damage to Harvester units and +20% damage to Refineries. Codifies and amplifies Stormrend's most powerful macro strategy."
+}

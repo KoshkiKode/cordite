@@ -1,0 +1,69 @@
+{
+    "Id": "ironmarch_battleship",
+    "DisplayName": "Ironmarch Battleship",
+    "FactionId": "ironmarch",
+    "Category": "CapitalShip",
+    "MovementClassId": "Naval",
+    "MaxHealth": 2800.0,
+    "ArmorValue": 15.0,
+    "ArmorClass": "Heavy",
+    "SightRange": 15.0,
+    "BuildTime": 95.0,
+    "Cost": 4800,
+    "SecondaryCost": 750,
+    "PopulationCost": 11,
+    "Weapons": [
+        {
+            "Id": "ironmarch_battleship_main",
+            "Type": "Cannon",
+            "Damage": 180.0,
+            "RateOfFire": 0.2,
+            "Range": 20.0,
+            "MinRange": 4.0,
+            "ProjectileSpeed": 32.0,
+            "AreaOfEffect": 4.5,
+            "CanTarget": 5,
+            "AccuracyPercent": 78.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.1,
+                "Light": 1.4,
+                "Medium": 1.2,
+                "Heavy": 1.0,
+                "Unarmored": 2.0,
+                "Building": 2.0
+            }
+        },
+        {
+            "Id": "ironmarch_battleship_secondary",
+            "Type": "Cannon",
+            "Damage": 50.0,
+            "RateOfFire": 1.0,
+            "Range": 8.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 20.0,
+            "AreaOfEffect": 1.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 82.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.2,
+                "Light": 1.3,
+                "Medium": 0.9,
+                "Heavy": 0.7,
+                "Unarmored": 1.5,
+                "Building": 1.0
+            }
+        }
+    ],
+    "SpecialAbilityId": "naval_bombardment_fob",
+    "Description": "Ironmarch capital ship — the highest armour value and health pool in the naval roster. The Naval Bombardment FOB ability allows the Battleship to act as a naval FOB, enabling coastal construction of Ironmarch turrets within 15 cells of the ship's position. Only 1 may exist.",
+    "SpeedOverride": 0.07,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 4,
+    "FootprintHeight": 4,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false,
+    "NavalExpansionNote": "Staged for Naval Expansion DLC. Not in active tech tree."
+}

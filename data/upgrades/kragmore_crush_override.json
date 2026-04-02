@@ -1,0 +1,38 @@
+{
+    "Id": "kragmore_crush_override",
+    "DisplayName": "Crush Override",
+    "FactionId": "kragmore",
+    "Tier": 2,
+    "Cost": 900,
+    "SecondaryCost": 50,
+    "ResearchTime": 30.0,
+    "PrerequisiteBuilding": "kragmore_war_forge",
+    "PrerequisiteUpgrades": [],
+    "Effects": [
+        {
+            "TargetCategory": "kragmore_anvil",
+            "Stat": "CrushStrength",
+            "Modifier": "add_flat",
+            "Value": 1
+        },
+        {
+            "TargetCategory": "kragmore_grinder",
+            "Stat": "CrushStrength",
+            "Modifier": "add_flat",
+            "Value": 1
+        },
+        {
+            "TargetCategory": "kragmore_anvil",
+            "Stat": "CrushSpeedPenalty",
+            "Modifier": "multiply",
+            "Value": 0.5
+        },
+        {
+            "TargetCategory": "kragmore_grinder",
+            "Stat": "CrushSpeedPenalty",
+            "Modifier": "multiply",
+            "Value": 0.5
+        }
+    ],
+    "Description": "Anvil and Grinder gain Crush Strength +1. Speed penalty for crushing infantry halved. Heavy units become catastrophic for enemy infantry formations."
+}

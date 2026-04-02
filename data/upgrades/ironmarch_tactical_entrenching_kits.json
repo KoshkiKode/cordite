@@ -1,0 +1,26 @@
+{
+    "Id": "ironmarch_tactical_entrenching_kits",
+    "DisplayName": "Tactical Entrenching Kits",
+    "FactionId": "ironmarch",
+    "Tier": 1,
+    "Cost": 500,
+    "SecondaryCost": 0,
+    "ResearchTime": 20.0,
+    "PrerequisiteBuilding": "ironmarch_barracks",
+    "PrerequisiteUpgrades": [],
+    "Effects": [
+        {
+            "TargetCategory": "ironmarch_holdfast",
+            "Stat": "FoxholeBuildTime",
+            "Modifier": "add_flat",
+            "Value": -3.0
+        },
+        {
+            "TargetCategory": "ironmarch_holdfast",
+            "Stat": "FoxholeArmorBonus",
+            "Modifier": "add_flat",
+            "Value": 0.1
+        }
+    ],
+    "Description": "Holdfast foxhole dig time reduced from 5 to 2 seconds. Foxhole armour bonus increases from +20% to +30%. Holdfast can entrench almost instantly — a nightmare for attackers."
+}

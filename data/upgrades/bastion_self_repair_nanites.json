@@ -1,0 +1,20 @@
+{
+    "Id": "bastion_self_repair_nanites",
+    "DisplayName": "Self-Repair Nanites",
+    "FactionId": "bastion",
+    "Tier": 3,
+    "Cost": 2200,
+    "SecondaryCost": 350,
+    "ResearchTime": 60.0,
+    "PrerequisiteBuilding": "bastion_tech_lab_lv2",
+    "PrerequisiteUpgrades": [],
+    "Effects": [
+        {
+            "TargetCategory": "Building",
+            "Stat": "SelfRepairRate",
+            "Modifier": "add_flat",
+            "Value": 2.0
+        }
+    ],
+    "Description": "All Bastion buildings gain passive self-repair at +2 HP/sec. Structures that already had self-repair gain +3 HP/sec instead. The base becomes effectively immortal under anything less than sustained assault."
+}

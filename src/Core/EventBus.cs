@@ -74,6 +74,12 @@ public partial class EventBus : Node
     [Signal] public delegate void InsufficientFundsEventHandler(int playerId);
     [Signal] public delegate void NodeDepletedEventHandler(int nodeId);
 
+    // ── Tech Tree Events ─────────────────────────────────────────────
+
+    [Signal] public delegate void UpgradeStartedEventHandler(int playerId, string upgradeId);
+    [Signal] public delegate void UpgradeCompletedEventHandler(int playerId, string upgradeId);
+    [Signal] public delegate void TechRequirementNotMetEventHandler(int playerId, string reason);
+
     // ── UI Events ────────────────────────────────────────────────────
 
     [Signal] public delegate void TooltipRequestedEventHandler(string text, Vector2 position);
@@ -131,6 +137,15 @@ public partial class EventBus : Node
         EmitSignal(SignalName.InsufficientFunds, playerId);
     public void EmitNodeDepleted(int nodeId) =>
         EmitSignal(SignalName.NodeDepleted, nodeId);
+
+    // ── Tech Tree Emit Helpers ────────────────────────────────────────
+
+    public void EmitUpgradeStarted(int playerId, string upgradeId) =>
+        EmitSignal(SignalName.UpgradeStarted, playerId, upgradeId);
+    public void EmitUpgradeCompleted(int playerId, string upgradeId) =>
+        EmitSignal(SignalName.UpgradeCompleted, playerId, upgradeId);
+    public void EmitTechRequirementNotMet(int playerId, string reason) =>
+        EmitSignal(SignalName.TechRequirementNotMet, playerId, reason);
 
     // ── Networking Emit Helpers ──────────────────────────────────────
 

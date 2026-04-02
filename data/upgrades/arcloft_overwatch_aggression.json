@@ -1,0 +1,28 @@
+{
+    "Id": "arcloft_overwatch_aggression",
+    "DisplayName": "Overwatch Aggression Protocol",
+    "FactionId": "arcloft",
+    "Tier": 2,
+    "Cost": 1100,
+    "SecondaryCost": 100,
+    "ResearchTime": 40.0,
+    "PrerequisiteBuilding": "arcloft_tech_lab",
+    "PrerequisiteUpgrades": [
+        "arcloft_expanded_overwatch"
+    ],
+    "Effects": [
+        {
+            "TargetCategory": "FactionMechanic",
+            "Stat": "OverwatchDamageBonus",
+            "Modifier": "add_flat",
+            "Value": 0.1
+        },
+        {
+            "TargetCategory": "FactionMechanic",
+            "Stat": "OverwatchDetectionBonus",
+            "Modifier": "add_flat",
+            "Value": 0.2
+        }
+    ],
+    "Description": "Aircraft in Overwatch mode gain +10% damage and +20% detection range. Overwatch becomes an offensive tool, not just a defensive one."
+}

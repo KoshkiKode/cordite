@@ -1,0 +1,32 @@
+{
+    "Id": "stormrend_rapid_rearm_systems",
+    "DisplayName": "Rapid Rearm Systems",
+    "FactionId": "stormrend",
+    "Tier": 2,
+    "Cost": 1100,
+    "SecondaryCost": 100,
+    "ResearchTime": 40.0,
+    "PrerequisiteBuilding": "stormrend_storm_airstrip",
+    "PrerequisiteUpgrades": [],
+    "Effects": [
+        {
+            "TargetCategory": "stormrend_razorbeak",
+            "Stat": "RearmTime",
+            "Modifier": "add_flat",
+            "Value": -4.0
+        },
+        {
+            "TargetCategory": "stormrend_flickerhawk",
+            "Stat": "ReloadTime",
+            "Modifier": "multiply",
+            "Value": 0.8
+        },
+        {
+            "TargetCategory": "stormrend_vortex",
+            "Stat": "ReloadTime",
+            "Modifier": "multiply",
+            "Value": 0.8
+        }
+    ],
+    "Description": "Razorbeak rearm time halved (8s → 4s). All helicopter reload times -20%. Stormrend's air units cycle through combat nearly twice as fast."
+}

@@ -1,0 +1,26 @@
+{
+    "Id": "stormrend_blitz_conditioning",
+    "DisplayName": "Blitz Conditioning",
+    "FactionId": "stormrend",
+    "Tier": 1,
+    "Cost": 500,
+    "SecondaryCost": 0,
+    "ResearchTime": 20.0,
+    "PrerequisiteBuilding": "stormrend_blitz_barracks",
+    "PrerequisiteUpgrades": [],
+    "Effects": [
+        {
+            "TargetCategory": "Infantry",
+            "Stat": "Speed",
+            "Modifier": "multiply",
+            "Value": 1.15
+        },
+        {
+            "TargetCategory": "stormrend_razorwind",
+            "Stat": "SprintCooldown",
+            "Modifier": "multiply",
+            "Value": 0.667
+        }
+    ],
+    "Description": "All infantry gain 15% move speed. Razorwind sprint cooldown reduced from 15 to 10 seconds. The already-fastest infantry becomes even more relentless."
+}

@@ -1,0 +1,28 @@
+{
+    "Id": "ironmarch_reinforced_fob",
+    "DisplayName": "Reinforced FOB",
+    "FactionId": "ironmarch",
+    "Tier": 2,
+    "Cost": 1200,
+    "SecondaryCost": 100,
+    "ResearchTime": 40.0,
+    "PrerequisiteBuilding": "ironmarch_lab",
+    "PrerequisiteUpgrades": [
+        "ironmarch_fob_rapid_deployment"
+    ],
+    "Effects": [
+        {
+            "TargetCategory": "ironmarch_fob_truck",
+            "Stat": "FOBMaxHealth",
+            "Modifier": "multiply",
+            "Value": 1.5
+        },
+        {
+            "TargetCategory": "ironmarch_fob_truck",
+            "Stat": "FOBFlakCannon",
+            "Modifier": "add_flat",
+            "Value": 1
+        }
+    ],
+    "Description": "FOB gains 50% more health and a built-in flak cannon (light AA). The one upgrade that gives Ironmarch a prayer against helicopters targeting their FOBs."
+}

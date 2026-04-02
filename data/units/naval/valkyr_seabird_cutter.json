@@ -1,0 +1,49 @@
+{
+    "Id": "valkyr_seabird_cutter",
+    "DisplayName": "Seabird Cutter",
+    "FactionId": "valkyr",
+    "Category": "PatrolBoat",
+    "MovementClassId": "Naval",
+    "MaxHealth": 120.0,
+    "ArmorValue": 2.0,
+    "ArmorClass": "Light",
+    "SightRange": 10.0,
+    "BuildTime": 18.0,
+    "Cost": 450,
+    "SecondaryCost": 0,
+    "PopulationCost": 1,
+    "Weapons": [
+        {
+            "Id": "seabird_cutter_primary",
+            "Type": "Autocannon",
+            "Damage": 20.0,
+            "RateOfFire": 1.5,
+            "Range": 6.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 18.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 85.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.3,
+                "Light": 1.4,
+                "Medium": 0.6,
+                "Heavy": 0.3,
+                "Unarmored": 1.8,
+                "Building": 0.4
+            }
+        }
+    ],
+    "SpecialAbilityId": "afterburner_burst",
+    "Description": "Fast Valkyr patrol boat. Anti-infantry and anti-patrol-boat specialist. Its Afterburner Burst ability provides a 5-second speed surge — hard to catch on open water.",
+    "SpeedOverride": 0.3,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 2,
+    "FootprintHeight": 2,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false,
+    "NavalExpansionNote": "Staged for Naval Expansion DLC. Not in active tech tree."
+}

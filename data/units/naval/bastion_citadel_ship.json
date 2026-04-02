@@ -1,0 +1,69 @@
+{
+    "Id": "bastion_citadel_ship",
+    "DisplayName": "Bastion Citadel Ship",
+    "FactionId": "bastion",
+    "Category": "CapitalShip",
+    "MovementClassId": "Naval",
+    "MaxHealth": 3000.0,
+    "ArmorValue": 12.0,
+    "ArmorClass": "Heavy",
+    "SightRange": 16.0,
+    "BuildTime": 100.0,
+    "Cost": 5000,
+    "SecondaryCost": 800,
+    "PopulationCost": 12,
+    "Weapons": [
+        {
+            "Id": "citadel_ship_main_battery",
+            "Type": "Cannon",
+            "Damage": 120.0,
+            "RateOfFire": 0.4,
+            "Range": 16.0,
+            "MinRange": 3.0,
+            "ProjectileSpeed": 30.0,
+            "AreaOfEffect": 2.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 92.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.2,
+                "Light": 1.2,
+                "Medium": 1.0,
+                "Heavy": 0.8,
+                "Unarmored": 1.5,
+                "Building": 1.5
+            }
+        },
+        {
+            "Id": "citadel_ship_missile_battery",
+            "Type": "Missile",
+            "Damage": 70.0,
+            "RateOfFire": 0.8,
+            "Range": 14.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 22.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 2,
+            "AccuracyPercent": 95.0,
+            "ArmorModifiers": {
+                "Aircraft": 1.8,
+                "Light": 0.3,
+                "Medium": 0.2,
+                "Heavy": 0.1,
+                "Unarmored": 0.3,
+                "Building": 0.2
+            }
+        }
+    ],
+    "SpecialAbilityId": "naval_aegis_dome",
+    "Description": "Bastion's ultimate naval asset — a floating fortress. The Naval Aegis Dome ability projects a 12-cell defensive dome around the Citadel Ship, absorbing 300 HP of damage. Combined with its highest-health-in-class stats and triple armament, this ship is nearly unkillable.",
+    "SpeedOverride": 0.08,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 4,
+    "FootprintHeight": 4,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": true,
+    "NavalExpansionNote": "Staged for Naval Expansion DLC. Not in active tech tree."
+}

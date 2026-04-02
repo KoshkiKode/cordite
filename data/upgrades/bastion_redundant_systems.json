@@ -1,0 +1,20 @@
+{
+    "Id": "bastion_redundant_systems",
+    "DisplayName": "Redundant Systems",
+    "FactionId": "bastion",
+    "Tier": 2,
+    "Cost": 900,
+    "SecondaryCost": 50,
+    "ResearchTime": 30.0,
+    "PrerequisiteBuilding": "bastion_command_hub",
+    "PrerequisiteUpgrades": [],
+    "Effects": [
+        {
+            "TargetCategory": "FactionMechanic",
+            "Stat": "DisconnectedEfficiency",
+            "Modifier": "add_flat",
+            "Value": 0.2
+        }
+    ],
+    "Description": "Turrets retain 80% effectiveness when disconnected from the Fortification Network (up from 60%). Hub destruction is no longer crippling."
+}

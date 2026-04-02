@@ -1,0 +1,26 @@
+{
+    "Id": "arcloft_quantum_detection_grid",
+    "DisplayName": "Quantum Detection Grid",
+    "FactionId": "arcloft",
+    "Tier": 3,
+    "Cost": 2000,
+    "SecondaryCost": 300,
+    "ResearchTime": 50.0,
+    "PrerequisiteBuilding": "arcloft_tech_lab_lv2",
+    "PrerequisiteUpgrades": [],
+    "Effects": [
+        {
+            "TargetCategory": "All",
+            "Stat": "StealthDetectionRadius",
+            "Modifier": "multiply",
+            "Value": 1.5
+        },
+        {
+            "TargetCategory": "FactionMechanic",
+            "Stat": "OverwatchStealthDetect",
+            "Modifier": "add_flat",
+            "Value": 1
+        }
+    ],
+    "Description": "All Arcloft units with SightRange gain 50% more stealth detection radius. Overwatch Zones automatically detect stealthed units. Counters Kragmore Mole Rats and Valkyr Windrunner stealth."
+}

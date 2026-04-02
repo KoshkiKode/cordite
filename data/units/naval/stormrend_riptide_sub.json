@@ -1,0 +1,49 @@
+{
+    "Id": "stormrend_riptide_sub",
+    "DisplayName": "Riptide Sub",
+    "FactionId": "stormrend",
+    "Category": "Submarine",
+    "MovementClassId": "Naval",
+    "MaxHealth": 240.0,
+    "ArmorValue": 2.0,
+    "ArmorClass": "Medium",
+    "SightRange": 8.0,
+    "BuildTime": 32.0,
+    "Cost": 1850,
+    "SecondaryCost": 200,
+    "PopulationCost": 4,
+    "Weapons": [
+        {
+            "Id": "riptide_sub_torpedo",
+            "Type": "Torpedo",
+            "Damage": 100.0,
+            "RateOfFire": 0.35,
+            "Range": 8.0,
+            "MinRange": 1.0,
+            "ProjectileSpeed": 14.0,
+            "AreaOfEffect": 1.5,
+            "CanTarget": 4,
+            "AccuracyPercent": 88.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.0,
+                "Light": 1.6,
+                "Medium": 1.2,
+                "Heavy": 0.8,
+                "Unarmored": 0.8,
+                "Building": 1.1
+            }
+        }
+    ],
+    "SpecialAbilityId": "momentum_torpedo_salvo",
+    "Description": "Stormrend stealth submarine — fastest sub class, most fragile. The Momentum Torpedo Salvo fires 3 torpedoes simultaneously (costs 40 Momentum, triple normal damage, 20-sec cooldown). Generates Momentum from every torpedo hit.",
+    "SpeedOverride": 0.25,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 3,
+    "FootprintHeight": 3,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": true,
+    "IsDetector": false,
+    "NavalExpansionNote": "Staged for Naval Expansion DLC. Not in active tech tree."
+}

@@ -1,0 +1,49 @@
+{
+    "Id": "kragmore_deep_bore",
+    "DisplayName": "Deep Bore",
+    "FactionId": "kragmore",
+    "Category": "Submarine",
+    "MovementClassId": "Naval",
+    "MaxHealth": 340.0,
+    "ArmorValue": 5.0,
+    "ArmorClass": "Medium",
+    "SightRange": 7.0,
+    "BuildTime": 42.0,
+    "Cost": 1900,
+    "SecondaryCost": 200,
+    "PopulationCost": 4,
+    "Weapons": [
+        {
+            "Id": "deep_bore_torpedo",
+            "Type": "Torpedo",
+            "Damage": 130.0,
+            "RateOfFire": 0.2,
+            "Range": 9.0,
+            "MinRange": 2.0,
+            "ProjectileSpeed": 9.0,
+            "AreaOfEffect": 3.0,
+            "CanTarget": 4,
+            "AccuracyPercent": 85.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.0,
+                "Light": 1.4,
+                "Medium": 1.2,
+                "Heavy": 1.1,
+                "Unarmored": 0.8,
+                "Building": 1.4
+            }
+        }
+    ],
+    "SpecialAbilityId": "drill_mine_deploy",
+    "Description": "Kragmore stealth submarine. Slower than other subs but hits harder — Kragmore's naval doctrine doesn't change. The Drill Mine Deploy ability lays an underwater mine cluster (3 mines, 60s arm time) instead of firing torpedoes.",
+    "SpeedOverride": 0.15,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 3,
+    "FootprintHeight": 3,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": true,
+    "IsDetector": false,
+    "NavalExpansionNote": "Staged for Naval Expansion DLC. Not in active tech tree."
+}

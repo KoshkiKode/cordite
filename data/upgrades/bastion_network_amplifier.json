@@ -1,0 +1,38 @@
+{
+    "Id": "bastion_network_amplifier",
+    "DisplayName": "Network Amplifier",
+    "FactionId": "bastion",
+    "Tier": 2,
+    "Cost": 1000,
+    "SecondaryCost": 75,
+    "ResearchTime": 35.0,
+    "PrerequisiteBuilding": "bastion_command_hub",
+    "PrerequisiteUpgrades": [],
+    "Effects": [
+        {
+            "TargetCategory": "FactionMechanic",
+            "Stat": "NetworkRadius",
+            "Modifier": "add_flat",
+            "Value": 4.0
+        },
+        {
+            "TargetCategory": "FactionMechanic",
+            "Stat": "NetworkHPBonus",
+            "Modifier": "add_flat",
+            "Value": 0.05
+        },
+        {
+            "TargetCategory": "FactionMechanic",
+            "Stat": "NetworkDmgBonus",
+            "Modifier": "add_flat",
+            "Value": 0.05
+        },
+        {
+            "TargetCategory": "FactionMechanic",
+            "Stat": "NetworkRepairBonus",
+            "Modifier": "add_flat",
+            "Value": 0.05
+        }
+    ],
+    "Description": "Command Hub network radius increases to 12 cells. Network bonuses increase to +20% HP, +15% damage, +25% repair speed. One Hub now covers an entire base sector."
+}

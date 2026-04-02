@@ -1,0 +1,26 @@
+{
+    "Id": "kragmore_behemoth_chassis",
+    "DisplayName": "Behemoth Chassis",
+    "FactionId": "kragmore",
+    "Tier": 3,
+    "Cost": 2000,
+    "SecondaryCost": 300,
+    "ResearchTime": 50.0,
+    "PrerequisiteBuilding": "kragmore_war_forge",
+    "PrerequisiteUpgrades": [],
+    "Effects": [
+        {
+            "TargetCategory": "kragmore_mammoth",
+            "Stat": "MaxHealth",
+            "Modifier": "multiply",
+            "Value": 1.25
+        },
+        {
+            "TargetCategory": "kragmore_mammoth",
+            "Stat": "RegenRate",
+            "Modifier": "add_flat",
+            "Value": 2.0
+        }
+    ],
+    "Description": "Mammoth gains 25% more max health and regenerates 3 HP/sec (up from 1). Without sustained focus fire, the Mammoth becomes effectively unkillable."
+}

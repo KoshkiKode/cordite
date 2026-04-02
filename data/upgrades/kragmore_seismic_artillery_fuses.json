@@ -1,0 +1,26 @@
+{
+    "Id": "kragmore_seismic_artillery_fuses",
+    "DisplayName": "Seismic Artillery Fuses",
+    "FactionId": "kragmore",
+    "Tier": 2,
+    "Cost": 1000,
+    "SecondaryCost": 75,
+    "ResearchTime": 35.0,
+    "PrerequisiteBuilding": "kragmore_lab",
+    "PrerequisiteUpgrades": [],
+    "Effects": [
+        {
+            "TargetCategory": "kragmore_quake_battery",
+            "Stat": "AreaOfEffect",
+            "Modifier": "multiply",
+            "Value": 1.3
+        },
+        {
+            "TargetCategory": "kragmore_quake_battery",
+            "Stat": "ArmorModifier.Building",
+            "Modifier": "multiply",
+            "Value": 1.25
+        }
+    ],
+    "Description": "Quake Battery splash radius +30% and building damage +25%. Artillery becomes a fortress-ender, not just a unit-killer."
+}

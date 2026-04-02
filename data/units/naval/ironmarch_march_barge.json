@@ -1,0 +1,49 @@
+{
+    "Id": "ironmarch_march_barge",
+    "DisplayName": "March Barge",
+    "FactionId": "ironmarch",
+    "Category": "PatrolBoat",
+    "MovementClassId": "Naval",
+    "MaxHealth": 220.0,
+    "ArmorValue": 5.0,
+    "ArmorClass": "Light",
+    "SightRange": 9.0,
+    "BuildTime": 20.0,
+    "Cost": 600,
+    "SecondaryCost": 0,
+    "PopulationCost": 2,
+    "Weapons": [
+        {
+            "Id": "march_barge_pintle",
+            "Type": "Autocannon",
+            "Damage": 25.0,
+            "RateOfFire": 1.2,
+            "Range": 6.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 16.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 85.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.3,
+                "Light": 1.3,
+                "Medium": 0.7,
+                "Heavy": 0.4,
+                "Unarmored": 1.7,
+                "Building": 0.5
+            }
+        }
+    ],
+    "SpecialAbilityId": "infantry_landing_craft",
+    "Description": "Ironmarch patrol/transport boat. Can carry 2 infantry squads and deploy them on shores (amphibious landing). The Infantry Landing Craft ability delivers infantry directly from sea to land — enabling FOB construction at coastal sites.",
+    "SpeedOverride": 0.22,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 2,
+    "FootprintHeight": 2,
+    "CanGarrison": true,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false,
+    "NavalExpansionNote": "Staged for Naval Expansion DLC. Not in active tech tree."
+}

@@ -1,0 +1,49 @@
+{
+    "Id": "stormrend_lightning_skiff",
+    "DisplayName": "Lightning Skiff",
+    "FactionId": "stormrend",
+    "Category": "PatrolBoat",
+    "MovementClassId": "Naval",
+    "MaxHealth": 100.0,
+    "ArmorValue": 1.0,
+    "ArmorClass": "Light",
+    "SightRange": 10.0,
+    "BuildTime": 15.0,
+    "Cost": 400,
+    "SecondaryCost": 0,
+    "PopulationCost": 1,
+    "Weapons": [
+        {
+            "Id": "lightning_skiff_autocannon",
+            "Type": "Autocannon",
+            "Damage": 18.0,
+            "RateOfFire": 2.0,
+            "Range": 5.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 18.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 80.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.3,
+                "Light": 1.5,
+                "Medium": 0.5,
+                "Heavy": 0.2,
+                "Unarmored": 2.0,
+                "Building": 0.5
+            }
+        }
+    ],
+    "SpecialAbilityId": "momentum_naval_burst",
+    "Description": "Stormrend's fastest patrol boat — fastest in the game, most fragile. Generates Momentum from naval combat. Momentum Naval Burst: when Momentum is above 50, gains +30% speed for 5 seconds. Essentially a Bolt on water.",
+    "SpeedOverride": 0.38,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 2,
+    "FootprintHeight": 2,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false,
+    "NavalExpansionNote": "Staged for Naval Expansion DLC. Not in active tech tree."
+}

@@ -1,0 +1,38 @@
+{
+    "Id": "bastion_reinforced_turret_mounts",
+    "DisplayName": "Reinforced Turret Mounts",
+    "FactionId": "bastion",
+    "Tier": 2,
+    "Cost": 1100,
+    "SecondaryCost": 100,
+    "ResearchTime": 40.0,
+    "PrerequisiteBuilding": "bastion_tech_lab",
+    "PrerequisiteUpgrades": [],
+    "Effects": [
+        {
+            "TargetCategory": "bastion_bastion_turret",
+            "Stat": "MaxHealth",
+            "Modifier": "multiply",
+            "Value": 1.25
+        },
+        {
+            "TargetCategory": "bastion_bastion_turret",
+            "Stat": "Range",
+            "Modifier": "add_flat",
+            "Value": 1.0
+        },
+        {
+            "TargetCategory": "bastion_spire_array",
+            "Stat": "MaxHealth",
+            "Modifier": "multiply",
+            "Value": 1.25
+        },
+        {
+            "TargetCategory": "bastion_spire_array",
+            "Stat": "Range",
+            "Modifier": "add_flat",
+            "Value": 1.0
+        }
+    ],
+    "Description": "Bastion Turret and Spire Array gain 25% more health and +1 range. Makes Bastion's primary turrets substantially harder to outrange with artillery."
+}

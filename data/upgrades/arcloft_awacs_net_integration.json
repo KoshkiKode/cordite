@@ -1,0 +1,26 @@
+{
+    "Id": "arcloft_awacs_net_integration",
+    "DisplayName": "AWACS Net Integration",
+    "FactionId": "arcloft",
+    "Tier": 2,
+    "Cost": 900,
+    "SecondaryCost": 75,
+    "ResearchTime": 30.0,
+    "PrerequisiteBuilding": "arcloft_tech_lab",
+    "PrerequisiteUpgrades": [],
+    "Effects": [
+        {
+            "TargetCategory": "arcloft_vigilant",
+            "Stat": "RadarRangeBonus",
+            "Modifier": "add_flat",
+            "Value": 5.0
+        },
+        {
+            "TargetCategory": "arcloft_vigilant",
+            "Stat": "AuraAttackSpeedBonus",
+            "Modifier": "add_flat",
+            "Value": 0.1
+        }
+    ],
+    "Description": "Vigilant AWACS radar range bonus increases from +5 to +10 cells. All friendly units in AWACS range gain +10% attack speed. Vigilant becomes a true force multiplier."
+}

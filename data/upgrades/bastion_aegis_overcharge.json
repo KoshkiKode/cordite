@@ -1,0 +1,26 @@
+{
+    "Id": "bastion_aegis_overcharge",
+    "DisplayName": "Aegis Overcharge",
+    "FactionId": "bastion",
+    "Tier": 3,
+    "Cost": 2000,
+    "SecondaryCost": 300,
+    "ResearchTime": 55.0,
+    "PrerequisiteBuilding": "bastion_aegis_generator",
+    "PrerequisiteUpgrades": [],
+    "Effects": [
+        {
+            "TargetCategory": "bastion_aegis_generator",
+            "Stat": "DomeCapacity",
+            "Modifier": "multiply",
+            "Value": 1.5
+        },
+        {
+            "TargetCategory": "bastion_aegis_generator",
+            "Stat": "RegenRate",
+            "Modifier": "multiply",
+            "Value": 1.5
+        }
+    ],
+    "Description": "Aegis dome absorbs 750 HP before collapsing (up from 500) and regenerates at 15 HP/sec (up from 10). The endgame fortress becomes nearly impenetrable."
+}

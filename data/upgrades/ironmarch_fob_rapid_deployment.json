@@ -1,0 +1,32 @@
+{
+    "Id": "ironmarch_fob_rapid_deployment",
+    "DisplayName": "FOB Rapid Deployment",
+    "FactionId": "ironmarch",
+    "Tier": 1,
+    "Cost": 600,
+    "SecondaryCost": 0,
+    "ResearchTime": 25.0,
+    "PrerequisiteBuilding": "ironmarch_iron_foundry",
+    "PrerequisiteUpgrades": [],
+    "Effects": [
+        {
+            "TargetCategory": "ironmarch_fob_truck",
+            "Stat": "DeployTime",
+            "Modifier": "add_flat",
+            "Value": -7.0
+        },
+        {
+            "TargetCategory": "ironmarch_fob_truck",
+            "Stat": "UndeployTime",
+            "Modifier": "add_flat",
+            "Value": -5.0
+        },
+        {
+            "TargetCategory": "ironmarch_fob_truck",
+            "Stat": "FOBRadius",
+            "Modifier": "multiply",
+            "Value": 1.2
+        }
+    ],
+    "Description": "FOB Truck deploy time reduced from 15 to 8 seconds. Undeploy from 10 to 5 seconds. FOB build radius +20%. FOBs are the faction's identity — faster deployment means faster territory control."
+}

@@ -1,0 +1,49 @@
+{
+    "Id": "kragmore_iron_trawler",
+    "DisplayName": "Iron Trawler",
+    "FactionId": "kragmore",
+    "Category": "PatrolBoat",
+    "MovementClassId": "Naval",
+    "MaxHealth": 180.0,
+    "ArmorValue": 4.0,
+    "ArmorClass": "Light",
+    "SightRange": 9.0,
+    "BuildTime": 20.0,
+    "Cost": 600,
+    "SecondaryCost": 0,
+    "PopulationCost": 2,
+    "Weapons": [
+        {
+            "Id": "iron_trawler_cannon",
+            "Type": "Cannon",
+            "Damage": 30.0,
+            "RateOfFire": 0.8,
+            "Range": 5.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 20.0,
+            "AreaOfEffect": 0.5,
+            "CanTarget": 5,
+            "AccuracyPercent": 82.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.2,
+                "Light": 1.5,
+                "Medium": 0.8,
+                "Heavy": 0.5,
+                "Unarmored": 2.0,
+                "Building": 0.6
+            }
+        }
+    ],
+    "SpecialAbilityId": "smoke_screen_naval",
+    "Description": "Kragmore patrol boat. Heavily armoured for its class — the Iron Trawler can take punishment that would shred lighter patrol boats. Smoke Screen ability on 20-second cooldown.",
+    "SpeedOverride": 0.2,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 2,
+    "FootprintHeight": 2,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false,
+    "NavalExpansionNote": "Staged for Naval Expansion DLC. Not in active tech tree."
+}

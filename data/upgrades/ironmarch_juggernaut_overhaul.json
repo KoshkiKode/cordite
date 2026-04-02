@@ -1,0 +1,26 @@
+{
+    "Id": "ironmarch_juggernaut_overhaul",
+    "DisplayName": "Juggernaut Overhaul",
+    "FactionId": "ironmarch",
+    "Tier": 3,
+    "Cost": 2000,
+    "SecondaryCost": 350,
+    "ResearchTime": 55.0,
+    "PrerequisiteBuilding": "ironmarch_lab_lv2",
+    "PrerequisiteUpgrades": [],
+    "Effects": [
+        {
+            "TargetCategory": "ironmarch_juggernaut",
+            "Stat": "DeployTime",
+            "Modifier": "add_flat",
+            "Value": -5.0
+        },
+        {
+            "TargetCategory": "ironmarch_juggernaut",
+            "Stat": "Damage",
+            "Modifier": "multiply",
+            "Value": 1.25
+        }
+    ],
+    "Description": "Juggernaut deploy time cut from 10 to 5 seconds. Deployed DPS +25%. Can micro-reposition 2 cells while deployed. The Juggernaut becomes truly, terrifyingly immovable."
+}

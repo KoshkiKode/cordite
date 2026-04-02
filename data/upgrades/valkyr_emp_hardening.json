@@ -1,0 +1,38 @@
+{
+    "Id": "valkyr_emp_hardening",
+    "DisplayName": "EMP Hardening",
+    "FactionId": "valkyr",
+    "Tier": 3,
+    "Cost": 1500,
+    "SecondaryCost": 200,
+    "ResearchTime": 45.0,
+    "PrerequisiteBuilding": "valkyr_aerie_research_lv2",
+    "PrerequisiteUpgrades": [],
+    "Effects": [
+        {
+            "TargetCategory": "Helicopter",
+            "Stat": "EMPImmunity",
+            "Modifier": "add_flat",
+            "Value": 1
+        },
+        {
+            "TargetCategory": "Jet",
+            "Stat": "EMPImmunity",
+            "Modifier": "add_flat",
+            "Value": 1
+        },
+        {
+            "TargetCategory": "Helicopter",
+            "Stat": "ArmorModifier.Missile",
+            "Modifier": "multiply",
+            "Value": 0.8
+        },
+        {
+            "TargetCategory": "Jet",
+            "Stat": "ArmorModifier.Missile",
+            "Modifier": "multiply",
+            "Value": 0.8
+        }
+    ],
+    "Description": "All Valkyr aircraft become immune to EMP and take 20% less damage from missiles. Counters the Stormcaller's own EMP weapon and mass AA."
+}

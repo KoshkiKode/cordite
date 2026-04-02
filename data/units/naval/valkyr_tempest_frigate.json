@@ -1,0 +1,69 @@
+{
+    "Id": "valkyr_tempest_frigate",
+    "DisplayName": "Tempest Frigate",
+    "FactionId": "valkyr",
+    "Category": "Destroyer",
+    "MovementClassId": "Naval",
+    "MaxHealth": 380.0,
+    "ArmorValue": 5.0,
+    "ArmorClass": "Medium",
+    "SightRange": 13.0,
+    "BuildTime": 35.0,
+    "Cost": 1600,
+    "SecondaryCost": 150,
+    "PopulationCost": 3,
+    "Weapons": [
+        {
+            "Id": "tempest_frigate_main",
+            "Type": "Missile",
+            "Damage": 55.0,
+            "RateOfFire": 0.5,
+            "Range": 12.0,
+            "MinRange": 2.0,
+            "ProjectileSpeed": 22.0,
+            "AreaOfEffect": 1.5,
+            "CanTarget": 7,
+            "AccuracyPercent": 88.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.8,
+                "Light": 1.2,
+                "Medium": 1.0,
+                "Heavy": 0.7,
+                "Unarmored": 1.0,
+                "Building": 0.9
+            }
+        },
+        {
+            "Id": "tempest_frigate_aa",
+            "Type": "Flak",
+            "Damage": 30.0,
+            "RateOfFire": 2.0,
+            "Range": 9.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 25.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 2,
+            "AccuracyPercent": 80.0,
+            "ArmorModifiers": {
+                "Aircraft": 1.5,
+                "Light": 0.2,
+                "Medium": 0.1,
+                "Heavy": 0.1,
+                "Unarmored": 0.2,
+                "Building": 0.1
+            }
+        }
+    ],
+    "SpecialAbilityId": "target_designation_relay",
+    "Description": "Valkyr medium warship. Carries both surface-to-surface missiles and flak guns. Its Target Designation Relay ability marks enemy naval vessels for +20% air damage from friendly jets — perfect for Valkyr's air-first doctrine.",
+    "SpeedOverride": 0.22,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 3,
+    "FootprintHeight": 3,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": true,
+    "NavalExpansionNote": "Staged for Naval Expansion DLC. Not in active tech tree."
+}

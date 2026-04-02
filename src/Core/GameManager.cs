@@ -1,5 +1,6 @@
 using Godot;
 using UnnamedRTS.Game.Economy;
+using UnnamedRTS.Game.Tech;
 using UnnamedRTS.Systems.Networking;
 
 namespace UnnamedRTS.Core;
@@ -63,6 +64,12 @@ public partial class GameManager : Node
     /// </summary>
     public HarvesterSystem? HarvesterSystem { get; set; }
 
+    /// <summary>
+    /// Tech tree manager for per-player upgrade research and stat modifiers.
+    /// Set externally during match setup.
+    /// </summary>
+    public TechTreeManager? TechTreeManager { get; set; }
+
     public override void _Ready()
     {
         GD.Print("[GameManager] Initialized.");
@@ -102,6 +109,7 @@ public partial class GameManager : Node
         FixedPoint economyDelta = FixedPoint.One / FixedPoint.FromInt(SimTickRate);
         EconomyManager?.ProcessTick(economyDelta);
         HarvesterSystem?.ProcessTick(economyDelta);
+        TechTreeManager?.ProcessTick(economyDelta);
 
         if (IsMultiplayer && Lockstep != null)
         {

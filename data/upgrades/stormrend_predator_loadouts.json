@@ -1,0 +1,26 @@
+{
+    "Id": "stormrend_predator_loadouts",
+    "DisplayName": "Predator Loadouts",
+    "FactionId": "stormrend",
+    "Tier": 2,
+    "Cost": 1000,
+    "SecondaryCost": 75,
+    "ResearchTime": 30.0,
+    "PrerequisiteBuilding": "stormrend_storm_lab",
+    "PrerequisiteUpgrades": [],
+    "Effects": [
+        {
+            "TargetCategory": "stormrend_cyclone",
+            "Stat": "FirstShotBonus",
+            "Modifier": "add_flat",
+            "Value": 0.2
+        },
+        {
+            "TargetCategory": "stormrend_riptide",
+            "Stat": "FlankingBonus",
+            "Modifier": "add_flat",
+            "Value": 0.15
+        }
+    ],
+    "Description": "Cyclone first-shot bonus grows from +30% to +50%. Riptide flanking bonus grows from +25% to +40%. Stormrend's alpha-strike capability becomes devastating for ambush openings."
+}

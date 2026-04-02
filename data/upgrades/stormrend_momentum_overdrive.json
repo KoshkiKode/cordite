@@ -1,0 +1,26 @@
+{
+    "Id": "stormrend_momentum_overdrive",
+    "DisplayName": "Momentum Overdrive",
+    "FactionId": "stormrend",
+    "Tier": 1,
+    "Cost": 600,
+    "SecondaryCost": 0,
+    "ResearchTime": 25.0,
+    "PrerequisiteBuilding": "stormrend_storm_capacitor",
+    "PrerequisiteUpgrades": [],
+    "Effects": [
+        {
+            "TargetCategory": "FactionMechanic",
+            "Stat": "MomentumGainRate",
+            "Modifier": "multiply",
+            "Value": 1.25
+        },
+        {
+            "TargetCategory": "FactionMechanic",
+            "Stat": "MomentumDecayRate",
+            "Modifier": "add_flat",
+            "Value": -1.0
+        }
+    ],
+    "Description": "Momentum gain from dealing damage is 25% faster. Momentum decay slows from -3/sec to -2/sec when not attacking. Stormrend reaches Stormbreak faster and holds it longer."
+}

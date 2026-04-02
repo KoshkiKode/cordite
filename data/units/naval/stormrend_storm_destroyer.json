@@ -1,0 +1,69 @@
+{
+    "Id": "stormrend_storm_destroyer",
+    "DisplayName": "Storm Destroyer",
+    "FactionId": "stormrend",
+    "Category": "Destroyer",
+    "MovementClassId": "Naval",
+    "MaxHealth": 420.0,
+    "ArmorValue": 4.0,
+    "ArmorClass": "Medium",
+    "SightRange": 12.0,
+    "BuildTime": 35.0,
+    "Cost": 1600,
+    "SecondaryCost": 150,
+    "PopulationCost": 3,
+    "Weapons": [
+        {
+            "Id": "storm_destroyer_rapid_fire",
+            "Type": "Autocannon",
+            "Damage": 40.0,
+            "RateOfFire": 1.2,
+            "Range": 8.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 20.0,
+            "AreaOfEffect": 0.5,
+            "CanTarget": 5,
+            "AccuracyPercent": 82.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.4,
+                "Light": 1.6,
+                "Medium": 1.0,
+                "Heavy": 0.6,
+                "Unarmored": 1.8,
+                "Building": 0.7
+            }
+        },
+        {
+            "Id": "storm_destroyer_rocket_pod",
+            "Type": "Rocket",
+            "Damage": 60.0,
+            "RateOfFire": 0.4,
+            "Range": 10.0,
+            "MinRange": 2.0,
+            "ProjectileSpeed": 16.0,
+            "AreaOfEffect": 2.5,
+            "CanTarget": 5,
+            "AccuracyPercent": 75.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.2,
+                "Light": 1.3,
+                "Medium": 1.1,
+                "Heavy": 0.7,
+                "Unarmored": 1.4,
+                "Building": 1.0
+            }
+        }
+    ],
+    "SpecialAbilityId": "alpha_strike_naval",
+    "Description": "Stormrend destroyer. High damage output, lower health than peers. Alpha Strike Naval: dump the full rocket pod payload in a 3-second burst (all 8 rockets fire immediately), then enter a 12-second reload. Maximum alpha, minimum staying power — quintessential Stormrend.",
+    "SpeedOverride": 0.26,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 3,
+    "FootprintHeight": 3,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false,
+    "NavalExpansionNote": "Staged for Naval Expansion DLC. Not in active tech tree."
+}

@@ -1,0 +1,49 @@
+{
+    "Id": "ironmarch_trench_diver",
+    "DisplayName": "Trench Diver",
+    "FactionId": "ironmarch",
+    "Category": "Submarine",
+    "MovementClassId": "Naval",
+    "MaxHealth": 360.0,
+    "ArmorValue": 6.0,
+    "ArmorClass": "Medium",
+    "SightRange": 8.0,
+    "BuildTime": 40.0,
+    "Cost": 2000,
+    "SecondaryCost": 220,
+    "PopulationCost": 5,
+    "Weapons": [
+        {
+            "Id": "trench_diver_torpedo",
+            "Type": "Torpedo",
+            "Damage": 120.0,
+            "RateOfFire": 0.22,
+            "Range": 9.0,
+            "MinRange": 2.0,
+            "ProjectileSpeed": 10.0,
+            "AreaOfEffect": 3.5,
+            "CanTarget": 4,
+            "AccuracyPercent": 87.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.0,
+                "Light": 1.4,
+                "Medium": 1.3,
+                "Heavy": 1.2,
+                "Unarmored": 0.8,
+                "Building": 1.5
+            }
+        }
+    ],
+    "SpecialAbilityId": "mine_anchor",
+    "Description": "Ironmarch stealth submarine. Toughest sub class in the game. The Mine Anchor ability allows it to park at a location and deploy a ring of 5 proximity mines (15-sec arm time), then return to stealth — creating an impassable underwater minefield.",
+    "SpeedOverride": 0.16,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 3,
+    "FootprintHeight": 3,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": true,
+    "IsDetector": false,
+    "NavalExpansionNote": "Staged for Naval Expansion DLC. Not in active tech tree."
+}

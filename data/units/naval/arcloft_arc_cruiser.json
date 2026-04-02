@@ -1,0 +1,69 @@
+{
+    "Id": "arcloft_arc_cruiser",
+    "DisplayName": "Arc Cruiser",
+    "FactionId": "arcloft",
+    "Category": "Destroyer",
+    "MovementClassId": "Naval",
+    "MaxHealth": 400.0,
+    "ArmorValue": 6.0,
+    "ArmorClass": "Medium",
+    "SightRange": 15.0,
+    "BuildTime": 38.0,
+    "Cost": 1700,
+    "SecondaryCost": 200,
+    "PopulationCost": 3,
+    "Weapons": [
+        {
+            "Id": "arc_cruiser_chain_cannon",
+            "Type": "ChainLightning",
+            "Damage": 45.0,
+            "RateOfFire": 0.8,
+            "Range": 9.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 22.0,
+            "AreaOfEffect": 4.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 88.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.4,
+                "Light": 1.4,
+                "Medium": 1.0,
+                "Heavy": 0.6,
+                "Unarmored": 1.6,
+                "Building": 0.7
+            }
+        },
+        {
+            "Id": "arc_cruiser_aa_missiles",
+            "Type": "Missile",
+            "Damage": 55.0,
+            "RateOfFire": 0.6,
+            "Range": 12.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 24.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 2,
+            "AccuracyPercent": 90.0,
+            "ArmorModifiers": {
+                "Aircraft": 1.7,
+                "Light": 0.2,
+                "Medium": 0.1,
+                "Heavy": 0.1,
+                "Unarmored": 0.2,
+                "Building": 0.1
+            }
+        }
+    ],
+    "SpecialAbilityId": "awacs_buoy_deploy",
+    "Description": "Arcloft destroyer. Its chain lightning cannon chains to up to 2 nearby targets — lethal against patrol boat clusters. The AWACS Buoy Deploy ability drops a floating sensor that extends radar range +8 cells for all nearby friendlies for 60 seconds.",
+    "SpeedOverride": 0.22,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 3,
+    "FootprintHeight": 3,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": true,
+    "NavalExpansionNote": "Staged for Naval Expansion DLC. Not in active tech tree."
+}

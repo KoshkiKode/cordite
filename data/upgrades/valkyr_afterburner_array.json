@@ -1,0 +1,26 @@
+{
+    "Id": "valkyr_afterburner_array",
+    "DisplayName": "Afterburner Array",
+    "FactionId": "valkyr",
+    "Tier": 3,
+    "Cost": 2000,
+    "SecondaryCost": 300,
+    "ResearchTime": 50.0,
+    "PrerequisiteBuilding": "valkyr_aerie_research_lv2",
+    "PrerequisiteUpgrades": [],
+    "Effects": [
+        {
+            "TargetCategory": "Helicopter",
+            "Stat": "Speed",
+            "Modifier": "multiply",
+            "Value": 1.2
+        },
+        {
+            "TargetCategory": "Jet",
+            "Stat": "Speed",
+            "Modifier": "multiply",
+            "Value": 1.2
+        }
+    ],
+    "Description": "All Valkyr aircraft gain 20% movement speed. An already-mobile faction becomes nearly impossible to pin down."
+}

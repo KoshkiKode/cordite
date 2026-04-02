@@ -1,0 +1,26 @@
+{
+    "Id": "arcloft_expanded_overwatch",
+    "DisplayName": "Expanded Overwatch",
+    "FactionId": "arcloft",
+    "Tier": 1,
+    "Cost": 600,
+    "SecondaryCost": 0,
+    "ResearchTime": 25.0,
+    "PrerequisiteBuilding": "arcloft_overwatch_tower",
+    "PrerequisiteUpgrades": [],
+    "Effects": [
+        {
+            "TargetCategory": "FactionMechanic",
+            "Stat": "OverwatchZoneLimit",
+            "Modifier": "add_flat",
+            "Value": 2
+        },
+        {
+            "TargetCategory": "FactionMechanic",
+            "Stat": "OverwatchZoneRadius",
+            "Modifier": "add_flat",
+            "Value": 5.0
+        }
+    ],
+    "Description": "Overwatch Zone limit increases from 3 to 5. Zone radius increases from 15 to 20 cells. Map control via Overwatch becomes genuinely intimidating."
+}

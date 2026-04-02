@@ -1,0 +1,69 @@
+{
+    "Id": "kragmore_leviathan",
+    "DisplayName": "Leviathan",
+    "FactionId": "kragmore",
+    "Category": "CapitalShip",
+    "MovementClassId": "Naval",
+    "MaxHealth": 2200.0,
+    "ArmorValue": 14.0,
+    "ArmorClass": "Heavy",
+    "SightRange": 14.0,
+    "BuildTime": 90.0,
+    "Cost": 4500,
+    "SecondaryCost": 700,
+    "PopulationCost": 12,
+    "Weapons": [
+        {
+            "Id": "leviathan_siege_battery",
+            "Type": "Cannon",
+            "Damage": 200.0,
+            "RateOfFire": 0.15,
+            "Range": 18.0,
+            "MinRange": 5.0,
+            "ProjectileSpeed": 35.0,
+            "AreaOfEffect": 5.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 75.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.1,
+                "Light": 1.5,
+                "Medium": 1.2,
+                "Heavy": 1.0,
+                "Unarmored": 2.0,
+                "Building": 1.8
+            }
+        },
+        {
+            "Id": "leviathan_secondary_guns",
+            "Type": "Autocannon",
+            "Damage": 25.0,
+            "RateOfFire": 2.0,
+            "Range": 7.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 18.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 75.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.4,
+                "Light": 1.5,
+                "Medium": 0.8,
+                "Heavy": 0.5,
+                "Unarmored": 1.8,
+                "Building": 0.6
+            }
+        }
+    ],
+    "SpecialAbilityId": "naval_horde_supreme",
+    "Description": "Kragmore capital battleship. The Leviathan dominates any water it enters. Its siege battery shells can reduce coastal fortifications to rubble. Only 1 may exist. Naval Horde Supreme: when the Leviathan is present, all nearby Kragmore naval units gain maximum Horde bonus regardless of count.",
+    "SpeedOverride": 0.08,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 4,
+    "FootprintHeight": 4,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": false,
+    "NavalExpansionNote": "Staged for Naval Expansion DLC. Not in active tech tree."
+}

@@ -1,0 +1,49 @@
+{
+    "Id": "bastion_shield_skiff",
+    "DisplayName": "Shield Skiff",
+    "FactionId": "bastion",
+    "Category": "PatrolBoat",
+    "MovementClassId": "Naval",
+    "MaxHealth": 200.0,
+    "ArmorValue": 5.0,
+    "ArmorClass": "Light",
+    "SightRange": 10.0,
+    "BuildTime": 22.0,
+    "Cost": 550,
+    "SecondaryCost": 0,
+    "PopulationCost": 1,
+    "Weapons": [
+        {
+            "Id": "shield_skiff_cannon",
+            "Type": "Autocannon",
+            "Damage": 18.0,
+            "RateOfFire": 1.8,
+            "Range": 7.0,
+            "MinRange": 0.0,
+            "ProjectileSpeed": 16.0,
+            "AreaOfEffect": 0.0,
+            "CanTarget": 5,
+            "AccuracyPercent": 88.0,
+            "ArmorModifiers": {
+                "Aircraft": 0.4,
+                "Light": 1.3,
+                "Medium": 0.6,
+                "Heavy": 0.3,
+                "Unarmored": 1.6,
+                "Building": 0.5
+            }
+        }
+    ],
+    "SpecialAbilityId": "motion_sensor_naval",
+    "Description": "Bastion patrol boat. Best-armoured patrol class in the game. The Motion Sensor ability detects stealthed submarines in a 12-cell radius — Bastion's patrol boats double as sub hunters.",
+    "SpeedOverride": 0.25,
+    "TurnRateOverride": null,
+    "MassOverride": null,
+    "FootprintWidth": 2,
+    "FootprintHeight": 2,
+    "CanGarrison": false,
+    "CanCrush": false,
+    "IsStealthed": false,
+    "IsDetector": true,
+    "NavalExpansionNote": "Staged for Naval Expansion DLC. Not in active tech tree."
+}

@@ -1,0 +1,26 @@
+{
+    "Id": "arcloft_aa_hardened_rounds",
+    "DisplayName": "AA Hardened Rounds",
+    "FactionId": "arcloft",
+    "Tier": 1,
+    "Cost": 500,
+    "SecondaryCost": 0,
+    "ResearchTime": 20.0,
+    "PrerequisiteBuilding": "arcloft_sentinel_barracks",
+    "PrerequisiteUpgrades": [],
+    "Effects": [
+        {
+            "TargetCategory": "arcloft_stormshot",
+            "Stat": "ArmorModifier.Aircraft",
+            "Modifier": "multiply",
+            "Value": 1.15
+        },
+        {
+            "TargetCategory": "arcloft_arc_turret",
+            "Stat": "ArmorModifier.Aircraft",
+            "Modifier": "multiply",
+            "Value": 1.15
+        }
+    ],
+    "Description": "Stormshot infantry and Arc Turrets deal 15% more damage to Aircraft armour class. Arcloft's AA becomes absurd against air-heavy factions."
+}

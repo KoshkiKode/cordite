@@ -1,0 +1,26 @@
+{
+    "Id": "valkyr_wingman_protocol",
+    "DisplayName": "Wingman Protocol",
+    "FactionId": "valkyr",
+    "Tier": 1,
+    "Cost": 500,
+    "SecondaryCost": 0,
+    "ResearchTime": 20.0,
+    "PrerequisiteBuilding": "valkyr_wing_barracks",
+    "PrerequisiteUpgrades": [],
+    "Effects": [
+        {
+            "TargetCategory": "valkyr_windrunner",
+            "Stat": "Speed",
+            "Modifier": "multiply",
+            "Value": 1.15
+        },
+        {
+            "TargetCategory": "valkyr_skyguard",
+            "Stat": "Speed",
+            "Modifier": "multiply",
+            "Value": 1.15
+        }
+    ],
+    "Description": "Windrunner and Skyguard move 15% faster, improving scout coverage and infantry survivability."
+}
