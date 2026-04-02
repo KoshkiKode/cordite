@@ -1,26 +1,26 @@
 {
-    "Id": "arcloft_sky_fortress_protocol",
-    "DisplayName": "Sky Fortress Protocol",
-    "FactionId": "arcloft",
-    "Tier": 3,
-    "Cost": 2500,
-    "SecondaryCost": 400,
-    "ResearchTime": 60.0,
-    "PrerequisiteBuilding": "arcloft_tech_lab_lv2",
-    "PrerequisiteUpgrades": [],
-    "Effects": [
-        {
-            "TargetCategory": "arcloft_sky_bastion",
-            "Stat": "MaxHealth",
-            "Modifier": "multiply",
-            "Value": 1.3
-        },
-        {
-            "TargetCategory": "arcloft_sky_bastion",
-            "Stat": "AALockCount",
-            "Modifier": "add_flat",
-            "Value": 1
-        }
-    ],
-    "Description": "Sky Bastion gains 30% more health and its AA batteries track an additional target (5 simultaneous locks). Nothing short of a superunit can threaten it."
+  "Id": "arcloft_sky_fortress_protocol",
+  "DisplayName": "Sky Fortress Protocol",
+  "FactionId": "arcloft",
+  "Tier": 3,
+  "Cost": 2500,
+  "SecondaryCost": 400,
+  "ResearchTime": 60.0,
+  "PrerequisiteBuilding": "arcloft_tech_lab",
+  "PrerequisiteUpgrades": [],
+  "Effects": [
+    {
+      "TargetCategory": "arcloft_sky_bastion",
+      "Stat": "MaxHealth",
+      "Modifier": "multiply",
+      "Value": 1.3
+    },
+    {
+      "TargetCategory": "arcloft_sky_bastion",
+      "Stat": "AALockCount",
+      "Modifier": "add_flat",
+      "Value": 1
+    }
+  ],
+  "Description": "Sky Bastion gains 30% more health and its AA batteries track an additional target (5 simultaneous locks). Nothing short of a superunit can threaten it."
 }

@@ -1,26 +1,26 @@
 {
-    "Id": "kragmore_depleted_cordite_shells",
-    "DisplayName": "Depleted Cordite Shells",
-    "FactionId": "kragmore",
-    "Tier": 2,
-    "Cost": 1200,
-    "SecondaryCost": 100,
-    "ResearchTime": 40.0,
-    "PrerequisiteBuilding": "kragmore_lab",
-    "PrerequisiteUpgrades": [],
-    "Effects": [
-        {
-            "TargetCategory": "kragmore_bulwark",
-            "Stat": "ArmorModifier.Heavy",
-            "Modifier": "multiply",
-            "Value": 1.2
-        },
-        {
-            "TargetCategory": "kragmore_anvil",
-            "Stat": "ArmorModifier.Heavy",
-            "Modifier": "multiply",
-            "Value": 1.2
-        }
-    ],
-    "Description": "Bulwark and Anvil tanks deal 20% more damage to Heavy armour class. Tank-on-tank combat becomes decisively Kragmore-favoured."
+  "Id": "kragmore_depleted_cordite_shells",
+  "DisplayName": "Depleted Cordite Shells",
+  "FactionId": "kragmore",
+  "Tier": 2,
+  "Cost": 1200,
+  "SecondaryCost": 100,
+  "ResearchTime": 40.0,
+  "PrerequisiteBuilding": "kragmore_tech_lab",
+  "PrerequisiteUpgrades": [],
+  "Effects": [
+    {
+      "TargetCategory": "kragmore_bulwark",
+      "Stat": "ArmorModifier.Heavy",
+      "Modifier": "multiply",
+      "Value": 1.2
+    },
+    {
+      "TargetCategory": "kragmore_anvil",
+      "Stat": "ArmorModifier.Heavy",
+      "Modifier": "multiply",
+      "Value": 1.2
+    }
+  ],
+  "Description": "Bulwark and Anvil tanks deal 20% more damage to Heavy armour class. Tank-on-tank combat becomes decisively Kragmore-favoured."
 }

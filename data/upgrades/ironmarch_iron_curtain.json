@@ -1,26 +1,26 @@
 {
-    "Id": "ironmarch_iron_curtain",
-    "DisplayName": "Iron Curtain",
-    "FactionId": "ironmarch",
-    "Tier": 3,
-    "Cost": 2500,
-    "SecondaryCost": 400,
-    "ResearchTime": 60.0,
-    "PrerequisiteBuilding": "ironmarch_iron_citadel",
-    "PrerequisiteUpgrades": [],
-    "Effects": [
-        {
-            "TargetCategory": "ironmarch_iron_citadel",
-            "Stat": "SuppressionRadius",
-            "Modifier": "add_flat",
-            "Value": 10.0
-        },
-        {
-            "TargetCategory": "ironmarch_iron_citadel",
-            "Stat": "SuppressionPenalty",
-            "Modifier": "add_flat",
-            "Value": 0.15
-        }
-    ],
-    "Description": "Iron Citadel suppression field radius grows from 20 to 30 cells. Enemy damage penalty in the field increases from 20% to 35%. A true area-denial superstructure."
+  "Id": "ironmarch_iron_curtain",
+  "DisplayName": "Iron Curtain",
+  "FactionId": "ironmarch",
+  "Tier": 3,
+  "Cost": 2500,
+  "SecondaryCost": 400,
+  "ResearchTime": 60.0,
+  "PrerequisiteBuilding": "ironmarch_forward_assembly",
+  "PrerequisiteUpgrades": [],
+  "Effects": [
+    {
+      "TargetCategory": "ironmarch_iron_citadel",
+      "Stat": "SuppressionRadius",
+      "Modifier": "add_flat",
+      "Value": 10.0
+    },
+    {
+      "TargetCategory": "ironmarch_iron_citadel",
+      "Stat": "SuppressionPenalty",
+      "Modifier": "add_flat",
+      "Value": 0.15
+    }
+  ],
+  "Description": "Iron Citadel suppression field radius grows from 20 to 30 cells. Enemy damage penalty in the field increases from 20% to 35%. A true area-denial superstructure."
 }

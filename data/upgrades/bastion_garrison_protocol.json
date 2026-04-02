@@ -1,20 +1,20 @@
 {
-    "Id": "bastion_garrison_protocol",
-    "DisplayName": "Garrison Protocol",
-    "FactionId": "bastion",
-    "Tier": 1,
-    "Cost": 500,
-    "SecondaryCost": 0,
-    "ResearchTime": 20.0,
-    "PrerequisiteBuilding": "bastion_guard_barracks",
-    "PrerequisiteUpgrades": [],
-    "Effects": [
-        {
-            "TargetCategory": "Infantry",
-            "Stat": "GarrisonArmorBonus",
-            "Modifier": "add_flat",
-            "Value": 0.2
-        }
-    ],
-    "Description": "All infantry gain 20% additional armour when garrisoned in any structure. Entrenched infantry become dramatically harder to clear."
+  "Id": "bastion_garrison_protocol",
+  "DisplayName": "Garrison Protocol",
+  "FactionId": "bastion",
+  "Tier": 1,
+  "Cost": 500,
+  "SecondaryCost": 0,
+  "ResearchTime": 20.0,
+  "PrerequisiteBuilding": "bastion_barracks",
+  "PrerequisiteUpgrades": [],
+  "Effects": [
+    {
+      "TargetCategory": "Infantry",
+      "Stat": "GarrisonArmorBonus",
+      "Modifier": "add_flat",
+      "Value": 0.2
+    }
+  ],
+  "Description": "All infantry gain 20% additional armour when garrisoned in any structure. Entrenched infantry become dramatically harder to clear."
 }

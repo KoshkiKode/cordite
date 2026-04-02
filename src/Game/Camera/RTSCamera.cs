@@ -1,10 +1,13 @@
 using Godot;
+using UnnamedRTS.Systems.Platform;
 
 namespace UnnamedRTS.Game.Camera;
 
 /// <summary>
 /// Top-down RTS camera with WASD/arrow panning, mouse edge scrolling,
 /// scroll wheel zoom, and middle mouse button rotation.
+/// On mobile: pinch-to-zoom, two-finger drag to pan, handled via
+/// <see cref="TouchInputHandler"/> signals.
 /// Pure rendering code — uses float, no FixedPoint needed.
 /// </summary>
 public partial class RTSCamera : Camera3D
@@ -25,6 +28,9 @@ public partial class RTSCamera : Camera3D
     // ── Camera Geometry ──────────────────────────────────────────────
     private const float CameraAngleDeg = 55.0f;
 
+    // ── Touch Pan ─────────────────────────────────────────────────────
+    private const float TouchPanSpeed = 0.15f;
+
     // ── State ────────────────────────────────────────────────────────
     private Vector3 _focusPoint = Vector3.Zero;
     private float _currentZoom = 30.0f;
@@ -32,13 +38,35 @@ public partial class RTSCamera : Camera3D
     private float _yaw;
     private bool _rotating;
 
+    private TouchInputHandler? _touchHandler;
+
     public override void _Ready()
     {
         _focusPoint = Vector3.Zero;
         _currentZoom = 30.0f;
         _targetZoom = 30.0f;
         _yaw = 0.0f;
+
+        // Set up touch input handler for mobile
+        if (PlatformDetector.ShouldUseTouchInput())
+        {
+            _touchHandler = new TouchInputHandler();
+            _touchHandler.Name = "TouchInputHandler";
+            AddChild(_touchHandler);
+            _touchHandler.PinchZoom += OnPinchZoom;
+            _touchHandler.TwoFingerPan += OnTwoFingerPan;
+        }
+
         UpdateCameraTransform();
+    }
+
+    public override void _ExitTree()
+    {
+        if (_touchHandler is not null)
+        {
+            _touchHandler.PinchZoom -= OnPinchZoom;
+            _touchHandler.TwoFingerPan -= OnTwoFingerPan;
+        }
     }
 
     public override void _Process(double delta)
@@ -172,5 +200,25 @@ public partial class RTSCamera : Camera3D
     public void SetFocusPoint(Vector3 point)
     {
         _focusPoint = new Vector3(point.X, 0.0f, point.Z);
+    }
+
+    // ── Touch Input Handlers ────────────────────────────────────────
+
+    private void OnPinchZoom(float zoomDelta)
+    {
+        // Negative delta = fingers moving apart = zoom in (decrease target zoom)
+        _targetZoom = Mathf.Clamp(_targetZoom - zoomDelta * ZoomStep * 5.0f, ZoomMin, ZoomMax);
+    }
+
+    private void OnTwoFingerPan(Vector2 panDelta)
+    {
+        float panScale = TouchPanSpeed * (_currentZoom / 30.0f);
+
+        Vector3 forward = new Vector3(Mathf.Sin(_yaw), 0.0f, Mathf.Cos(_yaw));
+        Vector3 right = new Vector3(forward.Z, 0.0f, -forward.X);
+
+        // Screen space to world: X drag → right, Y drag → forward
+        _focusPoint -= right * panDelta.X * panScale;
+        _focusPoint -= forward * panDelta.Y * panScale;
     }
 }

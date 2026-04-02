@@ -1,28 +1,28 @@
 {
-    "Id": "stormrend_stormbreak_cascade",
-    "DisplayName": "Stormbreak Cascade",
-    "FactionId": "stormrend",
-    "Tier": 3,
-    "Cost": 2500,
-    "SecondaryCost": 400,
-    "ResearchTime": 60.0,
-    "PrerequisiteBuilding": "stormrend_storm_lab_lv2",
-    "PrerequisiteUpgrades": [
-        "stormrend_momentum_overdrive"
-    ],
-    "Effects": [
-        {
-            "TargetCategory": "FactionMechanic",
-            "Stat": "StormbreakDuration",
-            "Modifier": "add_flat",
-            "Value": 7.0
-        },
-        {
-            "TargetCategory": "FactionMechanic",
-            "Stat": "StormbreakProductionBonus",
-            "Modifier": "add_flat",
-            "Value": 0.25
-        }
-    ],
-    "Description": "Stormbreak duration extends from 15 to 22 seconds. During Stormbreak, production time is reduced by an additional 25% (stacking with the existing 50% reduction for 75% total). Stormbreak floods the field with fresh units."
+  "Id": "stormrend_stormbreak_cascade",
+  "DisplayName": "Stormbreak Cascade",
+  "FactionId": "stormrend",
+  "Tier": 3,
+  "Cost": 2500,
+  "SecondaryCost": 400,
+  "ResearchTime": 60.0,
+  "PrerequisiteBuilding": "stormrend_tech_lab",
+  "PrerequisiteUpgrades": [
+    "stormrend_momentum_overdrive"
+  ],
+  "Effects": [
+    {
+      "TargetCategory": "FactionMechanic",
+      "Stat": "StormbreakDuration",
+      "Modifier": "add_flat",
+      "Value": 7.0
+    },
+    {
+      "TargetCategory": "FactionMechanic",
+      "Stat": "StormbreakProductionBonus",
+      "Modifier": "add_flat",
+      "Value": 0.25
+    }
+  ],
+  "Description": "Stormbreak duration extends from 15 to 22 seconds. During Stormbreak, production time is reduced by an additional 25% (stacking with the existing 50% reduction for 75% total). Stormbreak floods the field with fresh units."
 }

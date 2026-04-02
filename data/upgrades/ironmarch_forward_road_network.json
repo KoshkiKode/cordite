@@ -1,26 +1,26 @@
 {
-    "Id": "ironmarch_forward_road_network",
-    "DisplayName": "Forward Road Network",
-    "FactionId": "ironmarch",
-    "Tier": 2,
-    "Cost": 900,
-    "SecondaryCost": 50,
-    "ResearchTime": 30.0,
-    "PrerequisiteBuilding": "ironmarch_lab",
-    "PrerequisiteUpgrades": [],
-    "Effects": [
-        {
-            "TargetCategory": "ironmarch_pathcutter",
-            "Stat": "RoadTileDuration",
-            "Modifier": "multiply",
-            "Value": 3.0
-        },
-        {
-            "TargetCategory": "ironmarch_pathcutter",
-            "Stat": "RoadSpeedBonus",
-            "Modifier": "multiply",
-            "Value": 1.3
-        }
-    ],
-    "Description": "Pathcutter road tiles last 180 seconds (up from 60). Ground units on these roads gain +30% speed. Addresses Ironmarch's glacial advance speed with hard infrastructure."
+  "Id": "ironmarch_forward_road_network",
+  "DisplayName": "Forward Road Network",
+  "FactionId": "ironmarch",
+  "Tier": 2,
+  "Cost": 900,
+  "SecondaryCost": 50,
+  "ResearchTime": 30.0,
+  "PrerequisiteBuilding": "ironmarch_tech_lab",
+  "PrerequisiteUpgrades": [],
+  "Effects": [
+    {
+      "TargetCategory": "ironmarch_pathcutter",
+      "Stat": "RoadTileDuration",
+      "Modifier": "multiply",
+      "Value": 3.0
+    },
+    {
+      "TargetCategory": "ironmarch_pathcutter",
+      "Stat": "RoadSpeedBonus",
+      "Modifier": "multiply",
+      "Value": 1.3
+    }
+  ],
+  "Description": "Pathcutter road tiles last 180 seconds (up from 60). Ground units on these roads gain +30% speed. Addresses Ironmarch's glacial advance speed with hard infrastructure."
 }

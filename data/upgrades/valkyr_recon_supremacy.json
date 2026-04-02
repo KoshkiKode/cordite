@@ -1,32 +1,32 @@
 {
-    "Id": "valkyr_recon_supremacy",
-    "DisplayName": "Recon Supremacy",
-    "FactionId": "valkyr",
-    "Tier": 3,
-    "Cost": 1800,
-    "SecondaryCost": 250,
-    "ResearchTime": 45.0,
-    "PrerequisiteBuilding": "valkyr_aerie_research_lv2",
-    "PrerequisiteUpgrades": [],
-    "Effects": [
-        {
-            "TargetCategory": "Helicopter",
-            "Stat": "SightRange",
-            "Modifier": "add_flat",
-            "Value": 4.0
-        },
-        {
-            "TargetCategory": "Jet",
-            "Stat": "SightRange",
-            "Modifier": "add_flat",
-            "Value": 4.0
-        },
-        {
-            "TargetCategory": "valkyr_overwatch_drone",
-            "Stat": "DetectionRadius",
-            "Modifier": "multiply",
-            "Value": 2.0
-        }
-    ],
-    "Description": "+4 sight range for all aircraft. Overwatch Drone detection radius doubles. The enemy can barely move without being spotted."
+  "Id": "valkyr_recon_supremacy",
+  "DisplayName": "Recon Supremacy",
+  "FactionId": "valkyr",
+  "Tier": 3,
+  "Cost": 1800,
+  "SecondaryCost": 250,
+  "ResearchTime": 45.0,
+  "PrerequisiteBuilding": "valkyr_tech_lab",
+  "PrerequisiteUpgrades": [],
+  "Effects": [
+    {
+      "TargetCategory": "Helicopter",
+      "Stat": "SightRange",
+      "Modifier": "add_flat",
+      "Value": 4.0
+    },
+    {
+      "TargetCategory": "Jet",
+      "Stat": "SightRange",
+      "Modifier": "add_flat",
+      "Value": 4.0
+    },
+    {
+      "TargetCategory": "valkyr_overwatch_drone",
+      "Stat": "DetectionRadius",
+      "Modifier": "multiply",
+      "Value": 2.0
+    }
+  ],
+  "Description": "+4 sight range for all aircraft. Overwatch Drone detection radius doubles. The enemy can barely move without being spotted."
 }

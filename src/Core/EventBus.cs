@@ -84,6 +84,11 @@ public partial class EventBus : Node
 
     [Signal] public delegate void MapLoadedEventHandler(string mapId);
 
+    // ── Persistence Events ──────────────────────────────────────────
+
+    [Signal] public delegate void GameSavedEventHandler(string slotName);
+    [Signal] public delegate void GameLoadedEventHandler(string slotName);
+
     // ── UI Events ────────────────────────────────────────────────────
 
     [Signal] public delegate void TooltipRequestedEventHandler(string text, Vector2 position);
@@ -154,6 +159,11 @@ public partial class EventBus : Node
     // ── Map Emit Helpers ───────────────────────────────────────────
 
     public void EmitMapLoaded(string mapId) => EmitSignal(SignalName.MapLoaded, mapId);
+
+    // ── Persistence Emit Helpers ────────────────────────────────────
+
+    public void EmitGameSaved(string slotName) => EmitSignal(SignalName.GameSaved, slotName);
+    public void EmitGameLoaded(string slotName) => EmitSignal(SignalName.GameLoaded, slotName);
 
     // ── Networking Emit Helpers ──────────────────────────────────────
 

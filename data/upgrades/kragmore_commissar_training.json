@@ -1,20 +1,20 @@
 {
-    "Id": "kragmore_commissar_training",
-    "DisplayName": "Commissar Training",
-    "FactionId": "kragmore",
-    "Tier": 1,
-    "Cost": 500,
-    "SecondaryCost": 0,
-    "ResearchTime": 25.0,
-    "PrerequisiteBuilding": "kragmore_drill_barracks",
-    "PrerequisiteUpgrades": [],
-    "Effects": [
-        {
-            "TargetCategory": "FactionMechanic",
-            "Stat": "HordeThreshold",
-            "Modifier": "add_flat",
-            "Value": -2
-        }
-    ],
-    "Description": "Horde Protocol bonus thresholds reduced by 2 per tier. Bonuses now activate at 3/7/15 units instead of 5/10/20. Even small engagements become horde-boosted."
+  "Id": "kragmore_commissar_training",
+  "DisplayName": "Commissar Training",
+  "FactionId": "kragmore",
+  "Tier": 1,
+  "Cost": 500,
+  "SecondaryCost": 0,
+  "ResearchTime": 25.0,
+  "PrerequisiteBuilding": "kragmore_barracks",
+  "PrerequisiteUpgrades": [],
+  "Effects": [
+    {
+      "TargetCategory": "FactionMechanic",
+      "Stat": "HordeThreshold",
+      "Modifier": "add_flat",
+      "Value": -2
+    }
+  ],
+  "Description": "Horde Protocol bonus thresholds reduced by 2 per tier. Bonuses now activate at 3/7/15 units instead of 5/10/20. Even small engagements become horde-boosted."
 }

@@ -1,20 +1,20 @@
 {
-    "Id": "valkyr_extended_fuel_tanks",
-    "DisplayName": "Extended Fuel Tanks",
-    "FactionId": "valkyr",
-    "Tier": 2,
-    "Cost": 1000,
-    "SecondaryCost": 100,
-    "ResearchTime": 30.0,
-    "PrerequisiteBuilding": "valkyr_airstrip",
-    "PrerequisiteUpgrades": [],
-    "Effects": [
-        {
-            "TargetCategory": "Jet",
-            "Stat": "LoiterTime",
-            "Modifier": "multiply",
-            "Value": 2.0
-        }
-    ],
-    "Description": "Doubles jet loiter time over the battlefield. The defining Valkyr upgrade — continuous sortie pressure with fewer return gaps."
+  "Id": "valkyr_extended_fuel_tanks",
+  "DisplayName": "Extended Fuel Tanks",
+  "FactionId": "valkyr",
+  "Tier": 2,
+  "Cost": 1000,
+  "SecondaryCost": 100,
+  "ResearchTime": 30.0,
+  "PrerequisiteBuilding": "valkyr_airfield",
+  "PrerequisiteUpgrades": [],
+  "Effects": [
+    {
+      "TargetCategory": "Jet",
+      "Stat": "LoiterTime",
+      "Modifier": "multiply",
+      "Value": 2.0
+    }
+  ],
+  "Description": "Doubles jet loiter time over the battlefield. The defining Valkyr upgrade \u2014 continuous sortie pressure with fewer return gaps."
 }

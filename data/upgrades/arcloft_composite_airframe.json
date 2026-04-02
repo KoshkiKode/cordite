@@ -1,26 +1,26 @@
 {
-    "Id": "arcloft_composite_airframe",
-    "DisplayName": "Composite Airframe",
-    "FactionId": "arcloft",
-    "Tier": 2,
-    "Cost": 1000,
-    "SecondaryCost": 75,
-    "ResearchTime": 35.0,
-    "PrerequisiteBuilding": "arcloft_skyport",
-    "PrerequisiteUpgrades": [],
-    "Effects": [
-        {
-            "TargetCategory": "Helicopter",
-            "Stat": "MaxHealth",
-            "Modifier": "multiply",
-            "Value": 1.2
-        },
-        {
-            "TargetCategory": "Helicopter",
-            "Stat": "ArmorValue",
-            "Modifier": "multiply",
-            "Value": 1.1
-        }
-    ],
-    "Description": "All Arcloft Helicopters gain 20% more health and 10% more armour. Compensates for the hybrid tax — Arcloft helicopters become nearly as durable as Kragmore equivalents."
+  "Id": "arcloft_composite_airframe",
+  "DisplayName": "Composite Airframe",
+  "FactionId": "arcloft",
+  "Tier": 2,
+  "Cost": 1000,
+  "SecondaryCost": 75,
+  "ResearchTime": 35.0,
+  "PrerequisiteBuilding": "arcloft_airfield",
+  "PrerequisiteUpgrades": [],
+  "Effects": [
+    {
+      "TargetCategory": "Helicopter",
+      "Stat": "MaxHealth",
+      "Modifier": "multiply",
+      "Value": 1.2
+    },
+    {
+      "TargetCategory": "Helicopter",
+      "Stat": "ArmorValue",
+      "Modifier": "multiply",
+      "Value": 1.1
+    }
+  ],
+  "Description": "All Arcloft Helicopters gain 20% more health and 10% more armour. Compensates for the hybrid tax \u2014 Arcloft helicopters become nearly as durable as Kragmore equivalents."
 }

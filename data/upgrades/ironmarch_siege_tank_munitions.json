@@ -1,26 +1,26 @@
 {
-    "Id": "ironmarch_siege_tank_munitions",
-    "DisplayName": "Siege Tank Munitions",
-    "FactionId": "ironmarch",
-    "Tier": 2,
-    "Cost": 1000,
-    "SecondaryCost": 75,
-    "ResearchTime": 35.0,
-    "PrerequisiteBuilding": "ironmarch_lab",
-    "PrerequisiteUpgrades": [],
-    "Effects": [
-        {
-            "TargetCategory": "ironmarch_siegebreaker",
-            "Stat": "ArmorModifier.Building",
-            "Modifier": "multiply",
-            "Value": 1.267
-        },
-        {
-            "TargetCategory": "ironmarch_basalt",
-            "Stat": "Range",
-            "Modifier": "add_flat",
-            "Value": 1.0
-        }
-    ],
-    "Description": "Siegebreaker building damage bonus grows from +50% to +90%. Basalt Tank range +1. The Siegebreaker becomes a wall-deleting machine in a single volley."
+  "Id": "ironmarch_siege_tank_munitions",
+  "DisplayName": "Siege Tank Munitions",
+  "FactionId": "ironmarch",
+  "Tier": 2,
+  "Cost": 1000,
+  "SecondaryCost": 75,
+  "ResearchTime": 35.0,
+  "PrerequisiteBuilding": "ironmarch_tech_lab",
+  "PrerequisiteUpgrades": [],
+  "Effects": [
+    {
+      "TargetCategory": "ironmarch_siegebreaker",
+      "Stat": "ArmorModifier.Building",
+      "Modifier": "multiply",
+      "Value": 1.267
+    },
+    {
+      "TargetCategory": "ironmarch_basalt",
+      "Stat": "Range",
+      "Modifier": "add_flat",
+      "Value": 1.0
+    }
+  ],
+  "Description": "Siegebreaker building damage bonus grows from +50% to +90%. Basalt Tank range +1. The Siegebreaker becomes a wall-deleting machine in a single volley."
 }

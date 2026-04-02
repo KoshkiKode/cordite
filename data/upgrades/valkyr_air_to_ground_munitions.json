@@ -1,38 +1,38 @@
 {
-    "Id": "valkyr_air_to_ground_munitions",
-    "DisplayName": "Air-to-Ground Munitions",
-    "FactionId": "valkyr",
-    "Tier": 2,
-    "Cost": 900,
-    "SecondaryCost": 75,
-    "ResearchTime": 35.0,
-    "PrerequisiteBuilding": "valkyr_aerie_research",
-    "PrerequisiteUpgrades": [],
-    "Effects": [
-        {
-            "TargetCategory": "valkyr_tempest",
-            "Stat": "Damage",
-            "Modifier": "multiply",
-            "Value": 1.2
-        },
-        {
-            "TargetCategory": "valkyr_harrier",
-            "Stat": "Damage",
-            "Modifier": "multiply",
-            "Value": 1.2
-        },
-        {
-            "TargetCategory": "valkyr_tempest",
-            "Stat": "ArmorModifier.Building",
-            "Modifier": "multiply",
-            "Value": 1.2
-        },
-        {
-            "TargetCategory": "valkyr_harrier",
-            "Stat": "ArmorModifier.Heavy",
-            "Modifier": "multiply",
-            "Value": 1.2
-        }
-    ],
-    "Description": "Tempest Bomber and Harrier deal 20% more damage to buildings and heavy vehicles. Surgical strikes become structural demolition."
+  "Id": "valkyr_air_to_ground_munitions",
+  "DisplayName": "Air-to-Ground Munitions",
+  "FactionId": "valkyr",
+  "Tier": 2,
+  "Cost": 900,
+  "SecondaryCost": 75,
+  "ResearchTime": 35.0,
+  "PrerequisiteBuilding": "valkyr_tech_lab",
+  "PrerequisiteUpgrades": [],
+  "Effects": [
+    {
+      "TargetCategory": "valkyr_tempest",
+      "Stat": "Damage",
+      "Modifier": "multiply",
+      "Value": 1.2
+    },
+    {
+      "TargetCategory": "valkyr_harrier",
+      "Stat": "Damage",
+      "Modifier": "multiply",
+      "Value": 1.2
+    },
+    {
+      "TargetCategory": "valkyr_tempest",
+      "Stat": "ArmorModifier.Building",
+      "Modifier": "multiply",
+      "Value": 1.2
+    },
+    {
+      "TargetCategory": "valkyr_harrier",
+      "Stat": "ArmorModifier.Heavy",
+      "Modifier": "multiply",
+      "Value": 1.2
+    }
+  ],
+  "Description": "Tempest Bomber and Harrier deal 20% more damage to buildings and heavy vehicles. Surgical strikes become structural demolition."
 }

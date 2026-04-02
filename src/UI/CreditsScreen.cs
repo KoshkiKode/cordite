@@ -134,5 +134,10 @@ The open-source game development community
             _fastScroll = mouseEvent.Pressed;
             GetViewport().SetInputAsHandled();
         }
+        else if (ev is InputEventScreenTouch touchEvent)
+        {
+            _fastScroll = touchEvent.Pressed;
+            GetViewport().SetInputAsHandled();
+        }
     }
 }

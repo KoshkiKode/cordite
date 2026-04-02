@@ -1,28 +1,28 @@
 {
-    "Id": "kragmore_iron_collective",
-    "DisplayName": "Iron Collective",
-    "FactionId": "kragmore",
-    "Tier": 3,
-    "Cost": 2500,
-    "SecondaryCost": 400,
-    "ResearchTime": 60.0,
-    "PrerequisiteBuilding": "kragmore_lab_lv2",
-    "PrerequisiteUpgrades": [
-        "kragmore_commissar_training"
-    ],
-    "Effects": [
-        {
-            "TargetCategory": "FactionMechanic",
-            "Stat": "HordeMaxTier",
-            "Modifier": "add_flat",
-            "Value": 1
-        },
-        {
-            "TargetCategory": "kragmore_strix_gunship",
-            "Stat": "HordeEligible",
-            "Modifier": "add_flat",
-            "Value": 1
-        }
-    ],
-    "Description": "A 4th Horde Protocol tier activates at 30+ units: +30% damage, +25% armour. Strix Gunship also benefits from Horde bonuses. The Kragmore deathball becomes an unstoppable engine."
+  "Id": "kragmore_iron_collective",
+  "DisplayName": "Iron Collective",
+  "FactionId": "kragmore",
+  "Tier": 3,
+  "Cost": 2500,
+  "SecondaryCost": 400,
+  "ResearchTime": 60.0,
+  "PrerequisiteBuilding": "kragmore_tech_lab",
+  "PrerequisiteUpgrades": [
+    "kragmore_commissar_training"
+  ],
+  "Effects": [
+    {
+      "TargetCategory": "FactionMechanic",
+      "Stat": "HordeMaxTier",
+      "Modifier": "add_flat",
+      "Value": 1
+    },
+    {
+      "TargetCategory": "kragmore_strix_gunship",
+      "Stat": "HordeEligible",
+      "Modifier": "add_flat",
+      "Value": 1
+    }
+  ],
+  "Description": "A 4th Horde Protocol tier activates at 30+ units: +30% damage, +25% armour. Strix Gunship also benefits from Horde bonuses. The Kragmore deathball becomes an unstoppable engine."
 }

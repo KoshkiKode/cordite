@@ -1,20 +1,20 @@
 {
-    "Id": "bastion_rapid_mortar_assembly",
-    "DisplayName": "Rapid Mortar Assembly",
-    "FactionId": "bastion",
-    "Tier": 1,
-    "Cost": 600,
-    "SecondaryCost": 0,
-    "ResearchTime": 25.0,
-    "PrerequisiteBuilding": "bastion_guard_barracks",
-    "PrerequisiteUpgrades": [],
-    "Effects": [
-        {
-            "TargetCategory": "bastion_keeper",
-            "Stat": "ConstructionSpeed",
-            "Modifier": "multiply",
-            "Value": 1.3
-        }
-    ],
-    "Description": "Keeper builds turrets and walls 30% faster (stacks with base Keeper bonus for 60% total). Faster fortification setup is everything for a turtling faction."
+  "Id": "bastion_rapid_mortar_assembly",
+  "DisplayName": "Rapid Mortar Assembly",
+  "FactionId": "bastion",
+  "Tier": 1,
+  "Cost": 600,
+  "SecondaryCost": 0,
+  "ResearchTime": 25.0,
+  "PrerequisiteBuilding": "bastion_barracks",
+  "PrerequisiteUpgrades": [],
+  "Effects": [
+    {
+      "TargetCategory": "bastion_keeper",
+      "Stat": "ConstructionSpeed",
+      "Modifier": "multiply",
+      "Value": 1.3
+    }
+  ],
+  "Description": "Keeper builds turrets and walls 30% faster (stacks with base Keeper bonus for 60% total). Faster fortification setup is everything for a turtling faction."
 }
