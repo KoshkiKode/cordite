@@ -13,7 +13,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 9.0.x
       - name: Build C# Assemblies
         run: dotnet build -c ExportRelease
       - name: Export Windows
@@ -24,6 +24,7 @@ jobs:
           relative_project_path: ./
           archive_output: true
           export_debug: false
+          export_name: Windows Desktop
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -39,7 +40,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 9.0.x
       - name: Build C# Assemblies
         run: dotnet build -c ExportRelease
       - name: Export Linux
@@ -50,6 +51,7 @@ jobs:
           relative_project_path: ./
           archive_output: true
           export_debug: false
+          export_name: Linux/X11
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -70,7 +72,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 9.0.x
       - name: Build C# Assemblies
         run: dotnet build -c ExportRelease
       - name: Setup Android SDK Build Tools
@@ -85,6 +87,7 @@ jobs:
           relative_project_path: ./
           archive_output: true
           export_debug: false
+          export_name: Android
         env:
           GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ./debug.keystore
           GODOT_ANDROID_KEYSTORE_DEBUG_USER: androiddebugkey
