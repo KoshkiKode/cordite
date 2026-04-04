@@ -26,8 +26,8 @@ Low Poly Assets — CC0
 
 
 Sound Effects
-(To be filled when sounds are added)
-
+Antoine Goumain (antoinegoumain.fr) — CC-BY 4.0
+Kenney (kenney.nl) — CC0
 
 Built With
 Godot Engine 4.4

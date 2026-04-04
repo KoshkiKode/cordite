@@ -1,0 +1,96 @@
+name: "Export Godot Project"
+on: 
+  push:
+    branches: [ "main" ]
+
+jobs:
+  export-windows:
+    name: Windows Export
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Build C# Assemblies
+        run: dotnet build -c Release
+      - name: Export Windows
+        uses: firebelley/godot-export@v5.2.1
+        with:
+          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/4.4-stable/Godot_v4.4-stable_mono_linux_x86_64.zip
+          godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/4.4-stable/Godot_v4.4-stable_mono_export_templates.tpz
+          relative_project_path: ./
+          archive_output: true
+          export_debug: false
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CorditeWars-Windows
+          path: /home/runner/.local/share/godot/exports/Windows Desktop/
+
+  export-linux:
+    name: Linux Export
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Build C# Assemblies
+        run: dotnet build -c Release
+      - name: Export Linux
+        uses: firebelley/godot-export@v5.2.1
+        with:
+          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/4.4-stable/Godot_v4.4-stable_mono_linux_x86_64.zip
+          godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/4.4-stable/Godot_v4.4-stable_mono_export_templates.tpz
+          relative_project_path: ./
+          archive_output: true
+          export_debug: false
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CorditeWars-Linux
+          path: /home/runner/.local/share/godot/exports/Linux/X11/
+
+  export-android:
+    name: Android Export
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Build C# Assemblies
+        run: dotnet build -c Release
+      - name: Setup Android SDK Build Tools
+        run: |
+          mkdir -p ~/.local/share/godot/
+          keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 -deststoretype pkcs12
+      - name: Export Android
+        uses: firebelley/godot-export@v5.2.1
+        with:
+          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/4.4-stable/Godot_v4.4-stable_mono_linux_x86_64.zip
+          godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/4.4-stable/Godot_v4.4-stable_mono_export_templates.tpz
+          relative_project_path: ./
+          archive_output: true
+          export_debug: false
+        env:
+          GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ./debug.keystore
+          GODOT_ANDROID_KEYSTORE_DEBUG_USER: androiddebugkey
+          GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD: android
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CorditeWars-Android
+          path: /home/runner/.local/share/godot/exports/Android/

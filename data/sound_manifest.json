@@ -75,9 +75,11 @@
       },
       "weapon_cannon_light": {
         "Files": [
-          "assets/audio/sfx/combat/cannon_light_fire_01.ogg",
-          "assets/audio/sfx/combat/cannon_light_fire_02.ogg",
-          "assets/audio/sfx/combat/cannon_light_fire_03.ogg"
+          "assets/audio/sfx/combat/laserSmall_000.ogg",
+          "assets/audio/sfx/combat/laserSmall_001.ogg",
+          "assets/audio/sfx/combat/laserSmall_002.ogg",
+          "assets/audio/sfx/combat/laserSmall_003.ogg",
+          "assets/audio/sfx/combat/laserSmall_004.ogg"
         ],
         "Volume": 0.9,
         "PitchVariation": 0.08,
@@ -87,9 +89,11 @@
       },
       "weapon_cannon_heavy": {
         "Files": [
-          "assets/audio/sfx/combat/cannon_heavy_fire_01.ogg",
-          "assets/audio/sfx/combat/cannon_heavy_fire_02.ogg",
-          "assets/audio/sfx/combat/cannon_heavy_fire_03.ogg"
+          "assets/audio/sfx/combat/laserLarge_000.ogg",
+          "assets/audio/sfx/combat/laserLarge_001.ogg",
+          "assets/audio/sfx/combat/laserLarge_002.ogg",
+          "assets/audio/sfx/combat/laserLarge_003.ogg",
+          "assets/audio/sfx/combat/laserLarge_004.ogg"
         ],
         "Volume": 1.0,
         "PitchVariation": 0.05,
@@ -111,9 +115,11 @@
       },
       "weapon_laser": {
         "Files": [
-          "assets/audio/sfx/combat/laser_fire_01.ogg",
-          "assets/audio/sfx/combat/laser_fire_02.ogg",
-          "assets/audio/sfx/combat/laser_fire_03.ogg"
+          "assets/audio/sfx/combat/laserRetro_000.ogg",
+          "assets/audio/sfx/combat/laserRetro_001.ogg",
+          "assets/audio/sfx/combat/laserRetro_002.ogg",
+          "assets/audio/sfx/combat/laserRetro_003.ogg",
+          "assets/audio/sfx/combat/laserRetro_004.ogg"
         ],
         "Volume": 0.82,
         "PitchVariation": 0.12,
@@ -171,10 +177,11 @@
       },
       "impact_bullet_metal": {
         "Files": [
-          "assets/audio/sfx/combat/impact_metal_01.ogg",
-          "assets/audio/sfx/combat/impact_metal_02.ogg",
-          "assets/audio/sfx/combat/impact_metal_03.ogg",
-          "assets/audio/sfx/combat/impact_metal_04.ogg"
+          "assets/audio/sfx/combat/impactMetal_000.ogg",
+          "assets/audio/sfx/combat/impactMetal_001.ogg",
+          "assets/audio/sfx/combat/impactMetal_002.ogg",
+          "assets/audio/sfx/combat/impactMetal_003.ogg",
+          "assets/audio/sfx/combat/impactMetal_004.ogg"
         ],
         "Volume": 0.7,
         "PitchVariation": 0.15,
@@ -209,9 +216,8 @@
       },
       "impact_explosion_small": {
         "Files": [
-          "assets/audio/sfx/combat/explosion_small_01.ogg",
-          "assets/audio/sfx/combat/explosion_small_02.ogg",
-          "assets/audio/sfx/combat/explosion_small_03.ogg"
+          "assets/audio/sfx/combat/explosionCrunch_000.ogg",
+          "assets/audio/sfx/combat/explosionCrunch_001.ogg"
         ],
         "Volume": 0.85,
         "PitchVariation": 0.12,
@@ -221,9 +227,8 @@
       },
       "impact_explosion_medium": {
         "Files": [
-          "assets/audio/sfx/combat/explosion_medium_01.ogg",
-          "assets/audio/sfx/combat/explosion_medium_02.ogg",
-          "assets/audio/sfx/combat/explosion_medium_03.ogg"
+          "assets/audio/sfx/combat/explosionCrunch_002.ogg",
+          "assets/audio/sfx/combat/explosionCrunch_003.ogg"
         ],
         "Volume": 0.95,
         "PitchVariation": 0.08,
@@ -233,9 +238,7 @@
       },
       "impact_explosion_large": {
         "Files": [
-          "assets/audio/sfx/combat/explosion_large_01.ogg",
-          "assets/audio/sfx/combat/explosion_large_02.ogg",
-          "assets/audio/sfx/combat/explosion_large_03.ogg"
+          "assets/audio/sfx/combat/explosionCrunch_004.ogg"
         ],
         "Volume": 1.0,
         "PitchVariation": 0.06,
@@ -359,8 +362,11 @@
       },
       "vehicle_engine_light": {
         "Files": [
-          "assets/audio/sfx/movement/engine_light_loop_01.ogg",
-          "assets/audio/sfx/movement/engine_light_loop_02.ogg"
+          "assets/audio/sfx/movement/spaceEngineSmall_000.ogg",
+          "assets/audio/sfx/movement/spaceEngineSmall_001.ogg",
+          "assets/audio/sfx/movement/spaceEngineSmall_002.ogg",
+          "assets/audio/sfx/movement/spaceEngineSmall_003.ogg",
+          "assets/audio/sfx/movement/spaceEngineSmall_004.ogg"
         ],
         "Volume": 0.65,
         "PitchVariation": 0.08,
@@ -370,8 +376,11 @@
       },
       "vehicle_engine_heavy": {
         "Files": [
-          "assets/audio/sfx/movement/engine_heavy_loop_01.ogg",
-          "assets/audio/sfx/movement/engine_heavy_loop_02.ogg"
+          "assets/audio/sfx/movement/engineCircular_000.ogg",
+          "assets/audio/sfx/movement/engineCircular_001.ogg",
+          "assets/audio/sfx/movement/engineCircular_002.ogg",
+          "assets/audio/sfx/movement/engineCircular_003.ogg",
+          "assets/audio/sfx/movement/engineCircular_004.ogg"
         ],
         "Volume": 0.78,
         "PitchVariation": 0.06,
@@ -381,8 +390,11 @@
       },
       "vehicle_engine_artillery": {
         "Files": [
-          "assets/audio/sfx/movement/engine_artillery_loop_01.ogg",
-          "assets/audio/sfx/movement/engine_artillery_loop_02.ogg"
+          "assets/audio/sfx/movement/spaceEngineLarge_000.ogg",
+          "assets/audio/sfx/movement/spaceEngineLarge_001.ogg",
+          "assets/audio/sfx/movement/spaceEngineLarge_002.ogg",
+          "assets/audio/sfx/movement/spaceEngineLarge_003.ogg",
+          "assets/audio/sfx/movement/spaceEngineLarge_004.ogg"
         ],
         "Volume": 0.72,
         "PitchVariation": 0.05,
@@ -392,9 +404,11 @@
       },
       "vehicle_treads": {
         "Files": [
-          "assets/audio/sfx/movement/treads_loop_01.ogg",
-          "assets/audio/sfx/movement/treads_loop_02.ogg",
-          "assets/audio/sfx/movement/treads_loop_03.ogg"
+          "assets/audio/sfx/movement/spaceEngineLow_000.ogg",
+          "assets/audio/sfx/movement/spaceEngineLow_001.ogg",
+          "assets/audio/sfx/movement/spaceEngineLow_002.ogg",
+          "assets/audio/sfx/movement/spaceEngineLow_003.ogg",
+          "assets/audio/sfx/movement/spaceEngineLow_004.ogg"
         ],
         "Volume": 0.6,
         "PitchVariation": 0.07,
@@ -404,8 +418,11 @@
       },
       "helicopter_rotor": {
         "Files": [
-          "assets/audio/sfx/movement/helicopter_rotor_loop_01.ogg",
-          "assets/audio/sfx/movement/helicopter_rotor_loop_02.ogg"
+          "assets/audio/sfx/movement/thrusterFire_000.ogg",
+          "assets/audio/sfx/movement/thrusterFire_001.ogg",
+          "assets/audio/sfx/movement/thrusterFire_002.ogg",
+          "assets/audio/sfx/movement/thrusterFire_003.ogg",
+          "assets/audio/sfx/movement/thrusterFire_004.ogg"
         ],
         "Volume": 0.82,
         "PitchVariation": 0.05,
@@ -426,8 +443,11 @@
       },
       "jet_engine": {
         "Files": [
-          "assets/audio/sfx/movement/jet_engine_loop_01.ogg",
-          "assets/audio/sfx/movement/jet_engine_loop_02.ogg"
+          "assets/audio/sfx/movement/spaceEngineLarge_000.ogg",
+          "assets/audio/sfx/movement/spaceEngineLarge_001.ogg",
+          "assets/audio/sfx/movement/spaceEngineLarge_002.ogg",
+          "assets/audio/sfx/movement/spaceEngineLarge_003.ogg",
+          "assets/audio/sfx/movement/spaceEngineLarge_004.ogg"
         ],
         "Volume": 0.9,
         "PitchVariation": 0.05,
@@ -516,8 +536,7 @@
       },
       "ambient_rain_heavy": {
         "Files": [
-          "assets/audio/sfx/ambient/rain_heavy_01.ogg",
-          "assets/audio/sfx/ambient/rain_heavy_02.ogg"
+          "assets/audio/sfx/ambient/nature/Ambient/AmbientNatureNightRainy.wav"
         ],
         "Volume": 0.6,
         "PitchVariation": 0.04,
@@ -527,9 +546,8 @@
       },
       "ambient_thunder_distant": {
         "Files": [
-          "assets/audio/sfx/ambient/thunder_distant_01.ogg",
-          "assets/audio/sfx/ambient/thunder_distant_02.ogg",
-          "assets/audio/sfx/ambient/thunder_distant_03.ogg"
+          "assets/audio/sfx/ambient/nature/Ambient/AmbientNatureStormRainThunder.wav",
+          "assets/audio/sfx/ambient/nature/Ambient/AmbientNatureStormRainThunder02.wav"
         ],
         "Volume": 0.55,
         "PitchVariation": 0.1,
@@ -551,8 +569,8 @@
       },
       "ambient_river_flowing": {
         "Files": [
-          "assets/audio/sfx/ambient/river_flowing_01.ogg",
-          "assets/audio/sfx/ambient/river_flowing_02.ogg"
+          "assets/audio/sfx/ambient/nature/Stream/Stream01.wav",
+          "assets/audio/sfx/ambient/nature/Stream/StreamAndBirds03.wav"
         ],
         "Volume": 0.5,
         "PitchVariation": 0.05,
@@ -585,9 +603,8 @@
       },
       "ambient_birds_chirping": {
         "Files": [
-          "assets/audio/sfx/ambient/birds_chirping_01.ogg",
-          "assets/audio/sfx/ambient/birds_chirping_02.ogg",
-          "assets/audio/sfx/ambient/birds_chirping_03.ogg"
+          "assets/audio/sfx/ambient/nature/Ambient/AmbientNatureBirdsWater01.wav",
+          "assets/audio/sfx/ambient/nature/Stream/StreamAndBirds02.wav"
         ],
         "Volume": 0.35,
         "PitchVariation": 0.1,
@@ -642,8 +659,10 @@
       },
       "ambient_machinery": {
         "Files": [
-          "assets/audio/sfx/ambient/machinery_loop_01.ogg",
-          "assets/audio/sfx/ambient/machinery_loop_02.ogg"
+          "assets/audio/sfx/ambient/computerNoise_000.ogg",
+          "assets/audio/sfx/ambient/computerNoise_001.ogg",
+          "assets/audio/sfx/ambient/computerNoise_002.ogg",
+          "assets/audio/sfx/ambient/computerNoise_003.ogg"
         ],
         "Volume": 0.45,
         "PitchVariation": 0.04,
@@ -781,9 +800,8 @@
     "ui": {
       "ui_click": {
         "Files": [
-          "assets/audio/sfx/ui/click_01.ogg",
-          "assets/audio/sfx/ui/click_02.ogg",
-          "assets/audio/sfx/ui/click_03.ogg"
+          "assets/audio/sfx/ui/click1.ogg",
+          "assets/audio/sfx/ui/click2.ogg"
         ],
         "Volume": 0.6,
         "PitchVariation": 0.05,
@@ -793,8 +811,8 @@
       },
       "ui_hover": {
         "Files": [
-          "assets/audio/sfx/ui/hover_01.ogg",
-          "assets/audio/sfx/ui/hover_02.ogg"
+          "assets/audio/sfx/ui/switch1.ogg",
+          "assets/audio/sfx/ui/switch2.ogg"
         ],
         "Volume": 0.35,
         "PitchVariation": 0.04,
@@ -968,7 +986,11 @@
         "MaxDistance": 30.0,
         "Priority": 6,
         "Cooldown": 0.5,
-        "Subtitles": ["Moving out.", "On my way.", "Copy that."]
+        "Subtitles": [
+          "Moving out.",
+          "On my way.",
+          "Copy that."
+        ]
       },
       "voice_attack_acknowledge": {
         "Files": [
@@ -981,7 +1003,11 @@
         "MaxDistance": 30.0,
         "Priority": 7,
         "Cooldown": 0.5,
-        "Subtitles": ["Engaging.", "Target acquired.", "Weapons hot."]
+        "Subtitles": [
+          "Engaging.",
+          "Target acquired.",
+          "Weapons hot."
+        ]
       },
       "voice_select_acknowledge": {
         "Files": [
@@ -994,7 +1020,11 @@
         "MaxDistance": 30.0,
         "Priority": 5,
         "Cooldown": 0.8,
-        "Subtitles": ["Ready.", "Standing by.", "Awaiting orders."]
+        "Subtitles": [
+          "Ready.",
+          "Standing by.",
+          "Awaiting orders."
+        ]
       },
       "voice_under_attack": {
         "Files": [
@@ -1007,7 +1037,11 @@
         "MaxDistance": 50.0,
         "Priority": 9,
         "Cooldown": 3.0,
-        "Subtitles": ["We're under fire!", "Taking hits!", "Need backup!"]
+        "Subtitles": [
+          "We're under fire!",
+          "Taking hits!",
+          "Need backup!"
+        ]
       },
       "voice_base_under_attack": {
         "Files": [
@@ -1019,7 +1053,9 @@
         "MaxDistance": 0.0,
         "Priority": 10,
         "Cooldown": 5.0,
-        "Subtitles": ["Our base is under attack!"]
+        "Subtitles": [
+          "Our base is under attack!"
+        ]
       }
     },
     "music": {
