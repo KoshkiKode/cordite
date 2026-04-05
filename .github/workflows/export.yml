@@ -243,9 +243,12 @@ jobs:
           mkdir -p ~/.local/share/godot/
           keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 -deststoretype pkcs12
       - name: Prepare Android release keystore (optional)
-        if: ${{ secrets.ANDROID_RELEASE_KEYSTORE_B64 != '' }}
+        env:
+          ANDROID_RELEASE_KEYSTORE_B64: ${{ secrets.ANDROID_RELEASE_KEYSTORE_B64 }}
         run: |
-          echo "${{ secrets.ANDROID_RELEASE_KEYSTORE_B64 }}" | base64 --decode > release.keystore
+          if [ -n "$ANDROID_RELEASE_KEYSTORE_B64" ]; then
+            echo "$ANDROID_RELEASE_KEYSTORE_B64" | base64 --decode > release.keystore
+          fi
       - name: Configure Godot Android SDK Path
         run: |
           mkdir -p ~/.config/godot
