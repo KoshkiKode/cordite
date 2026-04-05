@@ -20,6 +20,41 @@ jobs:
           dotnet-version: 9.0.x
       - name: Build C# Assemblies
         run: dotnet build -c ExportRelease
+      - name: Install Android Build Template
+        run: |
+          TEMPLATES_URL="https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_export_templates.tpz"
+          echo "Downloading export templates to extract Android build template..."
+          wget -q "$TEMPLATES_URL" -O /tmp/templates.tpz
+          rm -rf android/build
+          mkdir -p android/build
+          python3 - <<'PYEOF'
+          import io
+          import os
+          import zipfile
+
+          with zipfile.ZipFile('/tmp/templates.tpz') as outer:
+              android_src_data = outer.read('templates/android_source.zip')
+
+          with zipfile.ZipFile(io.BytesIO(android_src_data)) as inner:
+              for member in inner.infolist():
+                  if not member.filename.startswith('android_source/'):
+                      continue
+
+                  rel = member.filename[len('android_source/'):]
+                  if not rel:
+                      continue
+
+                  dest = os.path.join('android/build', rel)
+                  if member.is_dir():
+                      os.makedirs(dest, exist_ok=True)
+                  else:
+                      os.makedirs(os.path.dirname(dest), exist_ok=True)
+                      with inner.open(member) as src, open(dest, 'wb') as out:
+                          out.write(src.read())
+
+          print('Android build template installed to android/build/')
+          PYEOF
+          rm /tmp/templates.tpz
       - name: Export Windows
         uses: firebelley/godot-export@v7.0.0
         with:
@@ -47,6 +82,41 @@ jobs:
           dotnet-version: 9.0.x
       - name: Build C# Assemblies
         run: dotnet build -c ExportRelease
+      - name: Install Android Build Template
+        run: |
+          TEMPLATES_URL="https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_export_templates.tpz"
+          echo "Downloading export templates to extract Android build template..."
+          wget -q "$TEMPLATES_URL" -O /tmp/templates.tpz
+          rm -rf android/build
+          mkdir -p android/build
+          python3 - <<'PYEOF'
+          import io
+          import os
+          import zipfile
+
+          with zipfile.ZipFile('/tmp/templates.tpz') as outer:
+              android_src_data = outer.read('templates/android_source.zip')
+
+          with zipfile.ZipFile(io.BytesIO(android_src_data)) as inner:
+              for member in inner.infolist():
+                  if not member.filename.startswith('android_source/'):
+                      continue
+
+                  rel = member.filename[len('android_source/'):]
+                  if not rel:
+                      continue
+
+                  dest = os.path.join('android/build', rel)
+                  if member.is_dir():
+                      os.makedirs(dest, exist_ok=True)
+                  else:
+                      os.makedirs(os.path.dirname(dest), exist_ok=True)
+                      with inner.open(member) as src, open(dest, 'wb') as out:
+                          out.write(src.read())
+
+          print('Android build template installed to android/build/')
+          PYEOF
+          rm /tmp/templates.tpz
       - name: Export Linux
         uses: firebelley/godot-export@v7.0.0
         with:
@@ -61,6 +131,95 @@ jobs:
         with:
           name: CorditeWars-Linux
           path: /home/runner/.local/share/godot/exports/Linux/X11/
+
+  package-windows-msi:
+    name: Windows MSI Package
+    runs-on: windows-latest
+    needs: export-windows
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download Windows Export Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: CorditeWars-Windows
+          path: build/windows
+      - name: Install WiX Toolset
+        shell: powershell
+        run: |
+          choco install wixtoolset --yes --no-progress
+      - name: Build MSI
+        shell: powershell
+        run: |
+          $ErrorActionPreference = "Stop"
+          New-Item -ItemType Directory -Force -Path dist\windows | Out-Null
+
+          if (-not (Test-Path "build/windows/CorditeWars.exe")) {
+            throw "Expected build/windows/CorditeWars.exe from export artifact."
+          }
+
+          @'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+            <Product Id="*" Name="Cordite Wars: Six Fronts" Language="1033" Version="0.1.0" Manufacturer="Cordite Wars Team" UpgradeCode="F2A3B7E2-88F4-4F7B-A6D2-8F70B97A7C11">
+              <Package InstallerVersion="500" Compressed="yes" InstallScope="perMachine" Platform="x64" />
+              <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+              <MediaTemplate EmbedCab="yes" />
+              <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+              <UIRef Id="WixUI_InstallDir" />
+              <UIRef Id="WixUI_ErrorProgressText" />
+
+              <Directory Id="TARGETDIR" Name="SourceDir">
+                <Directory Id="ProgramFiles64Folder">
+                  <Directory Id="INSTALLFOLDER" Name="Cordite Wars Six Fronts" />
+                </Directory>
+              </Directory>
+
+              <Feature Id="MainFeature" Title="Cordite Wars: Six Fronts" Level="1">
+                <ComponentGroupRef Id="HarvestedFiles" />
+              </Feature>
+            </Product>
+          </Wix>
+          '@ | Set-Content versions\windows\Product.wxs
+
+          $wixBin = "C:\Program Files (x86)\WiX Toolset v3.11\bin"
+          & "$wixBin\heat.exe" dir build\windows -cg HarvestedFiles -dr INSTALLFOLDER -scom -sreg -sfrag -gg -out versions\windows\HarvestedFiles.wxs
+          & "$wixBin\candle.exe" -arch x64 -ext WixUIExtension versions\windows\Product.wxs versions\windows\HarvestedFiles.wxs
+          & "$wixBin\light.exe" -ext WixUIExtension -out dist\windows\CorditeWars_0.1.0.msi Product.wixobj HarvestedFiles.wixobj
+      - name: Upload MSI Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CorditeWars-Windows-MSI
+          path: dist/windows/CorditeWars_0.1.0.msi
+
+  package-linux-snap:
+    name: Linux Snap Package
+    runs-on: ubuntu-latest
+    needs: export-linux
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download Linux Export Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: CorditeWars-Linux
+          path: build/linux
+      - name: Normalize Linux binary name
+        run: |
+          if [ -f build/linux/CorditeWars.x86_64 ] && [ ! -f build/linux/CorditeWars ]; then
+            cp build/linux/CorditeWars.x86_64 build/linux/CorditeWars
+          fi
+          chmod +x build/linux/CorditeWars || true
+      - name: Build Snap
+        id: snapcraft
+        uses: snapcore/action-build@v1
+        with:
+          path: versions/linux
+      - name: Upload Snap Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CorditeWars-Linux-Snap
+          path: ${{ steps.snapcraft.outputs.snap }}
 
   export-android:
     name: Android Export
@@ -83,6 +242,10 @@ jobs:
         run: |
           mkdir -p ~/.local/share/godot/
           keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 -deststoretype pkcs12
+      - name: Prepare Android release keystore (optional)
+        if: ${{ secrets.ANDROID_RELEASE_KEYSTORE_B64 != '' }}
+        run: |
+          echo "${{ secrets.ANDROID_RELEASE_KEYSTORE_B64 }}" | base64 --decode > release.keystore
       - name: Configure Godot Android SDK Path
         run: |
           mkdir -p ~/.config/godot
@@ -94,13 +257,33 @@ jobs:
           TEMPLATES_URL="https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_export_templates.tpz"
           echo "Downloading export templates to extract Android build template..."
           wget -q "$TEMPLATES_URL" -O /tmp/templates.tpz
+          rm -rf android/build
           mkdir -p android/build
           python3 - <<'PYEOF'
-          import zipfile, io, sys
+          import io
+          import os
+          import zipfile
+
           with zipfile.ZipFile('/tmp/templates.tpz') as outer:
               android_src_data = outer.read('templates/android_source.zip')
+
           with zipfile.ZipFile(io.BytesIO(android_src_data)) as inner:
-              inner.extractall('android/build')
+              for member in inner.infolist():
+                  if not member.filename.startswith('android_source/'):
+                      continue
+
+                  rel = member.filename[len('android_source/'):]
+                  if not rel:
+                      continue
+
+                  dest = os.path.join('android/build', rel)
+                  if member.is_dir():
+                      os.makedirs(dest, exist_ok=True)
+                  else:
+                      os.makedirs(os.path.dirname(dest), exist_ok=True)
+                      with inner.open(member) as src, open(dest, 'wb') as out:
+                          out.write(src.read())
+
           print('Android build template installed to android/build/')
           PYEOF
           rm /tmp/templates.tpz
@@ -117,8 +300,74 @@ jobs:
           GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ./debug.keystore
           GODOT_ANDROID_KEYSTORE_DEBUG_USER: androiddebugkey
           GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD: android
+          GODOT_ANDROID_KEYSTORE_RELEASE_PATH: ./release.keystore
+          GODOT_ANDROID_KEYSTORE_RELEASE_USER: ${{ secrets.ANDROID_RELEASE_KEYSTORE_ALIAS }}
+          GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD: ${{ secrets.ANDROID_RELEASE_KEYSTORE_PASSWORD }}
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: CorditeWars-Android
           path: /home/runner/.local/share/godot/exports/Android/
+
+  export-ios-handoff:
+    name: iOS/iPadOS Handoff Export
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+      - name: Build C# Assemblies
+        run: dotnet build -c ExportRelease
+      - name: Install Android Build Template
+        run: |
+          TEMPLATES_URL="https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_export_templates.tpz"
+          echo "Downloading export templates to extract Android build template..."
+          curl -L "$TEMPLATES_URL" -o /tmp/templates.tpz
+          rm -rf android/build
+          mkdir -p android/build
+          python3 - <<'PYEOF'
+          import io
+          import os
+          import zipfile
+
+          with zipfile.ZipFile('/tmp/templates.tpz') as outer:
+              android_src_data = outer.read('templates/android_source.zip')
+
+          with zipfile.ZipFile(io.BytesIO(android_src_data)) as inner:
+              for member in inner.infolist():
+                  if not member.filename.startswith('android_source/'):
+                      continue
+
+                  rel = member.filename[len('android_source/'):]
+                  if not rel:
+                      continue
+
+                  dest = os.path.join('android/build', rel)
+                  if member.is_dir():
+                      os.makedirs(dest, exist_ok=True)
+                  else:
+                      os.makedirs(os.path.dirname(dest), exist_ok=True)
+                      with inner.open(member) as src, open(dest, 'wb') as out:
+                          out.write(src.read())
+
+          print('Android build template installed to android/build/')
+          PYEOF
+          rm /tmp/templates.tpz
+      - name: Export iOS project handoff files
+        uses: firebelley/godot-export@v7.0.0
+        with:
+          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_macos.universal.zip
+          godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_export_templates.tpz
+          relative_project_path: ./
+          relative_export_path: ./builds/ios_handoff
+          archive_output: false
+          export_debug: false
+          export_name: iOS
+      - name: Upload iOS/iPadOS Handoff Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CorditeWars-iOS-iPadOS-Handoff
+          path: builds/ios_handoff/

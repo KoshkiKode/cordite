@@ -240,6 +240,25 @@ Platform-specific:
 | macOS    | Xcode 14+, Apple Developer Program account (for notarization), `codesign` and `xcrun altool` / `notarytool` |
 | Android  | Android Studio (Hedgehog or newer), Android NDK r23c, Java 17, `ANDROID_HOME` env var set, Godot Android build template installed |
 
+### CI Signing Secrets Checklist (GitHub Actions)
+
+Configure these repository secrets before release packaging:
+
+| Secret | Used for |
+|--------|----------|
+| `ANDROID_RELEASE_KEYSTORE_B64` | Base64-encoded Android release keystore (`.jks` / `.keystore`) |
+| `ANDROID_RELEASE_KEYSTORE_ALIAS` | Android release key alias |
+| `ANDROID_RELEASE_KEYSTORE_PASSWORD` | Android keystore password |
+| `ANDROID_RELEASE_KEY_PASSWORD` | Android key password |
+| `APPLE_DEV_ID` | `Developer ID Application: Name (TEAMID)` signing identity |
+| `APPLE_TEAM_ID` | Apple 10-character team identifier |
+| `APPLE_ID` | Apple ID email for notarization |
+| `AC_PASSWORD` | App-specific password for notarization |
+
+Notes:
+- The CI iOS/iPadOS **handoff export** (Xcode project files only) does not require Apple signing secrets.
+- Apple signing secrets are required when you move from handoff files to signed/notarized distributables on your Mac build host.
+
 ---
 
 ## Windows Build (MSI/EXE)
