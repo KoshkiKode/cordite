@@ -1,0 +1,116 @@
+name: "Create Release"
+on:
+  push:
+    tags: [ "v*" ]
+
+env:
+  GODOT_VERSION: "4.6.2-stable"
+
+jobs:
+  build-all-platforms:
+    name: Build All Platforms
+    uses: ./.github/workflows/export.yml
+
+  create-release:
+    name: Create GitHub Release
+    needs: build-all-platforms
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download All Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts/
+
+      - name: Generate Checksums
+        run: |
+          python3 - <<'EOF'
+          import hashlib
+          import json
+          from pathlib import Path
+          from datetime import datetime
+          
+          artifacts_dir = Path("artifacts")
+          checksums = {}
+          
+          for file_path in sorted(artifacts_dir.rglob("*")):
+              if not file_path.is_file():
+                  continue
+              
+              rel_path = file_path.relative_to(artifacts_dir)
+              sha256 = hashlib.sha256()
+              with open(file_path, "rb") as f:
+                  for chunk in iter(lambda: f.read(8192), b""):
+                      sha256.update(chunk)
+              
+              checksums[str(rel_path)] = sha256.hexdigest()
+          
+          # Write checksums
+          with open("checksums.txt", "w") as f:
+              for path, hash in sorted(checksums.items()):
+                  f.write(f"{hash}  {path}\n")
+          
+          with open("checksums.json", "w") as f:
+              json.dump({
+                  "generated": datetime.utcnow().isoformat() + "Z",
+                  "algorithm": "sha256",
+                  "artifacts": [
+                      {"file": p, "checksum": c}
+                      for p, c in sorted(checksums.items())
+                  ]
+              }, f, indent=2)
+          
+          print("✓ Generated checksums")
+          EOF
+
+      - name: Flatten Artifacts
+        run: |
+          mkdir -p release_artifacts
+          for dir in artifacts/*/; do
+              cp -r "$dir"* release_artifacts/ 2>/dev/null || true
+          done
+          cp checksums.* release_artifacts/
+          ls -lah release_artifacts/
+
+      - name: Create Release Notes
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/}
+          echo "# 🎮 Cordite Wars: Six Fronts $VERSION" > release_notes.md
+          echo "" >> release_notes.md
+          echo "Multi-platform release featuring:" >> release_notes.md
+          echo "- 🪟 **Windows** (.exe + .msi installer)" >> release_notes.md
+          echo "- 🐧 **Linux** (binary + snap)" >> release_notes.md
+          echo "- 🤖 **Android** (.apk)" >> release_notes.md
+          echo "- 🍎 **macOS** (.app + .dmg)" >> release_notes.md
+          echo "- 📱 **iOS/iPadOS** (Xcode project handoff)" >> release_notes.md
+          echo "" >> release_notes.md
+          echo "## Installation" >> release_notes.md
+          echo "See [Deployment Guide](docs/deployment-guide.md) for platform-specific instructions." >> release_notes.md
+          echo "" >> release_notes.md
+          echo "## Verification" >> release_notes.md
+          echo "All artifacts are SHA256 checksummed. Verify with:" >> release_notes.md
+          echo "\`\`\`bash" >> release_notes.md
+          echo "sha256sum -c checksums.txt" >> release_notes.md
+          echo "\`\`\`" >> release_notes.md
+          echo "" >> release_notes.md
+          echo "See [CHANGELOG.md](CHANGELOG.md) for detailed changes." >> release_notes.md
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: release_notes.md
+          files: |
+            release_artifacts/*
+            checksums.txt
+            checksums.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Notify Release
+        run: |
+          echo "✓ Released ${{ github.ref_name }}"
+          echo "  Download: https://github.com/${{ github.repository }}/releases/tag/${{ github.ref_name }}"
