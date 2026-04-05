@@ -10,6 +10,9 @@ env:
   APP_VERSION: "0.1.0"
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
+permissions:
+  contents: read
+
 jobs:
 
   # ─────────────────────────────────────────────────────────────────────────────
@@ -188,6 +191,7 @@ jobs:
             -arch x64 `
             -ext WixToolset.UI.wixext `
             -d BuildDir=build\windows `
+            -d AppVersion=${{ env.APP_VERSION }} `
             -out dist\windows\CorditeWars_${{ env.APP_VERSION }}.msi
           if (-not (Test-Path "dist\windows\CorditeWars_${{ env.APP_VERSION }}.msi")) {
             throw "WiX did not produce CorditeWars_${{ env.APP_VERSION }}.msi"

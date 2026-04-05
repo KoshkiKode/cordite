@@ -10,7 +10,7 @@
      xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
 
   <Package Name="Cordite Wars: Six Fronts"
-           Version="0.1.0"
+           Version="$(var.AppVersion)"
            Manufacturer="Cordite Wars Team"
            UpgradeCode="F2A3B7E2-88F4-4F7B-A6D2-8F70B97A7C11"
            Language="1033"
