@@ -253,7 +253,7 @@ public partial class GameSession : Node
                      $"({_terrainGrid.Width}x{_terrainGrid.Height} grid).");
         }
 
-        // h0. Render terrain mesh, water, and map props
+        // g3. Render terrain mesh, water, and map props
         SetupTerrainRendering();
 
         // h. Place starting buildings (HQ per player at starting positions)
@@ -1551,7 +1551,15 @@ public partial class GameSession : Node
         if (_occupancyGrid is not null && hasProps)
         {
             var terrainManifest = new TerrainManifest();
-            terrainManifest.Load("res://data/terrain_manifest.json");
+            try
+            {
+                terrainManifest.Load("res://data/terrain_manifest.json");
+            }
+            catch (Exception ex)
+            {
+                GD.PushWarning($"[GameSession] Could not load terrain_manifest.json — props will be skipped. ({ex.Message})");
+                return;
+            }
 
             _propPlacer = new PropPlacer();
             _propPlacer.Name = "PropPlacer";
