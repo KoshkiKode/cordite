@@ -627,6 +627,9 @@ public partial class GameSession : Node
             _gameManager.Rng?.SetState(data.RngState0, data.RngState1, data.RngState2, data.RngState3);
         }
 
+        // Also restore the combat RNG in UnitInteractionSystem to match saved state
+        _unitInteractionSystem?.CombatRng.SetState(data.RngState0, data.RngState1, data.RngState2, data.RngState3);
+
         CurrentMatchState = MatchState.Playing;
 
         GD.Print($"[GameSession] Restored match at tick {data.CurrentTick}.");
