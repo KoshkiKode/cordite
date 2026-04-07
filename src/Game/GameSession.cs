@@ -1290,10 +1290,13 @@ public partial class GameSession : Node
                 // Check if the scanline crosses this edge
                 if ((scanY >= ay && scanY < by) || (scanY >= by && scanY < ay))
                 {
-                    // Compute X intersection
+                    // Compute X intersection using rounding to avoid truncation gaps.
+                    // Using integer round-half-up: add half the denominator before dividing.
                     int ax = pa[0];
                     int bx = pb[0];
-                    int xIntersect = ax + (scanY - ay) * (bx - ax) / (by - ay);
+                    int numerator   = (scanY - ay) * (bx - ax);
+                    int denominator = by - ay;
+                    int xIntersect  = ax + (numerator + denominator / 2) / denominator;
                     intersections.Add(xIntersect);
                 }
             }

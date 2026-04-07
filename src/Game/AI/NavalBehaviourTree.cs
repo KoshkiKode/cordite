@@ -42,6 +42,12 @@ public partial class NavalBehaviourTree : Node
     /// <summary>Target number of destroyers before building capital ships.</summary>
     private const int DestroyerTarget = 3;
 
+    /// <summary>
+    /// Tick threshold before Hard AI attempts to build a capital ship.
+    /// 18000 ticks = 600 seconds (10 minutes) at 30 ticks per second.
+    /// </summary>
+    private const int CapitalShipDelayTicks = 18000;
+
     // ── State ────────────────────────────────────────────────────────
 
     private int _playerId;
@@ -144,7 +150,7 @@ public partial class NavalBehaviourTree : Node
         }
 
         // ── Stage 4: Late game — capital ship (Hard only) ────────────
-        if (_difficulty == AIDifficulty.Hard && totalTicksElapsed > 18000)
+        if (_difficulty == AIDifficulty.Hard && totalTicksElapsed > CapitalShipDelayTicks)
         {
             int capitalCount = CountNavalUnitsByCategory(unitSpawner, UnitCategory.CapitalShip);
             if (capitalCount < 1)
