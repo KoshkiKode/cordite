@@ -282,6 +282,12 @@ public partial class GameSession : Node
         // k2. Set up gameplay systems (Selection, Commands, Building, HUD, AI)
         SetupGameplaySystems(config);
 
+        // k3. Wire minimap to live terrain/camera data now that all systems are ready
+        SetupMinimapData();
+
+        // k4. Spawn visual cordite node markers on the map
+        SpawnCorditeNodeMarkers();
+
         // l. Wire up GameManager
         _gameManager = GetNodeOrNull<GameManager>("/root/GameManager");
         if (_gameManager is not null)
@@ -851,6 +857,12 @@ public partial class GameSession : Node
 
         // Set up gameplay systems (Selection, Commands, Building, HUD, AI)
         SetupGameplaySystems(config);
+
+        // Wire minimap to live terrain/camera data
+        SetupMinimapData();
+
+        // Spawn visual cordite node markers
+        SpawnCorditeNodeMarkers();
 
         // Wire up GameManager and set tick
         _gameManager = GetNodeOrNull<GameManager>("/root/GameManager");
@@ -1548,10 +1560,24 @@ public partial class GameSession : Node
         _camera.Name = "RTSCamera";
         AddChild(_camera);
 
-        // Focus camera on the first player's starting position
-        if (ActiveMap is not null && ActiveMap.StartingPositions.Length > 0)
+        // Focus camera on the human player's starting position (first non-AI slot).
+        // Map starting positions use 0-based PlayerId; player configs use 1-based PlayerId.
+        // We use the index-based fallback: config slot 0 → map starting position index 0.
+        if (ActiveMap is not null && ActiveMap.StartingPositions.Length > 0 && ActiveConfig is not null)
         {
-            StartingPosition sp = ActiveMap.StartingPositions[0];
+            // Find first human player slot
+            int humanSlotIndex = 0;
+            for (int i = 0; i < ActiveConfig.PlayerConfigs.Length; i++)
+            {
+                if (!ActiveConfig.PlayerConfigs[i].IsAI)
+                {
+                    humanSlotIndex = i;
+                    break;
+                }
+            }
+            // Use the map starting position at the same index (0-based), clamped to available slots
+            int spIndex = Math.Min(humanSlotIndex, ActiveMap.StartingPositions.Length - 1);
+            StartingPosition sp = ActiveMap.StartingPositions[spIndex];
             _camera.SetFocusPoint(new Vector3(sp.X, 0f, sp.Y));
         }
     }
@@ -1597,6 +1623,65 @@ public partial class GameSession : Node
             AddChild(_propPlacer);
             _propPlacer.PlaceAll(ActiveMap, terrainManifest, _terrainRenderer, _occupancyGrid);
         }
+    }
+
+    /// <summary>
+    /// Wires the minimap panel to live terrain and game data.
+    /// Called after SetupGameplaySystems so the HUD and camera are ready.
+    /// </summary>
+    private void SetupMinimapData()
+    {
+        if (_gameHUD is null || _terrainGrid is null || _camera is null ||
+            _unitSpawner is null || _buildingPlacer is null || ActiveMap is null) return;
+
+        _gameHUD.SetupMinimapData(
+            _terrainGrid,
+            ActiveMap.Width,
+            ActiveMap.Height,
+            _unitSpawner,
+            _buildingPlacer,
+            _camera);
+
+        GD.Print("[GameSession] Minimap wired to live terrain data.");
+    }
+
+    /// <summary>
+    /// Places a small glowing sphere marker at each Cordite node position
+    /// so players can see resources on the map.
+    /// </summary>
+    private void SpawnCorditeNodeMarkers()
+    {
+        if (ActiveMap is null) return;
+
+        var parentNode = new Node3D();
+        parentNode.Name = "CorditeMarkers";
+        AddChild(parentNode);
+
+        for (int i = 0; i < ActiveMap.CorditeNodes.Length; i++)
+        {
+            CorditeNodeData cn = ActiveMap.CorditeNodes[i];
+
+            var marker = new MeshInstance3D();
+            marker.Name = $"CorditeNode_{i}";
+            marker.GlobalPosition = new Vector3(cn.X, 0.3f, cn.Y);
+
+            var sphere = new SphereMesh();
+            sphere.Radius = 0.6f;
+            sphere.Height = 1.2f;
+            marker.Mesh = sphere;
+
+            // Bright golden-yellow material to stand out as a resource node
+            var markerMat = new StandardMaterial3D();
+            markerMat.AlbedoColor = new Color(0.9f, 0.85f, 0.1f);
+            markerMat.EmissionEnabled = true;
+            markerMat.Emission = new Color(0.6f, 0.55f, 0.05f);
+            markerMat.EmissionEnergyMultiplier = 1.5f;
+            marker.MaterialOverride = markerMat;
+
+            parentNode.AddChild(marker);
+        }
+
+        GD.Print($"[GameSession] Spawned {ActiveMap.CorditeNodes.Length} Cordite node markers.");
     }
 
     /// <summary>
