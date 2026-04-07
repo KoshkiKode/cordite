@@ -68,6 +68,12 @@ public sealed class PlayerTechState
         return _completedUpgrades.ContainsKey(upgradeId);
     }
 
+    /// <summary>Returns all completed upgrade IDs for save/load serialization.</summary>
+    public IList<string> GetCompletedUpgrades() => _completedUpgrades.Keys;
+
+    /// <summary>Returns all registered building type IDs for save/load serialization.</summary>
+    public IList<string> GetRegisteredBuildings() => _buildingCounts.Keys;
+
     // ── Research ────────────────────────────────────────────────────
 
     /// <summary>

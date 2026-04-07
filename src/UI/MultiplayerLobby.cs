@@ -37,6 +37,9 @@ public partial class MultiplayerLobby : Control
     private Button _leaveLobbyBtn = null!;
     private Label _lobbyStatusLabel = null!;
 
+    private static readonly string[] MapIds = ["crossroads", "six_fronts", "coral_atoll", "archipelago", "dust_bowl"];
+    private static readonly string[] MapDisplayNames = ["Crossroads", "Six Fronts", "Coral Atoll", "Archipelago", "Dust Bowl"];
+
     private bool _isHost;
     private bool _isReady;
     private bool _isSearching;
@@ -162,10 +165,10 @@ public partial class MultiplayerLobby : Control
         _mapSelector = new OptionButton();
         _mapSelector.CustomMinimumSize = new Vector2(200, 0);
         UITheme.StyleOptionButton(_mapSelector);
-        _mapSelector.AddItem("Crossroads", 0);
-        _mapSelector.AddItem("Six Fronts", 1);
-        _mapSelector.AddItem("Coral Atoll", 2);
+        for (int i = 0; i < MapDisplayNames.Length; i++)
+            _mapSelector.AddItem(MapDisplayNames[i], i);
         _mapSelector.Selected = 0;
+        _mapSelector.ItemSelected += OnMapSelected;
         mapRow.AddChild(_mapSelector);
 
         // Lobby buttons
@@ -414,9 +417,14 @@ public partial class MultiplayerLobby : Control
         if (_lobbyManager == null) return;
         if (!_lobbyManager.AllPlayersReady()) return;
 
+        // Sync map selection to lobby before starting
+        int mapIdx = _mapSelector.Selected;
+        if (mapIdx >= 0 && mapIdx < MapIds.Length)
+            _lobbyManager.SetMap(MapIds[mapIdx]);
+
         _lobbyManager.StartMatch();
         GD.Print("[MultiplayerLobby] Starting match...");
-        // TODO: Transition to game scene
+        // Scene transition happens via OnMatchCountdown triggered by LobbyManager.StartMatch()
     }
 
     private void OnLeaveLobby()
@@ -473,7 +481,7 @@ public partial class MultiplayerLobby : Control
 
         var config = new MatchConfig
         {
-            MapId = string.IsNullOrEmpty(_lobbyManager.SelectedMap) ? "Crossroads" : _lobbyManager.SelectedMap,
+            MapId = string.IsNullOrEmpty(_lobbyManager.SelectedMap) ? "crossroads" : _lobbyManager.SelectedMap,
             MatchSeed = _lobbyManager.MatchSeed,
             GameSpeed = 1,
             FogOfWar = true,
@@ -483,12 +491,46 @@ public partial class MultiplayerLobby : Control
 
         UnnamedRTS.Game.Main.PendingConfig = config;
 
+        // Reparent NetworkTransport to scene root so it survives the scene change.
+        // GameSession.SetupMultiplayer() looks for it at /root/NetworkTransport.
+        ReparentNetworkTransport();
+
         if (EventBus.Instance != null)
         {
             EventBus.Instance.Disconnect(EventBus.SignalName.MatchCountdown, Callable.From<int>(OnMatchCountdown));
         }
 
         SceneTransition.TransitionTo(GetTree(), "res://scenes/Game/Main.tscn");
+    }
+
+    /// <summary>
+    /// Moves the NetworkTransport node to /root/ so it persists across the scene
+    /// change. GameSession.SetupMultiplayer() looks for it at /root/NetworkTransport.
+    /// </summary>
+    private void ReparentNetworkTransport()
+    {
+        // Find the transport among our children
+        for (int i = GetChildCount() - 1; i >= 0; i--)
+        {
+            if (GetChild(i) is NetworkTransport transport)
+            {
+                RemoveChild(transport);
+                transport.Name = "NetworkTransport";
+                GetTree().Root.AddChild(transport);
+                GD.Print("[MultiplayerLobby] Reparented NetworkTransport to /root/ for scene persistence.");
+                return;
+            }
+        }
+    }
+
+    private void OnMapSelected(long index)
+    {
+        if (!_isHost || _lobbyManager == null) return;
+        int idx = (int)index;
+        if (idx >= 0 && idx < MapIds.Length)
+        {
+            _lobbyManager.SetMap(MapIds[idx]);
+        }
     }
 
     public override void _ExitTree()

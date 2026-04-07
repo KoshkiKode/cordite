@@ -458,4 +458,13 @@ public sealed partial class HarvesterSystem : Node
     public int HarvesterCount => _harvesters.Count;
     public int NodeCount => _corditeNodes.Count;
     public int RefineryCount => _refineries.Count;
+
+    /// <summary>Returns all harvester instances for save/load serialization.</summary>
+    public IList<HarvesterInstance> GetAllHarvesters() => _harvesters.Values;
+
+    /// <summary>Returns all cordite nodes for save/load serialization.</summary>
+    public IList<CorditeNode> GetAllCorditeNodes() => _corditeNodes.Values;
+
+    /// <summary>Returns all refinery locations for save/load serialization.</summary>
+    public IList<RefineryLocation> GetAllRefineries() => _refineries.Values;
 }

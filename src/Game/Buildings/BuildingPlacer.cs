@@ -106,6 +106,48 @@ public partial class BuildingPlacer : Node
 
     public IList<BuildingInstance> GetAllBuildings() => _buildings.Values;
 
+    /// <summary>
+    /// Restores a building from save data without cost validation or placement checks.
+    /// Used during LoadFromSave to rebuild the building list.
+    /// </summary>
+    public void RestoreBuilding(
+        int buildingId,
+        string buildingTypeId,
+        int playerId,
+        int gridX,
+        int gridY,
+        FixedPoint health,
+        bool isConstructed,
+        FixedPoint constructionProgress)
+    {
+        if (_buildingRegistry is null || !_buildingRegistry.HasBuilding(buildingTypeId))
+        {
+            GD.PushWarning($"[BuildingPlacer] Cannot restore unknown building type '{buildingTypeId}'.");
+            return;
+        }
+
+        BuildingData data = _buildingRegistry.GetBuilding(buildingTypeId);
+
+        var instance = new BuildingInstance();
+        instance.Initialize(buildingId, buildingTypeId, data, playerId, gridX, gridY);
+        instance.RestoreState(health, isConstructed, constructionProgress);
+
+        AddChild(instance);
+        _buildings.Add(buildingId, instance);
+
+        // Reserve footprint in occupancy grid
+        _occupancyGrid?.OccupyFootprint(
+            gridX, gridY,
+            data.FootprintWidth, data.FootprintHeight,
+            OccupancyType.Building, buildingId, playerId);
+
+        // Ensure _nextBuildingId stays ahead of restored IDs
+        if (buildingId >= _nextBuildingId)
+            _nextBuildingId = buildingId + 1;
+
+        GD.Print($"[BuildingPlacer] Restored {buildingTypeId} (id={buildingId}) at ({gridX}, {gridY}).");
+    }
+
     // ── Input Processing ─────────────────────────────────────────────
 
     public override void _UnhandledInput(InputEvent @event)
