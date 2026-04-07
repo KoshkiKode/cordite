@@ -678,6 +678,21 @@ jobs:
           codesign --verify --deep --strict --verbose=2 "$APP_PATH"
           echo "App bundle signed with: $APPLE_DEV_ID"
 
+      - name: Ad-hoc sign app bundle (no Apple Developer ID)
+        if: ${{ env.APPLE_DEV_ID == '' }}
+        env:
+          APPLE_DEV_ID: ${{ secrets.APPLE_DEV_ID }}
+        run: |
+          # Ad-hoc signing (-) satisfies macOS's minimum code-signature requirement,
+          # preventing the "app is damaged" Gatekeeper error for unsigned binaries.
+          # Users will still need to right-click → Open the first time they launch
+          # the app (until it is notarized with a real Apple Developer certificate).
+          codesign --deep --force \
+            --entitlements versions/macos/entitlements.plist \
+            --sign - \
+            "$APP_PATH"
+          echo "App bundle ad-hoc signed."
+
       - name: Create DMG
         run: |
           DMG_PATH="dist/macos/CorditeWars_${{ env.APP_VERSION }}.dmg"

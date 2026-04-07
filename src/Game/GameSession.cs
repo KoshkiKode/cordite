@@ -83,6 +83,12 @@ public partial class GameSession : Node
     private FogSnapshot[]? _playerFogSnapshots;
     private readonly List<VisionComponent> _visionComponents = new();
 
+    // ── Terrain Rendering ───────────────────────────────────────────
+
+    private TerrainRenderer? _terrainRenderer;
+    private WaterRenderer? _waterRenderer;
+    private PropPlacer? _propPlacer;
+
     // ── Camera ──────────────────────────────────────────────────────
 
     private RTSCamera? _camera;
@@ -246,6 +252,9 @@ public partial class GameSession : Node
             GD.Print($"[GameSession] Fog of war initialized for {config.PlayerConfigs.Length} players " +
                      $"({_terrainGrid.Width}x{_terrainGrid.Height} grid).");
         }
+
+        // h0. Render terrain mesh, water, and map props
+        SetupTerrainRendering();
 
         // h. Place starting buildings (HQ per player at starting positions)
         PlaceStartingBuildings(config);
@@ -822,6 +831,9 @@ public partial class GameSession : Node
 
             _harvesterSystem.RegisterHarvester(hs.UnitId, hs.PlayerId, hvFaction, hvPos);
         }
+
+        // Render terrain mesh, water, and map props
+        SetupTerrainRendering();
 
         // Set up camera
         SetupCamera();
@@ -1514,6 +1526,41 @@ public partial class GameSession : Node
     }
 
     /// <summary>
+    /// Generates the terrain mesh, water planes, and map props from <see cref="ActiveMap"/>.
+    /// Must be called after <see cref="ActiveMap"/> and <see cref="_occupancyGrid"/> are
+    /// initialised.
+    /// </summary>
+    private void SetupTerrainRendering()
+    {
+        if (ActiveMap is null) return;
+
+        // Terrain mesh
+        _terrainRenderer = new TerrainRenderer();
+        _terrainRenderer.Name = "TerrainRenderer";
+        AddChild(_terrainRenderer);
+        _terrainRenderer.Generate(ActiveMap);
+
+        // Animated water planes for rivers / water bodies
+        _waterRenderer = new WaterRenderer();
+        _waterRenderer.Name = "WaterRenderer";
+        AddChild(_waterRenderer);
+        _waterRenderer.Generate(ActiveMap, _terrainRenderer);
+
+        // Decorative props and structures (trees, rocks, ruins, etc.)
+        bool hasProps = (ActiveMap.Props.Length > 0) || (ActiveMap.Structures.Length > 0);
+        if (_occupancyGrid is not null && hasProps)
+        {
+            var terrainManifest = new TerrainManifest();
+            terrainManifest.Load("res://data/terrain_manifest.json");
+
+            _propPlacer = new PropPlacer();
+            _propPlacer.Name = "PropPlacer";
+            AddChild(_propPlacer);
+            _propPlacer.PlaceAll(ActiveMap, terrainManifest, _terrainRenderer, _occupancyGrid);
+        }
+    }
+
+    /// <summary>
     /// Initializes multiplayer networking for the match.
     /// </summary>
     private void SetupMultiplayer(MatchConfig config)
@@ -1599,6 +1646,9 @@ public partial class GameSession : Node
         _lockstepManager = null;
         _networkTransport = null;
         _camera = null;
+        _terrainRenderer = null;
+        _waterRenderer = null;
+        _propPlacer = null;
         _selectionManager = null;
         _commandInput = null;
         _buildingPlacer = null;
