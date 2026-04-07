@@ -47,9 +47,9 @@
         "kragmore_strix_gunship",
         "kragmore_vanguard",
         "kragmore_wrecker",
-        "kragmore_dredger",
-        "kragmore_ram_cutter",
-        "kragmore_crusher_gunship",
-        "kragmore_titan_dreadnought"
+        "kragmore_iron_trawler",
+        "kragmore_deep_bore",
+        "kragmore_leviathan",
+        "kragmore_dreadnought"
     ]
 }

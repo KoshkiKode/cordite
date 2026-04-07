@@ -48,8 +48,8 @@
         "ironmarch_stonehail",
         "ironmarch_trenchline_apc",
         "ironmarch_march_barge",
-        "ironmarch_ironclad_gunboat",
-        "ironmarch_bulwark_destroyer",
+        "ironmarch_ironclad_frigate",
+        "ironmarch_trench_diver",
         "ironmarch_battleship"
     ]
 }
