@@ -485,7 +485,7 @@ public sealed class MapGenerator
         int cy = height / 2;
         int count = 2 + rng.NextInt(3); // 2–4 ruins
 
-        string[] ruinIds = { "rock_largeA", "rock_largeB" };
+        string[] centerStructureIds = { "rock_largeA", "rock_largeB" };
         const double keepOutRadius = 20.0;
 
         for (int i = 0; i < count; i++)
@@ -509,7 +509,7 @@ public sealed class MapGenerator
 
             structures.Add(new StructurePlacement
             {
-                ModelId = ruinIds[rng.NextInt(ruinIds.Length)],
+                ModelId = centerStructureIds[rng.NextInt(centerStructureIds.Length)],
                 X = FixedPoint.FromFloat((float)sx),
                 Y = FixedPoint.FromFloat((float)sy),
                 Rotation = FixedPoint.FromFloat((float)(rng.NextDouble() * 360.0)),
