@@ -47,9 +47,9 @@
         "bastion_shield_bearer",
         "bastion_warden",
         "bastion_watcher",
-        "bastion_fortress_boat",
-        "bastion_bulwark_cruiser",
-        "bastion_aegis_destroyer",
+        "bastion_shield_skiff",
+        "bastion_corvette",
+        "bastion_depth_ward",
         "bastion_citadel_ship"
     ]
 }

@@ -48,9 +48,8 @@
         "stormrend_thunderclap",
         "stormrend_thunderjaw",
         "stormrend_vortex",
-        "stormrend_blitz_boat",
-        "stormrend_razortide_corvette",
-        "stormrend_tempest_destroyer",
-        "stormrend_stormfront_flagship"
+        "stormrend_lightning_skiff",
+        "stormrend_riptide_sub",
+        "stormrend_storm_destroyer"
     ]
 }
