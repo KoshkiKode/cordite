@@ -13,13 +13,22 @@ public sealed class SaveGameData
     public ulong MatchSeed { get; init; }
     public ulong CurrentTick { get; init; }
 
+    // Match settings for full config reconstruction
+    public int GameSpeed { get; init; } = 1;
+    public bool FogOfWar { get; init; } = true;
+    public int StartingCordite { get; init; } = 5000;
+
     public PlayerSaveData[] Players { get; init; } = [];
     public UnitSaveData[] Units { get; init; } = [];
     public BuildingSaveData[] Buildings { get; init; } = [];
     public HarvesterSaveData[] Harvesters { get; init; } = [];
     public CorditeNodeSaveData[] CorditeNodes { get; init; } = [];
 
-    public ulong RngState { get; init; }
+    // Full xoshiro256** state (4 ulongs) for lossless RNG restoration
+    public ulong RngState0 { get; init; }
+    public ulong RngState1 { get; init; }
+    public ulong RngState2 { get; init; }
+    public ulong RngState3 { get; init; }
 
     public SavedCommand[] CommandHistory { get; init; } = [];
 }
@@ -31,6 +40,9 @@ public sealed class PlayerSaveData
 {
     public int PlayerId { get; init; }
     public string FactionId { get; init; } = string.Empty;
+    public string PlayerName { get; init; } = string.Empty;
+    public bool IsAI { get; init; }
+    public int AIDifficulty { get; init; }
     public long Cordite { get; init; }
     public long VoltaicCharge { get; init; }
     public int CurrentSupply { get; init; }
@@ -76,6 +88,18 @@ public sealed class BuildingSaveData
     public long Health { get; init; }
     public bool IsConstructed { get; init; }
     public long ConstructionProgress { get; init; }
+    public ProductionQueueSaveData? ProductionQueue { get; init; }
+}
+
+/// <summary>
+/// Snapshot of an in-progress production queue for a building.
+/// </summary>
+public sealed class ProductionQueueSaveData
+{
+    public string? CurrentUnitTypeId { get; init; }
+    public long CurrentProgress { get; init; }
+    public long CurrentBuildTime { get; init; }
+    public string[] QueuedUnitTypeIds { get; init; } = [];
 }
 
 /// <summary>

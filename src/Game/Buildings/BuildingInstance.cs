@@ -71,6 +71,16 @@ public partial class BuildingInstance : Node3D
         CreateVisuals(data);
     }
 
+    /// <summary>
+    /// Restores building state from a save file. Called after Initialize().
+    /// </summary>
+    public void RestoreState(FixedPoint health, bool isConstructed, FixedPoint constructionProgress)
+    {
+        Health = health;
+        IsConstructed = isConstructed;
+        ConstructionProgress = constructionProgress;
+    }
+
     // ── Visuals ──────────────────────────────────────────────────────
 
     private void CreateVisuals(BuildingData data)

@@ -557,7 +557,7 @@ public partial class GameSession : Node
         // Tear down any existing match state
         CleanupMatch();
 
-        // Reconstruct a MatchConfig from save data
+        // Reconstruct a MatchConfig from save data (including AI flags)
         var playerConfigs = new PlayerConfig[data.Players.Length];
         for (int i = 0; i < data.Players.Length; i++)
         {
@@ -566,9 +566,9 @@ public partial class GameSession : Node
             {
                 PlayerId = ps.PlayerId,
                 FactionId = ps.FactionId,
-                IsAI = false,
-                AIDifficulty = 0,
-                PlayerName = $"Player {ps.PlayerId}"
+                IsAI = ps.IsAI,
+                AIDifficulty = ps.AIDifficulty,
+                PlayerName = string.IsNullOrEmpty(ps.PlayerName) ? $"Player {ps.PlayerId}" : ps.PlayerName
             };
         }
 
@@ -577,9 +577,9 @@ public partial class GameSession : Node
             MapId = data.MapId,
             PlayerConfigs = playerConfigs,
             MatchSeed = data.MatchSeed,
-            GameSpeed = 1,
-            FogOfWar = true,
-            StartingCordite = 5000
+            GameSpeed = data.GameSpeed,
+            FogOfWar = data.FogOfWar,
+            StartingCordite = data.StartingCordite
         };
 
         ActiveConfig = config;
@@ -609,6 +609,27 @@ public partial class GameSession : Node
 
         _saveManager = new SaveManager();
         AddChild(_saveManager);
+
+        // Create simulation systems for tick pipeline
+        int mapWidth = ActiveMap?.Width ?? 256;
+        int mapHeight = ActiveMap?.Height ?? 256;
+        _terrainGrid = new TerrainGrid(mapWidth, mapHeight, FixedPoint.One);
+        _spatialHash = new SpatialHash(mapWidth, mapHeight);
+        _occupancyGrid = new OccupancyGrid(mapWidth, mapHeight);
+        _collisionResolver = new CollisionResolver();
+        _pathRequestManager = new PathRequestManager();
+        _formationManager = new FormationManager();
+        _combatResolver = new CombatResolver();
+
+        _unitInteractionSystem = new UnitInteractionSystem(
+            _spatialHash,
+            _occupancyGrid,
+            _collisionResolver,
+            _pathRequestManager,
+            _formationManager,
+            _combatResolver,
+            new DeterministicRng(data.MatchSeed),
+            8);
 
         // Restore player economy state
         for (int i = 0; i < data.Players.Length; i++)
@@ -684,6 +705,31 @@ public partial class GameSession : Node
             _harvesterSystem.RegisterCorditeNode(cn.NodeId, nodePos, cn.RemainingCordite);
         }
 
+        // Restore buildings
+        for (int i = 0; i < data.Buildings.Length; i++)
+        {
+            BuildingSaveData bs = data.Buildings[i];
+            _buildingPlacer?.RestoreBuilding(
+                bs.BuildingId,
+                bs.BuildingTypeId,
+                bs.PlayerId,
+                bs.PositionX,
+                bs.PositionY,
+                FixedPoint.FromRaw((int)bs.Health),
+                bs.IsConstructed,
+                FixedPoint.FromRaw((int)bs.ConstructionProgress));
+
+            // Re-register refineries with harvester system
+            if (bs.BuildingTypeId.Contains("refinery", StringComparison.OrdinalIgnoreCase) ||
+                bs.BuildingTypeId.Equals("hq", StringComparison.OrdinalIgnoreCase))
+            {
+                FixedVector2 bldgPos = new FixedVector2(
+                    FixedPoint.FromInt(bs.PositionX),
+                    FixedPoint.FromInt(bs.PositionY));
+                _harvesterSystem.RegisterRefinery(bs.BuildingId, bs.PlayerId, bldgPos);
+            }
+        }
+
         // Restore units
         for (int i = 0; i < data.Units.Length; i++)
         {
@@ -742,6 +788,9 @@ public partial class GameSession : Node
         // Set up camera
         SetupCamera();
 
+        // Set up gameplay systems (Selection, Commands, Building, HUD, AI)
+        SetupGameplaySystems(config);
+
         // Wire up GameManager and set tick
         _gameManager = GetNodeOrNull<GameManager>("/root/GameManager");
         if (_gameManager is not null)
@@ -751,10 +800,15 @@ public partial class GameSession : Node
             _gameManager.TechTreeManager = _techTreeManager;
             _gameManager.MapLoader = _mapLoader;
             _gameManager.CommandBuffer = new CommandBuffer();
+            _gameManager.OnSimulationTick += HandleSimulationTick;
 
-            // Initialize RNG with saved seed and advance to saved state
+            // Initialize RNG with saved seed and restore full state
             _gameManager.StartMatch(data.MatchSeed);
+            _gameManager.Rng?.SetState(data.RngState0, data.RngState1, data.RngState2, data.RngState3);
         }
+
+        // Also restore the combat RNG in UnitInteractionSystem to match saved state
+        _unitInteractionSystem?.CombatRng.SetState(data.RngState0, data.RngState1, data.RngState2, data.RngState3);
 
         CurrentMatchState = MatchState.Playing;
 
@@ -769,12 +823,11 @@ public partial class GameSession : Node
         ulong currentTick = _gameManager?.CurrentTick ?? 0;
         ulong matchSeed = ActiveConfig?.MatchSeed ?? 0;
 
-        // Collect RNG state
-        ulong rngState = 0;
+        // Collect full RNG state (4 ulongs for xoshiro256**)
+        ulong rng0 = 0, rng1 = 0, rng2 = 0, rng3 = 0;
         if (_gameManager?.Rng is not null)
         {
-            var (s0, _, _, _) = _gameManager.Rng.GetState();
-            rngState = s0;
+            (rng0, rng1, rng2, rng3) = _gameManager.Rng.GetState();
         }
 
         // Collect player data
@@ -787,8 +840,8 @@ public partial class GameSession : Node
                 PlayerEconomy? economy = _economyManager?.GetPlayer(pc.PlayerId);
                 PlayerTechState? tech = _techTreeManager?.GetPlayerTech(pc.PlayerId);
 
-                var completed = new List<string>();
-                var completedBuildings = new List<string>();
+                string[] completedUpgrades = [];
+                string[] completedBuildings = [];
                 string? currentResearch = null;
                 long researchProgress = 0;
 
@@ -796,12 +849,25 @@ public partial class GameSession : Node
                 {
                     currentResearch = tech.CurrentResearch;
                     researchProgress = tech.ResearchProgress.Raw;
+
+                    var upgradesList = tech.GetCompletedUpgrades();
+                    completedUpgrades = new string[upgradesList.Count];
+                    for (int u = 0; u < upgradesList.Count; u++)
+                        completedUpgrades[u] = upgradesList[u];
+
+                    var buildingsList = tech.GetRegisteredBuildings();
+                    completedBuildings = new string[buildingsList.Count];
+                    for (int b = 0; b < buildingsList.Count; b++)
+                        completedBuildings[b] = buildingsList[b];
                 }
 
                 players.Add(new PlayerSaveData
                 {
                     PlayerId = pc.PlayerId,
                     FactionId = pc.FactionId,
+                    PlayerName = pc.PlayerName,
+                    IsAI = pc.IsAI,
+                    AIDifficulty = pc.AIDifficulty,
                     Cordite = economy?.Cordite.Raw ?? 0,
                     VoltaicCharge = economy?.VoltaicCharge.Raw ?? 0,
                     CurrentSupply = economy?.CurrentSupply ?? 0,
@@ -809,30 +875,92 @@ public partial class GameSession : Node
                     ReactorCount = economy?.ReactorCount ?? 0,
                     RefineryCount = economy?.RefineryCount ?? 0,
                     DepotCount = economy?.DepotCount ?? 0,
-                    CompletedUpgrades = completed.ToArray(),
+                    CompletedUpgrades = completedUpgrades,
                     CurrentResearch = currentResearch,
                     ResearchProgress = researchProgress,
-                    CompletedBuildings = completedBuildings.ToArray()
+                    CompletedBuildings = completedBuildings
                 });
             }
         }
 
-        // Collect cordite nodes from harvester system (approximate from map data)
+        // Collect cordite nodes from harvester system
         var corditeNodes = new List<CorditeNodeSaveData>();
-        if (ActiveMap is not null)
+        if (_harvesterSystem is not null)
         {
-            for (int i = 0; i < ActiveMap.CorditeNodes.Length; i++)
+            var allNodes = _harvesterSystem.GetAllCorditeNodes();
+            for (int i = 0; i < allNodes.Count; i++)
             {
-                CorditeNodeData mapNode = ActiveMap.CorditeNodes[i];
-                int nodeId = i;
-                CorditeNode? node = _harvesterSystem?.GetCorditeNode(nodeId);
-
+                CorditeNode node = allNodes[i];
                 corditeNodes.Add(new CorditeNodeSaveData
                 {
-                    NodeId = nodeId,
-                    PositionX = mapNode.X,
-                    PositionY = mapNode.Y,
-                    RemainingCordite = node?.RemainingCordite ?? mapNode.Amount
+                    NodeId = node.NodeId,
+                    PositionX = node.Position.X.ToInt(),
+                    PositionY = node.Position.Y.ToInt(),
+                    RemainingCordite = node.RemainingCordite
+                });
+            }
+        }
+
+        // Collect all units from UnitSpawner
+        var units = new List<UnitSaveData>();
+        if (_unitSpawner is not null)
+        {
+            var allUnits = _unitSpawner.GetAllUnits();
+            for (int i = 0; i < allUnits.Count; i++)
+            {
+                var unit = allUnits[i];
+                units.Add(new UnitSaveData
+                {
+                    UnitId = unit.UnitId,
+                    UnitTypeId = unit.UnitTypeId,
+                    PlayerId = unit.PlayerId,
+                    PositionX = unit.SimPosition.X.Raw,
+                    PositionY = unit.SimPosition.Y.Raw,
+                    Facing = unit.SimFacing.Raw,
+                    Health = unit.Health.Raw,
+                    IsAlive = unit.IsAlive
+                });
+            }
+        }
+
+        // Collect all buildings from BuildingPlacer
+        var buildings = new List<BuildingSaveData>();
+        if (_buildingPlacer is not null)
+        {
+            var allBuildings = _buildingPlacer.GetAllBuildings();
+            for (int i = 0; i < allBuildings.Count; i++)
+            {
+                var bldg = allBuildings[i];
+                buildings.Add(new BuildingSaveData
+                {
+                    BuildingId = bldg.BuildingId,
+                    BuildingTypeId = bldg.BuildingTypeId,
+                    PlayerId = bldg.PlayerId,
+                    PositionX = bldg.GridX,
+                    PositionY = bldg.GridY,
+                    Health = bldg.Health.Raw,
+                    IsConstructed = bldg.IsConstructed,
+                    ConstructionProgress = bldg.ConstructionProgress.Raw
+                });
+            }
+        }
+
+        // Collect all harvesters
+        var harvesters = new List<HarvesterSaveData>();
+        if (_harvesterSystem is not null)
+        {
+            var allHarvesters = _harvesterSystem.GetAllHarvesters();
+            for (int i = 0; i < allHarvesters.Count; i++)
+            {
+                var hv = allHarvesters[i];
+                harvesters.Add(new HarvesterSaveData
+                {
+                    UnitId = hv.UnitId,
+                    PlayerId = hv.PlayerId,
+                    State = hv.State.ToString(),
+                    CorditeCarrying = hv.CorditeCarrying,
+                    AssignedNodeId = hv.AssignedNodeId,
+                    AssignedRefineryId = hv.AssignedRefineryId
                 });
             }
         }
@@ -845,12 +973,18 @@ public partial class GameSession : Node
             MapId = ActiveConfig?.MapId ?? string.Empty,
             MatchSeed = matchSeed,
             CurrentTick = currentTick,
+            GameSpeed = ActiveConfig?.GameSpeed ?? 1,
+            FogOfWar = ActiveConfig?.FogOfWar ?? true,
+            StartingCordite = ActiveConfig?.StartingCordite ?? 5000,
             Players = players.ToArray(),
-            Units = [],
-            Buildings = [],
-            Harvesters = [],
+            Units = units.ToArray(),
+            Buildings = buildings.ToArray(),
+            Harvesters = harvesters.ToArray(),
             CorditeNodes = corditeNodes.ToArray(),
-            RngState = rngState,
+            RngState0 = rng0,
+            RngState1 = rng1,
+            RngState2 = rng2,
+            RngState3 = rng3,
             CommandHistory = []
         };
     }

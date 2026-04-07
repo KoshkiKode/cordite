@@ -172,6 +172,9 @@ public class UnitInteractionSystem
     private readonly CombatResolver _combatResolver;
     private readonly DeterministicRng _combatRng;
 
+    /// <summary>The deterministic combat RNG. Exposed for save/load state restoration.</summary>
+    public DeterministicRng CombatRng => _combatRng;
+
     // ── Configuration ────────────────────────────────────────────────────
 
     /// <summary>Maximum number of path requests to process per tick.</summary>

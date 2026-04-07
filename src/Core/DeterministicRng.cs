@@ -22,6 +22,18 @@ public class DeterministicRng
     /// </summary>
     public (ulong s0, ulong s1, ulong s2, ulong s3) GetState() => (_s0, _s1, _s2, _s3);
 
+    /// <summary>
+    /// Restores the full internal state from a save file.
+    /// Used by save/load to resume the exact RNG sequence.
+    /// </summary>
+    public void SetState(ulong s0, ulong s1, ulong s2, ulong s3)
+    {
+        _s0 = s0;
+        _s1 = s1;
+        _s2 = s2;
+        _s3 = s3;
+    }
+
     public DeterministicRng(ulong seed)
     {
         // Use SplitMix64 to initialize state from a single seed.
