@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Godot;
+using System.Linq;
 
 namespace CorditeWars.Systems.Platform;
 
@@ -224,10 +225,9 @@ public sealed partial class SteamManager : Node
             var root = JsonSerializer.Deserialize<AchievementFile>(json, options);
             if (root is null) return;
 
-            foreach (var def in root.Achievements)
+            foreach (var def in root.Achievements.Where(def => !string.IsNullOrEmpty(def.Id)))
             {
-                if (!string.IsNullOrEmpty(def.Id))
-                    _achievements[def.Id] = def;
+                _achievements[def.Id] = def;
             }
 
             GD.Print($"[Steam] Loaded {_achievements.Count} achievement definitions.");
