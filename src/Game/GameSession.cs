@@ -10,6 +10,7 @@ using UnnamedRTS.Game.Economy;
 using UnnamedRTS.Game.Tech;
 using UnnamedRTS.Game.Units;
 using UnnamedRTS.Game.World;
+using UnnamedRTS.Systems.Audio;
 using UnnamedRTS.Systems.Networking;
 using UnnamedRTS.Systems.Pathfinding;
 using UnnamedRTS.Systems.Persistence;
@@ -69,6 +70,10 @@ public partial class GameSession : Node
     private FormationManager? _formationManager;
     private CombatResolver? _combatResolver;
     private UnitInteractionSystem? _unitInteractionSystem;
+
+    // ── Audio ───────────────────────────────────────────────────────
+
+    private CombatAudioBridge? _combatAudioBridge;
 
     // ── Camera ──────────────────────────────────────────────────────
 
@@ -180,6 +185,11 @@ public partial class GameSession : Node
         _harvesterSystem = new HarvesterSystem();
         AddChild(_harvesterSystem);
         _harvesterSystem.Initialize(_factionEconomyConfigs, _economyManager);
+
+        // e2. Create CombatAudioBridge (wires combat events → audio playback)
+        _combatAudioBridge = new CombatAudioBridge();
+        AddChild(_combatAudioBridge);
+        _combatAudioBridge.Initialize();
 
         // f. Create SaveManager
         _saveManager = new SaveManager();
@@ -327,7 +337,10 @@ public partial class GameSession : Node
         // 2. Process Tick
         TickResult tickResult = _unitInteractionSystem.ProcessTick(simUnits, _terrainGrid, currentTick);
 
-        // 3. Write back to nodes and handle events
+        // 3. Emit combat audio events (before despawn so nodes are still accessible)
+        EmitCombatAudioEvents(tickResult, simUnits);
+
+        // 4. Write back to nodes and handle events
         for (int i = 0; i < tickResult.DestroyedUnitIds.Count; i++)
         {
             _unitSpawner.DespawnUnit(tickResult.DestroyedUnitIds[i]);
@@ -342,11 +355,75 @@ public partial class GameSession : Node
                 node.SyncFromSimulation(updatedUnit.Movement.Position, updatedUnit.Movement.Facing, updatedUnit.Health);
             }
         }
-        
-        // Example: Play sounds for attacks
+    }
+
+    /// <summary>
+    /// Emits EventBus signals for combat sounds based on tick results.
+    /// Called once per tick after simulation state has been applied.
+    /// </summary>
+    private void EmitCombatAudioEvents(TickResult tickResult, List<SimUnit> simUnits)
+    {
+        var bus = EventBus.Instance;
+        if (bus == null) return;
+
+        // Weapon fire + impact sounds
         for (int i = 0; i < tickResult.Attacks.Count; i++)
         {
-            // GD.Print("PEW PEW!");
+            AttackResult attack = tickResult.Attacks[i];
+
+            // Find attacker's weapon type from simUnits
+            WeaponType weaponType = WeaponType.None;
+            Vector3 attackerPos = Vector3.Zero;
+            for (int j = 0; j < simUnits.Count; j++)
+            {
+                if (simUnits[j].UnitId == attack.AttackerId)
+                {
+                    attackerPos = simUnits[j].Movement.Position.ToVector3();
+
+                    if (simUnits[j].Weapons != null &&
+                        attack.WeaponIndex < simUnits[j].Weapons.Count)
+                    {
+                        weaponType = simUnits[j].Weapons[attack.WeaponIndex].Type;
+                    }
+                    break;
+                }
+            }
+
+            // Emit weapon fire event at attacker position
+            bus.EmitAttackFired(attack.AttackerId, (int)weaponType, attackerPos);
+
+            // Emit impact event at impact position
+            Vector3 impactPos = attack.ImpactPosition.ToVector3();
+
+            bool hasAoe = attack.SplashTargets != null && attack.SplashTargets.Count > 0;
+            bus.EmitAttackImpact(attack.TargetId, attack.DidHit, hasAoe, impactPos);
+        }
+
+        // Unit death sounds
+        for (int i = 0; i < tickResult.DestroyedUnitIds.Count; i++)
+        {
+            int destroyedId = tickResult.DestroyedUnitIds[i];
+
+            // Try to get position and category from the node before despawn,
+            // or from simUnits if still present
+            var node = _unitSpawner?.GetUnit(destroyedId);
+            if (node != null)
+            {
+                bus.EmitUnitDeath(destroyedId, (int)node.Category, node.GlobalPosition);
+            }
+            else
+            {
+                // Fall back to sim data
+                for (int j = 0; j < simUnits.Count; j++)
+                {
+                    if (simUnits[j].UnitId == destroyedId)
+                    {
+                        Vector3 pos = simUnits[j].Movement.Position.ToVector3();
+                        bus.EmitUnitDeath(destroyedId, (int)simUnits[j].Category, pos);
+                        break;
+                    }
+                }
+            }
         }
     }
 
