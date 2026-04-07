@@ -3,7 +3,7 @@ using Godot;
 namespace UnnamedRTS.UI;
 
 /// <summary>
-/// Manages accessibility settings: high contrast mode and UI scale adjustments.
+/// Manages accessibility settings: high contrast mode.
 /// Persists to user://settings.cfg under [Accessibility].
 /// </summary>
 public sealed class AccessibilitySettings

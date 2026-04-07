@@ -392,7 +392,7 @@ public partial class OptionsMenu : Control
         vbox.AddChild(keybindLabel);
 
         var hint = new Label();
-        hint.Text = "Click a key button to rebind, then press the new key. Conflicts are resolved automatically.";
+        hint.Text = "Click a key button to rebind, then press the new key. Press Delete to unbind. Conflicts are resolved automatically.";
         UITheme.StyleLabel(hint, UITheme.FontSizeSmall, UITheme.TextSecondary);
         hint.AutowrapMode = TextServer.AutowrapMode.WordSmart;
         vbox.AddChild(hint);
@@ -457,9 +457,9 @@ public partial class OptionsMenu : Control
     private void OnKeybindButtonPressed(KeybindManager.GameAction action, Button btn)
     {
         // Cancel previous wait if any
-        if (_waitingButton is not null)
+        if (_waitingButton is not null && _waitingForKey is not null)
             _waitingButton.Text = KeybindManager.GetKeyName(
-                KeybindManager.Instance?.GetKey(_waitingForKey!.Value) ?? Key.None);
+                KeybindManager.Instance?.GetKey(_waitingForKey.Value) ?? Key.None);
 
         _waitingForKey = action;
         _waitingButton = btn;
@@ -468,7 +468,8 @@ public partial class OptionsMenu : Control
 
     public override void _UnhandledKeyInput(InputEvent @event)
     {
-        if (_waitingForKey is null || @event is not InputEventKey keyEvent || !keyEvent.Pressed)
+        if (_waitingForKey is null || _waitingButton is null
+            || @event is not InputEventKey keyEvent || !keyEvent.Pressed)
             return;
 
         var km = KeybindManager.Instance;

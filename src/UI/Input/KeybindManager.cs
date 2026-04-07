@@ -158,10 +158,17 @@ public sealed class KeybindManager
     /// <summary>Check if <paramref name="key"/> is any of the control group keys (0-9).</summary>
     public int GetControlGroupIndex(Key key)
     {
-        for (int i = 0; i < 10; i++)
+        GameAction[] groupActions =
         {
-            var groupAction = GameAction.ControlGroup1 + i;
-            if (_bindings.TryGetValue(groupAction, out Key bound) && bound == key)
+            GameAction.ControlGroup1, GameAction.ControlGroup2, GameAction.ControlGroup3,
+            GameAction.ControlGroup4, GameAction.ControlGroup5, GameAction.ControlGroup6,
+            GameAction.ControlGroup7, GameAction.ControlGroup8, GameAction.ControlGroup9,
+            GameAction.ControlGroup0,
+        };
+
+        for (int i = 0; i < groupActions.Length; i++)
+        {
+            if (_bindings.TryGetValue(groupActions[i], out Key bound) && bound == key)
                 return i;
         }
         return -1;
