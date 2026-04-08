@@ -1260,9 +1260,9 @@
       },
       "voice_enemy_spotted": {
         "Files": [
-          "assets/audio/sfx/voice/war_sniper.ogg",
           "assets/audio/sfx/voice/war_look_out.ogg",
-          "assets/audio/sfx/voice/war_rpg.ogg"
+          "assets/audio/sfx/voice/war_get_down.ogg",
+          "assets/audio/sfx/voice/war_target_engaged.ogg"
         ],
         "Volume": 0.85,
         "PitchVariation": 0.02,
@@ -1385,8 +1385,7 @@
       },
       "voice_defeat": {
         "Files": [
-          "assets/audio/sfx/voice/you_lose.ogg",
-          "assets/audio/sfx/voice/game_over.ogg"
+          "assets/audio/sfx/voice/you_lose.ogg"
         ],
         "Volume": 0.85,
         "PitchVariation": 0.0,
