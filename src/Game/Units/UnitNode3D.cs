@@ -12,8 +12,6 @@ namespace CorditeWars.Game.Units;
 /// </summary>
 public partial class UnitNode3D : Node3D
 {
-    private const float GroundUnitCollisionHeight = 1.0f;
-    private const float VehicleCollisionHeight = 1.5f;
     private const float AirUnitHoverHeight = 5.0f;
 
     // ── Simulation State (FixedPoint) ────────────────────────────────
@@ -53,6 +51,7 @@ public partial class UnitNode3D : Node3D
         UnitData data,
         AssetEntry asset,
         Color teamColor,
+        Color factionBaseColor,
         int playerId)
     {
         UnitId = unitId;
@@ -70,6 +69,7 @@ public partial class UnitNode3D : Node3D
 
         _isAirUnit = asset.Domain == "Air";
         _collisionRadius = asset.CollisionRadius.ToFloat();
+        float collisionHeight = asset.CollisionHeight.ToFloat();
 
         Name = $"Unit_{unitId}_{unitTypeId}";
 
@@ -78,7 +78,7 @@ public partial class UnitNode3D : Node3D
         _meshRoot.Name = "MeshRoot";
         AddChild(_meshRoot);
 
-        LoadModel(asset, teamColor);
+        LoadModel(asset, teamColor, factionBaseColor);
 
         // ── CollisionArea: for selection/click detection ─────────────
         _collisionArea = new Area3D();
@@ -100,9 +100,7 @@ public partial class UnitNode3D : Node3D
         {
             var cylinder = new CylinderShape3D();
             cylinder.Radius = _collisionRadius;
-            cylinder.Height = IsVehicleCategory(data.Category)
-                ? VehicleCollisionHeight
-                : GroundUnitCollisionHeight;
+            cylinder.Height = collisionHeight;
             collisionShape.Shape = cylinder;
         }
 
@@ -162,7 +160,7 @@ public partial class UnitNode3D : Node3D
         tween.TweenCallback(Callable.From(() => QueueFree()));
     }
 
-    private void LoadModel(AssetEntry asset, Color teamColor)
+    private void LoadModel(AssetEntry asset, Color teamColor, Color factionBaseColor)
     {
         if (_meshRoot is null)
             return;
@@ -172,7 +170,7 @@ public partial class UnitNode3D : Node3D
         if (packedScene is null)
         {
             GD.PushWarning($"[UnitNode3D] Could not load model at '{modelPath}' for unit '{UnitTypeId}'.");
-            CreateFallbackMesh(teamColor);
+            CreateFallbackMesh(teamColor, factionBaseColor);
             return;
         }
 
@@ -190,35 +188,33 @@ public partial class UnitNode3D : Node3D
             instance.RotateY(Mathf.DegToRad(rotDeg));
         }
 
-        // Apply cohesive shader material with team color
-        CohesiveMaterial.ApplyToScene(instance, teamColor);
+        // Apply cohesive shader material with team color and faction base color
+        CohesiveMaterial.ApplyToScene(instance, teamColor, factionBaseColor);
     }
 
-    private void CreateFallbackMesh(Color teamColor)
+    private void CreateFallbackMesh(Color teamColor, Color factionBaseColor)
     {
         if (_meshRoot is null)
             return;
 
-        // Simple colored box as fallback when model can't load
+        // Colored box blending team and faction base colors as fallback
         var meshInstance = new MeshInstance3D();
         var box = new BoxMesh();
         box.Size = new Vector3(_collisionRadius * 2, 1.0f, _collisionRadius * 2);
         meshInstance.Mesh = box;
 
+        // Blend faction base color with team color for visual identity
+        var blended = new Color(
+            (factionBaseColor.R + teamColor.R) * 0.5f,
+            (factionBaseColor.G + teamColor.G) * 0.5f,
+            (factionBaseColor.B + teamColor.B) * 0.5f,
+            1.0f);
+
         var mat = new StandardMaterial3D();
-        mat.AlbedoColor = teamColor;
+        mat.AlbedoColor = blended;
         meshInstance.MaterialOverride = mat;
 
         meshInstance.Position = new Vector3(0.0f, 0.5f, 0.0f);
         _meshRoot.AddChild(meshInstance);
-    }
-
-    private static bool IsVehicleCategory(UnitCategory category)
-    {
-        return category == UnitCategory.LightVehicle
-            || category == UnitCategory.HeavyVehicle
-            || category == UnitCategory.Tank
-            || category == UnitCategory.APC
-            || category == UnitCategory.Artillery;
     }
 }

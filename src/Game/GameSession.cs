@@ -154,16 +154,31 @@ public partial class GameSession : Node
     // ── Faction colors for unit rendering ───────────────────────────
 
     private static readonly SortedList<string, Color> FactionColors = CreateFactionColors();
+    private static readonly SortedList<string, Color> FactionBaseColors = CreateFactionBaseColors();
 
     private static SortedList<string, Color> CreateFactionColors()
     {
         var colors = new SortedList<string, Color>();
-        colors.Add("arcloft", new Color(0.2f, 0.6f, 1.0f));
-        colors.Add("bastion", new Color(0.8f, 0.7f, 0.2f));
-        colors.Add("ironmarch", new Color(0.6f, 0.6f, 0.6f));
-        colors.Add("kragmore", new Color(0.8f, 0.3f, 0.1f));
-        colors.Add("stormrend", new Color(0.3f, 0.8f, 0.4f));
-        colors.Add("valkyr", new Color(0.7f, 0.2f, 0.8f));
+        colors.Add("arcloft",   CorditeWars.UI.UITheme.FactionArcloft);
+        colors.Add("bastion",   CorditeWars.UI.UITheme.FactionBastion);
+        colors.Add("ironmarch", CorditeWars.UI.UITheme.FactionIronmarch);
+        colors.Add("kragmore",  CorditeWars.UI.UITheme.FactionKragmore);
+        colors.Add("stormrend", CorditeWars.UI.UITheme.FactionStormrend);
+        colors.Add("valkyr",    CorditeWars.UI.UITheme.FactionValkyr);
+        return colors;
+    }
+
+    private static SortedList<string, Color> CreateFactionBaseColors()
+    {
+        // Secondary colors used as base tints on 3D models to give each faction
+        // a distinctive look regardless of player-assigned team color.
+        var colors = new SortedList<string, Color>();
+        colors.Add("arcloft",   CorditeWars.UI.UITheme.FactionArcloftSecondary);
+        colors.Add("bastion",   CorditeWars.UI.UITheme.FactionBastionSecondary);
+        colors.Add("ironmarch", CorditeWars.UI.UITheme.FactionIronmarchSecondary);
+        colors.Add("kragmore",  CorditeWars.UI.UITheme.FactionKragmoreSecondary);
+        colors.Add("stormrend", CorditeWars.UI.UITheme.FactionStormrendSecondary);
+        colors.Add("valkyr",    CorditeWars.UI.UITheme.FactionValkyrSecondary);
         return colors;
     }
 
@@ -230,7 +245,8 @@ public partial class GameSession : Node
         _unitSpawner = new UnitSpawner(
             _assetRegistry,
             _unitDataRegistry,
-            FactionColors);
+            FactionColors,
+            FactionBaseColors);
         AddChild(_unitSpawner);
 
         // d2. Create deterministic simulation tick pipeline
@@ -1072,7 +1088,8 @@ public partial class GameSession : Node
         _unitSpawner = new UnitSpawner(
             _assetRegistry,
             _unitDataRegistry,
-            FactionColors);
+            FactionColors,
+            FactionBaseColors);
         AddChild(_unitSpawner);
 
         _harvesterSystem = new HarvesterSystem();

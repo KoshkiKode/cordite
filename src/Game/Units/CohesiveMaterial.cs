@@ -20,12 +20,20 @@ public static class CohesiveMaterial
     public static ShaderMaterial CreateUnitMaterial(
         Color baseColor,
         Color teamColor,
+        Color factionBaseColor,
         bool useVertexColor = true,
         int lightBands = 4)
     {
         var mat = MakeBaseMaterial();
 
-        mat.SetShaderParameter("base_color", baseColor);
+        // Blend faction base color into the surface base color for model identity
+        Color blendedBase = new Color(
+            baseColor.R * 0.6f + factionBaseColor.R * 0.4f,
+            baseColor.G * 0.6f + factionBaseColor.G * 0.4f,
+            baseColor.B * 0.6f + factionBaseColor.B * 0.4f,
+            baseColor.A);
+
+        mat.SetShaderParameter("base_color", blendedBase);
         mat.SetShaderParameter("use_vertex_color", useVertexColor);
         mat.SetShaderParameter("light_bands", Mathf.Clamp(lightBands, 2, 8));
         mat.SetShaderParameter("team_color", teamColor);
@@ -51,28 +59,36 @@ public static class CohesiveMaterial
     /// <summary>
     /// Walks the scene tree rooted at <paramref name="root"/> and replaces
     /// every MeshInstance3D's surface materials with cohesive shader materials.
-    /// Preserves the original surface albedo color as a tint.
+    /// Preserves the original surface albedo color as a tint blended with the faction base color.
+    /// </summary>
+    public static void ApplyToScene(Node3D root, Color teamColor, Color factionBaseColor)
+    {
+        WalkAndApply(root, teamColor, factionBaseColor);
+    }
+
+    /// <summary>
+    /// Overload that uses white as the faction base color (no faction tint).
     /// </summary>
     public static void ApplyToScene(Node3D root, Color teamColor)
     {
-        WalkAndApply(root, teamColor);
+        WalkAndApply(root, teamColor, Colors.White);
     }
 
-    private static void WalkAndApply(Node node, Color teamColor)
+    private static void WalkAndApply(Node node, Color teamColor, Color factionBaseColor)
     {
         if (node is MeshInstance3D meshInstance)
         {
-            ReplaceMaterials(meshInstance, teamColor);
+            ReplaceMaterials(meshInstance, teamColor, factionBaseColor);
         }
 
         int childCount = node.GetChildCount();
         for (int i = 0; i < childCount; i++)
         {
-            WalkAndApply(node.GetChild(i), teamColor);
+            WalkAndApply(node.GetChild(i), teamColor, factionBaseColor);
         }
     }
 
-    private static void ReplaceMaterials(MeshInstance3D meshInstance, Color teamColor)
+    private static void ReplaceMaterials(MeshInstance3D meshInstance, Color teamColor, Color factionBaseColor)
     {
         Mesh? mesh = meshInstance.Mesh;
         if (mesh is null)
@@ -105,6 +121,7 @@ public static class CohesiveMaterial
             ShaderMaterial newMat = CreateUnitMaterial(
                 originalColor,
                 teamColor,
+                factionBaseColor,
                 useVertexColor: true,
                 lightBands: 4);
 
