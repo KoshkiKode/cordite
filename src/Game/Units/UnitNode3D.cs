@@ -106,11 +106,11 @@ public partial class UnitNode3D : Node3D
 
         _collisionArea.AddChild(collisionShape);
 
-        // ── SelectionCircle: visual ring matching collision radius ───
+        // ── SelectionCircle: visual ring in faction primary color ─────
         _selectionCircle = new SelectionCircle();
         _selectionCircle.Name = "SelectionCircle";
         AddChild(_selectionCircle);
-        _selectionCircle.Initialize(_collisionRadius);
+        _selectionCircle.Initialize(_collisionRadius, teamColor);
     }
 
     /// <summary>
@@ -188,9 +188,30 @@ public partial class UnitNode3D : Node3D
             instance.RotateY(Mathf.DegToRad(rotDeg));
         }
 
-        // Apply cohesive shader material with team color and faction base color
-        CohesiveMaterial.ApplyToScene(instance, teamColor, factionBaseColor);
+        // Use faction primary color as rim/glow color so units read as distinctly faction-colored
+        // from the typical top-down RTS camera angle.
+        // team_color_strength is higher for small units (infantry) which are harder to read.
+        float teamColorStrength = GetTeamColorStrength(Category);
+        CohesiveMaterial.ApplyToScene(instance, teamColor, factionBaseColor, teamColor, teamColorStrength);
     }
+
+    /// <summary>
+    /// Returns the team-color tint strength for a given unit category.
+    /// Small units (infantry) get the highest value so they remain clearly
+    /// faction-colored at typical RTS top-down viewing distances.
+    /// </summary>
+    private static float GetTeamColorStrength(UnitCategory category) => category switch
+    {
+        UnitCategory.Infantry   => 0.50f,   // small; needs strong tint to read at distance
+        UnitCategory.Support    => 0.42f,   // support/utility infantry-scale
+        UnitCategory.Special    => 0.42f,
+        UnitCategory.Defense    => 0.38f,   // static emplacements — medium prominence
+        UnitCategory.LightVehicle => 0.35f,
+        UnitCategory.APC        => 0.32f,
+        UnitCategory.Helicopter => 0.32f,
+        UnitCategory.Jet        => 0.30f,
+        _ => 0.28f  // HeavyVehicle, Tank, Artillery — large, already readable
+    };
 
     private void CreateFallbackMesh(Color teamColor, Color factionBaseColor)
     {
@@ -203,12 +224,9 @@ public partial class UnitNode3D : Node3D
         box.Size = new Vector3(_collisionRadius * 2, 1.0f, _collisionRadius * 2);
         meshInstance.Mesh = box;
 
-        // Blend faction base color with team color using the same ratio as CohesiveMaterial
-        var blended = new Color(
-            (teamColor.R * CohesiveMaterial.BaseColorWeight + factionBaseColor.R * CohesiveMaterial.FactionColorWeight),
-            (teamColor.G * CohesiveMaterial.BaseColorWeight + factionBaseColor.G * CohesiveMaterial.FactionColorWeight),
-            (teamColor.B * CohesiveMaterial.BaseColorWeight + factionBaseColor.B * CohesiveMaterial.FactionColorWeight),
-            1.0f);
+        // Blend faction base color with team color using the shared BlendWithFaction helper
+        Color blended = CohesiveMaterial.BlendWithFaction(teamColor, factionBaseColor);
+        blended.A = 1.0f;
 
         var mat = new StandardMaterial3D();
         mat.AlbedoColor = blended;
