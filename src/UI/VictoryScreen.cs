@@ -1,5 +1,6 @@
 using Godot;
 using CorditeWars.Core;
+using CorditeWars.Systems.Audio;
 using CorditeWars.Systems.Platform;
 
 namespace CorditeWars.UI;
@@ -40,6 +41,14 @@ public partial class VictoryScreen : CanvasLayer
 
         Layer = 50;
         BuildUI();
+
+        // Play victory or defeat music
+        var audioMgr = GetNodeOrNull<AudioManager>("/root/AudioManager");
+        if (audioMgr != null)
+        {
+            string musicId = (_result?.Won ?? false) ? "music_victory" : "music_defeat";
+            audioMgr.PlayMusicById(musicId);
+        }
 
         // Report result to Steam
         if (_result is not null && SteamManager.Instance is { } steam)

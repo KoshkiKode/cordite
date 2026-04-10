@@ -322,6 +322,10 @@ public partial class GameSession : Node
 
         CurrentMatchState = MatchState.Playing;
 
+        // Start battle music
+        var audioMgr = GetNodeOrNull<CorditeWars.Systems.Audio.AudioManager>("/root/AudioManager");
+        audioMgr?.PlayMusicById("music_battle_calm");
+
         // Notify Steam of match start
         if (SteamManager.Instance is { } steam && config.PlayerConfigs.Length > 0)
         {
@@ -376,6 +380,10 @@ public partial class GameSession : Node
         // Shutdown multiplayer if active
         _lockstepManager?.Shutdown();
         _networkTransport?.Disconnect();
+
+        // Stop battle music — VictoryScreen will start victory/defeat music
+        var audioMgr = GetNodeOrNull<CorditeWars.Systems.Audio.AudioManager>("/root/AudioManager");
+        audioMgr?.StopMusic();
 
         // Notify Steam: hard AI defeat achievement
         if (SteamManager.Instance is { } steam && ActiveConfig is not null)
