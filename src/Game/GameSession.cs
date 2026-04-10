@@ -113,6 +113,13 @@ public partial class GameSession : Node
     public int WinnerPlayerId { get; private set; } = -1;
     public string EndReason { get; private set; } = string.Empty;
 
+    /// <summary>
+    /// The local (human) player's ID. Used to determine stealth visual treatment:
+    /// own stealthed units are rendered as ghosts; enemy stealthed units are hidden.
+    /// Set during <c>SetupGameplaySystems</c>.
+    /// </summary>
+    private int _localPlayerId = -1;
+
     // ── Simulation — persistent state across ticks ──────────────────
 
     /// <summary>
@@ -541,7 +548,17 @@ public partial class GameSession : Node
                 _persistentSimUnits[sim.UnitId] = sim;
                 var node = _unitSpawner.GetUnit(sim.UnitId);
                 if (node != null && node.IsAlive)
+                {
                     node.SyncFromSimulation(sim.Movement.Position, sim.Movement.Facing, sim.Health);
+
+                    // Sync stealth visual: own units appear as ghosts, enemy stealthed
+                    // units are fully hidden until detected or they fire.
+                    if (sim.IsStealthUnit)
+                    {
+                        bool isOwnUnit = sim.PlayerId == _localPlayerId;
+                        node.SetStealthed(sim.IsCurrentlyStealthed, isOwnUnit);
+                    }
+                }
             }
             else
             {
@@ -671,7 +688,12 @@ public partial class GameSession : Node
             CurrentTargetId     = null,
             CurrentPath         = null,
             ActiveFlowField     = null,
-            CurrentWaypointIndex = 0
+            CurrentWaypointIndex = 0,
+            IsStealthUnit        = node.IsStealthUnit,
+            IsDetector           = node.IsDetector,
+            StealthRevealTicks   = 0,
+            // New stealth units start stealthed; they reveal when attacking or detected.
+            IsCurrentlyStealthed = node.IsStealthUnit
         };
     }
 
@@ -1509,6 +1531,7 @@ public partial class GameSession : Node
                 break;
             }
         }
+        _localPlayerId = localPlayerId;
 
         // Load building manifest
         _buildingManifest.Load("res://data/building_manifest.json");

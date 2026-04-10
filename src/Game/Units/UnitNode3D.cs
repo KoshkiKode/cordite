@@ -34,6 +34,12 @@ public partial class UnitNode3D : Node3D
     public FixedPoint SightRange { get; private set; }
     public MovementProfile? MovementProfile { get; private set; }
 
+    /// <summary>True if this unit type has inherent stealth capability.</summary>
+    public bool IsStealthUnit { get; private set; }
+
+    /// <summary>True if this unit can detect stealthed enemies within its sight range.</summary>
+    public bool IsDetector { get; private set; }
+
     // ── Child Nodes ──────────────────────────────────────────────────
     private Node3D? _meshRoot;
     private Area3D? _collisionArea;
@@ -66,6 +72,8 @@ public partial class UnitNode3D : Node3D
         Category = data.Category;
         SightRange = data.SightRange;
         MovementProfile = data.GetMovementProfile();
+        IsStealthUnit = data.IsStealthed;
+        IsDetector = data.IsDetector;
 
         _isAirUnit = asset.Domain == "Air";
         _collisionRadius = asset.CollisionRadius.ToFloat();
@@ -158,6 +166,93 @@ public partial class UnitNode3D : Node3D
         var tween = CreateTween();
         tween.TweenProperty(this, "scale", Vector3.Zero, 0.5f);
         tween.TweenCallback(Callable.From(() => QueueFree()));
+    }
+
+    /// <summary>
+    /// Updates the visual appearance of this unit to reflect its stealth state.
+    /// <list type="bullet">
+    ///   <item>
+    ///     <b>Own unit stealthed</b> — semi-transparent (40 % opacity) so the
+    ///     owner can still see and control the unit while it is hidden from enemies.
+    ///   </item>
+    ///   <item>
+    ///     <b>Enemy unit stealthed</b> — completely hidden (<c>Visible = false</c>).
+    ///     The unit reappears when detected or when it fires.
+    ///   </item>
+    ///   <item>
+    ///     <b>Not stealthed</b> — fully opaque and visible.
+    ///   </item>
+    /// </list>
+    /// </summary>
+    /// <param name="stealthed">Whether the unit is currently in stealth.</param>
+    /// <param name="isOwnUnit">True if this unit belongs to the local player.</param>
+    public void SetStealthed(bool stealthed, bool isOwnUnit)
+    {
+        if (!stealthed)
+        {
+            Visible = true;
+            SetMeshAlpha(1.0f);
+            return;
+        }
+
+        if (isOwnUnit)
+        {
+            // Owner can see their own stealthed unit as a ghost
+            Visible = true;
+            SetMeshAlpha(0.4f);
+        }
+        else
+        {
+            // Hide enemy stealthed units entirely
+            Visible = false;
+        }
+    }
+
+    /// <summary>
+    /// Sets the alpha (opacity) on all surface override materials in the mesh
+    /// hierarchy. Used to render own stealthed units as a ghost.
+    /// </summary>
+    private void SetMeshAlpha(float alpha)
+    {
+        if (_meshRoot is null) return;
+        ApplyAlphaToNode(_meshRoot, alpha);
+    }
+
+    private static void ApplyAlphaToNode(Node node, float alpha)
+    {
+        if (node is MeshInstance3D mi)
+        {
+            int surfaceCount = mi.Mesh?.GetSurfaceCount() ?? 0;
+            for (int s = 0; s < surfaceCount; s++)
+            {
+                Material? mat = mi.GetSurfaceOverrideMaterial(s);
+                if (mat is ShaderMaterial shaderMat)
+                {
+                    // The cohesive_flat shader reads ALPHA from base_color.a
+                    Variant existing = shaderMat.GetShaderParameter("base_color");
+                    if (existing.VariantType == Variant.Type.Color)
+                    {
+                        Color c = existing.AsColor();
+                        shaderMat.SetShaderParameter("base_color", new Color(c.R, c.G, c.B, alpha));
+                    }
+                }
+                else if (mat is BaseMaterial3D baseMat)
+                {
+                    baseMat.AlbedoColor = new Color(
+                        baseMat.AlbedoColor.R,
+                        baseMat.AlbedoColor.G,
+                        baseMat.AlbedoColor.B,
+                        alpha);
+                    baseMat.Transparency = alpha < 1.0f
+                        ? BaseMaterial3D.TransparencyEnum.Alpha
+                        : BaseMaterial3D.TransparencyEnum.Disabled;
+                }
+            }
+        }
+
+        int childCount = node.GetChildCount();
+        for (int i = 0; i < childCount; i++)
+            ApplyAlphaToNode(node.GetChild(i), alpha);
     }
 
     private void LoadModel(AssetEntry asset, Color teamColor, Color factionBaseColor)
