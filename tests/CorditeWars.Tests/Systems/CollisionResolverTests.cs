@@ -291,7 +291,7 @@ public class CollisionResolverTests
     // ═══════════════════════════════════════════════════════════════════
 
     [Fact]
-    public void ResolveCollisions_HeavierUnitMovesSLess()
+    public void ResolveCollisions_HeavierUnitMovesLess()
     {
         var posA = FixedVector2.Zero;
         var posB = new FixedVector2(FixedPoint.One, FixedPoint.Zero);
