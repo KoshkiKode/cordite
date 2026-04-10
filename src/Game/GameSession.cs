@@ -611,8 +611,9 @@ public partial class GameSession : Node
     /// <summary>
     /// Returns true if <paramref name="unitId"/> belongs to a building rather
     /// than a mobile unit.  Pre-placed HQ buildings use negative IDs; player-
-    /// placed buildings use IDs ≥ 100_001 (BuildingPlacer._nextBuildingId).
-    /// Mobile units occupy 1..100_000 (UnitSpawner._nextUnitId starts at 1).
+    /// placed buildings use IDs ≥ 100_001 (<c>BuildingPlacer._nextBuildingId</c>
+    /// starts at 100_001).  Mobile units occupy 1..100_000 (<c>UnitSpawner</c>
+    /// starts at 1 and a match will not reach 100_000 live units simultaneously).
     /// </summary>
     private static bool IsBuildingId(int unitId) => unitId < 0 || unitId >= 100_001;
 
@@ -736,38 +737,54 @@ public partial class GameSession : Node
     /// <summary>
     /// DestroyHQ win condition: the match ends when any tracked player's
     /// Command Centre is no longer in <see cref="_playerHQNodes"/>.
+    /// In multi-player (3+ factions), the game continues until only one
+    /// player retains an HQ.
     /// </summary>
     private void CheckHQDestroyedWin()
     {
         if (ActiveConfig is null) return;
 
+        // Count how many players still have a standing HQ
+        int survivorCount = 0;
+        int lastSurvivorPid = -1;
         for (int i = 0; i < ActiveConfig.PlayerConfigs.Length; i++)
         {
             int pid = ActiveConfig.PlayerConfigs[i].PlayerId;
             if (!_playersWithInitialHQ.Contains(pid)) continue; // no HQ data → skip
-            if (_playerHQNodes.ContainsKey(pid)) continue;      // HQ still standing
-
-            // This player's HQ has been destroyed — find the winning player
-            int winnerPid = -1;
-            for (int j = 0; j < ActiveConfig.PlayerConfigs.Length; j++)
+            if (_playerHQNodes.ContainsKey(pid))
             {
-                int otherPid = ActiveConfig.PlayerConfigs[j].PlayerId;
-                if (otherPid != pid && _playerHQNodes.ContainsKey(otherPid))
+                survivorCount++;
+                lastSurvivorPid = pid;
+            }
+        }
+
+        // The match ends when at most one HQ-owning player remains
+        if (_playersWithInitialHQ.Count > 0 && survivorCount <= 1)
+        {
+            // Find the eliminated player for the end-reason string
+            int eliminatedPid = -1;
+            for (int i = 0; i < ActiveConfig.PlayerConfigs.Length; i++)
+            {
+                int pid = ActiveConfig.PlayerConfigs[i].PlayerId;
+                if (_playersWithInitialHQ.Contains(pid) && !_playerHQNodes.ContainsKey(pid))
                 {
-                    winnerPid = otherPid;
+                    eliminatedPid = pid;
                     break;
                 }
             }
 
-            EndMatch(winnerPid,
-                $"Player {pid}'s Command Centre was destroyed.");
-            return;
+            string reason = eliminatedPid != -1
+                ? $"Player {eliminatedPid}'s Command Centre was destroyed."
+                : "All Command Centres have been destroyed.";
+
+            EndMatch(lastSurvivorPid, reason);
         }
     }
 
     /// <summary>
     /// KillAllUnits win condition: the match ends when any player has no
-    /// surviving mobile units.
+    /// surviving mobile units.  In multi-player matches the game continues
+    /// until only one player retains forces.
     /// </summary>
     private void CheckAllUnitsKilledWin()
     {
@@ -775,44 +792,44 @@ public partial class GameSession : Node
 
         var allNodes = _unitSpawner.GetAllUnits();
 
+        // Count players who still have at least one living mobile unit
+        int survivorCount = 0;
+        int lastSurvivorPid = -1;
+        int eliminatedPid = -1;
+
         for (int i = 0; i < ActiveConfig.PlayerConfigs.Length; i++)
         {
             int pid = ActiveConfig.PlayerConfigs[i].PlayerId;
 
-            bool hasMobileUnits = false;
+            bool hasUnits = false;
             for (int u = 0; u < allNodes.Count; u++)
             {
                 if (allNodes[u].PlayerId == pid && allNodes[u].IsAlive)
                 {
-                    hasMobileUnits = true;
+                    hasUnits = true;
                     break;
                 }
             }
 
-            if (!hasMobileUnits)
+            if (hasUnits)
             {
-                // Find the winning player (first with surviving units)
-                int winnerPid = -1;
-                for (int j = 0; j < ActiveConfig.PlayerConfigs.Length; j++)
-                {
-                    int otherPid = ActiveConfig.PlayerConfigs[j].PlayerId;
-                    if (otherPid == pid) continue;
-
-                    for (int u = 0; u < allNodes.Count; u++)
-                    {
-                        if (allNodes[u].PlayerId == otherPid && allNodes[u].IsAlive)
-                        {
-                            winnerPid = otherPid;
-                            break;
-                        }
-                    }
-                    if (winnerPid != -1) break;
-                }
-
-                EndMatch(winnerPid,
-                    $"All of player {pid}'s forces have been eliminated.");
-                return;
+                survivorCount++;
+                lastSurvivorPid = pid;
             }
+            else if (eliminatedPid == -1)
+            {
+                eliminatedPid = pid;
+            }
+        }
+
+        // End only when at most one player still has units
+        if (ActiveConfig.PlayerConfigs.Length > 0 && survivorCount <= 1)
+        {
+            string reason = eliminatedPid != -1
+                ? $"All of player {eliminatedPid}'s forces have been eliminated."
+                : "All forces have been eliminated.";
+
+            EndMatch(lastSurvivorPid, reason);
         }
     }
 
