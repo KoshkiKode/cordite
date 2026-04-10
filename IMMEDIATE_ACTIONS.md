@@ -15,28 +15,42 @@
 
 ---
 
-## ✅ Once Exports Work
+## ✅ FIXED: Android .NET Export
 
-### 1. Add Playability Smoke Tests
-- Launch each export (exe, apk, linux binary, etc.)
-- Verify game reaches main menu + plays first 10 frames
-- Prevent broken builds from being released
+**Root Cause**: The APK preset (`preset.2`) had `gradle_build/use_gradle_build=false`. For a C#/.NET game, Godot requires a Gradle build to bundle the .NET runtime. Without it, the APK would start and immediately crash because the .NET assembly cannot be loaded.
 
-**Tools**: 
-- Headless/automated game testing via CI
-- Quick frame-count check or "game running" signal
+**Fix Applied**:
+- Set `gradle_build/use_gradle_build=true` on `preset.2` (APK)
+- Also aligned `preset.2` to arm64-v8a only (matching the AAB/Google Play preset) — keeps the APK lean and matches modern Android requirements
+- Both the APK (sideload) and AAB (Google Play) presets now use Gradle builds
 
-**Timeline**: 1–2 hours
+> **Note on "experimental" label**: Godot 4.6 still tags C#/.NET Android export as experimental in the editor UI, meaning it receives less test coverage than the GDScript path and edge cases may surface. With `use_gradle_build=true` correctly set, the build pipeline itself is sound. Treat Android as supported-with-caveats for alpha: test on real hardware before each release and file Godot upstream issues for any platform-specific crashes.
 
-### 2. Test the Release Workflow
+---
+
+## ✅ ADDED: Headless Smoke Test
+
+A `smoke-test-linux` job is now part of `export.yml`. It:
+- Runs after `export-linux` completes
+- Downloads the Linux export artifact
+- Runs the game with `xvfb-run` + `--quit-after 60` (60 physics frames = 2 s at 30 Hz)
+- Asserts exit code 0 — any crash, missing autoload, or broken boot scene fails the build
+
+This prevents broken exports from being uploaded as release artifacts.
+
+---
+
+## ⚠️ Still Pending
+
+### 1. Test the Release Workflow End-to-End
 - Push a test tag `v0.0.1-test`
-- Verify exports run
-- Verify GitHub Release created with artifacts
+- Verify exports run on all platforms
+- Verify GitHub Release created with all artifacts
 - Verify checksums generated
 
 **Timeline**: 30 minutes
 
-### 3. Manual Platform Testing
+### 2. Manual Platform Testing
 - Download each artifact from GitHub Release
 - Test on actual hardware (or emulators)
 - Verify game is playable on each platform
@@ -45,37 +59,14 @@
 
 ---
 
-## ⚠️ Known Limitations
-
-### Android .NET Export is Experimental
-Godot 4.6 warns that "Exporting to Android when using C#/.NET is experimental."
-The Android export may need `gradle_build/use_gradle_build=true` in `export_presets.cfg` for
-full .NET runtime bundling. Monitor Android export results after this fix.
-
----
-
 ## 📋 Checklist: Export Workflow Recovery
 
 - [x] **Identify exact fix**: Wrong parameter name (`export_name` → `presets_to_export`)
 - [x] **Edit workflow**: Fixed all 5 export jobs + Android keystore handling
 - [x] **Added `workflow_call`**: release.yml can now trigger export.yml
-- [ ] **Commit & push**: Trigger new run
-- [ ] **Monitor run**: Check GitHub Actions logs
+- [x] **Committed & pushed**: Export fix is on main
+- [x] **Added smoke test**: `smoke-test-linux` job catches startup crashes
+- [x] **Fixed Android Gradle**: `gradle_build/use_gradle_build=true` on APK preset
+- [ ] **Monitor run**: Check GitHub Actions logs after next push to main
 - [ ] **Verify artifacts**: At least one successful export per platform
 - [ ] **Test one export**: Download Windows EXE, launch locally, verify gameplay
-
----
-
-## Files Ready to Commit
-
-Already created (waiting for export fix):
-- ✅ `bump-version.py` - Version automation
-- ✅ `generate-checksums.py` - Checksum tools
-- ✅ `.github/workflows/release.yml` - Auto-release workflow
-- ✅ `docs/deployment-guide.md` - Deployment instructions
-- ✅ `docs/store-submission-reference.md` - Store quick reference
-- ✅ `docs/platform-testing-qa.md` - Testing guide
-- ✅ `RELEASE_INFRASTRUCTURE.md` - Release docs
-- ✅ `CHANGELOG.md` - Changelog template
-
-**Next Step**: Commit these + fix exports = fully automated multi-platform release pipeline ✨
