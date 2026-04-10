@@ -363,7 +363,7 @@ public class MovementProfileTests
     }
 
     [Fact]
-    public void WithTurnRate_ChangesTournRate_DoesNotMutateOriginal()
+    public void WithTurnRate_ChangesTurnRate_DoesNotMutateOriginal()
     {
         var original = MovementProfile.Tank();
         var originalRate = original.TurnRate;
