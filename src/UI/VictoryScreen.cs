@@ -16,13 +16,23 @@ public partial class VictoryScreen : CanvasLayer
 
     public sealed class MatchResult
     {
-        public bool Won { get; init; }
-        public string PlayerFactionId { get; init; } = string.Empty;
-        public string EndReason { get; init; } = string.Empty;
+        public bool   Won                  { get; init; }
+        public string PlayerFactionId      { get; init; } = string.Empty;
+        public string EndReason            { get; init; } = string.Empty;
         public double MatchDurationSeconds { get; init; }
-        public bool IsMultiplayer { get; init; }
-        public bool IsNavalMap { get; init; }
-        public int AiDifficulty { get; init; }
+        public bool   IsMultiplayer        { get; init; }
+        public bool   IsNavalMap           { get; init; }
+        public int    AiDifficulty         { get; init; }
+
+        public bool   IsCampaignMission      { get; init; }
+        public string CampaignFactionId      { get; init; } = string.Empty;
+        public string CampaignMissionId      { get; init; } = string.Empty;
+        public int    MissionNumber          { get; init; }
+        public int    StarsEarned            { get; init; }
+        public bool   HasNextMission         { get; init; }
+        public int    UnitsKilled            { get; init; }
+        public int    UnitsLost              { get; init; }
+        public int    BuildingsConstructed   { get; init; }
     }
 
     /// <summary>Set this before transitioning to the victory screen scene.</summary>
@@ -143,6 +153,33 @@ public partial class VictoryScreen : CanvasLayer
         UITheme.StyleLabel(durationLabel, UITheme.FontSizeNormal, UITheme.TextSecondary);
         vbox.AddChild(durationLabel);
 
+        // Stats row
+        // Stats row — use an HBox with individual labels for consistent spacing
+        int kills  = _result?.UnitsKilled          ?? 0;
+        int losses = _result?.UnitsLost            ?? 0;
+        int bldgs  = _result?.BuildingsConstructed ?? 0;
+        var statsRow = new HBoxContainer();
+        statsRow.Alignment = BoxContainer.AlignmentMode.Center;
+        statsRow.AddThemeConstantOverride("separation", 24);
+        vbox.AddChild(statsRow);
+        AddStatLabel(statsRow, $"Killed: {kills}");
+        AddStatLabel(statsRow, $"Lost: {losses}");
+        AddStatLabel(statsRow, $"Buildings: {bldgs}");
+
+        // Campaign stars
+        if (won && (_result?.IsCampaignMission ?? false))
+        {
+            int stars = _result!.StarsEarned;
+            var starsLabel = new Label();
+            var sb = new System.Text.StringBuilder(3);
+            for (int si = 0; si < 3; si++)
+                sb.Append(si < stars ? '\u2605' : '\u2606');
+            starsLabel.Text = $"Mission Complete!  {sb}";
+            starsLabel.HorizontalAlignment = HorizontalAlignment.Center;
+            UITheme.StyleLabel(starsLabel, UITheme.FontSizeLarge, UITheme.Accent);
+            vbox.AddChild(starsLabel);
+        }
+
         // End reason (if present)
         if (!string.IsNullOrEmpty(reason))
         {
@@ -177,6 +214,21 @@ public partial class VictoryScreen : CanvasLayer
         UITheme.StyleAccentButton(playAgainBtn);
         playAgainBtn.Pressed += GoToSkirmishLobby;
         btnRow.AddChild(playAgainBtn);
+
+        // Next mission button (campaign only)
+        if (won && _result is { IsCampaignMission: true, HasNextMission: true })
+        {
+            var nextBtn = new Button();
+            nextBtn.Text = "Next Mission \u25BA";
+            nextBtn.CustomMinimumSize = new Vector2(200, 50);
+            UITheme.StyleAccentButton(nextBtn);
+            nextBtn.Pressed += () =>
+            {
+                _audioManager?.PlayUiSoundById("ui_confirm");
+                SceneTransition.TransitionTo(GetTree(), "res://scenes/UI/CampaignSelect.tscn");
+            };
+            btnRow.AddChild(nextBtn);
+        }
     }
 
     // ── Animations ───────────────────────────────────────────────────
@@ -210,6 +262,14 @@ public partial class VictoryScreen : CanvasLayer
     }
 
     // ── Helpers ───────────────────────────────────────────────────────
+
+    private static void AddStatLabel(HBoxContainer row, string text)
+    {
+        var lbl = new Label();
+        lbl.Text = text;
+        UITheme.StyleLabel(lbl, UITheme.FontSizeSmall, UITheme.TextSecondary);
+        row.AddChild(lbl);
+    }
 
     private static string GetFactionDisplayName(string factionId)
     {
