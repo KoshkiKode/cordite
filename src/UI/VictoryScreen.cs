@@ -154,14 +154,17 @@ public partial class VictoryScreen : CanvasLayer
         vbox.AddChild(durationLabel);
 
         // Stats row
-        var statsLabel = new Label();
+        // Stats row — use an HBox with individual labels for consistent spacing
         int kills  = _result?.UnitsKilled          ?? 0;
         int losses = _result?.UnitsLost            ?? 0;
         int bldgs  = _result?.BuildingsConstructed ?? 0;
-        statsLabel.Text = $"Units Killed: {kills}   Units Lost: {losses}   Buildings: {bldgs}";
-        statsLabel.HorizontalAlignment = HorizontalAlignment.Center;
-        UITheme.StyleLabel(statsLabel, UITheme.FontSizeSmall, UITheme.TextSecondary);
-        vbox.AddChild(statsLabel);
+        var statsRow = new HBoxContainer();
+        statsRow.Alignment = BoxContainer.AlignmentMode.Center;
+        statsRow.AddThemeConstantOverride("separation", 24);
+        vbox.AddChild(statsRow);
+        AddStatLabel(statsRow, $"Killed: {kills}");
+        AddStatLabel(statsRow, $"Lost: {losses}");
+        AddStatLabel(statsRow, $"Buildings: {bldgs}");
 
         // Campaign stars
         if (won && (_result?.IsCampaignMission ?? false))
@@ -259,6 +262,14 @@ public partial class VictoryScreen : CanvasLayer
     }
 
     // ── Helpers ───────────────────────────────────────────────────────
+
+    private static void AddStatLabel(HBoxContainer row, string text)
+    {
+        var lbl = new Label();
+        lbl.Text = text;
+        UITheme.StyleLabel(lbl, UITheme.FontSizeSmall, UITheme.TextSecondary);
+        row.AddChild(lbl);
+    }
 
     private static string GetFactionDisplayName(string factionId)
     {

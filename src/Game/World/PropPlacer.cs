@@ -186,6 +186,15 @@ public partial class PropPlacer : Node3D
         {
             instance = CreatePlaceholder(structure.ModelId, finalScale);
         }
+
+        instance.Position = new Vector3(worldX, worldY, worldZ);
+        instance.Rotation = new Vector3(0, rotation, 0);
+        instance.Scale = new Vector3(finalScale, finalScale, finalScale);
+        AddChild(instance);
+
+        int propId = _nextPropId++;
+
+        // Structures always have collision
         AddCollision(instance, entry.CollisionRadius.ToFloat() * finalScale);
 
         if (occupancyGrid != null)

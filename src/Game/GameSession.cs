@@ -754,28 +754,25 @@ public partial class GameSession : Node
         }
 
         // ── 4c. Despawn mobile unit visual nodes ───────────────────────────
-        // Track kills and losses before despawning
-        for (int i = 0; i < tickResult.DestroyedUnitIds.Count; i++)
-        {
-            int destroyedId = tickResult.DestroyedUnitIds[i];
-            if (IsBuildingId(destroyedId)) continue;
-            if (_persistentSimUnits.TryGetValue(destroyedId, out SimUnit deadSim))
-            {
-                if (deadSim.PlayerId == _localPlayerId)
-                    _playerLosses++;
-                else
-                {
-                    _playerKills++;
-                    SteamManager.Instance?.RecordUnitsDestroyed(1);
-                }
-            }
-        }
-
+        // Track kills/losses and despawn in a single loop
         for (int i = 0; i < tickResult.DestroyedUnitIds.Count; i++)
         {
             int destroyedId = tickResult.DestroyedUnitIds[i];
             if (!IsBuildingId(destroyedId))
-                _unitSpawner.DespawnUnit(destroyedId);
+            {
+                // Track kill/loss before despawning
+                if (_persistentSimUnits.TryGetValue(destroyedId, out SimUnit deadSim))
+                {
+                    if (deadSim.PlayerId == _localPlayerId)
+                        _playerLosses++;
+                    else
+                    {
+                        _playerKills++;
+                        SteamManager.Instance?.RecordUnitsDestroyed(1);
+                    }
+                }
+                _unitSpawner?.DespawnUnit(destroyedId);
+            }
         }
 
         // ── 5. Update fog of war / vision ──────────────────────────────────
@@ -807,7 +804,7 @@ public partial class GameSession : Node
         }
 
         // ── 9. Autosave ───────────────────────────────────────────────────
-        if (currentTick > 0 && currentTick - _lastAutosaveTick >= AutosaveIntervalTicks)
+        if (currentTick >= AutosaveIntervalTicks && currentTick - _lastAutosaveTick >= AutosaveIntervalTicks)
         {
             _lastAutosaveTick = currentTick;
             SaveCurrentState("autosave_0");

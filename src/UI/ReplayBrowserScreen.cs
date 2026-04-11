@@ -159,8 +159,9 @@ public partial class ReplayBrowserScreen : Control
             if (ts.Length >= 15)
             {
                 string date = ts[..8];
-                string time = ts[9..15];
-                timestamp = $"{date[..4]}-{date[4..6]}-{date[6..8]}  {time[..2]}:{time[2..4]}:{time[4..6]}";
+                string time = ts.Length >= 15 ? ts[9..Math.Min(15, ts.Length)] : ts[9..];
+                if (time.Length >= 6)
+                    timestamp = $"{date[..4]}-{date[4..6]}-{date[6..8]}  {time[..2]}:{time[2..4]}:{time[4..6]}";
             }
         }
 
