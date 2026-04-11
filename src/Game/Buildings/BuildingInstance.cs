@@ -39,6 +39,12 @@ public partial class BuildingInstance : Node3D
     private Node3D?          _modelRoot;
     private float _targetScaleY;
 
+    // Neutral cohesive-shader base colors applied to all loaded building models.
+    // Using a neutral mid-grey keeps the faction cel-shading readable without
+    // clashing with the building's own albedo tones.
+    private static readonly Color BuildingBaseColor    = new Color(0.55f, 0.55f, 0.60f);
+    private static readonly Color BuildingFactionColor = new Color(0.40f, 0.40f, 0.45f);
+
     // ── Initialization ───────────────────────────────────────────────
 
     public void Initialize(
@@ -116,9 +122,7 @@ public partial class BuildingInstance : Node3D
 
                 // Apply the cohesive cel-shader using a neutral grey base so the
                 // faction colour (supplied later if needed) comes through cleanly.
-                Color baseGrey   = new Color(0.55f, 0.55f, 0.60f);
-                Color factionGrey = new Color(0.40f, 0.40f, 0.45f);
-                CohesiveMaterial.ApplyToScene(instance, baseGrey, factionGrey);
+                CohesiveMaterial.ApplyToScene(instance, BuildingBaseColor, BuildingFactionColor);
 
                 loadedModel = true;
             }
