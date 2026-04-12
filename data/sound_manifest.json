@@ -671,9 +671,7 @@
       },
       "ambient_water_splash": {
         "Files": [
-          "assets/audio/sfx/combat/impactSoft_heavy_000.ogg",
-          "assets/audio/sfx/combat/impactSoft_heavy_001.ogg",
-          "assets/audio/sfx/combat/impactSoft_heavy_002.ogg"
+          "assets/audio/sfx/ambient/nature/Stream/Stream01.wav"
         ],
         "Volume": 0.4,
         "PitchVariation": 0.15,

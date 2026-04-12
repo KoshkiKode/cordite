@@ -72,7 +72,7 @@ public sealed class MapGenerator
 
         // 3. Elevation zones
         var elevationZones = GenerateElevationZones(
-            rng, w, h, config.ElevationZoneCount, config.Biome);
+            rng, w, h, config.ElevationZoneCount, config.Biome, startingPositions);
 
         // 4. Terrain features (rivers, paths)
         var terrainFeatures = GenerateTerrainFeatures(
@@ -245,7 +245,8 @@ public sealed class MapGenerator
     // ── Elevation Zones ─────────────────────────────────────────────
 
     private static ElevationZone[] GenerateElevationZones(
-        DeterministicRng rng, int width, int height, int count, string biome)
+        DeterministicRng rng, int width, int height, int count, string biome,
+        StartingPosition[] starts)
     {
         var zones = new List<ElevationZone>();
         int minDim = Math.Min(width, height);
@@ -285,15 +286,17 @@ public sealed class MapGenerator
         // Archipelago biome: add island elevation zones at each starting position
         if (biome == "archipelago")
         {
-            // Add prominent island at center
-            zones.Add(new ElevationZone
+            foreach (var start in starts)
             {
-                Type = "island",
-                CenterX = width / 2,
-                CenterY = height / 2,
-                Radius = minDim / 6,
-                Height = FixedPoint.FromFloat(2.0f),
-            });
+                zones.Add(new ElevationZone
+                {
+                    Type = "island",
+                    CenterX = start.X,
+                    CenterY = start.Y,
+                    Radius = minDim / 6,
+                    Height = FixedPoint.FromFloat(2.0f),
+                });
+            }
         }
 
         return zones.ToArray();
