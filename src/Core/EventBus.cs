@@ -83,7 +83,7 @@ public partial class EventBus : Node
     [Signal] public delegate void UnitEjectedEventHandler(int unitId, int buildingId);
     [Signal] public delegate void SuperweaponFiredEventHandler(int playerId, string weaponId, Vector3 targetPosition);
     [Signal] public delegate void SuperweaponReadyEventHandler(int playerId, string weaponId);
-    [Signal] public delegate void SuperweaponActivateRequestedEventHandler(int playerId);
+    [Signal] public delegate void SuperweaponActivateRequestedEventHandler(int playerId, string weaponId);
     [Signal] public delegate void LobbyUpdatedEventHandler();
     [Signal] public delegate void MatchCountdownEventHandler(int secondsRemaining);
     /// <summary>Fired on the client when the host rejects the join request (e.g. version mismatch).</summary>
@@ -266,8 +266,8 @@ public partial class EventBus : Node
         EmitSignal(SignalName.SuperweaponFired, playerId, weaponId, targetPosition);
     public void EmitSuperweaponReady(int playerId, string weaponId) =>
         EmitSignal(SignalName.SuperweaponReady, playerId, weaponId);
-    public void EmitSuperweaponActivateRequested(int playerId) =>
-        EmitSignal(SignalName.SuperweaponActivateRequested, playerId);
+    public void EmitSuperweaponActivateRequested(int playerId, string weaponId) =>
+        EmitSignal(SignalName.SuperweaponActivateRequested, playerId, weaponId);
     public void EmitLobbyUpdated() => EmitSignal(SignalName.LobbyUpdated);
     public void EmitMatchCountdown(int secondsRemaining) =>
         EmitSignal(SignalName.MatchCountdown, secondsRemaining);

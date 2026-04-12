@@ -1,0 +1,27 @@
+{
+  "Id": "valkyr_launch_bay",
+  "DisplayName": "Sky Launch Bay",
+  "FactionId": "valkyr",
+  "Category": "Superweapon",
+  "MaxHealth": 1000,
+  "ArmorClass": "Building",
+  "ArmorValue": 3,
+  "Cost": 3000,
+  "SecondaryCost": 600,
+  "BuildTime": 60.0,
+  "FootprintWidth": 4,
+  "FootprintHeight": 3,
+  "PowerRequired": 10,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [
+    "precision_payload"
+  ],
+  "Prerequisites": [
+    "valkyr_tech_lab",
+    "valkyr_airfield"
+  ],
+  "Description": "Valkyr elevated launch facility that maintains a precision-guided munition on standby. Once charged, releases the Precision Payload — an extreme-damage single strike from high altitude."
+}

@@ -409,12 +409,11 @@ public partial class GameSession : Node
             _economyManager.AddPlayer(pc.PlayerId, pc.FactionId);
             _techTreeManager.AddPlayer(pc.PlayerId, pc.FactionId);
 
-            // Register superweapon ability for this player based on faction.
-            // The catalogue's first entry per faction is the primary ability.
-            string weaponId = SuperweaponSystem.GetDefaultWeaponForFaction(pc.FactionId);
-            if (string.IsNullOrEmpty(weaponId))
-                weaponId = "arcloft_orbital_strike"; // safe global fallback
-            _superweaponSystem.RegisterPlayer(pc.PlayerId, weaponId);
+            // Register all superweapon abilities for this player (one BuildingSuperweapon +
+            // one ActivatedAbility). All catalogue entries for the faction are registered so
+            // each gets its own independent cooldown.
+            foreach (var weaponData in SuperweaponSystem.GetFactionWeapons(pc.FactionId))
+                _superweaponSystem.RegisterPlayer(pc.PlayerId, weaponData.Id);
         }
 
         // g2. Initialize fog of war (after terrain and players are set up)
@@ -661,13 +660,13 @@ public partial class GameSession : Node
     public SuperweaponSystem SuperweaponSystem => _superweaponSystem;
 
     /// <summary>
-    /// Attempts to fire the local player's superweapon targeting a world position.
+    /// Attempts to fire a specific superweapon for the local player targeting a world position.
     /// Returns the result (which may contain hit unit IDs to which damage must be applied).
     /// </summary>
-    public SuperweaponResult ActivateSuperweapon(FixedVector2 targetPosition)
+    public SuperweaponResult ActivateSuperweapon(string weaponId, FixedVector2 targetPosition)
     {
         if (CurrentMatchState != MatchState.Playing)
-            return new SuperweaponResult { TargetPosition = targetPosition, DidFire = false };
+            return new SuperweaponResult { TargetPosition = targetPosition, DidFire = false, WeaponId = weaponId };
 
         // Build a snapshot of all alive units for targeting
         var allAlive = new List<CorditeWars.Systems.Pathfinding.SimUnit>(_persistentSimUnits.Count);
@@ -675,12 +674,10 @@ public partial class GameSession : Node
             if (kv.Value.IsAlive)
                 allAlive.Add(kv.Value);
 
-        var result = _superweaponSystem.TryActivate(_localPlayerId, targetPosition, allAlive);
+        var result = _superweaponSystem.TryActivate(_localPlayerId, weaponId, targetPosition, allAlive);
 
         if (result.DidFire)
         {
-            var swState = _superweaponSystem.GetState(_localPlayerId);
-            string weaponId = swState?.Data.Id ?? string.Empty;
             EventBus.Instance?.EmitSuperweaponFired(_localPlayerId, weaponId,
                 new Vector3(targetPosition.X.ToFloat(), 0, targetPosition.Y.ToFloat()));
 
@@ -830,13 +827,18 @@ public partial class GameSession : Node
         }
 
         // ── 0b. Tick superweapon cooldowns ─────────────────────────────────
-        bool wasReadyBefore = _superweaponSystem.IsReady(_localPlayerId);
+        // Track which weapons were ready before ticking so we can fire "ready" events
+        var readyBefore = new System.Collections.Generic.HashSet<string>();
+        foreach (var ws in _superweaponSystem.GetPlayerWeapons(_localPlayerId))
+            if (ws.IsReady) readyBefore.Add(ws.Data.Id);
+
         _superweaponSystem.Tick();
-        if (!wasReadyBefore && _superweaponSystem.IsReady(_localPlayerId))
+
+        // Emit SuperweaponReady for each weapon that just became ready this tick
+        foreach (var ws in _superweaponSystem.GetPlayerWeapons(_localPlayerId))
         {
-            var swState = _superweaponSystem.GetState(_localPlayerId);
-            if (swState is not null)
-                EventBus.Instance?.EmitSuperweaponReady(_localPlayerId, swState.Data.Id);
+            if (ws.IsReady && !readyBefore.Contains(ws.Data.Id))
+                EventBus.Instance?.EmitSuperweaponReady(_localPlayerId, ws.Data.Id);
         }
 
         // ── 1. Build combined SimUnit list (mobile units + buildings) ──────

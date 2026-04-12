@@ -1,0 +1,26 @@
+{
+  "Id": "arcloft_orbital_relay",
+  "DisplayName": "Orbital Relay",
+  "FactionId": "arcloft",
+  "Category": "Superweapon",
+  "MaxHealth": 1200,
+  "ArmorClass": "Building",
+  "ArmorValue": 3,
+  "Cost": 3000,
+  "SecondaryCost": 500,
+  "BuildTime": 60.0,
+  "FootprintWidth": 3,
+  "FootprintHeight": 3,
+  "PowerRequired": 10,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [
+    "orbital_strike"
+  ],
+  "Prerequisites": [
+    "arcloft_tech_lab"
+  ],
+  "Description": "Arcloft uplink station that maintains a connection with a low-orbit kinetic impactor. Once charged, fires the Orbital Strike superweapon at a designated target. Requires Power."
+}

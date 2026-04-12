@@ -4,29 +4,69 @@ using CorditeWars.Core;
 namespace CorditeWars.Systems.Superweapon;
 
 /// <summary>
+/// Broad classification for a superweapon ability.
+/// </summary>
+public enum SuperweaponCategory
+{
+    /// <summary>
+    /// Activated directly from the HUD ability panel — no building prerequisite.
+    /// Equivalent to a General's Power in classic RTS games.
+    /// </summary>
+    ActivatedAbility,
+
+    /// <summary>
+    /// Requires the player to construct <see cref="SuperweaponData.RequiredBuildingTypeId"/>
+    /// before the ability can be activated. The weapon recharges as long as the building stands.
+    /// Equivalent to a superweapon structure (Particle Cannon, Scud Storm, etc.).
+    /// </summary>
+    BuildingSuperweapon
+}
+
+/// <summary>
 /// Type of strategic ability (superweapon). Determines the area-effect,
 /// damage, and visual applied when the ability fires.
 /// </summary>
 public enum SuperweaponType
 {
-    /// <summary>Arcloft: heavy kinetic bombardment on a single target zone.</summary>
+    // ── Arcloft ─────────────────────────────────────────────────────────
+    /// <summary>Arcloft (Building): high-velocity kinetic penetrator dropped from orbit via Orbital Relay.</summary>
     OrbitalStrike,
-    /// <summary>Arcloft: short-ranged EMP that disables all enemy units for several seconds.</summary>
+    /// <summary>Arcloft (Activated): electromagnetic pulse that disables all enemy units in a wide radius.</summary>
     EMPBlast,
-    /// <summary>Bastion: rapid multi-missile barrage covering a large area.</summary>
+
+    // ── Bastion ──────────────────────────────────────────────────────────
+    /// <summary>Bastion (Building): rapid multi-missile barrage from the Missile Battery.</summary>
     MissileBarrage,
-    /// <summary>Bastion: rapid deployment of reinforcement infantry around the target.</summary>
+    /// <summary>Bastion (Activated): airdrop of reinforcement infantry at the target location.</summary>
     ReinforcementDrop,
+
+    // ── Generic ──────────────────────────────────────────────────────────
     /// <summary>Generic fallback — high-damage area explosion.</summary>
     Airstrike,
-    /// <summary>Ironmarch: underground seismic charges detonate under the target, dealing devastating damage in a wide area.</summary>
+
+    // ── Ironmarch ────────────────────────────────────────────────────────
+    /// <summary>Ironmarch (Activated): engineer teams detonate buried seismic charges.</summary>
     SeismicCharge,
-    /// <summary>Kragmore: sustained off-map artillery barrage that pummels a large zone repeatedly.</summary>
+    /// <summary>Ironmarch (Building): Siege Works fires a hypersonic kinetic volley at the target zone.</summary>
+    SiegeVolley,
+
+    // ── Kragmore ─────────────────────────────────────────────────────────
+    /// <summary>Kragmore (Activated): off-map heavy artillery fires a rolling barrage.</summary>
     ArtillerySalvo,
-    /// <summary>Stormrend: lightning bolt that chains between nearby enemies, dealing full damage to each struck unit.</summary>
+    /// <summary>Kragmore (Building): War Forge unleashes industrial-scale mortar bombardment.</summary>
+    IndustrialBarrage,
+
+    // ── Stormrend ─────────────────────────────────────────────────────────
+    /// <summary>Stormrend (Activated): lightning bolt that chains between up to 8 nearby enemies.</summary>
     LightningCascade,
-    /// <summary>Valkyr: a squadron of bombers makes a strafing run along a chosen axis, dropping ordnance across a long linear strip.</summary>
-    CarpetBombRun
+    /// <summary>Stormrend (Building): Storm Capacitor erupts in a massive multi-arc discharge (up to 16 targets).</summary>
+    TempestNode,
+
+    // ── Valkyr ───────────────────────────────────────────────────────────
+    /// <summary>Valkyr (Activated): bomber squadron strafing run along a long linear strip.</summary>
+    CarpetBombRun,
+    /// <summary>Valkyr (Building): Launch Bay releases a single precision-guided munition with extreme damage.</summary>
+    PrecisionPayload
 }
 
 /// <summary>
@@ -39,6 +79,15 @@ public sealed class SuperweaponData
     public string Description { get; init; } = string.Empty;
     public string FactionId   { get; init; } = string.Empty;
     public SuperweaponType Type { get; init; }
+
+    /// <summary>Whether this is a HUD general power or a structure-based superweapon.</summary>
+    public SuperweaponCategory Category { get; init; }
+
+    /// <summary>
+    /// For <see cref="SuperweaponCategory.BuildingSuperweapon"/>: the building type that must
+    /// be constructed before this weapon can be activated. Empty for activated abilities.
+    /// </summary>
+    public string RequiredBuildingTypeId { get; init; } = string.Empty;
 
     /// <summary>Cooldown in simulation ticks (30 ticks = 1 s).</summary>
     public int CooldownTicks  { get; init; }
@@ -53,8 +102,8 @@ public sealed class SuperweaponData
     public FixedPoint Damage  { get; init; }
 
     /// <summary>
-    /// Maximum number of chain-arc targets for <see cref="SuperweaponType.LightningCascade"/>.
-    /// 0 = unused.
+    /// Maximum number of chain-arc targets for <see cref="SuperweaponType.LightningCascade"/>
+    /// and <see cref="SuperweaponType.TempestNode"/>. 0 = unused.
     /// </summary>
     public int ChainCount { get; init; }
 
@@ -135,18 +184,22 @@ public sealed class SuperweaponResult
 
     /// <summary>True if the weapon was actually fired (cooldown was ready).</summary>
     public bool DidFire { get; init; }
+
+    /// <summary>The weapon ID that fired (for event routing).</summary>
+    public string WeaponId { get; init; } = string.Empty;
 }
 
 /// <summary>
-/// Manages all superweapon states for all players. Processes cooldown ticks
-/// and resolves ability activations.
+/// Manages all superweapon states for all players. Each player may hold multiple
+/// weapons (one BuildingSuperweapon + one ActivatedAbility). Processes cooldown
+/// ticks and resolves ability activations.
 ///
 /// Deterministic: uses FixedPoint math only. No System.Random.
 /// </summary>
 public sealed class SuperweaponSystem
 {
-    // player id → weapon state
-    private readonly Dictionary<int, PlayerSuperweaponState> _states = new();
+    // player id → weapon id → weapon state
+    private readonly Dictionary<int, Dictionary<string, PlayerSuperweaponState>> _states = new();
 
     // ── Built-in ability catalogue ───────────────────────────────────
 
@@ -156,21 +209,24 @@ public sealed class SuperweaponSystem
         {
             Id = "arcloft_orbital_strike",
             DisplayName = "Orbital Strike",
-            Description = "A high-velocity kinetic penetrator dropped from orbit. Devastates a small target zone.",
+            Description = "The Orbital Relay fires a high-velocity kinetic penetrator from orbit. Devastates a small target zone.",
             FactionId = "arcloft",
             Type = SuperweaponType.OrbitalStrike,
-            CooldownTicks = 1800, // 60 s at 30 Hz
+            Category = SuperweaponCategory.BuildingSuperweapon,
+            RequiredBuildingTypeId = "arcloft_orbital_relay",
+            CooldownTicks = 2700, // 90 s — building superweapons charge slower
             Range          = FixedPoint.FromInt(80),
             AreaOfEffect   = FixedPoint.FromInt(5),
-            Damage         = FixedPoint.FromInt(300)
+            Damage         = FixedPoint.FromInt(350)
         },
         ["arcloft_emp_blast"] = new SuperweaponData
         {
             Id = "arcloft_emp_blast",
             DisplayName = "EMP Blast",
-            Description = "Electromagnetic pulse that disables all enemy units in a wide radius for 5 seconds.",
+            Description = "HQ-directed electromagnetic pulse disables all enemy units in a wide radius for 5 seconds.",
             FactionId = "arcloft",
             Type = SuperweaponType.EMPBlast,
+            Category = SuperweaponCategory.ActivatedAbility,
             CooldownTicks = 2700, // 90 s
             Range          = FixedPoint.FromInt(100),
             AreaOfEffect   = FixedPoint.FromInt(12),
@@ -180,21 +236,24 @@ public sealed class SuperweaponSystem
         {
             Id = "bastion_missile_barrage",
             DisplayName = "Missile Barrage",
-            Description = "Saturation bombardment with cluster munitions over a large target area.",
+            Description = "The Missile Battery launches saturation bombardment with cluster munitions over a large target area.",
             FactionId = "bastion",
             Type = SuperweaponType.MissileBarrage,
-            CooldownTicks = 1500, // 50 s
+            Category = SuperweaponCategory.BuildingSuperweapon,
+            RequiredBuildingTypeId = "bastion_missile_battery",
+            CooldownTicks = 2400, // 80 s
             Range          = FixedPoint.FromInt(90),
             AreaOfEffect   = FixedPoint.FromInt(10),
-            Damage         = FixedPoint.FromInt(120)
+            Damage         = FixedPoint.FromInt(130)
         },
         ["bastion_reinforcement_drop"] = new SuperweaponData
         {
             Id = "bastion_reinforcement_drop",
             DisplayName = "Reinforcement Drop",
-            Description = "Airdrop of four elite infantry squads at the target location.",
+            Description = "Airdrop of four elite infantry squads at the target location. No building required.",
             FactionId = "bastion",
             Type = SuperweaponType.ReinforcementDrop,
+            Category = SuperweaponCategory.ActivatedAbility,
             CooldownTicks = 2100, // 70 s
             Range          = FixedPoint.FromInt(100),
             AreaOfEffect   = FixedPoint.Zero,
@@ -210,10 +269,26 @@ public sealed class SuperweaponSystem
                           "that flattens everything in a wide radius.",
             FactionId = "ironmarch",
             Type = SuperweaponType.SeismicCharge,
+            Category = SuperweaponCategory.ActivatedAbility,
             CooldownTicks = 2400, // 80 s
             Range          = FixedPoint.FromInt(85),
             AreaOfEffect   = FixedPoint.FromInt(9),
             Damage         = FixedPoint.FromInt(250)
+        },
+        ["ironmarch_siege_volley"] = new SuperweaponData
+        {
+            Id = "ironmarch_siege_volley",
+            DisplayName = "Siege Volley",
+            Description = "The Siege Works unleashes a hypersonic kinetic volley at the designated target zone. " +
+                          "Extreme single-strike damage against fortified positions.",
+            FactionId = "ironmarch",
+            Type = SuperweaponType.SiegeVolley,
+            Category = SuperweaponCategory.BuildingSuperweapon,
+            RequiredBuildingTypeId = "ironmarch_siege_works",
+            CooldownTicks = 3000, // 100 s
+            Range          = FixedPoint.FromInt(75),
+            AreaOfEffect   = FixedPoint.FromInt(6),
+            Damage         = FixedPoint.FromInt(400)
         },
 
         // ── Kragmore ─────────────────────────────────────────────────────────
@@ -224,10 +299,26 @@ public sealed class SuperweaponSystem
             Description = "Off-map heavy artillery fires a rolling barrage over a large area, shredding armor and infantry alike.",
             FactionId = "kragmore",
             Type = SuperweaponType.ArtillerySalvo,
+            Category = SuperweaponCategory.ActivatedAbility,
             CooldownTicks = 1650, // 55 s
             Range          = FixedPoint.FromInt(95),
             AreaOfEffect   = FixedPoint.FromInt(11),
             Damage         = FixedPoint.FromInt(140)
+        },
+        ["kragmore_industrial_barrage"] = new SuperweaponData
+        {
+            Id = "kragmore_industrial_barrage",
+            DisplayName = "Industrial Barrage",
+            Description = "The War Forge fires a continuous industrial-scale mortar bombardment over an enormous area, " +
+                          "overwhelming any defender with sheer volume of fire.",
+            FactionId = "kragmore",
+            Type = SuperweaponType.IndustrialBarrage,
+            Category = SuperweaponCategory.BuildingSuperweapon,
+            RequiredBuildingTypeId = "kragmore_war_forge",
+            CooldownTicks = 2700, // 90 s
+            Range          = FixedPoint.FromInt(90),
+            AreaOfEffect   = FixedPoint.FromInt(14),
+            Damage         = FixedPoint.FromInt(110)
         },
 
         // ── Stormrend ────────────────────────────────────────────────────────
@@ -239,11 +330,28 @@ public sealed class SuperweaponSystem
                           "for full damage — lethal against clustered formations.",
             FactionId = "stormrend",
             Type = SuperweaponType.LightningCascade,
+            Category = SuperweaponCategory.ActivatedAbility,
             CooldownTicks = 1350, // 45 s
             Range          = FixedPoint.FromInt(90),
-            AreaOfEffect   = FixedPoint.FromInt(7),  // arc search radius
+            AreaOfEffect   = FixedPoint.FromInt(7),
             Damage         = FixedPoint.FromInt(200),
             ChainCount     = 8
+        },
+        ["stormrend_tempest_node"] = new SuperweaponData
+        {
+            Id = "stormrend_tempest_node",
+            DisplayName = "Tempest Node",
+            Description = "The Storm Capacitor erupts in a massive multi-arc discharge, chaining between up to 16 enemies " +
+                          "across a wider radius — capable of wiping entire armies.",
+            FactionId = "stormrend",
+            Type = SuperweaponType.TempestNode,
+            Category = SuperweaponCategory.BuildingSuperweapon,
+            RequiredBuildingTypeId = "stormrend_storm_capacitor",
+            CooldownTicks = 3300, // 110 s
+            Range          = FixedPoint.FromInt(95),
+            AreaOfEffect   = FixedPoint.FromInt(10),
+            Damage         = FixedPoint.FromInt(180),
+            ChainCount     = 16
         },
 
         // ── Valkyr ───────────────────────────────────────────────────────────
@@ -255,12 +363,28 @@ public sealed class SuperweaponSystem
                           "strip of high-explosive ordnance.",
             FactionId = "valkyr",
             Type = SuperweaponType.CarpetBombRun,
+            Category = SuperweaponCategory.ActivatedAbility,
             CooldownTicks = 1800, // 60 s
             Range          = FixedPoint.FromInt(100),
-            AreaOfEffect   = FixedPoint.FromInt(4),   // half-strip width
+            AreaOfEffect   = FixedPoint.FromInt(4),
             Damage         = FixedPoint.FromInt(160),
             StripHalfWidth = FixedPoint.FromInt(4),
             StripLength    = FixedPoint.FromInt(24)
+        },
+        ["valkyr_precision_payload"] = new SuperweaponData
+        {
+            Id = "valkyr_precision_payload",
+            DisplayName = "Precision Payload",
+            Description = "The Sky Launch Bay releases a single precision-guided munition from high altitude. " +
+                          "Extreme single-strike damage against a pinpoint target.",
+            FactionId = "valkyr",
+            Type = SuperweaponType.PrecisionPayload,
+            Category = SuperweaponCategory.BuildingSuperweapon,
+            RequiredBuildingTypeId = "valkyr_launch_bay",
+            CooldownTicks = 3000, // 100 s
+            Range          = FixedPoint.FromInt(100),
+            AreaOfEffect   = FixedPoint.FromInt(4),
+            Damage         = FixedPoint.FromInt(450)
         }
     };
 
@@ -293,7 +417,29 @@ public sealed class SuperweaponSystem
         return string.Empty;
     }
 
-    // ── Distance sentinel ────────────────────────────────────────────
+    /// <summary>Returns the first <see cref="SuperweaponCategory.BuildingSuperweapon"/> entry for a faction, or null.</summary>
+    public static SuperweaponData? GetFactionBuildingWeapon(string factionId)
+    {
+        foreach (var kv in _catalogue)
+        {
+            if (kv.Value.FactionId == factionId &&
+                kv.Value.Category  == SuperweaponCategory.BuildingSuperweapon)
+                return kv.Value;
+        }
+        return null;
+    }
+
+    /// <summary>Returns the first <see cref="SuperweaponCategory.ActivatedAbility"/> entry for a faction, or null.</summary>
+    public static SuperweaponData? GetFactionActivatedAbility(string factionId)
+    {
+        foreach (var kv in _catalogue)
+        {
+            if (kv.Value.FactionId == factionId &&
+                kv.Value.Category  == SuperweaponCategory.ActivatedAbility)
+                return kv.Value;
+        }
+        return null;
+    }
 
     /// <summary>
     /// A large-but-safe squared-distance sentinel for "not yet found" comparisons.
@@ -305,13 +451,16 @@ public sealed class SuperweaponSystem
     // ── Player Registration ──────────────────────────────────────────
 
     /// <summary>
-    /// Registers a player with a specific superweapon ability.
-    /// Only one weapon per player.
+    /// Registers a weapon for a player. Each player may hold multiple weapons
+    /// (one BuildingSuperweapon + one ActivatedAbility). Registering the same
+    /// weaponId again replaces the previous state for that weapon.
     /// </summary>
     public void RegisterPlayer(int playerId, string weaponId)
     {
         if (!_catalogue.TryGetValue(weaponId, out var data)) return;
-        _states[playerId] = new PlayerSuperweaponState(playerId, data);
+        if (!_states.TryGetValue(playerId, out var weapons))
+            _states[playerId] = weapons = new Dictionary<string, PlayerSuperweaponState>();
+        weapons[weaponId] = new PlayerSuperweaponState(playerId, data);
     }
 
     // ── Tick ─────────────────────────────────────────────────────────
@@ -322,85 +471,96 @@ public sealed class SuperweaponSystem
     /// </summary>
     public void Tick()
     {
-        foreach (var state in _states.Values)
-            state.Tick();
+        foreach (var weapons in _states.Values)
+            foreach (var state in weapons.Values)
+                state.Tick();
     }
 
     // ── Activation ───────────────────────────────────────────────────
 
     /// <summary>
-    /// Attempts to fire the superweapon for <paramref name="playerId"/> targeting
+    /// Attempts to fire a specific superweapon for <paramref name="playerId"/> targeting
     /// <paramref name="target"/>. Returns a <see cref="SuperweaponResult"/> with
-    /// hit details, or a non-fired result if the weapon is on cooldown.
+    /// hit details, or a non-fired result if the weapon is on cooldown or not registered.
     ///
     /// Callers are responsible for applying damage from the result.
     /// </summary>
     public SuperweaponResult TryActivate(
         int playerId,
+        string weaponId,
         FixedVector2 target,
         IReadOnlyList<CorditeWars.Systems.Pathfinding.SimUnit> allUnits)
     {
-        if (!_states.TryGetValue(playerId, out var state) || !state.IsReady)
-            return new SuperweaponResult { TargetPosition = target, DidFire = false };
+        if (!_states.TryGetValue(playerId, out var weapons) ||
+            !weapons.TryGetValue(weaponId, out var state) ||
+            !state.IsReady)
+            return new SuperweaponResult { TargetPosition = target, DidFire = false, WeaponId = weaponId };
 
         state.Arm();
 
         var result = new SuperweaponResult
         {
-            TargetPosition = target,
-            DidFire        = true,
-            IsEMP          = state.Data.Type == SuperweaponType.EMPBlast,
+            TargetPosition   = target,
+            DidFire          = true,
+            WeaponId         = weaponId,
+            IsEMP            = state.Data.Type == SuperweaponType.EMPBlast,
             EMPDurationTicks = state.Data.Type == SuperweaponType.EMPBlast ? 150 : 0 // 5 s
         };
 
-        if (state.Data.Type == SuperweaponType.ReinforcementDrop)
+        switch (state.Data.Type)
         {
-            // Spawn 4 Bastion infantry units — IDs provided to caller
-            string unitTypeId = "bastion_soldier"; // default infantry
-            for (int i = 0; i < 4; i++)
-                result.SpawnedUnitTypeIds.Add(unitTypeId);
-            return result;
-        }
+            case SuperweaponType.ReinforcementDrop:
+                for (int i = 0; i < 4; i++)
+                    result.SpawnedUnitTypeIds.Add("bastion_soldier");
+                return result;
 
-        if (state.Data.Type == SuperweaponType.LightningCascade)
-        {
-            return ResolveLightningCascade(playerId, target, allUnits, state.Data, result);
-        }
+            case SuperweaponType.LightningCascade:
+            case SuperweaponType.TempestNode:
+                return ResolveLightningChain(playerId, target, allUnits, state.Data, result);
 
-        if (state.Data.Type == SuperweaponType.CarpetBombRun)
-        {
-            return ResolveCarpetBombRun(playerId, target, allUnits, state.Data, result);
-        }
+            case SuperweaponType.CarpetBombRun:
+                return ResolveCarpetBombRun(playerId, target, allUnits, state.Data, result);
 
-        // ── Circular AoE (OrbitalStrike, EMPBlast, MissileBarrage, SeismicCharge, ArtillerySalvo) ──
-        // Area damage for all other weapon types
-        FixedPoint aoeSq = state.Data.AreaOfEffect * state.Data.AreaOfEffect;
+            default:
+                // Circular AoE: OrbitalStrike, EMPBlast, MissileBarrage, SeismicCharge,
+                //               ArtillerySalvo, SiegeVolley, IndustrialBarrage,
+                //               PrecisionPayload, Airstrike
+                return ResolveCircularAoE(playerId, target, allUnits, state.Data, result);
+        }
+    }
+
+    // ── Special activation resolvers ─────────────────────────────────
+
+    private static SuperweaponResult ResolveCircularAoE(
+        int playerId,
+        FixedVector2 target,
+        IReadOnlyList<CorditeWars.Systems.Pathfinding.SimUnit> allUnits,
+        SuperweaponData data,
+        SuperweaponResult result)
+    {
+        FixedPoint aoeSq = data.AreaOfEffect * data.AreaOfEffect;
         for (int i = 0; i < allUnits.Count; i++)
         {
             var unit = allUnits[i];
-            if (!unit.IsAlive) continue;
-            if (unit.PlayerId == playerId) continue; // friendly fire off
+            if (!unit.IsAlive || unit.PlayerId == playerId) continue;
 
             FixedVector2 diff = unit.Movement.Position - target;
             FixedPoint distSq = diff.X * diff.X + diff.Y * diff.Y;
             if (distSq > aoeSq) continue;
 
             result.HitUnitIds.Add(unit.UnitId);
-            result.DamagePerUnit.Add(state.Data.Damage);
+            result.DamagePerUnit.Add(data.Damage);
         }
-
         return result;
     }
 
-    // ── Special activation resolvers ─────────────────────────────────
-
     /// <summary>
-    /// Resolves a LightningCascade: strikes the closest enemy to the target,
-    /// then chains up to <see cref="SuperweaponData.ChainCount"/> times to the
+    /// Resolves a chain-lightning strike (LightningCascade or TempestNode): strikes the closest
+    /// enemy to the target, then chains up to <see cref="SuperweaponData.ChainCount"/> times to the
     /// nearest remaining enemy within <see cref="SuperweaponData.AreaOfEffect"/> of
     /// each struck unit. Each hit unit takes full Damage; no unit is hit twice.
     /// </summary>
-    private static SuperweaponResult ResolveLightningCascade(
+    private static SuperweaponResult ResolveLightningChain(
         int playerId,
         FixedVector2 target,
         IReadOnlyList<CorditeWars.Systems.Pathfinding.SimUnit> allUnits,
@@ -500,17 +660,42 @@ public sealed class SuperweaponSystem
 
     // ── Queries ──────────────────────────────────────────────────────
 
-    /// <summary>Returns the weapon state for a player, or null if not registered.</summary>
-    public PlayerSuperweaponState? GetState(int playerId)
-        => _states.TryGetValue(playerId, out var s) ? s : null;
+    /// <summary>Returns the state for a specific weapon of a player, or null.</summary>
+    public PlayerSuperweaponState? GetState(int playerId, string weaponId)
+    {
+        if (!_states.TryGetValue(playerId, out var weapons)) return null;
+        return weapons.TryGetValue(weaponId, out var s) ? s : null;
+    }
 
-    /// <summary>Returns true if the player's superweapon is ready to fire.</summary>
-    public bool IsReady(int playerId)
-        => _states.TryGetValue(playerId, out var s) && s.IsReady;
+    /// <summary>Returns all weapon states for a player (may be 0, 1, or 2).</summary>
+    public IEnumerable<PlayerSuperweaponState> GetPlayerWeapons(int playerId)
+    {
+        if (!_states.TryGetValue(playerId, out var weapons)) yield break;
+        foreach (var state in weapons.Values) yield return state;
+    }
 
-    /// <summary>Returns the charge percentage [0,1] for HUD display.</summary>
-    public float GetChargePercent(int playerId)
-        => _states.TryGetValue(playerId, out var s) ? s.ChargePercent : 0f;
+    /// <summary>Returns true if the specified weapon is ready to fire.</summary>
+    public bool IsReady(int playerId, string weaponId)
+    {
+        if (!_states.TryGetValue(playerId, out var weapons)) return false;
+        return weapons.TryGetValue(weaponId, out var s) && s.IsReady;
+    }
 
-    public IReadOnlyDictionary<int, PlayerSuperweaponState> AllStates => _states;
+    /// <summary>Returns true if any of the player's weapons is ready (used for tick-ready notifications).</summary>
+    public bool IsAnyReady(int playerId)
+    {
+        if (!_states.TryGetValue(playerId, out var weapons)) return false;
+        foreach (var s in weapons.Values)
+            if (s.IsReady) return true;
+        return false;
+    }
+
+    /// <summary>Returns the charge percentage [0,1] for a specific weapon.</summary>
+    public float GetChargePercent(int playerId, string weaponId)
+    {
+        if (!_states.TryGetValue(playerId, out var weapons)) return 0f;
+        return weapons.TryGetValue(weaponId, out var s) ? s.ChargePercent : 0f;
+    }
+
+    public IReadOnlyDictionary<int, Dictionary<string, PlayerSuperweaponState>> AllStates => _states;
 }

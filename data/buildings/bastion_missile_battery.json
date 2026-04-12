@@ -1,0 +1,26 @@
+{
+  "Id": "bastion_missile_battery",
+  "DisplayName": "Missile Battery",
+  "FactionId": "bastion",
+  "Category": "Superweapon",
+  "MaxHealth": 1500,
+  "ArmorClass": "Building",
+  "ArmorValue": 4,
+  "Cost": 2800,
+  "SecondaryCost": 400,
+  "BuildTime": 55.0,
+  "FootprintWidth": 4,
+  "FootprintHeight": 3,
+  "PowerRequired": 8,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [
+    "missile_barrage"
+  ],
+  "Prerequisites": [
+    "bastion_tech_lab"
+  ],
+  "Description": "Bastion mobile missile platform loaded with cluster munitions. Once charged, unleashes the Missile Barrage superweapon across a large target zone. Requires Power."
+}

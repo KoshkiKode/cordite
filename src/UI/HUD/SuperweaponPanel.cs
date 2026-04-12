@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 using CorditeWars.Core;
 using CorditeWars.Systems.Superweapon;
@@ -5,23 +6,31 @@ using CorditeWars.Systems.Superweapon;
 namespace CorditeWars.UI.HUD;
 
 /// <summary>
-/// HUD panel showing the local player's superweapon ability.
-/// Displays the ability name, a charge/cooldown progress bar, and a fire button.
+/// HUD panel showing all of the local player's superweapon abilities.
+/// Each faction gets two slots: one BuildingSuperweapon and one ActivatedAbility.
+/// Each slot has a name label, charge bar, and FIRE button.
 ///
-/// Wire up by calling <see cref="Initialize"/> then update each frame via
-/// <see cref="Update"/>.
-///
-/// Pressing the fire button emits <see cref="EventBus.SuperweaponActivateRequested"/>
-/// so that <c>CommandInput</c> can enter targeting mode.
+/// Wire up by calling <see cref="Initialize"/> then update each frame via <see cref="Update"/>.
+/// Pressing a FIRE button emits <see cref="EventBus.SuperweaponActivateRequested"/> with the
+/// specific weaponId so that the targeting system knows which weapon to arm.
 /// </summary>
 public partial class SuperweaponPanel : PanelContainer
 {
     private SuperweaponSystem? _system;
     private int _playerId;
-    private Label? _nameLabel;
-    private Label? _statusLabel;
-    private ProgressBar? _chargeBar;
-    private Button? _fireButton;
+
+    // Per-slot controls — populated dynamically in Initialize
+    private readonly List<WeaponSlotControls> _slots = new();
+
+    private sealed class WeaponSlotControls
+    {
+        public string WeaponId = string.Empty;
+        public Label?       NameLabel;
+        public Label?       TagLabel;    // Displays "BUILDING" or "ABILITY" category
+        public ProgressBar? ChargeBar;
+        public Label?       StatusLabel;
+        public Button?      FireButton;
+    }
 
     // ── Initialization ───────────────────────────────────────────────
 
@@ -31,15 +40,15 @@ public partial class SuperweaponPanel : PanelContainer
         _system   = system;
         Name      = "SuperweaponPanel";
 
-        // Position: top-right (below tech/resource info)
+        // Position: top-right, tall enough for two slots
         AnchorLeft   = 1;
         AnchorTop    = 0;
         AnchorRight  = 1;
         AnchorBottom = 0;
-        OffsetLeft   = -220;
+        OffsetLeft   = -240;
         OffsetRight  = -8;
         OffsetTop    = 60;
-        OffsetBottom = 130;
+        OffsetBottom = 220;
 
         var bg = new StyleBoxFlat();
         bg.BgColor = new Color(0.06f, 0.06f, 0.10f, 0.88f);
@@ -50,36 +59,71 @@ public partial class SuperweaponPanel : PanelContainer
         bg.ContentMarginTop = bg.ContentMarginBottom = 6;
         AddThemeStyleboxOverride("panel", bg);
 
+        var outerVbox = new VBoxContainer();
+        outerVbox.AddThemeConstantOverride("separation", 8);
+        AddChild(outerVbox);
+
+        // Build a slot for each weapon in the catalogue for this player's faction.
+        // If the system has no weapons yet (pre-registration), slots are built later.
+        foreach (var state in system.GetPlayerWeapons(playerId))
+            outerVbox.AddChild(BuildSlot(state));
+    }
+
+    private Control BuildSlot(PlayerSuperweaponState state)
+    {
+        var slot = new WeaponSlotControls { WeaponId = state.Data.Id };
+
         var vbox = new VBoxContainer();
-        vbox.AddThemeConstantOverride("separation", 4);
-        AddChild(vbox);
+        vbox.AddThemeConstantOverride("separation", 3);
 
-        _nameLabel = new Label { Text = "Ability" };
-        UITheme.StyleLabel(_nameLabel, UITheme.FontSizeSmall, UITheme.Accent);
-        vbox.AddChild(_nameLabel);
+        // Header row: name + category tag
+        var header = new HBoxContainer();
+        header.AddThemeConstantOverride("separation", 4);
 
-        _chargeBar = new ProgressBar();
-        _chargeBar.MinValue = 0;
-        _chargeBar.MaxValue = 100;
-        _chargeBar.Value    = 0;
-        _chargeBar.ShowPercentage = false;
-        _chargeBar.CustomMinimumSize = new Vector2(180, 12);
-        vbox.AddChild(_chargeBar);
+        slot.NameLabel = new Label { Text = state.Data.DisplayName };
+        UITheme.StyleLabel(slot.NameLabel, UITheme.FontSizeSmall, UITheme.Accent);
+        slot.NameLabel.SizeFlagsHorizontal = Control.SizeFlags.Expand;
+        header.AddChild(slot.NameLabel);
+
+        // Coloured tag indicating category
+        slot.TagLabel = new Label
+        {
+            Text = state.Data.Category == SuperweaponCategory.BuildingSuperweapon
+                   ? "BUILDING" : "ABILITY"
+        };
+        UITheme.StyleLabel(slot.TagLabel, UITheme.FontSizeSmall,
+            state.Data.Category == SuperweaponCategory.BuildingSuperweapon
+                ? new Color(1.0f, 0.65f, 0.0f) // orange for building
+                : new Color(0.4f, 0.8f, 1.0f));  // cyan for ability
+        header.AddChild(slot.TagLabel);
+        vbox.AddChild(header);
+
+        slot.ChargeBar = new ProgressBar();
+        slot.ChargeBar.MinValue = 0;
+        slot.ChargeBar.MaxValue = 100;
+        slot.ChargeBar.Value    = 0;
+        slot.ChargeBar.ShowPercentage = false;
+        slot.ChargeBar.CustomMinimumSize = new Vector2(190, 10);
+        vbox.AddChild(slot.ChargeBar);
 
         var row = new HBoxContainer();
         row.AddThemeConstantOverride("separation", 6);
+
+        slot.StatusLabel = new Label { Text = "Charging…" };
+        UITheme.StyleLabel(slot.StatusLabel, UITheme.FontSizeSmall, UITheme.TextMuted);
+        slot.StatusLabel.SizeFlagsHorizontal = Control.SizeFlags.Expand;
+        row.AddChild(slot.StatusLabel);
+
+        slot.FireButton = new Button { Text = "FIRE" };
+        UITheme.StyleButton(slot.FireButton);
+        slot.FireButton.Disabled = true;
+        string capturedId = state.Data.Id;
+        slot.FireButton.Pressed += () => OnFirePressed(capturedId);
+        row.AddChild(slot.FireButton);
+
         vbox.AddChild(row);
-
-        _statusLabel = new Label { Text = "Charging…" };
-        UITheme.StyleLabel(_statusLabel, UITheme.FontSizeSmall, UITheme.TextMuted);
-        _statusLabel.SizeFlagsHorizontal = Control.SizeFlags.Expand;
-        row.AddChild(_statusLabel);
-
-        _fireButton = new Button { Text = "FIRE" };
-        UITheme.StyleButton(_fireButton);
-        _fireButton.Disabled = true;
-        _fireButton.Pressed += OnFirePressed;
-        row.AddChild(_fireButton);
+        _slots.Add(slot);
+        return vbox;
     }
 
     // ── Update ───────────────────────────────────────────────────────
@@ -91,32 +135,40 @@ public partial class SuperweaponPanel : PanelContainer
     {
         if (_system is null) return;
 
-        var state = _system.GetState(_playerId);
-        if (state is null) { Visible = false; return; }
-        Visible = true;
+        bool anyVisible = false;
+        foreach (var slot in _slots)
+        {
+            var state = _system.GetState(_playerId, slot.WeaponId);
+            if (state is null) continue;
 
-        if (_nameLabel != null)
-            _nameLabel.Text = state.Data.DisplayName;
+            anyVisible = true;
+            float charge = state.ChargePercent * 100f;
 
-        float charge = state.ChargePercent * 100f;
-        if (_chargeBar != null)
-            _chargeBar.Value = charge;
+            if (slot.NameLabel != null)
+                slot.NameLabel.Text = state.Data.DisplayName;
 
-        bool ready = state.IsReady;
-        if (_statusLabel != null)
-            _statusLabel.Text = ready ? "READY" : $"{(int)(charge)}%";
-        if (_statusLabel != null)
-            _statusLabel.AddThemeColorOverride("font_color",
-                ready ? UITheme.SuccessColor : UITheme.TextMuted);
+            if (slot.ChargeBar != null)
+                slot.ChargeBar.Value = charge;
 
-        if (_fireButton != null)
-            _fireButton.Disabled = !ready;
+            bool ready = state.IsReady;
+            if (slot.StatusLabel != null)
+            {
+                slot.StatusLabel.Text = ready ? "READY" : $"{(int)charge}%";
+                slot.StatusLabel.AddThemeColorOverride("font_color",
+                    ready ? UITheme.SuccessColor : UITheme.TextMuted);
+            }
+
+            if (slot.FireButton != null)
+                slot.FireButton.Disabled = !ready;
+        }
+
+        Visible = anyVisible;
     }
 
     // ── Button ───────────────────────────────────────────────────────
 
-    private void OnFirePressed()
+    private void OnFirePressed(string weaponId)
     {
-        EventBus.Instance?.EmitSuperweaponActivateRequested(_playerId);
+        EventBus.Instance?.EmitSuperweaponActivateRequested(_playerId, weaponId);
     }
 }

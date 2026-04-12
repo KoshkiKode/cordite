@@ -1,0 +1,27 @@
+{
+  "Id": "ironmarch_siege_works",
+  "DisplayName": "Siege Works",
+  "FactionId": "ironmarch",
+  "Category": "Superweapon",
+  "MaxHealth": 2000,
+  "ArmorClass": "Building",
+  "ArmorValue": 6,
+  "Cost": 3200,
+  "SecondaryCost": 500,
+  "BuildTime": 65.0,
+  "FootprintWidth": 4,
+  "FootprintHeight": 4,
+  "PowerRequired": 8,
+  "PowerGenerated": 0,
+  "SupplyProvided": 0,
+  "PassiveIncome": 0,
+  "VCGeneration": 0,
+  "Abilities": [
+    "siege_volley"
+  ],
+  "Prerequisites": [
+    "ironmarch_tech_lab",
+    "ironmarch_vehicle_factory"
+  ],
+  "Description": "Ironmarch heavy siege installation housing a hypersonic kinetic launcher. Once charged, fires the Siege Volley superweapon — a devastating concentrated strike against fortified targets. Heavily armored; difficult to destroy."
+}

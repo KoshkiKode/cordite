@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using CorditeWars.Core;
 using CorditeWars.Game.Units;
 using CorditeWars.Systems.Superweapon;
@@ -31,6 +32,10 @@ public class SuperweaponSystemTests
             Radius    = FixedPoint.One
         };
     }
+
+    /// <summary>Returns the first weapon ID registered for a player (test helper).</summary>
+    private static string GetWeaponId(SuperweaponSystem sys, int playerId)
+        => sys.GetPlayerWeapons(playerId).First().Data.Id;
 
     // ═══════════════════════════════════════════════════════════════════════
     // Catalogue
@@ -75,7 +80,7 @@ public class SuperweaponSystemTests
     {
         var sys = new SuperweaponSystem();
         sys.RegisterPlayer(1, "arcloft_orbital_strike");
-        Assert.NotNull(sys.GetState(1));
+        Assert.NotNull(sys.GetPlayerWeapons(1).FirstOrDefault());
     }
 
     [Fact]
@@ -83,7 +88,7 @@ public class SuperweaponSystemTests
     {
         var sys = new SuperweaponSystem();
         sys.RegisterPlayer(1, "does_not_exist");
-        Assert.Null(sys.GetState(1));
+        Assert.Null(sys.GetPlayerWeapons(1).FirstOrDefault());
     }
 
     // ═══════════════════════════════════════════════════════════════════════
@@ -95,7 +100,7 @@ public class SuperweaponSystemTests
     {
         var sys = new SuperweaponSystem();
         sys.RegisterPlayer(1, "arcloft_orbital_strike");
-        Assert.False(sys.IsReady(1));
+        Assert.False(sys.IsAnyReady(1));
     }
 
     [Fact]
@@ -103,7 +108,7 @@ public class SuperweaponSystemTests
     {
         var sys = new SuperweaponSystem();
         sys.RegisterPlayer(1, "arcloft_orbital_strike");
-        var state = sys.GetState(1)!;
+        var state = sys.GetPlayerWeapons(1).First()!;
         int initial = state.CooldownRemaining;
 
         sys.Tick();
@@ -115,13 +120,13 @@ public class SuperweaponSystemTests
     {
         var sys = new SuperweaponSystem();
         sys.RegisterPlayer(1, "arcloft_orbital_strike");
-        var state = sys.GetState(1)!;
+        var state = sys.GetPlayerWeapons(1).First()!;
         int ticks = state.CooldownRemaining;
 
         for (int i = 0; i < ticks; i++)
             sys.Tick();
 
-        Assert.True(sys.IsReady(1));
+        Assert.True(sys.IsAnyReady(1));
     }
 
     [Fact]
@@ -129,7 +134,7 @@ public class SuperweaponSystemTests
     {
         var sys = new SuperweaponSystem();
         sys.RegisterPlayer(1, "arcloft_orbital_strike");
-        Assert.Equal(0f, sys.GetChargePercent(1), precision: 2);
+        Assert.Equal(0f, sys.GetChargePercent(1, GetWeaponId(sys, 1)), precision: 2);
     }
 
     [Fact]
@@ -137,11 +142,11 @@ public class SuperweaponSystemTests
     {
         var sys = new SuperweaponSystem();
         sys.RegisterPlayer(1, "arcloft_orbital_strike");
-        var state = sys.GetState(1)!;
+        var state = sys.GetPlayerWeapons(1).First()!;
         int ticks = state.CooldownRemaining;
         for (int i = 0; i < ticks; i++)
             sys.Tick();
-        Assert.Equal(1f, sys.GetChargePercent(1), precision: 2);
+        Assert.Equal(1f, sys.GetChargePercent(1, GetWeaponId(sys, 1)), precision: 2);
     }
 
     // ═══════════════════════════════════════════════════════════════════════
@@ -154,7 +159,7 @@ public class SuperweaponSystemTests
         var sys = new SuperweaponSystem();
         sys.RegisterPlayer(1, "arcloft_orbital_strike");
 
-        var result = sys.TryActivate(1, FixedVector2.Zero, new List<SimUnit>());
+        var result = sys.TryActivate(1, GetWeaponId(sys, 1), FixedVector2.Zero, new List<SimUnit>());
         Assert.False(result.DidFire);
     }
 
@@ -164,10 +169,13 @@ public class SuperweaponSystemTests
 
     private static void MakeReady(SuperweaponSystem sys, int playerId)
     {
-        var state = sys.GetState(playerId)!;
-        int initialCooldown = state.CooldownRemaining;
-        for (int i = 0; i < initialCooldown; i++)
-            sys.Tick();
+        // Tick each registered weapon to full charge independently
+        foreach (var state in sys.GetPlayerWeapons(playerId))
+        {
+            int ticks = state.CooldownRemaining;
+            for (int i = 0; i < ticks; i++)
+                sys.Tick();
+        }
     }
 
     [Fact]
@@ -177,7 +185,7 @@ public class SuperweaponSystemTests
         sys.RegisterPlayer(1, "arcloft_orbital_strike");
         MakeReady(sys, 1);
 
-        var result = sys.TryActivate(1, FixedVector2.Zero, new List<SimUnit>());
+        var result = sys.TryActivate(1, GetWeaponId(sys, 1), FixedVector2.Zero, new List<SimUnit>());
         Assert.True(result.DidFire);
     }
 
@@ -188,8 +196,8 @@ public class SuperweaponSystemTests
         sys.RegisterPlayer(1, "arcloft_orbital_strike");
         MakeReady(sys, 1);
 
-        sys.TryActivate(1, FixedVector2.Zero, new List<SimUnit>());
-        Assert.False(sys.IsReady(1)); // back on cooldown
+        sys.TryActivate(1, GetWeaponId(sys, 1), FixedVector2.Zero, new List<SimUnit>());
+        Assert.False(sys.IsAnyReady(1)); // back on cooldown
     }
 
     [Fact]
@@ -210,7 +218,7 @@ public class SuperweaponSystemTests
                 pos: new FixedVector2(FixedPoint.FromInt(50), FixedPoint.FromInt(50)))
         };
 
-        var result = sys.TryActivate(1, target, units);
+        var result = sys.TryActivate(1, GetWeaponId(sys, 1), target, units);
         Assert.True(result.DidFire);
         Assert.Contains(10, result.HitUnitIds);
         Assert.DoesNotContain(11, result.HitUnitIds);
@@ -230,7 +238,7 @@ public class SuperweaponSystemTests
                 pos: FixedVector2.Zero)
         };
 
-        var result = sys.TryActivate(1, FixedVector2.Zero, units);
+        var result = sys.TryActivate(1, GetWeaponId(sys, 1), FixedVector2.Zero, units);
         Assert.DoesNotContain(5, result.HitUnitIds);
     }
 
@@ -241,7 +249,7 @@ public class SuperweaponSystemTests
         sys.RegisterPlayer(1, "arcloft_emp_blast");
         MakeReady(sys, 1);
 
-        var result = sys.TryActivate(1, FixedVector2.Zero, new List<SimUnit>());
+        var result = sys.TryActivate(1, GetWeaponId(sys, 1), FixedVector2.Zero, new List<SimUnit>());
         Assert.True(result.IsEMP);
         Assert.True(result.EMPDurationTicks > 0);
     }
@@ -253,7 +261,7 @@ public class SuperweaponSystemTests
         sys.RegisterPlayer(1, "bastion_reinforcement_drop");
         MakeReady(sys, 1);
 
-        var result = sys.TryActivate(1, FixedVector2.Zero, new List<SimUnit>());
+        var result = sys.TryActivate(1, GetWeaponId(sys, 1), FixedVector2.Zero, new List<SimUnit>());
         Assert.True(result.DidFire);
         Assert.True(result.SpawnedUnitTypeIds.Count > 0);
     }
@@ -292,7 +300,7 @@ public class SuperweaponSystemTests
             MakeUnit(11, 2, new FixedVector2(FixedPoint.FromInt(100), FixedPoint.FromInt(100))) // far away
         };
 
-        var result = sys.TryActivate(1, target, units);
+        var result = sys.TryActivate(1, GetWeaponId(sys, 1), target, units);
         Assert.True(result.DidFire);
         Assert.Contains(10, result.HitUnitIds);
         Assert.DoesNotContain(11, result.HitUnitIds);
@@ -341,7 +349,7 @@ public class SuperweaponSystemTests
             MakeUnit(20, 2, new FixedVector2(FixedPoint.FromInt(50), FixedPoint.Zero)), // outside AoE (radius=11)
         };
 
-        var result = sys.TryActivate(1, FixedVector2.Zero, units);
+        var result = sys.TryActivate(1, GetWeaponId(sys, 1), FixedVector2.Zero, units);
         Assert.True(result.DidFire);
         Assert.True(result.HitUnitIds.Count >= 3);
         Assert.DoesNotContain(20, result.HitUnitIds);
@@ -384,7 +392,7 @@ public class SuperweaponSystemTests
             MakeUnit(13, 2, new FixedVector2(FixedPoint.FromInt(4), FixedPoint.Zero)),
         };
 
-        var result = sys.TryActivate(1, FixedVector2.Zero, units);
+        var result = sys.TryActivate(1, GetWeaponId(sys, 1), FixedVector2.Zero, units);
         Assert.True(result.DidFire);
         Assert.True(result.HitUnitIds.Count >= 2, $"Expected chain ≥2 hits, got {result.HitUnitIds.Count}");
     }
@@ -403,7 +411,7 @@ public class SuperweaponSystemTests
             MakeUnit(12, 2, new FixedVector2(FixedPoint.FromInt(2), FixedPoint.Zero)),
         };
 
-        var result = sys.TryActivate(1, FixedVector2.Zero, units);
+        var result = sys.TryActivate(1, GetWeaponId(sys, 1), FixedVector2.Zero, units);
         var hitSet = new HashSet<int>(result.HitUnitIds);
         Assert.Equal(result.HitUnitIds.Count, hitSet.Count); // no duplicates
     }
@@ -420,7 +428,7 @@ public class SuperweaponSystemTests
             MakeUnit(5, 1, FixedVector2.Zero), // friendly — must not be hit
         };
 
-        var result = sys.TryActivate(1, FixedVector2.Zero, units);
+        var result = sys.TryActivate(1, GetWeaponId(sys, 1), FixedVector2.Zero, units);
         Assert.Empty(result.HitUnitIds);
     }
 
@@ -465,7 +473,7 @@ public class SuperweaponSystemTests
             MakeUnit(21, 2, new FixedVector2(FixedPoint.FromInt(20), FixedPoint.Zero)),
         };
 
-        var result = sys.TryActivate(1, FixedVector2.Zero, units);
+        var result = sys.TryActivate(1, GetWeaponId(sys, 1), FixedVector2.Zero, units);
         Assert.True(result.DidFire);
         Assert.Contains(10, result.HitUnitIds);
         Assert.Contains(11, result.HitUnitIds);
@@ -485,7 +493,7 @@ public class SuperweaponSystemTests
             MakeUnit(5, 1, FixedVector2.Zero), // friendly — inside strip but should not be hit
         };
 
-        var result = sys.TryActivate(1, FixedVector2.Zero, units);
+        var result = sys.TryActivate(1, GetWeaponId(sys, 1), FixedVector2.Zero, units);
         Assert.Empty(result.HitUnitIds);
     }
 
@@ -504,5 +512,230 @@ public class SuperweaponSystemTests
     {
         var weapons = new List<SuperweaponData>(SuperweaponSystem.GetFactionWeapons(factionId));
         Assert.True(weapons.Count >= 1, $"Faction '{factionId}' has no superweapon in the catalogue");
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // Each faction has exactly 2 superweapons: 1 building + 1 activated
+    // ═══════════════════════════════════════════════════════════════════════
+
+    [Theory]
+    [InlineData("arcloft")]
+    [InlineData("bastion")]
+    [InlineData("ironmarch")]
+    [InlineData("kragmore")]
+    [InlineData("stormrend")]
+    [InlineData("valkyr")]
+    public void AllFactions_HaveExactlyTwoWeapons(string factionId)
+    {
+        var weapons = new List<SuperweaponData>(SuperweaponSystem.GetFactionWeapons(factionId));
+        Assert.Equal(2, weapons.Count);
+    }
+
+    [Theory]
+    [InlineData("arcloft")]
+    [InlineData("bastion")]
+    [InlineData("ironmarch")]
+    [InlineData("kragmore")]
+    [InlineData("stormrend")]
+    [InlineData("valkyr")]
+    public void AllFactions_HaveOneBuildingSuperweapon(string factionId)
+    {
+        var building = SuperweaponSystem.GetFactionBuildingWeapon(factionId);
+        Assert.NotNull(building);
+        Assert.Equal(SuperweaponCategory.BuildingSuperweapon, building!.Category);
+        Assert.False(string.IsNullOrEmpty(building.RequiredBuildingTypeId),
+            $"BuildingSuperweapon for '{factionId}' has no RequiredBuildingTypeId");
+    }
+
+    [Theory]
+    [InlineData("arcloft")]
+    [InlineData("bastion")]
+    [InlineData("ironmarch")]
+    [InlineData("kragmore")]
+    [InlineData("stormrend")]
+    [InlineData("valkyr")]
+    public void AllFactions_HaveOneActivatedAbility(string factionId)
+    {
+        var ability = SuperweaponSystem.GetFactionActivatedAbility(factionId);
+        Assert.NotNull(ability);
+        Assert.Equal(SuperweaponCategory.ActivatedAbility, ability!.Category);
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // New building superweapons — catalogue presence and category
+    // ═══════════════════════════════════════════════════════════════════════
+
+    [Fact]
+    public void SiegeVolley_InCatalogue_AsBuildingSuperweapon()
+    {
+        var data = SuperweaponSystem.GetData("ironmarch_siege_volley");
+        Assert.NotNull(data);
+        Assert.Equal(SuperweaponType.SiegeVolley, data!.Type);
+        Assert.Equal(SuperweaponCategory.BuildingSuperweapon, data.Category);
+        Assert.Equal("ironmarch_siege_works", data.RequiredBuildingTypeId);
+    }
+
+    [Fact]
+    public void SiegeVolley_Fires_CircularAoE()
+    {
+        var sys = new SuperweaponSystem();
+        sys.RegisterPlayer(1, "ironmarch_siege_volley");
+        MakeReady(sys, 1);
+
+        var target = FixedVector2.Zero;
+        var units = new List<SimUnit>
+        {
+            MakeUnit(10, 2, new FixedVector2(FixedPoint.FromInt(3), FixedPoint.Zero)), // inside (AoE=6)
+            MakeUnit(11, 2, new FixedVector2(FixedPoint.FromInt(50), FixedPoint.Zero)), // outside
+        };
+        var result = sys.TryActivate(1, "ironmarch_siege_volley", target, units);
+        Assert.True(result.DidFire);
+        Assert.Contains(10, result.HitUnitIds);
+        Assert.DoesNotContain(11, result.HitUnitIds);
+    }
+
+    [Fact]
+    public void IndustrialBarrage_InCatalogue_AsBuildingSuperweapon()
+    {
+        var data = SuperweaponSystem.GetData("kragmore_industrial_barrage");
+        Assert.NotNull(data);
+        Assert.Equal(SuperweaponType.IndustrialBarrage, data!.Type);
+        Assert.Equal(SuperweaponCategory.BuildingSuperweapon, data.Category);
+        Assert.Equal("kragmore_war_forge", data.RequiredBuildingTypeId);
+    }
+
+    [Fact]
+    public void IndustrialBarrage_Fires_WideCircularAoE()
+    {
+        var sys = new SuperweaponSystem();
+        sys.RegisterPlayer(1, "kragmore_industrial_barrage");
+        MakeReady(sys, 1);
+
+        var units = new List<SimUnit>
+        {
+            MakeUnit(10, 2, new FixedVector2(FixedPoint.FromInt(10), FixedPoint.Zero)),  // inside AoE=14
+            MakeUnit(11, 2, new FixedVector2(FixedPoint.FromInt(50), FixedPoint.Zero)),  // outside
+        };
+        var result = sys.TryActivate(1, "kragmore_industrial_barrage", FixedVector2.Zero, units);
+        Assert.True(result.DidFire);
+        Assert.Contains(10, result.HitUnitIds);
+        Assert.DoesNotContain(11, result.HitUnitIds);
+    }
+
+    [Fact]
+    public void TempestNode_InCatalogue_AsBuildingSuperweapon()
+    {
+        var data = SuperweaponSystem.GetData("stormrend_tempest_node");
+        Assert.NotNull(data);
+        Assert.Equal(SuperweaponType.TempestNode, data!.Type);
+        Assert.Equal(SuperweaponCategory.BuildingSuperweapon, data.Category);
+        Assert.Equal("stormrend_storm_capacitor", data.RequiredBuildingTypeId);
+        Assert.Equal(16, data.ChainCount);
+    }
+
+    [Fact]
+    public void TempestNode_Fires_ChainLightning_UpTo16Targets()
+    {
+        var sys = new SuperweaponSystem();
+        sys.RegisterPlayer(1, "stormrend_tempest_node");
+        MakeReady(sys, 1);
+
+        // 10 enemies clustered within arc radius of each other
+        var units = new List<SimUnit>();
+        for (int i = 0; i < 10; i++)
+            units.Add(MakeUnit(10 + i, 2, new FixedVector2(FixedPoint.FromInt(i + 1), FixedPoint.Zero)));
+
+        var result = sys.TryActivate(1, "stormrend_tempest_node", FixedVector2.Zero, units);
+        Assert.True(result.DidFire);
+        Assert.True(result.HitUnitIds.Count >= 2);
+        Assert.Equal(result.HitUnitIds.Count, result.HitUnitIds.Distinct().Count()); // no duplicates
+    }
+
+    [Fact]
+    public void PrecisionPayload_InCatalogue_AsBuildingSuperweapon()
+    {
+        var data = SuperweaponSystem.GetData("valkyr_precision_payload");
+        Assert.NotNull(data);
+        Assert.Equal(SuperweaponType.PrecisionPayload, data!.Type);
+        Assert.Equal(SuperweaponCategory.BuildingSuperweapon, data.Category);
+        Assert.Equal("valkyr_launch_bay", data.RequiredBuildingTypeId);
+        Assert.Equal(450, data.Damage.ToInt());
+    }
+
+    [Fact]
+    public void PrecisionPayload_Fires_SmallAoE_ExtremelyHighDamage()
+    {
+        var sys = new SuperweaponSystem();
+        sys.RegisterPlayer(1, "valkyr_precision_payload");
+        MakeReady(sys, 1);
+
+        var target = FixedVector2.Zero;
+        var units = new List<SimUnit>
+        {
+            MakeUnit(10, 2, new FixedVector2(FixedPoint.FromInt(2), FixedPoint.Zero)), // inside (AoE=4)
+            MakeUnit(11, 2, new FixedVector2(FixedPoint.FromInt(20), FixedPoint.Zero)), // outside
+        };
+        var result = sys.TryActivate(1, "valkyr_precision_payload", target, units);
+        Assert.True(result.DidFire);
+        Assert.Contains(10, result.HitUnitIds);
+        Assert.DoesNotContain(11, result.HitUnitIds);
+        // Damage must be 450
+        Assert.All(result.DamagePerUnit, d => Assert.Equal(450, d.ToInt()));
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // Multi-weapon player registration
+    // ═══════════════════════════════════════════════════════════════════════
+
+    [Fact]
+    public void Player_CanHoldTwoWeapons()
+    {
+        var sys = new SuperweaponSystem();
+        sys.RegisterPlayer(1, "arcloft_orbital_strike");
+        sys.RegisterPlayer(1, "arcloft_emp_blast");
+
+        var weapons = sys.GetPlayerWeapons(1).ToList();
+        Assert.Equal(2, weapons.Count);
+    }
+
+    [Fact]
+    public void TwoWeapons_HaveIndependentCooldowns()
+    {
+        var sys = new SuperweaponSystem();
+        sys.RegisterPlayer(1, "arcloft_orbital_strike");
+        sys.RegisterPlayer(1, "arcloft_emp_blast");
+
+        // Tick until the faster weapon is ready (emp_blast = 2700 ticks, orbital = 2700 too — use emp and orbital)
+        // Use bastion: missile=2400, reinforcement=2100 — different cooldowns
+        var sys2 = new SuperweaponSystem();
+        sys2.RegisterPlayer(1, "bastion_reinforcement_drop"); // 2100 ticks
+        sys2.RegisterPlayer(1, "bastion_missile_barrage");    // 2400 ticks
+
+        var rdState = sys2.GetState(1, "bastion_reinforcement_drop")!;
+        var mbState = sys2.GetState(1, "bastion_missile_barrage")!;
+
+        // Tick 2100 times — reinforcement_drop ready, missile_barrage still not
+        for (int i = 0; i < 2100; i++) sys2.Tick();
+
+        Assert.True(rdState.IsReady);
+        Assert.False(mbState.IsReady);
+    }
+
+    [Fact]
+    public void FiringOneWeapon_DoesNotArmOther()
+    {
+        var sys = new SuperweaponSystem();
+        sys.RegisterPlayer(1, "bastion_reinforcement_drop"); // 2100
+        sys.RegisterPlayer(1, "bastion_missile_barrage");    // 2400
+
+        // Make reinforcement_drop ready
+        var rdState = sys.GetState(1, "bastion_reinforcement_drop")!;
+        for (int i = 0; i < rdState.CooldownRemaining; i++) sys.Tick();
+
+        // Fire reinforcement_drop
+        sys.TryActivate(1, "bastion_reinforcement_drop", FixedVector2.Zero, new List<SimUnit>());
+
+        // reinforcement_drop should be back on cooldown; missile_barrage independent
+        Assert.False(rdState.IsReady);
     }
 }
