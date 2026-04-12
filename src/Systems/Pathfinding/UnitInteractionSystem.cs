@@ -648,7 +648,7 @@ public class UnitInteractionSystem
         // Phase 7 pre-step — resolve stealth states for all units.
         // Must run before building _combatInfos so that stealthed units are
         // correctly excluded from target acquisition this tick.
-        ResolveStealthStates(units);
+        ResolveStealthStates(units, terrain);
 
         // Build combat info list for target acquisition
         _combatInfos.Clear();
@@ -959,12 +959,16 @@ public class UnitInteractionSystem
     /// <list type="bullet">
     ///   <item>
     ///     A stealth-capable unit (<see cref="SimUnit.IsStealthUnit"/> = true)
-    ///     is effectively hidden when BOTH:
+    ///     is effectively hidden when ALL of the following hold:
     ///     <list type="bullet">
     ///       <item>Its <see cref="SimUnit.StealthRevealTicks"/> countdown has
     ///             reached zero (i.e. it has not fired recently), AND</item>
     ///       <item>No enemy unit with <see cref="SimUnit.IsDetector"/> = true
-    ///             is within that detector's <see cref="SimUnit.SightRange"/> of it.</item>
+    ///             is within that detector's <see cref="SimUnit.SightRange"/> of it, AND</item>
+    ///       <item>For <see cref="UnitCategory.Submarine"/> units only: the unit
+    ///             is in deep water (<see cref="TerrainType.DeepWater"/>). Submarines
+    ///             automatically surface — and are therefore visible — when operating
+    ///             in shallow water (<see cref="TerrainType.Water"/>).</item>
     ///     </list>
     ///   </item>
     ///   <item>
@@ -977,7 +981,7 @@ public class UnitInteractionSystem
     ///   </item>
     /// </list>
     /// </summary>
-    private static void ResolveStealthStates(List<SimUnit> units)
+    private static void ResolveStealthStates(List<SimUnit> units, TerrainGrid terrain)
     {
         // Step 1 — Decrement reveal timers
         for (int i = 0; i < units.Count; i++)
@@ -1014,6 +1018,19 @@ public class UnitInteractionSystem
                 stealthUnit.IsCurrentlyStealthed = false;
                 units[i] = stealthUnit;
                 continue;
+            }
+
+            // Submarines surface (are always visible) in shallow water.
+            // Only DeepWater cells allow a submarine to remain submerged.
+            if (stealthUnit.Category == UnitCategory.Submarine)
+            {
+                TerrainType cellType = terrain.GetTerrainType(stealthUnit.Movement.Position);
+                if (cellType != TerrainType.DeepWater)
+                {
+                    stealthUnit.IsCurrentlyStealthed = false;
+                    units[i] = stealthUnit;
+                    continue;
+                }
             }
 
             // Check whether any enemy detector can see this unit

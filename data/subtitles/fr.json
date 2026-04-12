@@ -4,7 +4,7 @@
   "entries": {
     "vo_commander_greeting": {
       "text": "Commandant sur le pont. Toutes les unités, rapport de situation.",
-      "duration": 3.5
+      "duration": 3.0
     },
     "vo_match_started": {
       "text": "Match lancé. Établissez votre base et sécurisez les nœuds de Cordite.",
