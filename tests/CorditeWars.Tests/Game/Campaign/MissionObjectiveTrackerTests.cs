@@ -486,4 +486,78 @@ public class MissionObjectiveTrackerTests
         tracker.Tick(1, EmptyContext(FixedPoint.FromInt(1000)), currentTick: 1);
         Assert.True(tracker.Objectives[0].IsComplete);
     }
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // EscortUnit objective
+    // ═══════════════════════════════════════════════════════════════════════
+
+    [Fact]
+    public void EscortUnit_NoUnitsOfType_FailsWhenRequired()
+    {
+        var obj = new TypedObjective
+        {
+            Type = ObjectiveType.EscortUnit,
+            Label = "Escort tank",
+            TargetId = "tank",
+            Count = 1,
+            Required = true
+        };
+        var tracker = MakeTracker(new[] { obj }, startTick: 0);
+        // Empty context means no units → should fail (required escort unit missing)
+        tracker.Tick(1, EmptyContext(), currentTick: 1);
+        Assert.True(tracker.Objectives[0].IsFailed);
+    }
+
+    [Fact]
+    public void EscortUnit_ObjectNotFailed_WhenOptional()
+    {
+        var obj = new TypedObjective
+        {
+            Type = ObjectiveType.EscortUnit,
+            Label = "Escort tank (optional)",
+            TargetId = "tank",
+            Count = 1,
+            Required = false
+        };
+        var tracker = MakeTracker(new[] { obj }, startTick: 0);
+        // No units of type, but not required — should not fail
+        tracker.Tick(1, EmptyContext(), currentTick: 1);
+        Assert.False(tracker.Objectives[0].IsFailed);
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // DefendPosition / ReachLocation objective (survive-timer equivalents)
+    // ═══════════════════════════════════════════════════════════════════════
+
+    [Fact]
+    public void DefendPosition_TicksElapsed_Completes()
+    {
+        var obj = new TypedObjective
+        {
+            Type = ObjectiveType.DefendPosition,
+            Label = "Hold the zone",
+            Ticks = 50,
+            Required = true
+        };
+        var tracker = MakeTracker(new[] { obj }, startTick: 0);
+        tracker.Tick(1, EmptyContext(), currentTick: 50);
+        Assert.True(tracker.Objectives[0].IsComplete);
+    }
+
+    [Fact]
+    public void ReachLocation_TicksElapsed_Completes()
+    {
+        var obj = new TypedObjective
+        {
+            Type = ObjectiveType.ReachLocation,
+            Label = "Reach the objective",
+            Ticks = 30,
+            Required = true
+        };
+        var tracker = MakeTracker(new[] { obj }, startTick: 0);
+        tracker.Tick(1, EmptyContext(), currentTick: 29);
+        Assert.False(tracker.Objectives[0].IsComplete);
+        tracker.Tick(1, EmptyContext(), currentTick: 30);
+        Assert.True(tracker.Objectives[0].IsComplete);
+    }
 }

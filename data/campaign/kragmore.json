@@ -25,6 +25,16 @@
       "unlocks_buildings": [
         "kragmore_refinery",
         "kragmore_supply_depot"
+      ],
+      "typed_objectives": [
+        {
+          "type": "survive_timer",
+          "label": "Destroy the enemy base",
+          "target_id": "",
+          "count": 0,
+          "ticks": 9000,
+          "required": true
+        }
       ]
     },
     {
@@ -50,6 +60,24 @@
       "unlocks_buildings": [
         "kragmore_barracks",
         "kragmore_war_forge"
+      ],
+      "typed_objectives": [
+        {
+          "type": "destroy_building_type",
+          "label": "Breach the Bastion fortification line",
+          "target_id": "bastion_turret",
+          "count": 2,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "reach_location",
+          "label": "Capture the ridge",
+          "target_id": "",
+          "count": 0,
+          "ticks": 14400,
+          "required": true
+        }
       ]
     },
     {
@@ -76,6 +104,24 @@
       "requires_mission": "kragmore_02",
       "unlocks_buildings": [
         "kragmore_vehicle_factory"
+      ],
+      "typed_objectives": [
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy Valkyr anti-air emplacements",
+          "target_id": "valkyr_overwatch_drone_tower",
+          "count": 3,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "accumulate_cordite",
+          "label": "Capture the Cordite extraction site",
+          "target_id": "",
+          "count": 6000,
+          "ticks": 0,
+          "required": true
+        }
       ]
     },
     {
@@ -103,6 +149,24 @@
       "unlocks_buildings": [
         "kragmore_airfield",
         "kragmore_shipyard"
+      ],
+      "typed_objectives": [
+        {
+          "type": "maintain_unit_type",
+          "label": "Keep Deep Bore submarines active",
+          "target_id": "kragmore_deep_bore_sub",
+          "count": 2,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy the coastal Bastion citadel",
+          "target_id": "bastion_command_center",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        }
       ]
     },
     {
@@ -129,6 +193,24 @@
       "requires_mission": "kragmore_04",
       "unlocks_buildings": [
         "kragmore_tech_lab"
+      ],
+      "typed_objectives": [
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy Ironmarch Signal Trucks",
+          "target_id": "ironmarch_signal_truck",
+          "count": 3,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "accumulate_cordite",
+          "label": "Secure all Cordite nodes",
+          "target_id": "",
+          "count": 12000,
+          "ticks": 0,
+          "required": true
+        }
       ]
     },
     {
@@ -157,6 +239,24 @@
       "requires_mission": "kragmore_05",
       "unlocks_buildings": [
         "kragmore_reactor"
+      ],
+      "typed_objectives": [
+        {
+          "type": "maintain_unit_type",
+          "label": "Keep Mole Rat sappers active",
+          "target_id": "kragmore_mole_rat",
+          "count": 3,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy the Command Hub",
+          "target_id": "bastion_command_center",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        }
       ]
     },
     {
@@ -181,7 +281,25 @@
       "twist": "Kragmore has no detector units \u2014 Stormrend Flicker Mines will only reveal themselves when triggered. Move Spotter units ahead of the convoy to absorb mine detonations before the main column advances.",
       "win_condition": "destroy_hq",
       "requires_mission": "kragmore_06",
-      "unlocks_buildings": []
+      "unlocks_buildings": [],
+      "typed_objectives": [
+        {
+          "type": "escort_unit",
+          "label": "Protect convoy units",
+          "target_id": "kragmore_mole_rat",
+          "count": 2,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy all Stormrend ambush forces",
+          "target_id": "stormrend_command_center",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        }
+      ]
     },
     {
       "id": "kragmore_08",
@@ -205,7 +323,25 @@
       "twist": "Arcloft Vigilant jets will detect the Mole Rat sappers the moment they fire \u2014 commit the main armoured column to cover their approach, forcing the Vigilants to engage the tanks rather than hunting the sappers.",
       "win_condition": "destroy_hq",
       "requires_mission": "kragmore_07",
-      "unlocks_buildings": []
+      "unlocks_buildings": [],
+      "typed_objectives": [
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy outermost Arcloft Aether Relays",
+          "target_id": "arcloft_relay_tower",
+          "count": 3,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "destroy_building_type",
+          "label": "Secure the intelligence cache",
+          "target_id": "arcloft_command_center",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        }
+      ]
     },
     {
       "id": "kragmore_09",
@@ -232,7 +368,33 @@
       "twist": "Arcloft Vigilants and Bastion Patrol Rovers form a combined detection ring around the Nexus. The underground approach via Mole Rats is the only route the detection net cannot cover \u2014 but they must detonate before the main column arrives.",
       "win_condition": "destroy_hq",
       "requires_mission": "kragmore_08",
-      "unlocks_buildings": []
+      "unlocks_buildings": [],
+      "typed_objectives": [
+        {
+          "type": "maintain_unit_type",
+          "label": "Keep Mole Rats and submarines active",
+          "target_id": "kragmore_deep_bore_sub",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "accumulate_cordite",
+          "label": "Be first to establish Refinery",
+          "target_id": "",
+          "count": 10000,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "defend_position",
+          "label": "Hold the Nexus for 10 minutes",
+          "target_id": "",
+          "count": 0,
+          "ticks": 18000,
+          "required": true
+        }
+      ]
     }
   ]
 }

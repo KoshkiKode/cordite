@@ -26,6 +26,24 @@
       "unlocks_buildings": [
         "valkyr_refinery",
         "valkyr_supply_depot"
+      ],
+      "typed_objectives": [
+        {
+          "type": "maintain_unit_type",
+          "label": "Deploy Windrunner scouts",
+          "target_id": "valkyr_windrunner",
+          "count": 2,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy the Kragmore supply depot",
+          "target_id": "kragmore_command_center",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        }
       ]
     },
     {
@@ -52,6 +70,24 @@
       "unlocks_buildings": [
         "valkyr_barracks",
         "valkyr_carrier_pad"
+      ],
+      "typed_objectives": [
+        {
+          "type": "survive_timer",
+          "label": "Hold the ridge for 10 minutes",
+          "target_id": "",
+          "count": 0,
+          "ticks": 18000,
+          "required": true
+        },
+        {
+          "type": "destroy_building_type",
+          "label": "Intercept Kragmore Mole Rats",
+          "target_id": "kragmore_mole_rat",
+          "count": 3,
+          "ticks": 0,
+          "required": false
+        }
       ]
     },
     {
@@ -78,6 +114,24 @@
       "requires_mission": "valkyr_02",
       "unlocks_buildings": [
         "valkyr_vehicle_factory"
+      ],
+      "typed_objectives": [
+        {
+          "type": "build_building",
+          "label": "Deploy 3 Overwatch Drones",
+          "target_id": "valkyr_overwatch_drone_tower",
+          "count": 3,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy Ironmarch FOB trucks",
+          "target_id": "ironmarch_fob_truck",
+          "count": 2,
+          "ticks": 0,
+          "required": true
+        }
       ]
     },
     {
@@ -104,6 +158,24 @@
       "requires_mission": "valkyr_03",
       "unlocks_buildings": [
         "valkyr_airfield"
+      ],
+      "typed_objectives": [
+        {
+          "type": "maintain_unit_type",
+          "label": "Protect three supply nodes",
+          "target_id": "valkyr_windrunner",
+          "count": 3,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy Stormrend Razorwind squadrons",
+          "target_id": "stormrend_thunderjaw",
+          "count": 3,
+          "ticks": 0,
+          "required": true
+        }
       ]
     },
     {
@@ -131,6 +203,24 @@
       "unlocks_buildings": [
         "valkyr_tech_lab",
         "valkyr_shipyard"
+      ],
+      "typed_objectives": [
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy all Kragmore naval units",
+          "target_id": "kragmore_deep_bore_sub",
+          "count": 3,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "reach_location",
+          "label": "Capture the island airstrip",
+          "target_id": "",
+          "count": 0,
+          "ticks": 18000,
+          "required": true
+        }
       ]
     },
     {
@@ -158,6 +248,24 @@
       "requires_mission": "valkyr_05",
       "unlocks_buildings": [
         "valkyr_reactor"
+      ],
+      "typed_objectives": [
+        {
+          "type": "survive_timer",
+          "label": "Survive for 20 minutes",
+          "target_id": "",
+          "count": 0,
+          "ticks": 36000,
+          "required": true
+        },
+        {
+          "type": "maintain_unit_type",
+          "label": "Maintain Overwatch Drone coverage",
+          "target_id": "valkyr_overwatch_drone_tower",
+          "count": 3,
+          "ticks": 0,
+          "required": true
+        }
       ]
     },
     {
@@ -182,7 +290,33 @@
       "twist": "Arcloft Vigilant jets are detector aircraft \u2014 they will instantly reveal any moving Windrunner. Use stationary stealth positioning: advance Windrunners one at a time, holding still to stay hidden between movements.",
       "win_condition": "destroy_hq",
       "requires_mission": "valkyr_06",
-      "unlocks_buildings": []
+      "unlocks_buildings": [],
+      "typed_objectives": [
+        {
+          "type": "maintain_unit_type",
+          "label": "Keep Windrunner scouts stationary",
+          "target_id": "valkyr_windrunner",
+          "count": 3,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy the Arcloft Aether Relay",
+          "target_id": "arcloft_relay_tower",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "escort_unit",
+          "label": "Escape with 3 surviving aircraft",
+          "target_id": "valkyr_windrunner",
+          "count": 3,
+          "ticks": 0,
+          "required": false
+        }
+      ]
     },
     {
       "id": "valkyr_08",
@@ -203,7 +337,17 @@
       "twist": "Ironmarch AA batteries cover the approaches \u2014 use Interceptors to suppress defences before the main strike.",
       "win_condition": "destroy_hq",
       "requires_mission": "valkyr_07",
-      "unlocks_buildings": []
+      "unlocks_buildings": [],
+      "typed_objectives": [
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy the Ironmarch Command Center",
+          "target_id": "ironmarch_command_center",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        }
+      ]
     },
     {
       "id": "valkyr_09",
@@ -230,7 +374,25 @@
       "twist": "Arcloft Phantom Subs, Kragmore Mole Rats, and Stormrend Riptide Subs will each attempt a stealth approach. All other factions begin in full war with each other \u2014 but will unite against whoever controls the Nexus.",
       "win_condition": "destroy_hq",
       "requires_mission": "valkyr_08",
-      "unlocks_buildings": []
+      "unlocks_buildings": [],
+      "typed_objectives": [
+        {
+          "type": "maintain_unit_type",
+          "label": "Control airspace with Overwatch Drones",
+          "target_id": "valkyr_overwatch_drone_tower",
+          "count": 3,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "survive_timer",
+          "label": "Be the last faction standing in the air",
+          "target_id": "",
+          "count": 0,
+          "ticks": 27000,
+          "required": true
+        }
+      ]
     }
   ]
 }

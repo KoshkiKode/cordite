@@ -34,6 +34,16 @@ public partial class GameHUD : CanvasLayer
 
     // ── Initialization ───────────────────────────────────────────────
 
+    /// <summary>
+    /// Wires the CommandCard rally button to <paramref name="commandInput"/>.
+    /// Call after Initialize once CommandInput is available.
+    /// </summary>
+    public void SetCommandInput(CommandInput commandInput)
+    {
+        if (_commandCard is not null)
+            _commandCard.RallyModeRequested += () => commandInput.SetRallyMode(true);
+    }
+
     public void Initialize(
         int localPlayerId,
         EconomyManager economyManager,

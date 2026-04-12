@@ -143,6 +143,10 @@ public partial class GameSession : Node
 
     private WinCondition _winCondition = WinCondition.DestroyHQ;
 
+    // ── Surrendered players ──────────────────────────────────────────
+
+    private readonly HashSet<int> _surrenderedPlayers = new();
+
     // ── Mission Objective Tracker ────────────────────────────────────
 
     private CorditeWars.Game.Campaign.MissionObjectiveTracker? _objectiveTracker;
@@ -229,6 +233,7 @@ public partial class GameSession : Node
         _playerLosses         = 0;
         _buildingsConstructed = 0;
         _lastAutosaveTick     = 0;
+        _surrenderedPlayers.Clear();
 
         // Initialize mission objective tracker
         var typedObjs = config.Campaign?.TypedObjectives;
@@ -243,12 +248,15 @@ public partial class GameSession : Node
                 {
                     Type     = d.Type switch
                     {
-                        "build_building"      => CorditeWars.Game.Campaign.ObjectiveType.BuildBuilding,
-                        "maintain_unit_type"  => CorditeWars.Game.Campaign.ObjectiveType.MaintainUnitType,
-                        "survive_timer"       => CorditeWars.Game.Campaign.ObjectiveType.SurviveTimer,
+                        "build_building"        => CorditeWars.Game.Campaign.ObjectiveType.BuildBuilding,
+                        "maintain_unit_type"    => CorditeWars.Game.Campaign.ObjectiveType.MaintainUnitType,
+                        "survive_timer"         => CorditeWars.Game.Campaign.ObjectiveType.SurviveTimer,
                         "destroy_building_type" => CorditeWars.Game.Campaign.ObjectiveType.DestroyBuildingType,
-                        "accumulate_cordite"  => CorditeWars.Game.Campaign.ObjectiveType.AccumulateCordite,
-                        _                     => CorditeWars.Game.Campaign.ObjectiveType.SurviveTimer
+                        "accumulate_cordite"    => CorditeWars.Game.Campaign.ObjectiveType.AccumulateCordite,
+                        "escort_unit"           => CorditeWars.Game.Campaign.ObjectiveType.EscortUnit,
+                        "defend_position"       => CorditeWars.Game.Campaign.ObjectiveType.DefendPosition,
+                        "reach_location"        => CorditeWars.Game.Campaign.ObjectiveType.ReachLocation,
+                        _                       => CorditeWars.Game.Campaign.ObjectiveType.SurviveTimer
                     },
                     Label    = d.Label,
                     TargetId = d.TargetId,
@@ -571,6 +579,21 @@ public partial class GameSession : Node
         EventBus.Instance?.EmitMatchEnded();
 
         GD.Print($"[GameSession] Match ended — winner: {winnerPlayerId}, reason: {reason}");
+    }
+
+    /// <summary>
+    /// Records a player surrender, emits the event, and re-evaluates the win condition.
+    /// In lockstep multiplayer this should be called after processing a SurrenderCommand.
+    /// </summary>
+    public void PlayerSurrender(int playerId)
+    {
+        if (CurrentMatchState != MatchState.Playing) return;
+        if (_surrenderedPlayers.Contains(playerId)) return;
+
+        _surrenderedPlayers.Add(playerId);
+        GD.Print($"[GameSession] Player {playerId} surrendered.");
+        EventBus.Instance?.EmitPlayerSurrendered(playerId);
+        CheckWinCondition();
     }
 
     /// <summary>
@@ -1052,13 +1075,14 @@ public partial class GameSession : Node
     {
         if (ActiveConfig is null) return;
 
-        // Count how many players still have a standing HQ
+        // Count how many players still have a standing HQ (and haven't surrendered)
         int survivorCount = 0;
         int lastSurvivorPid = -1;
         for (int i = 0; i < ActiveConfig.PlayerConfigs.Length; i++)
         {
             int pid = ActiveConfig.PlayerConfigs[i].PlayerId;
             if (!_playersWithInitialHQ.Contains(pid)) continue; // no HQ data → skip
+            if (_surrenderedPlayers.Contains(pid)) continue;    // surrendered → eliminated
             if (_playerHQNodes.ContainsKey(pid))
             {
                 survivorCount++;
@@ -1074,7 +1098,8 @@ public partial class GameSession : Node
             for (int i = 0; i < ActiveConfig.PlayerConfigs.Length; i++)
             {
                 int pid = ActiveConfig.PlayerConfigs[i].PlayerId;
-                if (_playersWithInitialHQ.Contains(pid) && !_playerHQNodes.ContainsKey(pid))
+                if (_playersWithInitialHQ.Contains(pid) &&
+                    (!_playerHQNodes.ContainsKey(pid) || _surrenderedPlayers.Contains(pid)))
                 {
                     eliminatedPid = pid;
                     break;
@@ -1082,7 +1107,9 @@ public partial class GameSession : Node
             }
 
             string reason = eliminatedPid != -1
-                ? $"Player {eliminatedPid}'s Command Centre was destroyed."
+                ? (_surrenderedPlayers.Contains(eliminatedPid)
+                    ? $"Player {eliminatedPid} surrendered."
+                    : $"Player {eliminatedPid}'s Command Centre was destroyed.")
                 : "All Command Centres have been destroyed.";
 
             EndMatch(lastSurvivorPid, reason);
@@ -1100,7 +1127,7 @@ public partial class GameSession : Node
 
         var allNodes = _unitSpawner.GetAllUnits();
 
-        // Count players who still have at least one living mobile unit
+        // Count players who still have at least one living mobile unit (and haven't surrendered)
         int survivorCount = 0;
         int lastSurvivorPid = -1;
         int eliminatedPid = -1;
@@ -1108,6 +1135,13 @@ public partial class GameSession : Node
         for (int i = 0; i < ActiveConfig.PlayerConfigs.Length; i++)
         {
             int pid = ActiveConfig.PlayerConfigs[i].PlayerId;
+
+            // Surrendered players are treated as having no units
+            if (_surrenderedPlayers.Contains(pid))
+            {
+                if (eliminatedPid == -1) eliminatedPid = pid;
+                continue;
+            }
 
             bool hasUnits = false;
             for (int u = 0; u < allNodes.Count; u++)
@@ -1897,6 +1931,7 @@ public partial class GameSession : Node
             _buildingRegistry,
             config.Campaign);
         AddChild(_gameHUD);
+        _gameHUD.SetCommandInput(_commandInput);
 
         // e. Wire minimap click-to-move to camera
         EventBus.Instance?.Connect(EventBus.SignalName.MinimapClick,

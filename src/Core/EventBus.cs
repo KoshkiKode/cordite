@@ -75,6 +75,7 @@ public partial class EventBus : Node
     [Signal] public delegate void DesyncDetectedEventHandler(ulong tick);
     [Signal] public delegate void PlayerConnectedEventHandler(int playerId, string playerName);
     [Signal] public delegate void PlayerDisconnectedEventHandler(int playerId);
+    [Signal] public delegate void PlayerSurrenderedEventHandler(int playerId);
     [Signal] public delegate void LobbyUpdatedEventHandler();
     [Signal] public delegate void MatchCountdownEventHandler(int secondsRemaining);
     /// <summary>Fired on the client when the host rejects the join request (e.g. version mismatch).</summary>
@@ -241,6 +242,8 @@ public partial class EventBus : Node
         EmitSignal(SignalName.PlayerConnected, playerId, playerName);
     public void EmitPlayerDisconnected(int playerId) =>
         EmitSignal(SignalName.PlayerDisconnected, playerId);
+    public void EmitPlayerSurrendered(int playerId) =>
+        EmitSignal(SignalName.PlayerSurrendered, playerId);
     public void EmitLobbyUpdated() => EmitSignal(SignalName.LobbyUpdated);
     public void EmitMatchCountdown(int secondsRemaining) =>
         EmitSignal(SignalName.MatchCountdown, secondsRemaining);

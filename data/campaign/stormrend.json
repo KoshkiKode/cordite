@@ -27,6 +27,32 @@
       "unlocks_buildings": [
         "stormrend_refinery",
         "stormrend_supply_depot"
+      ],
+      "typed_objectives": [
+        {
+          "type": "maintain_unit_type",
+          "label": "Place Flicker Mines before engaging",
+          "target_id": "stormrend_flicker_mine",
+          "count": 3,
+          "ticks": 0,
+          "required": false
+        },
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy the Bastion patrol",
+          "target_id": "bastion_patrol_rover",
+          "count": 2,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "survive_timer",
+          "label": "Remain undetected",
+          "target_id": "",
+          "count": 0,
+          "ticks": 9000,
+          "required": false
+        }
       ]
     },
     {
@@ -54,6 +80,32 @@
       "unlocks_buildings": [
         "stormrend_barracks",
         "stormrend_storm_capacitor"
+      ],
+      "typed_objectives": [
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy Ironmarch Signal Truck",
+          "target_id": "ironmarch_signal_truck",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy all Ironmarch FOB Trucks",
+          "target_id": "ironmarch_fob_truck",
+          "count": 2,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "survive_timer",
+          "label": "Withdraw before main force arrives",
+          "target_id": "",
+          "count": 0,
+          "ticks": 14400,
+          "required": true
+        }
       ]
     },
     {
@@ -80,6 +132,24 @@
       "requires_mission": "stormrend_02",
       "unlocks_buildings": [
         "stormrend_vehicle_factory"
+      ],
+      "typed_objectives": [
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy 4 Arcloft Overwatch Drones",
+          "target_id": "arcloft_overwatch_drone",
+          "count": 4,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "destroy_building_type",
+          "label": "Disable the Aether Relay",
+          "target_id": "arcloft_relay_tower",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        }
       ]
     },
     {
@@ -108,6 +178,32 @@
       "unlocks_buildings": [
         "stormrend_airfield",
         "stormrend_shipyard"
+      ],
+      "typed_objectives": [
+        {
+          "type": "escort_unit",
+          "label": "Keep Riptide Sub alive",
+          "target_id": "stormrend_riptide_sub",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy the island harbour",
+          "target_id": "bastion_command_center",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "survive_timer",
+          "label": "Withdraw before reinforcements",
+          "target_id": "",
+          "count": 0,
+          "ticks": 21600,
+          "required": true
+        }
       ]
     },
     {
@@ -135,6 +231,24 @@
       "requires_mission": "stormrend_04",
       "unlocks_buildings": [
         "stormrend_tech_lab"
+      ],
+      "typed_objectives": [
+        {
+          "type": "maintain_unit_type",
+          "label": "Plant Flicker Mines in the canyon",
+          "target_id": "stormrend_flicker_mine",
+          "count": 5,
+          "ticks": 0,
+          "required": false
+        },
+        {
+          "type": "survive_timer",
+          "label": "Keep losses below 30 units",
+          "target_id": "",
+          "count": 0,
+          "ticks": 18000,
+          "required": true
+        }
       ]
     },
     {
@@ -162,6 +276,24 @@
       "requires_mission": "stormrend_05",
       "unlocks_buildings": [
         "stormrend_reactor"
+      ],
+      "typed_objectives": [
+        {
+          "type": "escort_unit",
+          "label": "Keep Riptide Sub alive",
+          "target_id": "stormrend_riptide_sub",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "accumulate_cordite",
+          "label": "Seize 3 surface Cordite nodes",
+          "target_id": "",
+          "count": 9000,
+          "ticks": 0,
+          "required": true
+        }
       ]
     },
     {
@@ -188,7 +320,33 @@
       "twist": "Ironmarch Signal Trucks can detect Stormrend stealth assets \u2014 if the Signal Truck is alive when the Thunderjaws advance, it will immediately reveal their position to all defenders. Escort the Thunderjaws with fast support units and take out the Signal Truck on the way in.",
       "win_condition": "destroy_hq",
       "requires_mission": "stormrend_06",
-      "unlocks_buildings": []
+      "unlocks_buildings": [],
+      "typed_objectives": [
+        {
+          "type": "maintain_unit_type",
+          "label": "Field 3 Thunderjaw walkers",
+          "target_id": "stormrend_thunderjaw",
+          "count": 3,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "destroy_building_type",
+          "label": "Breach the Bastion citadel wall",
+          "target_id": "bastion_turret",
+          "count": 4,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy the Command Hub",
+          "target_id": "bastion_command_center",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        }
+      ]
     },
     {
       "id": "stormrend_08",
@@ -209,7 +367,17 @@
       "twist": "Arcloft Vigilants will reveal your Scrap Hawks early \u2014 strike fast before their detection grid is fully active.",
       "win_condition": "destroy_hq",
       "requires_mission": "stormrend_07",
-      "unlocks_buildings": []
+      "unlocks_buildings": [],
+      "typed_objectives": [
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy the Arcloft Command Center",
+          "target_id": "arcloft_command_center",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        }
+      ]
     },
     {
       "id": "stormrend_09",
@@ -238,7 +406,33 @@
       "twist": "Arcloft Vigilants, Bastion Patrol Rovers, Valkyr Overwatch Drones, and Ironmarch Signal Trucks will together form a near-complete detection net. The Riptide Sub and Flicker Mine perimeter are the only assets that bypass it \u2014 speed plus stealth is Stormrend's total advantage.",
       "win_condition": "destroy_hq",
       "requires_mission": "stormrend_08",
-      "unlocks_buildings": []
+      "unlocks_buildings": [],
+      "typed_objectives": [
+        {
+          "type": "escort_unit",
+          "label": "Keep Riptide Sub alive",
+          "target_id": "stormrend_riptide_sub",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "maintain_unit_type",
+          "label": "Maintain Flicker Mine perimeter",
+          "target_id": "stormrend_flicker_mine",
+          "count": 3,
+          "ticks": 0,
+          "required": false
+        },
+        {
+          "type": "defend_position",
+          "label": "Hold for 5 minutes",
+          "target_id": "",
+          "count": 0,
+          "ticks": 9000,
+          "required": true
+        }
+      ]
     }
   ]
 }

@@ -27,6 +27,32 @@
       "unlocks_buildings": [
         "arcloft_refinery",
         "arcloft_supply_depot"
+      ],
+      "typed_objectives": [
+        {
+          "type": "build_building",
+          "label": "Deploy 3 Aether Relay towers",
+          "target_id": "arcloft_relay_tower",
+          "count": 3,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "maintain_unit_type",
+          "label": "Keep 1 Vigilant jet airborne",
+          "target_id": "arcloft_vigilant",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "survive_timer",
+          "label": "Remain undetected for 8 minutes",
+          "target_id": "",
+          "count": 0,
+          "ticks": 14400,
+          "required": false
+        }
       ]
     },
     {
@@ -53,6 +79,24 @@
       "unlocks_buildings": [
         "arcloft_barracks",
         "arcloft_overwatch_tower"
+      ],
+      "typed_objectives": [
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy the Stormrend signal tower",
+          "target_id": "stormrend_signal_truck",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "maintain_unit_type",
+          "label": "Keep the Patch Drone alive",
+          "target_id": "arcloft_patch_drone",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        }
       ]
     },
     {
@@ -79,6 +123,32 @@
       "requires_mission": "arcloft_02",
       "unlocks_buildings": [
         "arcloft_vehicle_factory"
+      ],
+      "typed_objectives": [
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy the Ironmarch construction site",
+          "target_id": "ironmarch_fob_truck",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "escort_unit",
+          "label": "Keep the Phantom Sub undetected",
+          "target_id": "arcloft_phantom_sub",
+          "count": 1,
+          "ticks": 0,
+          "required": false
+        },
+        {
+          "type": "survive_timer",
+          "label": "Escape before reinforcements arrive",
+          "target_id": "",
+          "count": 0,
+          "ticks": 18000,
+          "required": true
+        }
       ]
     },
     {
@@ -106,6 +176,24 @@
       "unlocks_buildings": [
         "arcloft_airfield",
         "arcloft_shipyard"
+      ],
+      "typed_objectives": [
+        {
+          "type": "destroy_building_type",
+          "label": "Cut 3 cable nodes",
+          "target_id": "kragmore_deep_bore_sub",
+          "count": 3,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "escort_unit",
+          "label": "Keep Phantom Subs alive",
+          "target_id": "arcloft_phantom_sub",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        }
       ]
     },
     {
@@ -132,6 +220,24 @@
       "requires_mission": "arcloft_04",
       "unlocks_buildings": [
         "arcloft_tech_lab"
+      ],
+      "typed_objectives": [
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy 2 Valkyr Overwatch Drone towers",
+          "target_id": "valkyr_overwatch_drone_tower",
+          "count": 2,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "escort_unit",
+          "label": "Keep Patch Drone alive",
+          "target_id": "arcloft_patch_drone",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        }
       ]
     },
     {
@@ -159,6 +265,32 @@
       "requires_mission": "arcloft_05",
       "unlocks_buildings": [
         "arcloft_reactor"
+      ],
+      "typed_objectives": [
+        {
+          "type": "build_building",
+          "label": "Establish 6 relay zones",
+          "target_id": "arcloft_relay_tower",
+          "count": 6,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "maintain_unit_type",
+          "label": "Maintain 2 Vigilant jets per sector",
+          "target_id": "arcloft_vigilant",
+          "count": 2,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "survive_timer",
+          "label": "Survive 15 minutes",
+          "target_id": "",
+          "count": 0,
+          "ticks": 27000,
+          "required": true
+        }
       ]
     },
     {
@@ -186,7 +318,33 @@
       "twist": "All factions deploy stealth infiltrators \u2014 Stormrend Flicker Mines, Kragmore Mole Rats, Valkyr Windrunners \u2014 specifically targeting your tech lab. Without the Quantum Detection Grid active, you cannot see them coming.",
       "win_condition": "destroy_hq",
       "requires_mission": "arcloft_06",
-      "unlocks_buildings": []
+      "unlocks_buildings": [],
+      "typed_objectives": [
+        {
+          "type": "build_building",
+          "label": "Research the Quantum Detection Grid upgrade",
+          "target_id": "arcloft_tech_lab",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "survive_timer",
+          "label": "Survive 10 minutes",
+          "target_id": "",
+          "count": 0,
+          "ticks": 18000,
+          "required": true
+        },
+        {
+          "type": "maintain_unit_type",
+          "label": "Prevent tech lab destruction",
+          "target_id": "arcloft_tech_lab",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        }
+      ]
     },
     {
       "id": "arcloft_08",
@@ -207,7 +365,17 @@
       "twist": "Kragmore scouts patrol the highland approaches \u2014 Vigilants must clear the detection grid before the main thrust.",
       "win_condition": "destroy_hq",
       "requires_mission": "arcloft_07",
-      "unlocks_buildings": []
+      "unlocks_buildings": [],
+      "typed_objectives": [
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy the Kragmore Command Center",
+          "target_id": "kragmore_command_center",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        }
+      ]
     },
     {
       "id": "arcloft_09",
@@ -234,7 +402,33 @@
       "twist": "Bastion Patrol Rovers and Valkyr Overwatch Drones watch all approach routes \u2014 if Arcloft is spotted capturing the Nexus by more than 2 factions simultaneously, all will attack. The Phantom Sub's underwater approach is the only undetected route.",
       "win_condition": "destroy_hq",
       "requires_mission": "arcloft_08",
-      "unlocks_buildings": []
+      "unlocks_buildings": [],
+      "typed_objectives": [
+        {
+          "type": "accumulate_cordite",
+          "label": "Establish a Refinery first",
+          "target_id": "",
+          "count": 10000,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "maintain_unit_type",
+          "label": "Keep Vigilant coverage over the Nexus",
+          "target_id": "arcloft_vigilant",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "survive_timer",
+          "label": "Hold the Nexus",
+          "target_id": "",
+          "count": 0,
+          "ticks": 27000,
+          "required": true
+        }
+      ]
     }
   ]
 }

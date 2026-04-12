@@ -24,6 +24,12 @@ public partial class CommandCard : PanelContainer
     private BuildingRegistry? _buildingRegistry;
     private UnitDataRegistry? _unitDataRegistry;
 
+    /// <summary>
+    /// Raised when the Rally button is pressed. The subscriber (e.g. GameHUD / CommandInput)
+    /// should enter rally-mode so the next right-click sets the building's rally point.
+    /// </summary>
+    public event System.Action? RallyModeRequested;
+
     private GridContainer? _grid;
     private readonly Button[] _buttons = new Button[Columns * Rows];
 
@@ -230,6 +236,9 @@ public partial class CommandCard : PanelContainer
                 break;
             case CardActionType.PlaceBuilding:
                 _buildingPlacer?.EnterPlacementMode(action.TargetId);
+                break;
+            case CardActionType.SetRally:
+                RallyModeRequested?.Invoke();
                 break;
         }
     }
