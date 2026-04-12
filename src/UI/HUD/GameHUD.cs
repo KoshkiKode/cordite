@@ -6,6 +6,7 @@ using CorditeWars.Game.Camera;
 using CorditeWars.Game.Economy;
 using CorditeWars.Game.Units;
 using CorditeWars.Systems.Pathfinding;
+using CorditeWars.Systems.Superweapon;
 using CorditeWars.UI.Input;
 
 namespace CorditeWars.UI.HUD;
@@ -27,12 +28,24 @@ public partial class GameHUD : CanvasLayer
     private CommandCard? _commandCard;
     private ProductionQueueDisplay? _productionQueueDisplay;
     private MissionObjectivesPanel? _missionObjectivesPanel;
+    private ChatPanel? _chatPanel;
+    private SuperweaponPanel? _superweaponPanel;
 
     // Box select overlay
     private SelectionManager? _selectionManager;
     private Control? _boxSelectOverlay;
 
     // ── Initialization ───────────────────────────────────────────────
+
+    /// <summary>
+    /// Wires the CommandCard rally button to <paramref name="commandInput"/>.
+    /// Call after Initialize once CommandInput is available.
+    /// </summary>
+    public void SetCommandInput(CommandInput commandInput)
+    {
+        if (_commandCard is not null)
+            _commandCard.RallyModeRequested += () => commandInput.SetRallyMode(true);
+    }
 
     public void Initialize(
         int localPlayerId,
@@ -42,7 +55,10 @@ public partial class GameHUD : CanvasLayer
         UnitSpawner unitSpawner,
         UnitDataRegistry unitDataRegistry,
         BuildingRegistry buildingRegistry,
-        CampaignMatchContext? campaignContext = null)
+        CampaignMatchContext? campaignContext = null,
+        string playerName = "Commander",
+        Color playerColor = default,
+        SuperweaponSystem? superweaponSystem = null)
     {
         _selectionManager = selectionManager;
         Name = "GameHUD";
@@ -82,6 +98,25 @@ public partial class GameHUD : CanvasLayer
         _missionObjectivesPanel = new MissionObjectivesPanel();
         _missionObjectivesPanel.Initialize(campaignContext);
         AddChild(_missionObjectivesPanel);
+
+        // Chat panel — bottom-left overlay (above minimap)
+        _chatPanel = new ChatPanel();
+        Color chatColor = playerColor == default ? new Color(0.3f, 0.75f, 1f) : playerColor;
+        _chatPanel.Initialize(localPlayerId, playerName, chatColor);
+        AddChild(_chatPanel);
+
+        // Superweapon panel — top-right
+        if (superweaponSystem != null)
+        {
+            _superweaponPanel = new SuperweaponPanel();
+            _superweaponPanel.Initialize(localPlayerId, superweaponSystem);
+            AddChild(_superweaponPanel);
+        }
+    }
+
+    public override void _Process(double delta)
+    {
+        _superweaponPanel?.Update();
     }
 
     /// <summary>

@@ -16,8 +16,10 @@ using CorditeWars.Systems.Audio;
 using CorditeWars.Systems.Networking;
 using CorditeWars.Systems.Pathfinding;
 using CorditeWars.Systems.FogOfWar;
+using CorditeWars.Systems.Garrison;
 using CorditeWars.Systems.Persistence;
 using CorditeWars.Systems.Platform;
+using CorditeWars.Systems.Superweapon;
 using CorditeWars.UI.HUD;
 using CorditeWars.UI.Input;
 
@@ -75,6 +77,8 @@ public partial class GameSession : Node
     private FormationManager? _formationManager;
     private CombatResolver? _combatResolver;
     private UnitInteractionSystem? _unitInteractionSystem;
+    private GarrisonSystem _garrisonSystem = new();
+    private readonly SuperweaponSystem _superweaponSystem = new();
 
     // ── Audio ───────────────────────────────────────────────────────
 
@@ -143,6 +147,10 @@ public partial class GameSession : Node
 
     private WinCondition _winCondition = WinCondition.DestroyHQ;
 
+    // ── Surrendered players ──────────────────────────────────────────
+
+    private readonly HashSet<int> _surrenderedPlayers = new();
+
     // ── Mission Objective Tracker ────────────────────────────────────
 
     private CorditeWars.Game.Campaign.MissionObjectiveTracker? _objectiveTracker;
@@ -157,6 +165,9 @@ public partial class GameSession : Node
     private int   _playerKills;
     private int   _playerLosses;
     private int   _buildingsConstructed;
+    private int   _buildingsDestroyed;
+    private int   _unitsProduced;
+    private int   _corditeHarvested;
     private ulong _lastAutosaveTick;
     private const ulong AutosaveIntervalTicks = 1800;
     private const float TickDeltaSeconds = 1f / 30f; // 30 Hz simulation rate
@@ -228,7 +239,11 @@ public partial class GameSession : Node
         _playerKills          = 0;
         _playerLosses         = 0;
         _buildingsConstructed = 0;
+        _buildingsDestroyed   = 0;
+        _unitsProduced        = 0;
+        _corditeHarvested     = 0;
         _lastAutosaveTick     = 0;
+        _surrenderedPlayers.Clear();
 
         // Initialize mission objective tracker
         var typedObjs = config.Campaign?.TypedObjectives;
@@ -243,12 +258,15 @@ public partial class GameSession : Node
                 {
                     Type     = d.Type switch
                     {
-                        "build_building"      => CorditeWars.Game.Campaign.ObjectiveType.BuildBuilding,
-                        "maintain_unit_type"  => CorditeWars.Game.Campaign.ObjectiveType.MaintainUnitType,
-                        "survive_timer"       => CorditeWars.Game.Campaign.ObjectiveType.SurviveTimer,
+                        "build_building"        => CorditeWars.Game.Campaign.ObjectiveType.BuildBuilding,
+                        "maintain_unit_type"    => CorditeWars.Game.Campaign.ObjectiveType.MaintainUnitType,
+                        "survive_timer"         => CorditeWars.Game.Campaign.ObjectiveType.SurviveTimer,
                         "destroy_building_type" => CorditeWars.Game.Campaign.ObjectiveType.DestroyBuildingType,
-                        "accumulate_cordite"  => CorditeWars.Game.Campaign.ObjectiveType.AccumulateCordite,
-                        _                     => CorditeWars.Game.Campaign.ObjectiveType.SurviveTimer
+                        "accumulate_cordite"    => CorditeWars.Game.Campaign.ObjectiveType.AccumulateCordite,
+                        "escort_unit"           => CorditeWars.Game.Campaign.ObjectiveType.EscortUnit,
+                        "defend_position"       => CorditeWars.Game.Campaign.ObjectiveType.DefendPosition,
+                        "reach_location"        => CorditeWars.Game.Campaign.ObjectiveType.ReachLocation,
+                        _                       => CorditeWars.Game.Campaign.ObjectiveType.SurviveTimer
                     },
                     Label    = d.Label,
                     TargetId = d.TargetId,
@@ -390,6 +408,12 @@ public partial class GameSession : Node
             PlayerConfig pc = config.PlayerConfigs[i];
             _economyManager.AddPlayer(pc.PlayerId, pc.FactionId);
             _techTreeManager.AddPlayer(pc.PlayerId, pc.FactionId);
+
+            // Register all superweapon abilities for this player (one BuildingSuperweapon +
+            // one ActivatedAbility). All catalogue entries for the faction are registered so
+            // each gets its own independent cooldown.
+            foreach (var weaponData in SuperweaponSystem.GetFactionWeapons(pc.FactionId))
+                _superweaponSystem.RegisterPlayer(pc.PlayerId, weaponData.Id);
         }
 
         // g2. Initialize fog of war (after terrain and players are set up)
@@ -574,6 +598,124 @@ public partial class GameSession : Node
     }
 
     /// <summary>
+    /// Records a player surrender, emits the event, and re-evaluates the win condition.
+    /// In lockstep multiplayer this should be called after processing a SurrenderCommand.
+    /// </summary>
+    public void PlayerSurrender(int playerId)
+    {
+        if (CurrentMatchState != MatchState.Playing) return;
+        if (_surrenderedPlayers.Contains(playerId)) return;
+
+        _surrenderedPlayers.Add(playerId);
+        GD.Print($"[GameSession] Player {playerId} surrendered.");
+        EventBus.Instance?.EmitPlayerSurrendered(playerId);
+        CheckWinCondition();
+    }
+
+    /// <summary>
+    /// Attempts to garrison the given infantry unit into a nearby building.
+    /// The building must be owned by <paramref name="playerId"/>, have garrison
+    /// capacity, and the unit must be within 6 grid cells of the building center.
+    /// </summary>
+    public bool TryGarrisonUnit(int unitId, int buildingId, int playerId)
+    {
+        if (CurrentMatchState != MatchState.Playing) return false;
+
+        // Validate building ownership
+        var slot = _garrisonSystem.GetGarrisonForBuilding(buildingId);
+        if (slot is null || slot.OwnerId != playerId) return false;
+
+        // Validate unit ownership and category (infantry only)
+        if (!_persistentSimUnits.TryGetValue(unitId, out SimUnit unit)) return false;
+        if (unit.PlayerId != playerId) return false;
+        if (unit.Category != UnitCategory.Infantry) return false;
+
+        bool success = _garrisonSystem.TryGarrison(unitId, buildingId);
+        if (success)
+        {
+            EventBus.Instance?.EmitUnitGarrisoned(unitId, buildingId);
+            GD.Print($"[Garrison] Unit {unitId} garrisoned in building {buildingId}.");
+        }
+        return success;
+    }
+
+    /// <summary>Ejects a unit from whatever garrison it is in.</summary>
+    public bool TryEjectUnit(int unitId, int playerId)
+    {
+        if (CurrentMatchState != MatchState.Playing) return false;
+
+        int buildingId = _garrisonSystem.GetGarrisonBuilding(unitId);
+        if (buildingId < 0) return false;
+
+        bool success = _garrisonSystem.TryEject(unitId);
+        if (success)
+            EventBus.Instance?.EmitUnitEjected(unitId, buildingId);
+        return success;
+    }
+
+    /// <summary>Returns the garrison system for HUD queries.</summary>
+    public GarrisonSystem GarrisonSystem => _garrisonSystem;
+
+    /// <summary>Returns the superweapon system for HUD queries and ability activation.</summary>
+    public SuperweaponSystem SuperweaponSystem => _superweaponSystem;
+
+    /// <summary>
+    /// Attempts to fire a specific superweapon for the local player targeting a world position.
+    /// Returns the result (which may contain hit unit IDs to which damage must be applied).
+    /// </summary>
+    public SuperweaponResult ActivateSuperweapon(string weaponId, FixedVector2 targetPosition)
+    {
+        if (CurrentMatchState != MatchState.Playing)
+            return new SuperweaponResult { TargetPosition = targetPosition, DidFire = false, WeaponId = weaponId };
+
+        // Build a snapshot of all alive units for targeting
+        var allAlive = new List<CorditeWars.Systems.Pathfinding.SimUnit>(_persistentSimUnits.Count);
+        foreach (var kv in _persistentSimUnits)
+            if (kv.Value.IsAlive)
+                allAlive.Add(kv.Value);
+
+        var result = _superweaponSystem.TryActivate(_localPlayerId, weaponId, targetPosition, allAlive);
+
+        if (result.DidFire)
+        {
+            EventBus.Instance?.EmitSuperweaponFired(_localPlayerId, weaponId,
+                new Vector3(targetPosition.X.ToFloat(), 0, targetPosition.Y.ToFloat()));
+
+            // Apply damage from result
+            for (int i = 0; i < result.HitUnitIds.Count; i++)
+            {
+                int uid = result.HitUnitIds[i];
+                if (_persistentSimUnits.TryGetValue(uid, out SimUnit su))
+                {
+                    su.Health = FixedPoint.Max(FixedPoint.Zero, su.Health - result.DamagePerUnit[i]);
+                    if (su.Health <= FixedPoint.Zero)
+                        su.IsAlive = false;
+                    _persistentSimUnits[uid] = su;
+                }
+            }
+
+            // Handle EMP — suppress weapon cooldown refresh so enemies can't fire
+            if (result.IsEMP)
+            {
+                foreach (var kv in _persistentSimUnits)
+                {
+                    SimUnit su = kv.Value;
+                    if (su.PlayerId == _localPlayerId || !su.IsAlive) continue;
+
+                    if (su.WeaponCooldowns != null)
+                    {
+                        for (int w = 0; w < su.WeaponCooldowns.Count; w++)
+                            su.WeaponCooldowns[w] = FixedPoint.FromInt(result.EMPDurationTicks);
+                    }
+                    _persistentSimUnits[su.UnitId] = su;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    /// <summary>
     /// Reads the auto-save-replays setting from user://settings.cfg.
     /// Defaults to true if the file or key is absent.
     /// </summary>
@@ -596,6 +738,108 @@ public partial class GameSession : Node
     {
         if (_unitInteractionSystem == null || _unitSpawner == null || _terrainGrid == null)
             return;
+
+        // ── 0. Execute queued commands from this tick ─────────────────────
+        // Process commands from the CommandBuffer that are scheduled for
+        // this tick. SetStance commands update _persistentSimUnits before
+        // the sim units list is built below so the change takes effect immediately.
+        // Move/Stop/HoldPosition/Patrol commands are also processed here via
+        // path requests and direct state changes.
+        var gameManager = GetNodeOrNull<GameManager>("/root/GameManager");
+        if (gameManager?.CommandBuffer != null)
+        {
+            var cmds = gameManager.CommandBuffer.GetCommandsForTick(currentTick);
+            for (int c = 0; c < cmds.Count; c++)
+            {
+                var cmd = cmds[c];
+                switch (cmd)
+                {
+                    case CorditeWars.Systems.Networking.SetStanceCommand stanceCmd:
+                    {
+                        for (int k = 0; k < stanceCmd.UnitIds.Count; k++)
+                        {
+                            int uid = stanceCmd.UnitIds[k];
+                            if (_persistentSimUnits.TryGetValue(uid, out SimUnit su))
+                            {
+                                su.Stance = stanceCmd.Stance;
+                                _persistentSimUnits[uid] = su;
+                            }
+                        }
+                        break;
+                    }
+                    case CorditeWars.Systems.Networking.MoveCommand moveCmd:
+                    {
+                        for (int k = 0; k < moveCmd.UnitIds.Count; k++)
+                        {
+                            int uid = moveCmd.UnitIds[k];
+                            if (_persistentSimUnits.TryGetValue(uid, out SimUnit su))
+                            {
+                                int capturedId = uid;
+                                MovementProfile profile = su.Profile;
+                                FixedVector2 from = su.Movement.Position;
+                                FixedVector2 to   = moveCmd.TargetPosition;
+                                _pathRequestManager?.RequestPath(capturedId, profile, from, to,
+                                    path =>
+                                    {
+                                        if (_persistentSimUnits.TryGetValue(capturedId, out SimUnit s2))
+                                        {
+                                            s2.CurrentPath = path;
+                                            s2.CurrentWaypointIndex = 0;
+                                            s2.ActiveFlowField = null;
+                                            _persistentSimUnits[capturedId] = s2;
+                                        }
+                                    });
+                            }
+                        }
+                        break;
+                    }
+                    case CorditeWars.Systems.Networking.StopCommand stopCmd:
+                    {
+                        for (int k = 0; k < stopCmd.UnitIds.Count; k++)
+                        {
+                            int uid = stopCmd.UnitIds[k];
+                            if (_persistentSimUnits.TryGetValue(uid, out SimUnit su))
+                            {
+                                su.CurrentPath = null;
+                                su.ActiveFlowField = null;
+                                su.CurrentTargetId = null;
+                                _persistentSimUnits[uid] = su;
+                            }
+                        }
+                        break;
+                    }
+                    case CorditeWars.Systems.Networking.HoldPositionCommand holdCmd:
+                    {
+                        for (int k = 0; k < holdCmd.UnitIds.Count; k++)
+                        {
+                            int uid = holdCmd.UnitIds[k];
+                            if (_persistentSimUnits.TryGetValue(uid, out SimUnit su))
+                            {
+                                su.CurrentPath = null;
+                                su.ActiveFlowField = null;
+                                _persistentSimUnits[uid] = su;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+
+        // ── 0b. Tick superweapon cooldowns ─────────────────────────────────
+        // Track which weapons were ready before ticking so we can fire "ready" events
+        var readyBefore = new System.Collections.Generic.HashSet<string>();
+        foreach (var ws in _superweaponSystem.GetPlayerWeapons(_localPlayerId))
+            if (ws.IsReady) readyBefore.Add(ws.Data.Id);
+
+        _superweaponSystem.Tick();
+
+        // Emit SuperweaponReady for each weapon that just became ready this tick
+        foreach (var ws in _superweaponSystem.GetPlayerWeapons(_localPlayerId))
+        {
+            if (ws.IsReady && !readyBefore.Contains(ws.Data.Id))
+                EventBus.Instance?.EmitSuperweaponReady(_localPlayerId, ws.Data.Id);
+        }
 
         // ── 1. Build combined SimUnit list (mobile units + buildings) ──────
 
@@ -674,7 +918,8 @@ public partial class GameSession : Node
                 var node = _unitSpawner.GetUnit(sim.UnitId);
                 if (node != null && node.IsAlive)
                 {
-                    node.SyncFromSimulation(sim.Movement.Position, sim.Movement.Facing, sim.Health);
+                    node.SyncFromSimulation(sim.Movement.Position, sim.Movement.Facing, sim.Health,
+                        sim.Stance, sim.XP, sim.Veterancy);
 
                     // Sync stealth visual: own units appear as ghosts, enemy stealthed
                     // units are fully hidden until detected or they fire.
@@ -962,8 +1207,11 @@ public partial class GameSession : Node
             IsStealthUnit        = node.IsStealthUnit,
             IsDetector           = node.IsDetector,
             StealthRevealTicks   = 0,
-            // New stealth units start stealthed; they reveal when attacking or detected.
-            IsCurrentlyStealthed = node.IsStealthUnit
+            IsCurrentlyStealthed = node.IsStealthUnit,
+            // Stance and veterancy default to Aggressive/Recruit for newly spawned units
+            Stance     = UnitStance.Aggressive,
+            XP         = 0,
+            Veterancy  = VeterancyLevel.Recruit
         };
     }
 
@@ -1052,13 +1300,14 @@ public partial class GameSession : Node
     {
         if (ActiveConfig is null) return;
 
-        // Count how many players still have a standing HQ
+        // Count how many players still have a standing HQ (and haven't surrendered)
         int survivorCount = 0;
         int lastSurvivorPid = -1;
         for (int i = 0; i < ActiveConfig.PlayerConfigs.Length; i++)
         {
             int pid = ActiveConfig.PlayerConfigs[i].PlayerId;
             if (!_playersWithInitialHQ.Contains(pid)) continue; // no HQ data → skip
+            if (_surrenderedPlayers.Contains(pid)) continue;    // surrendered → eliminated
             if (_playerHQNodes.ContainsKey(pid))
             {
                 survivorCount++;
@@ -1074,7 +1323,8 @@ public partial class GameSession : Node
             for (int i = 0; i < ActiveConfig.PlayerConfigs.Length; i++)
             {
                 int pid = ActiveConfig.PlayerConfigs[i].PlayerId;
-                if (_playersWithInitialHQ.Contains(pid) && !_playerHQNodes.ContainsKey(pid))
+                if (_playersWithInitialHQ.Contains(pid) &&
+                    (!_playerHQNodes.ContainsKey(pid) || _surrenderedPlayers.Contains(pid)))
                 {
                     eliminatedPid = pid;
                     break;
@@ -1082,7 +1332,9 @@ public partial class GameSession : Node
             }
 
             string reason = eliminatedPid != -1
-                ? $"Player {eliminatedPid}'s Command Centre was destroyed."
+                ? (_surrenderedPlayers.Contains(eliminatedPid)
+                    ? $"Player {eliminatedPid} surrendered."
+                    : $"Player {eliminatedPid}'s Command Centre was destroyed.")
                 : "All Command Centres have been destroyed.";
 
             EndMatch(lastSurvivorPid, reason);
@@ -1100,7 +1352,7 @@ public partial class GameSession : Node
 
         var allNodes = _unitSpawner.GetAllUnits();
 
-        // Count players who still have at least one living mobile unit
+        // Count players who still have at least one living mobile unit (and haven't surrendered)
         int survivorCount = 0;
         int lastSurvivorPid = -1;
         int eliminatedPid = -1;
@@ -1108,6 +1360,13 @@ public partial class GameSession : Node
         for (int i = 0; i < ActiveConfig.PlayerConfigs.Length; i++)
         {
             int pid = ActiveConfig.PlayerConfigs[i].PlayerId;
+
+            // Surrendered players are treated as having no units
+            if (_surrenderedPlayers.Contains(pid))
+            {
+                if (eliminatedPid == -1) eliminatedPid = pid;
+                continue;
+            }
 
             bool hasUnits = false;
             for (int u = 0; u < allNodes.Count; u++)
@@ -1149,6 +1408,17 @@ public partial class GameSession : Node
     private void OnBuildingDestroyed(Node building)
     {
         if (building is not BuildingInstance b) return;
+
+        // Track enemy buildings destroyed for post-match stats
+        if (b.PlayerId != _localPlayerId)
+            _buildingsDestroyed++;
+
+        // Eject all garrisoned units from the destroyed building
+        var ejected = _garrisonSystem.OnBuildingDestroyed(b.BuildingId);
+        for (int e = 0; e < ejected.Count; e++)
+        {
+            EventBus.Instance?.EmitUnitEjected(ejected[e], b.BuildingId);
+        }
 
         // Notify BuildingPlacer so it can remove the entry from its dict
         // and vacate the occupancy grid.  This is a no-op for HQ nodes
@@ -1332,14 +1602,20 @@ public partial class GameSession : Node
         public int Kills                { get; init; }
         public int Losses               { get; init; }
         public int BuildingsConstructed { get; init; }
+        public int BuildingsDestroyed   { get; init; }
+        public int UnitsProduced        { get; init; }
+        public int CorditeHarvested     { get; init; }
     }
 
-    /// <summary>Returns the current match stats (kills, losses, buildings constructed).</summary>
+    /// <summary>Returns the current match stats (kills, losses, buildings, units, cordite).</summary>
     public MatchStats GetMatchStats() => new MatchStats
     {
         Kills                = _playerKills,
         Losses               = _playerLosses,
-        BuildingsConstructed = _buildingsConstructed
+        BuildingsConstructed = _buildingsConstructed,
+        BuildingsDestroyed   = _buildingsDestroyed,
+        UnitsProduced        = _unitsProduced,
+        CorditeHarvested     = _economyManager?.GetPlayer(_localPlayerId)?.TotalCorditeIncome ?? 0
     };
 
     /// <summary>
@@ -1836,6 +2112,9 @@ public partial class GameSession : Node
 
         // b. CommandInput — needs CommandBuffer from GameManager
         var commandBuffer = new CommandBuffer();
+        // Share this CommandBuffer with GameManager so HandleSimulationTick can consume commands
+        if (_gameManager != null)
+            _gameManager.CommandBuffer = commandBuffer;
         _commandInput = new CommandInput();
         _commandInput.Name = "CommandInput";
         _commandInput.Initialize(
@@ -1895,8 +2174,12 @@ public partial class GameSession : Node
             _unitSpawner,
             _unitDataRegistry,
             _buildingRegistry,
-            config.Campaign);
+            config.Campaign,
+            config.PlayerConfigs.Length > 0 ? config.PlayerConfigs[0].PlayerName : "Commander",
+            default,
+            _superweaponSystem);
         AddChild(_gameHUD);
+        _gameHUD.SetCommandInput(_commandInput);
 
         // e. Wire minimap click-to-move to camera
         EventBus.Instance?.Connect(EventBus.SignalName.MinimapClick,
@@ -1906,9 +2189,21 @@ public partial class GameSession : Node
         EventBus.Instance?.Connect(EventBus.SignalName.BuildingDestroyed,
             Callable.From<Node>(OnBuildingDestroyed));
 
-        // e2b. Track buildings constructed for post-match stats
+        // e2b. Track buildings constructed and unit production for post-match stats
         EventBus.Instance?.Connect(EventBus.SignalName.BuildingCompleted,
-            Callable.From<Node>(_ => _buildingsConstructed++));
+            Callable.From<Node>(b =>
+            {
+                _buildingsConstructed++;
+                // Register the completed building with the garrison system
+                if (b is BuildingInstance bld)
+                    _garrisonSystem.RegisterBuilding(bld);
+            }));
+        EventBus.Instance?.Connect(EventBus.SignalName.UnitSpawned,
+            Callable.From<Node>(u =>
+            {
+                if (u is UnitNode3D node && node.PlayerId == localPlayerId)
+                    _unitsProduced++;
+            }));
 
         // e3. Wire command events to ReplayManager so human commands are recorded
         if (_replayManager is not null)
@@ -2231,6 +2526,9 @@ public partial class GameSession : Node
                 // Track for win-condition checking
                 _playerHQNodes[pc.PlayerId] = hqNode;
                 _playersWithInitialHQ.Add(pc.PlayerId);
+
+                // Register with garrison system if HQ supports garrisoning
+                _garrisonSystem.RegisterBuilding(hqNode);
 
                 // Occupy the footprint in the grid so units path around the HQ
                 _occupancyGrid?.OccupyFootprint(

@@ -137,6 +137,18 @@ public partial class PauseMenu : CanvasLayer
         // Separator
         vbox.AddChild(new HSeparator());
 
+        // Surrender
+        var surrenderBtn = new Button();
+        surrenderBtn.Text = Tr("PAUSE_SURRENDER");
+        surrenderBtn.CustomMinimumSize = new Vector2(0, 44);
+        UITheme.StyleButton(surrenderBtn);
+        surrenderBtn.AddThemeColorOverride("font_color", new Color(0.9f, 0.3f, 0.3f));
+        surrenderBtn.Pressed += OnSurrenderPressed;
+        vbox.AddChild(surrenderBtn);
+
+        // Separator
+        vbox.AddChild(new HSeparator());
+
         // Quit to Menu
         var quitBtn = new Button();
         quitBtn.Text = Tr("PAUSE_QUIT_TO_MENU");
@@ -341,6 +353,30 @@ public partial class PauseMenu : CanvasLayer
         // Quit directly to main menu without confirmation dialog
         _session.EndMatch(-1, "Player quit to menu.");
         SceneTransition.TransitionTo(GetTree(), "res://scenes/UI/MainMenu.tscn");
+    }
+
+    private void OnSurrenderPressed()
+    {
+        _audioManager?.PlayUiSoundById("ui_click");
+
+        // Show confirmation dialog
+        var dialog = new ConfirmationDialog();
+        dialog.Title = Tr("SURRENDER_CONFIRM_TITLE");
+        dialog.DialogText = Tr("SURRENDER_CONFIRM_BODY");
+        dialog.OkButtonText = Tr("SURRENDER_CONFIRM_OK");
+        dialog.CancelButtonText = Tr("PAUSE_RESUME");
+        AddChild(dialog);
+        dialog.PopupCentered();
+        dialog.Confirmed += () =>
+        {
+            dialog.QueueFree();
+            int playerId = _session.ActiveConfig?.PlayerConfigs.Length > 0
+                ? _session.ActiveConfig.PlayerConfigs[0].PlayerId
+                : 1;
+            _session.PlayerSurrender(playerId);
+            Hide();
+        };
+        dialog.Canceled += () => dialog.QueueFree();
     }
 
     // ── Save / Load actions ───────────────────────────────────────────

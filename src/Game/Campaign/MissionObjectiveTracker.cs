@@ -11,7 +11,13 @@ public enum ObjectiveType
     MaintainUnitType,
     SurviveTimer,
     DestroyBuildingType,
-    AccumulateCordite
+    AccumulateCordite,
+    /// <summary>A specific unit type must remain alive (count &gt;= 1). Fails if 0 remain.</summary>
+    EscortUnit,
+    /// <summary>Survive for the specified number of ticks without all units being destroyed.</summary>
+    DefendPosition,
+    /// <summary>Complete after surviving for the specified number of ticks (same as SurviveTimer).</summary>
+    ReachLocation
 }
 
 public sealed class TypedObjective
@@ -135,6 +141,29 @@ public sealed class MissionObjectiveTracker
                     break;
                 }
                 // DestroyBuildingType is handled via NotifyBuildingDestroyed
+                case ObjectiveType.EscortUnit:
+                {
+                    int count = 0;
+                    for (int u = 0; u < ctx.AliveUnits.Count; u++)
+                    {
+                        var unit = ctx.AliveUnits[u];
+                        if (unit.PlayerId == playerId && unit.UnitTypeId == obj.TargetId)
+                            count++;
+                    }
+                    if (count >= obj.Count)
+                        obj.IsComplete = true;
+                    else if (count == 0 && obj.Required)
+                        obj.IsFailed = true;
+                    break;
+                }
+                case ObjectiveType.DefendPosition:
+                case ObjectiveType.ReachLocation:
+                {
+                    // Implemented as survive-for-N-ticks
+                    if (currentTick - _startTick >= (ulong)obj.Ticks)
+                        obj.IsComplete = true;
+                    break;
+                }
             }
         }
     }

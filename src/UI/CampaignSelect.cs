@@ -484,7 +484,11 @@ public partial class CampaignSelect : Control
                  $"WinCondition={mission.WinCondition}");
 
         CorditeWars.Game.Main.PendingConfig = config;
-        SceneTransition.TransitionTo(GetTree(), "res://scenes/Game/Main.tscn");
+        // Show mission briefing overlay — the "Begin Mission" button will
+        // then transition to Main.tscn. We reset PendingConfig first so
+        // briefing screen can set it again when the player confirms.
+        CorditeWars.Game.Main.PendingConfig = null;
+        MissionBriefingScreen.ShowInScene(this, mission, config);
     }
 
     private void ShowComingSoonDialog()

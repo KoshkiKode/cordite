@@ -27,6 +27,32 @@
       "unlocks_buildings": [
         "bastion_refinery",
         "bastion_supply_depot"
+      ],
+      "typed_objectives": [
+        {
+          "type": "build_building",
+          "label": "Deploy 2 Patrol Rovers",
+          "target_id": "bastion_patrol_rover",
+          "count": 2,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "survive_timer",
+          "label": "Repel the Kragmore attack",
+          "target_id": "",
+          "count": 0,
+          "ticks": 9000,
+          "required": true
+        },
+        {
+          "type": "maintain_unit_type",
+          "label": "Keep HQ above 50% health",
+          "target_id": "bastion_command_center",
+          "count": 1,
+          "ticks": 0,
+          "required": false
+        }
       ]
     },
     {
@@ -54,6 +80,32 @@
       "unlocks_buildings": [
         "bastion_barracks",
         "bastion_command_hub"
+      ],
+      "typed_objectives": [
+        {
+          "type": "build_building",
+          "label": "Build 5 Bastion Turrets",
+          "target_id": "bastion_turret",
+          "count": 5,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "build_building",
+          "label": "Build 3 Watcher towers",
+          "target_id": "bastion_watcher_tower",
+          "count": 3,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "survive_timer",
+          "label": "Survive 15 minutes",
+          "target_id": "",
+          "count": 0,
+          "ticks": 27000,
+          "required": true
+        }
       ]
     },
     {
@@ -80,6 +132,24 @@
       "requires_mission": "bastion_02",
       "unlocks_buildings": [
         "bastion_vehicle_factory"
+      ],
+      "typed_objectives": [
+        {
+          "type": "maintain_unit_type",
+          "label": "Keep Patrol Rovers active",
+          "target_id": "bastion_patrol_rover",
+          "count": 2,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "destroy_building_type",
+          "label": "Shoot down 10 Valkyr aircraft",
+          "target_id": "valkyr_windrunner",
+          "count": 10,
+          "ticks": 0,
+          "required": true
+        }
       ]
     },
     {
@@ -106,6 +176,24 @@
       "requires_mission": "bastion_03",
       "unlocks_buildings": [
         "bastion_airfield"
+      ],
+      "typed_objectives": [
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy the Ironmarch Signal Trucks",
+          "target_id": "ironmarch_signal_truck",
+          "count": 2,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "reach_location",
+          "label": "Return to defensive perimeter",
+          "target_id": "",
+          "count": 0,
+          "ticks": 18000,
+          "required": false
+        }
       ]
     },
     {
@@ -134,6 +222,24 @@
       "unlocks_buildings": [
         "bastion_tech_lab",
         "bastion_shipyard"
+      ],
+      "typed_objectives": [
+        {
+          "type": "escort_unit",
+          "label": "Escort supply ships to port",
+          "target_id": "bastion_corvette",
+          "count": 2,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy the naval blockade",
+          "target_id": "kragmore_deep_bore_sub",
+          "count": 3,
+          "ticks": 0,
+          "required": true
+        }
       ]
     },
     {
@@ -157,7 +263,33 @@
       "twist": "Arcloft Phantom Subs can activate their overwatch stealth ping \u2014 briefly surfacing to reveal all Bastion positions. When the ping is active the sub loses stealth momentarily: that is the only window to destroy it. Have Corvettes ready to fire on sight.",
       "win_condition": "destroy_hq",
       "requires_mission": "bastion_05",
-      "unlocks_buildings": []
+      "unlocks_buildings": [],
+      "typed_objectives": [
+        {
+          "type": "build_building",
+          "label": "Deploy 4 Patrol Rovers along perimeter",
+          "target_id": "bastion_patrol_rover",
+          "count": 4,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy 3 Arcloft Phantom Submarines",
+          "target_id": "arcloft_phantom_sub",
+          "count": 3,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy the Arcloft Aether Relay",
+          "target_id": "arcloft_relay_tower",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        }
+      ]
     },
     {
       "id": "bastion_07",
@@ -184,6 +316,24 @@
       "requires_mission": "bastion_06",
       "unlocks_buildings": [
         "bastion_reactor"
+      ],
+      "typed_objectives": [
+        {
+          "type": "build_building",
+          "label": "Build Watcher tower on each corridor",
+          "target_id": "bastion_watcher_tower",
+          "count": 3,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "survive_timer",
+          "label": "Survive 25 minutes",
+          "target_id": "",
+          "count": 0,
+          "ticks": 45000,
+          "required": true
+        }
       ]
     },
     {
@@ -207,7 +357,25 @@
       "twist": "Ironmarch heavy armour and Stormrend air strikes attack from opposite flanks \u2014 hold the centre at all costs.",
       "win_condition": "destroy_hq",
       "requires_mission": "bastion_07",
-      "unlocks_buildings": []
+      "unlocks_buildings": [],
+      "typed_objectives": [
+        {
+          "type": "survive_timer",
+          "label": "Survive the joint assault",
+          "target_id": "",
+          "count": 0,
+          "ticks": 18000,
+          "required": true
+        },
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy both enemy Command Centers",
+          "target_id": "ironmarch_command_center",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        }
+      ]
     },
     {
       "id": "bastion_09",
@@ -235,7 +403,33 @@
       "twist": "Every faction brings stealth assets \u2014 Arcloft Phantom Subs, Kragmore Mole Rats, Stormrend Flicker Mines, Valkyr Windrunners. Bastion's strength is in defence \u2014 let the others weaken each other before making your move.",
       "win_condition": "destroy_hq",
       "requires_mission": "bastion_08",
-      "unlocks_buildings": []
+      "unlocks_buildings": [],
+      "typed_objectives": [
+        {
+          "type": "build_building",
+          "label": "Lay Denial Field emplacements",
+          "target_id": "bastion_denial_field",
+          "count": 4,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "build_building",
+          "label": "Build Watcher towers on approach routes",
+          "target_id": "bastion_watcher_tower",
+          "count": 5,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "defend_position",
+          "label": "Hold the Nexus for 15 minutes",
+          "target_id": "",
+          "count": 0,
+          "ticks": 27000,
+          "required": true
+        }
+      ]
     }
   ]
 }

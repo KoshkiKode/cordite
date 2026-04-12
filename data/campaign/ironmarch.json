@@ -28,6 +28,32 @@
       "unlocks_buildings": [
         "ironmarch_refinery",
         "ironmarch_supply_depot"
+      ],
+      "typed_objectives": [
+        {
+          "type": "build_building",
+          "label": "Deploy the FOB Truck",
+          "target_id": "ironmarch_fob_truck",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "maintain_unit_type",
+          "label": "Keep Signal Truck active",
+          "target_id": "ironmarch_signal_truck",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "survive_timer",
+          "label": "Build forward base in time",
+          "target_id": "",
+          "count": 0,
+          "ticks": 9000,
+          "required": true
+        }
       ]
     },
     {
@@ -55,6 +81,24 @@
       "unlocks_buildings": [
         "ironmarch_barracks",
         "ironmarch_forward_assembly"
+      ],
+      "typed_objectives": [
+        {
+          "type": "build_building",
+          "label": "Construct 3 Road sections",
+          "target_id": "ironmarch_road",
+          "count": 3,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "maintain_unit_type",
+          "label": "Keep Signal Truck active",
+          "target_id": "ironmarch_signal_truck",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        }
       ]
     },
     {
@@ -82,6 +126,32 @@
       "requires_mission": "ironmarch_02",
       "unlocks_buildings": [
         "ironmarch_vehicle_factory"
+      ],
+      "typed_objectives": [
+        {
+          "type": "build_building",
+          "label": "Build 4 Fieldwork Walls",
+          "target_id": "ironmarch_fieldwork_wall",
+          "count": 4,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "survive_timer",
+          "label": "Hold the trench line for 12 minutes",
+          "target_id": "",
+          "count": 0,
+          "ticks": 21600,
+          "required": true
+        },
+        {
+          "type": "destroy_building_type",
+          "label": "Shoot down 6 Valkyr aircraft",
+          "target_id": "valkyr_windrunner",
+          "count": 6,
+          "ticks": 0,
+          "required": false
+        }
       ]
     },
     {
@@ -107,6 +177,24 @@
       "requires_mission": "ironmarch_03",
       "unlocks_buildings": [
         "ironmarch_airfield"
+      ],
+      "typed_objectives": [
+        {
+          "type": "destroy_building_type",
+          "label": "Breach the Bastion outer wall",
+          "target_id": "bastion_turret",
+          "count": 3,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy the Command Hub",
+          "target_id": "bastion_command_center",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        }
       ]
     },
     {
@@ -134,6 +222,32 @@
       "unlocks_buildings": [
         "ironmarch_tech_lab",
         "ironmarch_shipyard"
+      ],
+      "typed_objectives": [
+        {
+          "type": "maintain_unit_type",
+          "label": "Keep submarines active",
+          "target_id": "ironmarch_trench_diver_sub",
+          "count": 2,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "survive_timer",
+          "label": "Land forces on the island",
+          "target_id": "",
+          "count": 0,
+          "ticks": 18000,
+          "required": true
+        },
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy the coastal fortress",
+          "target_id": "valkyr_command_center",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        }
       ]
     },
     {
@@ -160,7 +274,25 @@
       "twist": "Stormrend Flicker Mines, Kragmore Mole Rats, and Valkyr Windrunners will each target the supply trucks. Signal Trucks detect all of them \u2014 but are fragile and will themselves become priority targets.",
       "win_condition": "destroy_hq",
       "requires_mission": "ironmarch_05",
-      "unlocks_buildings": []
+      "unlocks_buildings": [],
+      "typed_objectives": [
+        {
+          "type": "maintain_unit_type",
+          "label": "Protect supply lines",
+          "target_id": "ironmarch_signal_truck",
+          "count": 2,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "accumulate_cordite",
+          "label": "Advance to central cordite node",
+          "target_id": "",
+          "count": 8000,
+          "ticks": 0,
+          "required": true
+        }
+      ]
     },
     {
       "id": "ironmarch_07",
@@ -186,6 +318,32 @@
       "requires_mission": "ironmarch_06",
       "unlocks_buildings": [
         "ironmarch_reactor"
+      ],
+      "typed_objectives": [
+        {
+          "type": "maintain_unit_type",
+          "label": "Keep Signal Trucks active",
+          "target_id": "ironmarch_signal_truck",
+          "count": 2,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy the Arcloft Aether Relay",
+          "target_id": "arcloft_relay_tower",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "defend_position",
+          "label": "Hold blackout zone for 5 minutes",
+          "target_id": "",
+          "count": 0,
+          "ticks": 9000,
+          "required": true
+        }
       ]
     },
     {
@@ -207,7 +365,17 @@
       "twist": "Valkyr Interceptors will harass your armour columns \u2014 deploy anti-air support to protect the advance.",
       "win_condition": "destroy_hq",
       "requires_mission": "ironmarch_07",
-      "unlocks_buildings": []
+      "unlocks_buildings": [],
+      "typed_objectives": [
+        {
+          "type": "destroy_building_type",
+          "label": "Destroy the Valkyr Command Center",
+          "target_id": "valkyr_command_center",
+          "count": 1,
+          "ticks": 0,
+          "required": true
+        }
+      ]
     },
     {
       "id": "ironmarch_09",
@@ -234,7 +402,33 @@
       "twist": "Five factions bring stealth assets to the Nexus \u2014 Arcloft Phantom Subs, Kragmore Mole Rats, Stormrend Flicker Mines, Valkyr Windrunners, and Bastion Denial Fields. Ironmarch walls channel the attackers \u2014 Signal Trucks then expose what the walls cannot stop.",
       "win_condition": "destroy_hq",
       "requires_mission": "ironmarch_08",
-      "unlocks_buildings": []
+      "unlocks_buildings": [],
+      "typed_objectives": [
+        {
+          "type": "maintain_unit_type",
+          "label": "Keep Signal Trucks active at Nexus",
+          "target_id": "ironmarch_signal_truck",
+          "count": 2,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "build_building",
+          "label": "Establish fortified perimeter",
+          "target_id": "ironmarch_fieldwork_wall",
+          "count": 4,
+          "ticks": 0,
+          "required": true
+        },
+        {
+          "type": "survive_timer",
+          "label": "Destroy all enemy forces in central zone",
+          "target_id": "",
+          "count": 0,
+          "ticks": 27000,
+          "required": true
+        }
+      ]
     }
   ]
 }

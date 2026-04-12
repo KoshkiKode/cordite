@@ -25,6 +25,9 @@ public partial class CommandInput : Node
     private bool _patrolMode;
     private FixedVector2 _patrolStart;
 
+    // Rally mode: next right-click sets rally point on selected buildings
+    private bool _rallyMode;
+
     // Input delay for deterministic networking
     private const int InputDelay = 6;
 
@@ -42,7 +45,18 @@ public partial class CommandInput : Node
         _commandBuffer = commandBuffer;
         _unitSpawner = unitSpawner;
         _camera = camera;
+
+        // Wire stance change requests from CommandCard via EventBus
+        EventBus.Instance?.Connect(EventBus.SignalName.StanceChangeRequested,
+            Callable.From<int>(stance => IssueSetStanceCommand((CorditeWars.Systems.Pathfinding.UnitStance)stance)));
     }
+
+    /// <summary>
+    /// Enters or exits rally-point mode. In rally mode the next right-click
+    /// will set the rally point for all ProductionQueues in the scene tree
+    /// rather than issuing a move command.
+    /// </summary>
+    public void SetRallyMode(bool active) => _rallyMode = active;
 
     // ── Input Processing ─────────────────────────────────────────────
 
@@ -61,8 +75,17 @@ public partial class CommandInput : Node
     {
         if (mouseBtn.ButtonIndex == MouseButton.Right && mouseBtn.Pressed)
         {
-            HandleRightClick(mouseBtn.Position, mouseBtn.ShiftPressed);
-            GetViewport().SetInputAsHandled();
+            if (_rallyMode)
+            {
+                HandleRallyClick(mouseBtn.Position);
+                _rallyMode = false;
+                GetViewport().SetInputAsHandled();
+            }
+            else
+            {
+                HandleRightClick(mouseBtn.Position, mouseBtn.ShiftPressed);
+                GetViewport().SetInputAsHandled();
+            }
         }
         else if (mouseBtn.ButtonIndex == MouseButton.Left && mouseBtn.Pressed)
         {
@@ -116,6 +139,7 @@ public partial class CommandInput : Node
         {
             _attackMoveMode = false;
             _patrolMode = false;
+            _rallyMode = false;
         }
     }
 
@@ -178,6 +202,25 @@ public partial class CommandInput : Node
             IssuePatrolCommand(waypoints, shiftQueue);
             EventBus.Instance?.EmitUnitOrdered(
                 _selectionManager!.GetSelectedUnitIds().ToArray(), "patrol");
+        }
+    }
+
+    private void HandleRallyClick(Vector2 screenPos)
+    {
+        if (_camera is null) return;
+        Vector3? worldPos = RaycastGround(screenPos);
+        if (!worldPos.HasValue) return;
+
+        var fixedPos = new FixedVector2(
+            FixedPoint.FromFloat(worldPos.Value.X),
+            FixedPoint.FromFloat(worldPos.Value.Z));
+
+        // Set rally point on all ProductionQueue nodes in the scene tree
+        var queues = GetTree().GetNodesInGroup("production_queue");
+        for (int i = 0; i < queues.Count; i++)
+        {
+            if (queues[i] is CorditeWars.Game.Buildings.ProductionQueue pq)
+                pq.SetRallyPoint(fixedPos);
         }
     }
 
@@ -290,6 +333,24 @@ public partial class CommandInput : Node
             UnitIds = unitIds
         };
         _commandBuffer.AddCommand(cmd);
+    }
+
+    private void IssueSetStanceCommand(CorditeWars.Systems.Pathfinding.UnitStance stance)
+    {
+        if (_selectionManager is null || _commandBuffer is null) return;
+
+        var unitIds = _selectionManager.GetSelectedUnitIds();
+        if (unitIds.Count == 0) return;
+
+        var cmd = new SetStanceCommand
+        {
+            ScheduledTick = GetScheduledTick(),
+            PlayerId = _localPlayerId,
+            UnitIds = unitIds,
+            Stance = stance
+        };
+        _commandBuffer.AddCommand(cmd);
+        EventBus.Instance?.EmitUnitOrdered(unitIds.ToArray(), $"stance_{stance}");
     }
 
     // ── Raycasting ───────────────────────────────────────────────────
