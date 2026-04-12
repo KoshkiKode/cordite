@@ -905,7 +905,7 @@ public partial class GameSession : Node
                         Body="Build a Vehicle Factory or Airfield. Advanced units are powerful but expensive \u2014 use them to break stalemates.",
                         TriggerCondition=BP, TriggerValue=0f },
                 new() { Id="m3_05", Title="Control Groups",
-                        Body="Select a group of units and press Ctrl+1\u20139 to assign them a control group. Press 1\u20139 to reselect instantly.",
+                        Body="Select a group of units and press Ctrl+1-9 to assign them a control group. Press 1-9 to reselect instantly.",
                         TriggerCondition=T, TriggerValue=10f },
                 new() { Id="m3_06", Title="Fog of War",
                         Body="In real missions, Fog of War hides the map. Station detector units near your perimeter to spot stealthed enemies.",

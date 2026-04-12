@@ -161,7 +161,7 @@ public partial class TutorialSelect : Control
         Game.Main.PendingConfig = new Game.MatchConfig
         {
             MapId           = mapId,
-            MatchSeed       = (ulong)System.DateTime.Now.Ticks,
+            MatchSeed       = (ulong)System.Environment.TickCount64,
             GameSpeed       = 1,
             FogOfWar        = false,
             StartingCordite = 5000,
@@ -170,7 +170,7 @@ public partial class TutorialSelect : Control
             PlayerConfigs   = new Game.PlayerConfig[]
             {
                 new() { PlayerId = 1, FactionId = "arcloft",  IsAI = false, PlayerName = "Commander" },
-                new() { PlayerId = 2, FactionId = "kragmore", IsAI = true,  AIDifficulty = 0, PlayerName = "Training AI" },
+                new() { PlayerId = 2, FactionId = "kragmore", IsAI = true,  AIDifficulty = 0, PlayerName = "Tutorial AI" },
             }
         };
 
