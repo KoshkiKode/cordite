@@ -22,6 +22,7 @@ public partial class BuildingPlacer : Node
     private Camera3D? _camera;
     private int _localPlayerId;
     private TerrainGrid? _terrainGrid;
+    private TerrainRenderer? _terrainRenderer;
 
     // ── Placement State ──────────────────────────────────────────────
 
@@ -59,7 +60,8 @@ public partial class BuildingPlacer : Node
         BuildingRegistry buildingRegistry,
         BuildingManifest buildingManifest,
         Camera3D camera,
-        TerrainGrid? terrainGrid = null)
+        TerrainGrid? terrainGrid = null,
+        TerrainRenderer? terrainRenderer = null)
     {
         _localPlayerId = localPlayerId;
         _occupancyGrid = occupancyGrid;
@@ -68,6 +70,7 @@ public partial class BuildingPlacer : Node
         _buildingManifest = buildingManifest;
         _camera = camera;
         _terrainGrid = terrainGrid;
+        _terrainRenderer = terrainRenderer;
     }
 
     // ── Public API ───────────────────────────────────────────────────
@@ -155,6 +158,13 @@ public partial class BuildingPlacer : Node
         var instance = new BuildingInstance();
         instance.Initialize(buildingId, buildingTypeId, data, playerId, gridX, gridY);
         instance.RestoreState(health, isConstructed, constructionProgress);
+
+        // Snap to terrain surface
+        if (_terrainRenderer is not null)
+        {
+            float terrainY = _terrainRenderer.GetElevationAtWorld(gridX, gridY);
+            instance.Position = new Vector3(gridX, terrainY, gridY);
+        }
 
         AddChild(instance);
         _buildings.Add(buildingId, instance);
@@ -395,6 +405,13 @@ public partial class BuildingPlacer : Node
             _localPlayerId,
             gridX, gridY,
             modelEntry);
+
+        // Snap to terrain surface so the building sits on the ground mesh
+        if (_terrainRenderer is not null)
+        {
+            float terrainY = _terrainRenderer.GetElevationAtWorld(gridX, gridY);
+            instance.Position = new Vector3(gridX, terrainY, gridY);
+        }
 
         AddChild(instance);
         _buildings.Add(buildingId, instance);

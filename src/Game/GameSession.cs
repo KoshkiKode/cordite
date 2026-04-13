@@ -919,7 +919,10 @@ public partial class GameSession : Node
                 if (node != null && node.IsAlive)
                 {
                     node.SyncFromSimulation(sim.Movement.Position, sim.Movement.Facing, sim.Health,
-                        sim.Stance, sim.XP, sim.Veterancy);
+                        sim.Stance, sim.XP, sim.Veterancy,
+                        _terrainRenderer?.GetElevationAtWorld(
+                            sim.Movement.Position.X.ToFloat(),
+                            sim.Movement.Position.Y.ToFloat()) ?? 0f);
 
                     // Sync stealth visual: own units appear as ghosts, enemy stealthed
                     // units are fully hidden until detected or they fire.
@@ -2138,7 +2141,8 @@ public partial class GameSession : Node
             _buildingRegistry,
             _buildingManifest,
             _camera,
-            _terrainGrid);
+            _terrainGrid,
+            _terrainRenderer);
         AddChild(_buildingPlacer);
 
         // Register HQ positions for build radius validation
@@ -2530,6 +2534,12 @@ public partial class GameSession : Node
                     startPos.X, startPos.Y, hqModelEntry);
                 // Mark fully constructed so it doesn't animate in during the game start
                 hqNode.RestoreState(hqData.MaxHealth, true, hqData.BuildTime);
+                // Snap to terrain surface so the HQ sits on the ground mesh
+                if (_terrainRenderer is not null)
+                {
+                    float terrainY = _terrainRenderer.GetElevationAtWorld(startPos.X, startPos.Y);
+                    hqNode.Position = new Vector3(startPos.X, terrainY, startPos.Y);
+                }
                 AddChild(hqNode);
 
                 // Track for win-condition checking
