@@ -630,11 +630,22 @@ jobs:
             exit 1
           fi
 
+      - name: Extract macOS .app bundle from Godot zip
+        run: |
+          # Godot always exports macOS as a zip to preserve the .app bundle
+          # structure with symlinks.  Extract it here so the artifact contains
+          # plain files rather than a zip-inside-a-zip.  macOS's native unzip
+          # preserves symlinks, so the .app bundle remains fully functional.
+          unzip -q build/macos/CorditeWars.zip -d build/macos/
+          rm build/macos/CorditeWars.zip
+          echo "macOS build contents after extraction:"
+          ls -la build/macos/
+
       - name: Upload macOS export artifact
         uses: actions/upload-artifact@v4
         with:
           name: CorditeWars-macOS-Export
-          path: build/macos/CorditeWars.zip
+          path: build/macos/
 
   # ─────────────────────────────────────────────────────────────────────────────
   # 5b. Package macOS — extract .app, optionally sign, create DMG
@@ -654,16 +665,15 @@ jobs:
           name: CorditeWars-macOS-Export
           path: build/macos
 
-      - name: Extract .app bundle
+      - name: Locate .app bundle
         run: |
           mkdir -p dist/macos
-          unzip -q build/macos/CorditeWars.zip -d dist/macos
-          echo "Extracted contents:"
-          ls -la dist/macos/
-          # Locate the .app (Godot may nest it or name it differently)
-          APP_PATH=$(find dist/macos -maxdepth 2 -name "*.app" | head -1)
+          echo "Downloaded macOS build contents:"
+          ls -la build/macos/
+          # The .app bundle is now extracted directly into the artifact (no zip).
+          APP_PATH=$(find build/macos -maxdepth 2 -name "*.app" | head -1)
           if [ -z "$APP_PATH" ]; then
-            echo "ERROR: No .app bundle found after unzip"
+            echo "ERROR: No .app bundle found in build/macos/"
             exit 1
           fi
           echo "APP_PATH=$APP_PATH" >> "$GITHUB_ENV"
@@ -828,16 +838,11 @@ jobs:
           name: CorditeWars-macOS-Export
           path: smoke/
 
-      - name: Extract .app bundle
-        run: |
-          unzip -q smoke/CorditeWars.zip -d smoke/app
-          echo "--- macOS export contents ---"
-          ls -la smoke/app/
-
       - name: Locate game binary
         id: find_binary
         run: |
-          BINARY=$(find smoke/app -maxdepth 5 -name "CorditeWars" -type f | head -1)
+          # The .app bundle is now extracted directly in the artifact (no zip).
+          BINARY=$(find smoke/ -maxdepth 6 -name "CorditeWars" -type f | head -1)
           if [ -z "$BINARY" ]; then
             echo "ERROR: CorditeWars binary not found inside .app bundle"
             exit 1

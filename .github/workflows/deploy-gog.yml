@@ -221,12 +221,17 @@ jobs:
           name: CorditeWars-macOS-Export
           path: build/macos/
 
-      - name: Extract .app bundle from zip
+      - name: Locate .app bundle
         run: |
-          mkdir -p build/macos/app
-          unzip -q build/macos/CorditeWars.zip -d build/macos/app
-          echo "Extracted macOS contents:"
-          ls -la build/macos/app/
+          echo "Downloaded macOS build contents:"
+          ls -la build/macos/
+          # The .app bundle is extracted directly in the artifact (no zip).
+          APP_PATH=$(find build/macos -maxdepth 2 -name "*.app" | head -1)
+          if [ -z "$APP_PATH" ]; then
+            echo "ERROR: No .app bundle found in build/macos/"
+            exit 1
+          fi
+          echo "Found .app bundle: $APP_PATH"
 
       - name: Patch GOG build config
         env:
