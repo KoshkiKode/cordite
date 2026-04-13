@@ -41,6 +41,10 @@ public partial class SkirmishAI : Node
 
     private const int TickInterval = 30; // Run every 30 ticks (1 second at 30 TPS)
 
+    // Building placement offset cycling constants
+    private const int BuildingPlacementStepInterval = 500; // ticks between offset index changes
+    private const int OffsetPatternSize = 12;              // number of offset positions in the pattern
+
     public int PlayerId { get; private set; }
     public string FactionId { get; private set; } = string.Empty;
     public AIDifficulty Difficulty { get; private set; }
@@ -408,7 +412,7 @@ public partial class SkirmishAI : Node
         int baseY = _basePosition.Y.ToInt();
 
         // Offset pattern: ring outward from base so buildings don't stack
-        int step = (int)(_totalTicksElapsed / 500) % 12;
+        int step = (int)(_totalTicksElapsed / BuildingPlacementStepInterval) % OffsetPatternSize;
         int[] offsets = [-6, -4, -2, 0, 2, 4, 6, -8, 8, -10, 10, 0];
         int dx = offsets[step % offsets.Length];
         int dy = offsets[(step + 3) % offsets.Length];

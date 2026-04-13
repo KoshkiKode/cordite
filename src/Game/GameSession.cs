@@ -172,6 +172,7 @@ public partial class GameSession : Node
     private ulong _lastAutosaveTick;
     private const ulong AutosaveIntervalTicks = 1800;
     private const float TickDeltaSeconds = 1f / 30f; // 30 Hz simulation rate
+    private const int DefaultDepotSupplyCapacity = 20; // Used when registry lookup fails during save restore
 
     /// <summary>
     /// HQ BuildingInstance nodes for each player (keyed by PlayerId).
@@ -1841,7 +1842,7 @@ public partial class GameSession : Node
                 if (ps.DepotCount > 0)
                 {
                     string depotBuildingId = $"{ps.FactionId}_supply_depot";
-                    int supplyPerDepot = 20; // sensible default
+                    int supplyPerDepot = DefaultDepotSupplyCapacity; // sensible default
                     if (_buildingRegistry.HasBuilding(depotBuildingId))
                         supplyPerDepot = _buildingRegistry.GetBuilding(depotBuildingId).SupplyProvided;
                     for (int d = 0; d < ps.DepotCount; d++)
