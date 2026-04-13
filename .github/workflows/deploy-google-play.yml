@@ -65,6 +65,17 @@ jobs:
             "${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}" \
             > ~/.config/godot/editor_settings-4.tres
 
+      - name: Disable custom Android Gradle build in CI
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path("export_presets.cfg")
+          path.write_text(path.read_text().replace(
+              "gradle_build/use_gradle_build=true",
+              "gradle_build/use_gradle_build=false"
+          ))
+          PY
+
       - name: Export Android AAB (release-signed)
         uses: firebelley/godot-export@v7.0.0
         with:
