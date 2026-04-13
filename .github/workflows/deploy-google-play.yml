@@ -70,10 +70,16 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           path = Path("export_presets.cfg")
-          path.write_text(path.read_text().replace(
-              "gradle_build/use_gradle_build=true",
-              "gradle_build/use_gradle_build=false"
-          ))
+          original = path.read_text()
+          needle = "gradle_build/use_gradle_build=true"
+          count = original.count(needle)
+          if count == 0:
+              raise SystemExit(
+                  "Expected at least one Android gradle_build/use_gradle_build=true setting in export_presets.cfg; "
+                  "ensure Android export presets exist and are configured."
+              )
+          path.write_text(original.replace(needle, "gradle_build/use_gradle_build=false"))
+          print(f"Disabled custom Android Gradle build in {count} preset(s).")
           PY
 
       - name: Export Android AAB (release-signed)
