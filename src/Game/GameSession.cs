@@ -1421,8 +1421,7 @@ public partial class GameSession : Node
         }
 
         // Notify BuildingPlacer so it can remove the entry from its dict
-        // and vacate the occupancy grid.  This is a no-op for HQ nodes
-        // (which are not in BuildingPlacer._buildings).
+        // and vacate the occupancy grid.
         _buildingPlacer?.OnBuildingDestroyed(b);
 
         // Remove from HQ tracking if this was a player's Command Centre
@@ -2162,6 +2161,16 @@ public partial class GameSession : Node
                     }
                 }
             }
+        }
+
+        // Register pre-placed HQ buildings so they appear in GetAllBuildings()
+        // queries — used by the minimap, mission-objective context, and simulation tick.
+        // PlaceStartingBuildings runs before SetupGameplaySystems, so _playerHQNodes is
+        // already populated here.
+        foreach (var kvp in _playerHQNodes)
+        {
+            if (kvp.Value != null && GodotObject.IsInstanceValid(kvp.Value))
+                _buildingPlacer.RegisterExternalBuilding(kvp.Value);
         }
 
         // d. GameHUD

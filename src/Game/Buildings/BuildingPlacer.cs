@@ -41,8 +41,9 @@ public partial class BuildingPlacer : Node
 
     // Track placed buildings.
     // IDs start at 100_001 to avoid collisions with mobile unit IDs (which
-    // start at 1 in UnitSpawner).  Pre-placed HQ buildings use negative IDs
-    // and are managed directly by GameSession, not stored here.
+    // start at 1 in UnitSpawner).  Pre-placed HQ buildings use negative IDs;
+    // they are created by GameSession and registered here via RegisterExternalBuilding()
+    // so they appear in GetAllBuildings() queries (minimap, objectives, simulation).
     private readonly SortedList<int, BuildingInstance> _buildings = new();
     private int _nextBuildingId = 100_001;
 
@@ -111,6 +112,23 @@ public partial class BuildingPlacer : Node
     }
 
     public IList<BuildingInstance> GetAllBuildings() => _buildings.Values;
+
+    /// <summary>
+    /// Registers a building that was created and placed externally (e.g. a pre-placed
+    /// HQ spawned by <see cref="CorditeWars.Game.GameSession"/> before the BuildingPlacer
+    /// was initialised) so it appears in <see cref="GetAllBuildings"/> queries used by
+    /// the minimap, mission-objective context, and simulation tick.
+    /// <para>
+    /// The building node must already be in the scene tree. This method does NOT
+    /// add it to the scene, modify the occupancy grid, or deduct resources.
+    /// </para>
+    /// </summary>
+    public void RegisterExternalBuilding(BuildingInstance building)
+    {
+        if (building == null || !GodotObject.IsInstanceValid(building)) return;
+        if (_buildings.ContainsKey(building.BuildingId)) return;
+        _buildings.Add(building.BuildingId, building);
+    }
 
     /// <summary>
     /// Restores a building from save data without cost validation or placement checks.
