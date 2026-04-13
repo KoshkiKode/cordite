@@ -446,5 +446,19 @@
     "cost": 3000,
     "hp": 1000,
     "build_time": 60.0
+  },
+  {
+    "id": "arcloft_bunker",
+    "faction": "arcloft",
+    "cost": 200,
+    "hp": 400,
+    "build_time": 15.0
+  },
+  {
+    "id": "bastion_bunker",
+    "faction": "bastion",
+    "cost": 250,
+    "hp": 500,
+    "build_time": 18.0
   }
 ]

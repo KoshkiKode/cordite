@@ -79,7 +79,8 @@
       "requires_mission": "bastion_01",
       "unlocks_buildings": [
         "bastion_barracks",
-        "bastion_command_hub"
+        "bastion_command_hub",
+        "bastion_bunker"
       ],
       "typed_objectives": [
         {

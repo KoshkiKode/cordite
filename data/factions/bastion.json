@@ -28,7 +28,8 @@
     "bastion_supply_depot",
     "bastion_command_hub",
     "bastion_shipyard",
-    "bastion_missile_battery"
+    "bastion_missile_battery",
+    "bastion_bunker"
   ],
   "TechTreeUnlocks": {
     "bastion_redundant_systems": 2000,

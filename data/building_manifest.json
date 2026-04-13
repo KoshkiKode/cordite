@@ -702,5 +702,27 @@
     "ModelScale": 2.0,
     "ModelRotation": 0.0,
     "Category": "Superweapon"
+  },
+  "arcloft_bunker": {
+    "ModelPath": "assets/models/quaternius/space_House_Single_cohesive.glb",
+    "CollisionWidth": 2,
+    "CollisionHeight": 2,
+    "CollisionRadius": 1.5,
+    "Mass": 999,
+    "Passable": false,
+    "ModelScale": 1.4,
+    "ModelRotation": 0.0,
+    "Category": "Defense"
+  },
+  "bastion_bunker": {
+    "ModelPath": "assets/models/quaternius/space_House_Single_Support_cohesive.glb",
+    "CollisionWidth": 2,
+    "CollisionHeight": 2,
+    "CollisionRadius": 1.5,
+    "Mass": 999,
+    "Passable": false,
+    "ModelScale": 1.4,
+    "ModelRotation": 0.0,
+    "Category": "Defense"
   }
 }

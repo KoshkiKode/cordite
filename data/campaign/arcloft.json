@@ -78,7 +78,8 @@
       "requires_mission": "arcloft_01",
       "unlocks_buildings": [
         "arcloft_barracks",
-        "arcloft_overwatch_tower"
+        "arcloft_overwatch_tower",
+        "arcloft_bunker"
       ],
       "typed_objectives": [
         {
