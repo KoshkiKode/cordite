@@ -371,12 +371,21 @@ public partial class SkirmishAI : Node
         if (!economy.CanAfford(data.Cost, data.SecondaryCost))
             return;
 
-        // Place near base with offset
-        FixedVector2 buildPos = new FixedVector2(
-            _basePosition.X + FixedPoint.FromInt((_totalTicksElapsed / 1000) % 10 - 5),
-            _basePosition.Y + FixedPoint.FromInt((_totalTicksElapsed / 500) % 10 - 5));
+        // Try a small grid of candidate positions near the base and pick the first free cell
+        int baseX = _basePosition.X.ToInt();
+        int baseY = _basePosition.Y.ToInt();
 
-        _economyManager?.TryBuildBuilding(PlayerId, data);
+        // Offset pattern: ring outward from base so buildings don't stack
+        int step = (int)(_totalTicksElapsed / 500) % 12;
+        int[] offsets = [-6, -4, -2, 0, 2, 4, 6, -8, 8, -10, 10, 0];
+        int dx = offsets[step % offsets.Length];
+        int dy = offsets[(step + 3) % offsets.Length];
+
+        int gridX = baseX + dx;
+        int gridY = baseY + dy;
+
+        // PlaceBuildingForAI deducts cost and places the building atomically
+        _buildingPlacer.PlaceBuildingForAI(factionBuildingId, PlayerId, gridX, gridY);
     }
 
     // ── Event Handlers ───────────────────────────────────────────────

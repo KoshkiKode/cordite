@@ -21,7 +21,7 @@
       "starting_cordite": 3000,
       "ai_difficulty": 0,
       "difficulty_label": "Easy",
-      "twist": "Windrunners are stealthy when stationary \u2014 hold them in position to relay targeting data without being spotted.",
+      "twist": "Windrunners are stealthy when stationary — hold them in position to relay targeting data without being spotted.",
       "win_condition": "kill_all_units",
       "unlocks_buildings": [
         "valkyr_refinery",
@@ -50,7 +50,7 @@
       "id": "valkyr_02",
       "number": 2,
       "name": "Border War",
-      "briefing": "Kragmore has responded with armoured columns. Hold the frontier using aerial assets. Kragmore Mole Rat sappers will attempt to slip through under stealth \u2014 keep Kestrel detector jets on patrol to expose them before they reach your positions.",
+      "briefing": "Kragmore has responded with armoured columns. Hold the frontier using aerial assets. Kragmore Mole Rat sappers will attempt to slip through under stealth — keep Kestrel detector jets on patrol to expose them before they reach your positions.",
       "map": "iron_ridge",
       "player_faction": "valkyr",
       "enemy_factions": [
@@ -64,7 +64,7 @@
       "starting_cordite": 3500,
       "ai_difficulty": 1,
       "difficulty_label": "Normal",
-      "twist": "Kragmore will push armour from two directions at the 5-minute mark while Mole Rat sappers attempt to blow the ridge from beneath. Kestrel jets detect them \u2014 don't leave the ridge unpatrolled.",
+      "twist": "Kragmore will push armour from two directions at the 5-minute mark while Mole Rat sappers attempt to blow the ridge from beneath. Kestrel jets detect them — don't leave the ridge unpatrolled.",
       "win_condition": "destroy_hq",
       "requires_mission": "valkyr_01",
       "unlocks_buildings": [
@@ -81,7 +81,7 @@
           "required": true
         },
         {
-          "type": "destroy_building_type",
+          "type": "destroy_unit_type",
           "label": "Intercept Kragmore Mole Rats",
           "target_id": "kragmore_mole_rat",
           "count": 3,
@@ -109,7 +109,7 @@
       "starting_cordite": 4000,
       "ai_difficulty": 1,
       "difficulty_label": "Normal",
-      "twist": "Ironmarch Signal Trucks jam targeting data \u2014 destroy them first or your aircraft strike accuracy will suffer.",
+      "twist": "Ironmarch Signal Trucks jam targeting data — destroy them first or your aircraft strike accuracy will suffer.",
       "win_condition": "destroy_hq",
       "requires_mission": "valkyr_02",
       "unlocks_buildings": [
@@ -117,15 +117,15 @@
       ],
       "typed_objectives": [
         {
-          "type": "build_building",
+          "type": "maintain_unit_type",
           "label": "Deploy 3 Overwatch Drones",
-          "target_id": "valkyr_overwatch_drone_tower",
+          "target_id": "valkyr_overwatch_drone",
           "count": 3,
           "ticks": 0,
           "required": true
         },
         {
-          "type": "destroy_building_type",
+          "type": "destroy_unit_type",
           "label": "Destroy Ironmarch FOB trucks",
           "target_id": "ironmarch_fob_truck",
           "count": 2,
@@ -138,7 +138,7 @@
       "id": "valkyr_04",
       "number": 4,
       "name": "Storm Warning",
-      "briefing": "Stormrend has entered the war. Their lightning-fast raids are disrupting Valkyr supply lines. Stormrend Flicker Mines are hidden along the supply routes \u2014 use Overwatch Drones to sweep ahead of each convoy.",
+      "briefing": "Stormrend has entered the war. Their lightning-fast raids are disrupting Valkyr supply lines. Stormrend Flicker Mines are hidden along the supply routes — use Overwatch Drones to sweep ahead of each convoy.",
       "map": "six_fronts",
       "player_faction": "valkyr",
       "enemy_factions": [
@@ -153,7 +153,7 @@
       "starting_cordite": 4500,
       "ai_difficulty": 1,
       "difficulty_label": "Normal",
-      "twist": "Stormrend raids supply nodes every 3 minutes, using Flicker Mines as a screen. Overwatch Drones can spot them \u2014 but the Drones themselves are soft targets, so keep escort aircraft close.",
+      "twist": "Stormrend raids supply nodes every 3 minutes, using Flicker Mines as a screen. Overwatch Drones can spot them — but the Drones themselves are soft targets, so keep escort aircraft close.",
       "win_condition": "destroy_hq",
       "requires_mission": "valkyr_03",
       "unlocks_buildings": [
@@ -169,7 +169,7 @@
           "required": true
         },
         {
-          "type": "destroy_building_type",
+          "type": "destroy_unit_type",
           "label": "Destroy Stormrend Razorwind squadrons",
           "target_id": "stormrend_thunderjaw",
           "count": 3,
@@ -182,7 +182,7 @@
       "id": "valkyr_05",
       "number": 5,
       "name": "The Naval Threat",
-      "briefing": "Kragmore dreadnoughts are blockading Valkyr island outposts. The navy must be neutralised. Deploy Depth Hunter submarines to attack from below while the surface fleet engages \u2014 and use Tempest Frigates to detect the Kragmore Deep Bore stealth submarines lurking in the straits.",
+      "briefing": "Kragmore dreadnoughts are blockading Valkyr island outposts. The navy must be neutralised. Deploy Depth Hunter submarines to attack from below while the surface fleet engages — and use Tempest Frigates to detect the Kragmore Deep Bore stealth submarines lurking in the straits.",
       "map": "archipelago",
       "player_faction": "valkyr",
       "enemy_factions": [
@@ -197,7 +197,7 @@
       "starting_cordite": 5000,
       "ai_difficulty": 2,
       "difficulty_label": "Hard",
-      "twist": "Kragmore Deep Bore stealth submarines are invisible without a Tempest Frigate in range. Deploy at least one Frigate before advancing into the straits \u2014 the Deep Bores will ambush unescorted ships.",
+      "twist": "Kragmore Deep Bore stealth submarines are invisible without a Tempest Frigate in range. Deploy at least one Frigate before advancing into the straits — the Deep Bores will ambush unescorted ships.",
       "win_condition": "destroy_hq",
       "requires_mission": "valkyr_04",
       "unlocks_buildings": [
@@ -206,9 +206,9 @@
       ],
       "typed_objectives": [
         {
-          "type": "destroy_building_type",
+          "type": "destroy_unit_type",
           "label": "Destroy all Kragmore naval units",
-          "target_id": "kragmore_deep_bore_sub",
+          "target_id": "kragmore_deep_bore",
           "count": 3,
           "ticks": 0,
           "required": true
@@ -261,7 +261,7 @@
         {
           "type": "maintain_unit_type",
           "label": "Maintain Overwatch Drone coverage",
-          "target_id": "valkyr_overwatch_drone_tower",
+          "target_id": "valkyr_overwatch_drone",
           "count": 3,
           "ticks": 0,
           "required": true
@@ -272,7 +272,7 @@
       "id": "valkyr_07",
       "number": 7,
       "name": "The Betrayal",
-      "briefing": "Intelligence reveals Arcloft has been selling targeting data to all factions. The Arcloft relay tower must be silenced. Arcloft Vigilant detector jets patrol every approach \u2014 use Windrunner scouts to move stealthed to the relay before committing the strike package.",
+      "briefing": "Intelligence reveals Arcloft has been selling targeting data to all factions. The Arcloft relay tower must be silenced. Arcloft Vigilant detector jets patrol every approach — use Windrunner scouts to move stealthed to the relay before committing the strike package.",
       "map": "crossroads",
       "player_faction": "valkyr",
       "enemy_factions": [
@@ -287,7 +287,7 @@
       "starting_cordite": 4000,
       "ai_difficulty": 2,
       "difficulty_label": "Hard",
-      "twist": "Arcloft Vigilant jets are detector aircraft \u2014 they will instantly reveal any moving Windrunner. Use stationary stealth positioning: advance Windrunners one at a time, holding still to stay hidden between movements.",
+      "twist": "Arcloft Vigilant jets are detector aircraft — they will instantly reveal any moving Windrunner. Use stationary stealth positioning: advance Windrunners one at a time, holding still to stay hidden between movements.",
       "win_condition": "destroy_hq",
       "requires_mission": "valkyr_06",
       "unlocks_buildings": [
@@ -305,7 +305,7 @@
         {
           "type": "destroy_building_type",
           "label": "Destroy the Arcloft Aether Relay",
-          "target_id": "arcloft_relay_tower",
+          "target_id": "arcloft_orbital_relay",
           "count": 1,
           "ticks": 0,
           "required": true
@@ -336,7 +336,7 @@
       "starting_cordite": 5500,
       "ai_difficulty": 2,
       "difficulty_label": "Hard",
-      "twist": "Ironmarch AA batteries cover the approaches \u2014 use Interceptors to suppress defences before the main strike.",
+      "twist": "Ironmarch AA batteries cover the approaches — use Interceptors to suppress defences before the main strike.",
       "win_condition": "destroy_hq",
       "requires_mission": "valkyr_07",
       "unlocks_buildings": [],
@@ -355,7 +355,7 @@
       "id": "valkyr_09",
       "number": 9,
       "name": "The Six Fronts",
-      "briefing": "All six factions converge on the Cordite Nexus. Valkyr must seize the skies above it and deny all others access. Overwatch Drones and Kestrel jets establish a total detection net \u2014 nothing approaches the Nexus without Valkyr knowing first.",
+      "briefing": "All six factions converge on the Cordite Nexus. Valkyr must seize the skies above it and deny all others access. Overwatch Drones and Kestrel jets establish a total detection net — nothing approaches the Nexus without Valkyr knowing first.",
       "map": "six_fronts",
       "player_faction": "valkyr",
       "enemy_factions": [
@@ -373,7 +373,7 @@
       "starting_cordite": 6000,
       "ai_difficulty": 2,
       "difficulty_label": "Hard",
-      "twist": "Arcloft Phantom Subs, Kragmore Mole Rats, and Stormrend Riptide Subs will each attempt a stealth approach. All other factions begin in full war with each other \u2014 but will unite against whoever controls the Nexus.",
+      "twist": "Arcloft Phantom Subs, Kragmore Mole Rats, and Stormrend Riptide Subs will each attempt a stealth approach. All other factions begin in full war with each other — but will unite against whoever controls the Nexus.",
       "win_condition": "destroy_hq",
       "requires_mission": "valkyr_08",
       "unlocks_buildings": [],
@@ -381,7 +381,7 @@
         {
           "type": "maintain_unit_type",
           "label": "Control airspace with Overwatch Drones",
-          "target_id": "valkyr_overwatch_drone_tower",
+          "target_id": "valkyr_overwatch_drone",
           "count": 3,
           "ticks": 0,
           "required": true

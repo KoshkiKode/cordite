@@ -65,6 +65,26 @@ public sealed class PlayerEconomy
         TotalCorditeIncome += amount.ToInt();
     }
 
+    /// <summary>
+    /// Sets the cordite balance to an exact value, bypassing income tracking.
+    /// Used only when restoring saved state.
+    /// </summary>
+    public void SetCordite(FixedPoint amount)
+    {
+        Cordite = amount < FixedPoint.Zero ? FixedPoint.Zero : amount;
+    }
+
+    /// <summary>
+    /// Sets the voltaic charge to an exact value, clamped to [0, VCCap].
+    /// Used only when restoring saved state.
+    /// </summary>
+    public void SetVC(FixedPoint amount)
+    {
+        VoltaicCharge = amount < FixedPoint.Zero ? FixedPoint.Zero
+                      : amount > VCCap          ? VCCap
+                      : amount;
+    }
+
     public void AddVC(FixedPoint amount)
     {
         VoltaicCharge = VoltaicCharge + amount;

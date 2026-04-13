@@ -117,6 +117,58 @@ public partial class BuildingPlacer : Node
     public IList<BuildingInstance> GetAllBuildings() => _buildings.Values;
 
     /// <summary>
+    /// Places a building for an AI player without going through the cursor/ghost system.
+    /// Deducts the resource cost, creates the BuildingInstance, adds it to the scene,
+    /// and reserves its footprint in the occupancy grid.
+    /// Returns <c>true</c> if the building was placed; <c>false</c> if the position is
+    /// occupied, the player cannot afford it, or the building type is unknown.
+    /// </summary>
+    public bool PlaceBuildingForAI(string buildingTypeId, int playerId, int gridX, int gridY)
+    {
+        if (_buildingRegistry is null || _economyManager is null) return false;
+        if (!_buildingRegistry.HasBuilding(buildingTypeId)) return false;
+
+        BuildingData data = _buildingRegistry.GetBuilding(buildingTypeId);
+
+        // Reject if the footprint is already occupied
+        if (_occupancyGrid is not null &&
+            !_occupancyGrid.IsFootprintFree(gridX, gridY, data.FootprintWidth, data.FootprintHeight))
+            return false;
+
+        // Deduct cost — rejects if not affordable
+        if (!_economyManager.TryBuildBuilding(playerId, data))
+            return false;
+
+        int buildingId = _nextBuildingId++;
+
+        BuildingModelEntry? modelEntry = _buildingManifest?.HasEntry(buildingTypeId) == true
+            ? _buildingManifest.GetEntry(buildingTypeId)
+            : null;
+
+        var instance = new BuildingInstance();
+        instance.Initialize(buildingId, buildingTypeId, data, playerId, gridX, gridY, modelEntry);
+
+        if (_terrainRenderer is not null)
+        {
+            float terrainY = _terrainRenderer.GetElevationAtWorld(gridX, gridY);
+            instance.Position = new Vector3(gridX, terrainY, gridY);
+        }
+
+        AddChild(instance);
+        _buildings.Add(buildingId, instance);
+
+        _occupancyGrid?.OccupyFootprint(
+            gridX, gridY,
+            data.FootprintWidth, data.FootprintHeight,
+            OccupancyType.Building, buildingId, playerId);
+
+        EventBus.Instance?.EmitBuildingPlaced(instance);
+
+        GD.Print($"[BuildingPlacer] AI placed {buildingTypeId} (id={buildingId}) at ({gridX}, {gridY}) for player {playerId}.");
+        return true;
+    }
+
+    /// <summary>
     /// Registers a building that was created and placed externally (e.g. a pre-placed
     /// HQ spawned by <see cref="CorditeWars.Game.GameSession"/> before the BuildingPlacer
     /// was initialised) so it appears in <see cref="GetAllBuildings"/> queries used by

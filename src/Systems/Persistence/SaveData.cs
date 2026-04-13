@@ -17,6 +17,7 @@ public sealed class SaveGameData
     public int GameSpeed { get; init; } = 1;
     public bool FogOfWar { get; init; } = true;
     public int StartingCordite { get; init; } = 5000;
+    public string WinCondition { get; init; } = "DestroyHQ";
 
     public PlayerSaveData[] Players { get; init; } = [];
     public UnitSaveData[] Units { get; init; } = [];

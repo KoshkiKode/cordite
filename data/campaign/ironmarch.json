@@ -8,7 +8,7 @@
       "id": "ironmarch_01",
       "number": 1,
       "name": "Forward Deployment",
-      "briefing": "Establish a FOB in contested territory before any other faction can claim it. Deploy a Signal Truck immediately \u2014 Stormrend stealth scouts are already in the field and your FOB will be attacked the moment it appears on their radar.",
+      "briefing": "Establish a FOB in contested territory before any other faction can claim it. Deploy a Signal Truck immediately — Stormrend stealth scouts are already in the field and your FOB will be attacked the moment it appears on their radar.",
       "map": "crossroads",
       "player_faction": "ironmarch",
       "enemy_factions": [
@@ -23,7 +23,7 @@
       "starting_cordite": 3000,
       "ai_difficulty": 0,
       "difficulty_label": "Easy",
-      "twist": "Stormrend Flicker Mines are invisible without a Signal Truck in range \u2014 the FOB will be surrounded by unseen mines if the Signal Truck is not deployed first.",
+      "twist": "Stormrend Flicker Mines are invisible without a Signal Truck in range — the FOB will be surrounded by unseen mines if the Signal Truck is not deployed first.",
       "win_condition": "kill_all_units",
       "unlocks_buildings": [
         "ironmarch_refinery",
@@ -31,7 +31,7 @@
       ],
       "typed_objectives": [
         {
-          "type": "build_building",
+          "type": "maintain_unit_type",
           "label": "Deploy the FOB Truck",
           "target_id": "ironmarch_fob_truck",
           "count": 1,
@@ -60,7 +60,7 @@
       "id": "ironmarch_02",
       "number": 2,
       "name": "The Road to War",
-      "briefing": "Build a rapid road network to rush reinforcements to the front. Kragmore Dozer units are tasked with destroying the road \u2014 the Signal Truck's radar will detect their approach before they reach demolition range.",
+      "briefing": "Build a rapid road network to rush reinforcements to the front. Kragmore Dozer units are tasked with destroying the road — the Signal Truck's radar will detect their approach before they reach demolition range.",
       "map": "iron_ridge",
       "player_faction": "ironmarch",
       "enemy_factions": [
@@ -75,7 +75,7 @@
       "starting_cordite": 3500,
       "ai_difficulty": 1,
       "difficulty_label": "Normal",
-      "twist": "Kragmore will send both Dozer units and stealth Mole Rat sappers to destroy the roads. Dozers are visible \u2014 Mole Rats are not. The Signal Truck can detect them both.",
+      "twist": "Kragmore will send both Dozer units and stealth Mole Rat sappers to destroy the roads. Dozers are visible — Mole Rats are not. The Signal Truck can detect them both.",
       "win_condition": "destroy_hq",
       "requires_mission": "ironmarch_01",
       "unlocks_buildings": [
@@ -86,7 +86,7 @@
         {
           "type": "build_building",
           "label": "Construct 3 Road sections",
-          "target_id": "ironmarch_road",
+          "target_id": "ironmarch_forward_assembly",
           "count": 3,
           "ticks": 0,
           "required": true
@@ -105,7 +105,7 @@
       "id": "ironmarch_03",
       "number": 3,
       "name": "Trench Warfare",
-      "briefing": "Valkyr air power is devastating Ironmarch advance units. Dig in and hold. Valkyr Windrunner spotters are stealthed infantry relaying targeting data to the aircraft \u2014 the Signal Truck's radar jam will disrupt their communications.",
+      "briefing": "Valkyr air power is devastating Ironmarch advance units. Dig in and hold. Valkyr Windrunner spotters are stealthed infantry relaying targeting data to the aircraft — the Signal Truck's radar jam will disrupt their communications.",
       "map": "dust_bowl",
       "player_faction": "ironmarch",
       "enemy_factions": [
@@ -121,7 +121,7 @@
       "starting_cordite": 4000,
       "ai_difficulty": 1,
       "difficulty_label": "Normal",
-      "twist": "Valkyr Windrunners are stealth infantry \u2014 they are invisible without a Signal Truck in range. Without them jammed, every airstrike hits with perfect accuracy. Bastion probes from the south while Valkyr attacks from above.",
+      "twist": "Valkyr Windrunners are stealth infantry — they are invisible without a Signal Truck in range. Without them jammed, every airstrike hits with perfect accuracy. Bastion probes from the south while Valkyr attacks from above.",
       "win_condition": "destroy_hq",
       "requires_mission": "ironmarch_02",
       "unlocks_buildings": [
@@ -129,7 +129,7 @@
       ],
       "typed_objectives": [
         {
-          "type": "build_building",
+          "type": "maintain_unit_type",
           "label": "Build 4 Fieldwork Walls",
           "target_id": "ironmarch_fieldwork_wall",
           "count": 4,
@@ -145,7 +145,7 @@
           "required": true
         },
         {
-          "type": "destroy_building_type",
+          "type": "destroy_unit_type",
           "label": "Shoot down 6 Valkyr aircraft",
           "target_id": "valkyr_windrunner",
           "count": 6,
@@ -180,9 +180,9 @@
       ],
       "typed_objectives": [
         {
-          "type": "destroy_building_type",
+          "type": "destroy_unit_type",
           "label": "Breach the Bastion outer wall",
-          "target_id": "bastion_turret",
+          "target_id": "bastion_bastion_turret",
           "count": 3,
           "ticks": 0,
           "required": true
@@ -201,7 +201,7 @@
       "id": "ironmarch_05",
       "number": 5,
       "name": "Sea Crossing",
-      "briefing": "Island resources require amphibious assault. Ironmarch must adapt. Deploy Trench Diver stealth submarines ahead of the landing barge fleet \u2014 they can lay underwater mine anchors to block Valkyr naval interference before the assault goes in.",
+      "briefing": "Island resources require amphibious assault. Ironmarch must adapt. Deploy Trench Diver stealth submarines ahead of the landing barge fleet — they can lay underwater mine anchors to block Valkyr naval interference before the assault goes in.",
       "map": "archipelago",
       "player_faction": "ironmarch",
       "enemy_factions": [
@@ -216,7 +216,7 @@
       "starting_cordite": 4500,
       "ai_difficulty": 2,
       "difficulty_label": "Hard",
-      "twist": "Valkyr Tempest Frigates carry stealth-detection sonar \u2014 they will spot Trench Divers within range. Destroy the Frigates first, then move the Trench Divers into position to lay the minefield.",
+      "twist": "Valkyr Tempest Frigates carry stealth-detection sonar — they will spot Trench Divers within range. Destroy the Frigates first, then move the Trench Divers into position to lay the minefield.",
       "win_condition": "destroy_hq",
       "requires_mission": "ironmarch_04",
       "unlocks_buildings": [
@@ -227,7 +227,7 @@
         {
           "type": "maintain_unit_type",
           "label": "Keep submarines active",
-          "target_id": "ironmarch_trench_diver_sub",
+          "target_id": "ironmarch_trench_diver",
           "count": 2,
           "ticks": 0,
           "required": true
@@ -254,7 +254,7 @@
       "id": "ironmarch_06",
       "number": 6,
       "name": "Attrition",
-      "briefing": "Three factions converge. The supply lines must hold while the front advances. Signal Trucks are the backbone of the forward operations network \u2014 they detect stealth infiltrators targeting the supply trucks before they can strike.",
+      "briefing": "Three factions converge. The supply lines must hold while the front advances. Signal Trucks are the backbone of the forward operations network — they detect stealth infiltrators targeting the supply trucks before they can strike.",
       "map": "six_fronts",
       "player_faction": "ironmarch",
       "enemy_factions": [
@@ -271,7 +271,7 @@
       "starting_cordite": 5500,
       "ai_difficulty": 2,
       "difficulty_label": "Hard",
-      "twist": "Stormrend Flicker Mines, Kragmore Mole Rats, and Valkyr Windrunners will each target the supply trucks. Signal Trucks detect all of them \u2014 but are fragile and will themselves become priority targets.",
+      "twist": "Stormrend Flicker Mines, Kragmore Mole Rats, and Valkyr Windrunners will each target the supply trucks. Signal Trucks detect all of them — but are fragile and will themselves become priority targets.",
       "win_condition": "destroy_hq",
       "requires_mission": "ironmarch_05",
       "unlocks_buildings": [],
@@ -298,7 +298,7 @@
       "id": "ironmarch_07",
       "number": 7,
       "name": "The Signal",
-      "briefing": "An Arcloft surveillance tower has been feeding Ironmarch positions to all enemies. Destroy it. Arcloft Vigilant jets are detector aircraft that reveal anything they fly over \u2014 the Signal Truck's radar jam is the only counter.",
+      "briefing": "An Arcloft surveillance tower has been feeding Ironmarch positions to all enemies. Destroy it. Arcloft Vigilant jets are detector aircraft that reveal anything they fly over — the Signal Truck's radar jam is the only counter.",
       "map": "crossroads",
       "player_faction": "ironmarch",
       "enemy_factions": [
@@ -313,7 +313,7 @@
       "starting_cordite": 4500,
       "ai_difficulty": 2,
       "difficulty_label": "Hard",
-      "twist": "Once the relay is down, Arcloft's overwatch_protocol fails \u2014 without surveillance data, the enemy factions will fight each other. Exploit the chaos. But first, the Vigilant jets must be jammed or they will reveal every move to Stormrend raiders.",
+      "twist": "Once the relay is down, Arcloft's overwatch_protocol fails — without surveillance data, the enemy factions will fight each other. Exploit the chaos. But first, the Vigilant jets must be jammed or they will reveal every move to Stormrend raiders.",
       "win_condition": "destroy_hq",
       "requires_mission": "ironmarch_06",
       "unlocks_buildings": [
@@ -331,7 +331,7 @@
         {
           "type": "destroy_building_type",
           "label": "Destroy the Arcloft Aether Relay",
-          "target_id": "arcloft_relay_tower",
+          "target_id": "arcloft_orbital_relay",
           "count": 1,
           "ticks": 0,
           "required": true
@@ -362,7 +362,7 @@
       "starting_cordite": 5500,
       "ai_difficulty": 2,
       "difficulty_label": "Hard",
-      "twist": "Valkyr Interceptors will harass your armour columns \u2014 deploy anti-air support to protect the advance.",
+      "twist": "Valkyr Interceptors will harass your armour columns — deploy anti-air support to protect the advance.",
       "win_condition": "destroy_hq",
       "requires_mission": "ironmarch_07",
       "unlocks_buildings": [
@@ -383,7 +383,7 @@
       "id": "ironmarch_09",
       "number": 9,
       "name": "The Six Fronts",
-      "briefing": "The Ironmarch war machine has been built for one purpose: this moment. Take the Cordite Nexus. Signal Trucks anchor the forward detection network \u2014 they reveal every stealth infiltrator sent to stop the advance.",
+      "briefing": "The Ironmarch war machine has been built for one purpose: this moment. Take the Cordite Nexus. Signal Trucks anchor the forward detection network — they reveal every stealth infiltrator sent to stop the advance.",
       "map": "six_fronts",
       "player_faction": "ironmarch",
       "enemy_factions": [
@@ -401,7 +401,7 @@
       "starting_cordite": 6000,
       "ai_difficulty": 2,
       "difficulty_label": "Hard",
-      "twist": "Five factions bring stealth assets to the Nexus \u2014 Arcloft Phantom Subs, Kragmore Mole Rats, Stormrend Flicker Mines, Valkyr Windrunners, and Bastion Denial Fields. Ironmarch walls channel the attackers \u2014 Signal Trucks then expose what the walls cannot stop.",
+      "twist": "Five factions bring stealth assets to the Nexus — Arcloft Phantom Subs, Kragmore Mole Rats, Stormrend Flicker Mines, Valkyr Windrunners, and Bastion Denial Fields. Ironmarch walls channel the attackers — Signal Trucks then expose what the walls cannot stop.",
       "win_condition": "destroy_hq",
       "requires_mission": "ironmarch_08",
       "unlocks_buildings": [],
@@ -415,7 +415,7 @@
           "required": true
         },
         {
-          "type": "build_building",
+          "type": "maintain_unit_type",
           "label": "Establish fortified perimeter",
           "target_id": "ironmarch_fieldwork_wall",
           "count": 4,

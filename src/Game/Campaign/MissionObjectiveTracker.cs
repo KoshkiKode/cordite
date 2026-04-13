@@ -11,6 +11,8 @@ public enum ObjectiveType
     MaintainUnitType,
     SurviveTimer,
     DestroyBuildingType,
+    /// <summary>Destroy a specified number of enemy units of the given type.</summary>
+    DestroyUnitType,
     AccumulateCordite,
     /// <summary>A specific unit type must remain alive (count &gt;= 1). Fails if 0 remain.</summary>
     EscortUnit,
@@ -91,6 +93,24 @@ public sealed class MissionObjectiveTracker
         }
     }
 
+    /// <summary>
+    /// Called whenever an enemy unit is destroyed. Advances DestroyUnitType objectives.
+    /// </summary>
+    public void NotifyUnitDestroyed(string unitTypeId)
+    {
+        for (int i = 0; i < _objectives.Count; i++)
+        {
+            var obj = _objectives[i];
+            if (obj.Type == ObjectiveType.DestroyUnitType &&
+                obj.TargetId == unitTypeId && !obj.IsComplete)
+            {
+                obj._destroyedCount++;
+                if (obj._destroyedCount >= obj.Count)
+                    obj.IsComplete = true;
+            }
+        }
+    }
+
     public void Tick(int playerId, MissionSessionContext ctx, ulong currentTick)
     {
         for (int i = 0; i < _objectives.Count; i++)
@@ -118,11 +138,23 @@ public sealed class MissionObjectiveTracker
                 case ObjectiveType.MaintainUnitType:
                 {
                     int count = 0;
+                    // Check mobile units
                     for (int u = 0; u < ctx.AliveUnits.Count; u++)
                     {
                         var unit = ctx.AliveUnits[u];
                         if (unit.PlayerId == playerId && unit.UnitTypeId == obj.TargetId)
                             count++;
+                    }
+                    // Also check buildings (e.g. "keep command_center alive")
+                    if (count < obj.Count)
+                    {
+                        for (int b = 0; b < ctx.AllBuildings.Count; b++)
+                        {
+                            var bldg = ctx.AllBuildings[b];
+                            if (bldg.PlayerId == playerId && bldg.BuildingTypeId == obj.TargetId &&
+                                bldg.Health > FixedPoint.Zero)
+                                count++;
+                        }
                     }
                     if (count >= obj.Count)
                         obj.IsComplete = true;
