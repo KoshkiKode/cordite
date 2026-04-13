@@ -13,6 +13,7 @@ using CorditeWars.Game.Units;
 using CorditeWars.Game.World;
 using CorditeWars.Game.VFX;
 using CorditeWars.Systems.Audio;
+using CorditeWars.Systems.Graphics;
 using CorditeWars.Systems.Networking;
 using CorditeWars.Systems.Pathfinding;
 using CorditeWars.Systems.FogOfWar;
@@ -2681,17 +2682,19 @@ public partial class GameSession : Node
     {
         if (ActiveMap is null) return;
 
+        QualityTier tier = QualityManager.Instance?.CurrentTier ?? QualityTier.Medium;
+
         // Terrain mesh
         _terrainRenderer = new TerrainRenderer();
         _terrainRenderer.Name = "TerrainRenderer";
         AddChild(_terrainRenderer);
-        _terrainRenderer.Generate(ActiveMap);
+        _terrainRenderer.Generate(ActiveMap, tier);
 
-        // Animated water planes for rivers / water bodies
+        // Animated (or static, on Potato/Low) water planes for rivers / water bodies
         _waterRenderer = new WaterRenderer();
         _waterRenderer.Name = "WaterRenderer";
         AddChild(_waterRenderer);
-        _waterRenderer.Generate(ActiveMap, _terrainRenderer);
+        _waterRenderer.Generate(ActiveMap, _terrainRenderer, tier);
 
         // Decorative props and structures (trees, rocks, ruins, etc.)
         bool hasProps = (ActiveMap.Props.Length > 0) || (ActiveMap.Structures.Length > 0);
@@ -2711,7 +2714,7 @@ public partial class GameSession : Node
             _propPlacer = new PropPlacer();
             _propPlacer.Name = "PropPlacer";
             AddChild(_propPlacer);
-            _propPlacer.PlaceAll(ActiveMap, terrainManifest, _terrainRenderer, _occupancyGrid);
+            _propPlacer.PlaceAll(ActiveMap, terrainManifest, _terrainRenderer, _occupancyGrid, tier);
         }
     }
 
