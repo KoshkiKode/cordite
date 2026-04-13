@@ -1475,6 +1475,13 @@ public partial class GameSession : Node
         // Advance any DestroyBuildingType campaign objectives
         _objectiveTracker?.NotifyBuildingDestroyed(b.BuildingTypeId);
 
+        // Remove the ghost for this building from all players' fog snapshots
+        if (_playerFogSnapshots != null)
+        {
+            for (int p = 0; p < _playerFogSnapshots.Length; p++)
+                _playerFogSnapshots[p].OnEntityDestroyed(b.BuildingId);
+        }
+
         // Remove from HQ tracking if this was a player's Command Centre
         if (_playersWithInitialHQ.Contains(b.PlayerId) &&
             _playerHQNodes.TryGetValue(b.PlayerId, out var hqNode) &&
@@ -1597,6 +1604,56 @@ public partial class GameSession : Node
         for (int p = 0; p < _playerFogs.Length; p++)
         {
             _visionSystem.UpdateVision(_playerFogs[p], _terrainGrid, _visionComponents);
+        }
+
+        // Update FogSnapshot ghost entities for each player based on the refreshed fog grids.
+        // After every vision update we reconcile each player's "last-known" building ghosts:
+        //   • Visible cell  → remove any stale ghost (the player now sees the real building).
+        //   • Explored cell → add/update a ghost (the player has been there but can't see it now).
+        //   • Unexplored    → ignore (the player has never seen this area).
+        if (_playerFogSnapshots != null && _buildingPlacer != null)
+        {
+            var allBuildings = _buildingPlacer.GetAllBuildings();
+
+            for (int p = 0; p < _playerFogs.Length; p++)
+            {
+                FogGrid fog = _playerFogs[p];
+                FogSnapshot snapshot = _playerFogSnapshots[p];
+                int ownerPlayerId = fog.PlayerId;
+
+                for (int b = 0; b < allBuildings.Count; b++)
+                {
+                    var bldg = allBuildings[b];
+                    if (bldg.PlayerId == ownerPlayerId) continue; // own buildings are never ghosted
+
+                    FogVisibility vis = fog.GetVisibility(bldg.GridX, bldg.GridY);
+
+                    if (vis == FogVisibility.Visible)
+                    {
+                        // Player currently sees this cell — show the real building, remove ghost
+                        snapshot.OnEntityBecameVisible(bldg.BuildingId);
+                    }
+                    else if (vis == FogVisibility.Explored)
+                    {
+                        // Previously visited but no longer visible — keep/update the ghost
+                        FixedPoint healthPct = bldg.MaxHealth > FixedPoint.Zero
+                            ? bldg.Health / bldg.MaxHealth
+                            : FixedPoint.Zero;
+
+                        snapshot.OnEntityBecameHidden(
+                            bldg.BuildingId,
+                            bldg.PlayerId,
+                            new FixedVector2(
+                                FixedPoint.FromInt(bldg.GridX),
+                                FixedPoint.FromInt(bldg.GridY)),
+                            bldg.BuildingTypeId,
+                            healthPct,
+                            isBuilding: true,
+                            currentTick);
+                    }
+                    // Unexplored: player has never seen this area — no ghost
+                }
+            }
         }
     }
 

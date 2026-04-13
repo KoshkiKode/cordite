@@ -281,28 +281,31 @@ public class CommandSerializerTests
     [Fact]
     public void SerializeDeserializeChecksum_RoundTrip()
     {
+        int playerId = 1;
         ulong tick = 12345678UL;
         uint checksum = 0xDEADBEEFu;
 
-        byte[] bytes = CommandSerializer.SerializeChecksum(tick, checksum);
-        var (restoredTick, restoredChecksum) = CommandSerializer.DeserializeChecksum(bytes);
+        byte[] bytes = CommandSerializer.SerializeChecksum(playerId, tick, checksum);
+        var (restoredPlayerId, restoredTick, restoredChecksum) = CommandSerializer.DeserializeChecksum(bytes);
 
+        Assert.Equal(playerId, restoredPlayerId);
         Assert.Equal(tick, restoredTick);
         Assert.Equal(checksum, restoredChecksum);
     }
 
     [Fact]
-    public void SerializeChecksum_ProducesTwelveBytes()
+    public void SerializeChecksum_ProducesSixteenBytes()
     {
-        byte[] bytes = CommandSerializer.SerializeChecksum(1UL, 0u);
-        Assert.Equal(12, bytes.Length);
+        byte[] bytes = CommandSerializer.SerializeChecksum(0, 1UL, 0u);
+        Assert.Equal(16, bytes.Length);
     }
 
     [Fact]
     public void SerializeDeserializeChecksum_ZeroValues_RoundTrip()
     {
-        byte[] bytes = CommandSerializer.SerializeChecksum(0UL, 0u);
-        var (tick, checksum) = CommandSerializer.DeserializeChecksum(bytes);
+        byte[] bytes = CommandSerializer.SerializeChecksum(0, 0UL, 0u);
+        var (playerId, tick, checksum) = CommandSerializer.DeserializeChecksum(bytes);
+        Assert.Equal(0, playerId);
         Assert.Equal(0UL, tick);
         Assert.Equal(0u, checksum);
     }
@@ -310,8 +313,9 @@ public class CommandSerializerTests
     [Fact]
     public void SerializeDeserializeChecksum_MaxValues_RoundTrip()
     {
-        byte[] bytes = CommandSerializer.SerializeChecksum(ulong.MaxValue, uint.MaxValue);
-        var (tick, checksum) = CommandSerializer.DeserializeChecksum(bytes);
+        byte[] bytes = CommandSerializer.SerializeChecksum(int.MaxValue, ulong.MaxValue, uint.MaxValue);
+        var (playerId, tick, checksum) = CommandSerializer.DeserializeChecksum(bytes);
+        Assert.Equal(int.MaxValue, playerId);
         Assert.Equal(ulong.MaxValue, tick);
         Assert.Equal(uint.MaxValue, checksum);
     }

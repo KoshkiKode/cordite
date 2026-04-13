@@ -122,13 +122,8 @@ public partial class LockstepManager : Node
             _confirmedTicks[LocalPlayerId][tick] = true;
         }
 
-        // Send an empty command packet as tick confirmation to all peers.
-        // We encode it as a special "NOP" — a command packet with just the header
-        // indicating playerId + tick + no payload, signaling the tick is complete.
-        byte[] confirmPacket = CommandSerializer.SerializeChecksum(tick, 0);
-        // Reuse the checksum channel concept but with a dedicated confirm message.
-        // Actually, let's send a proper empty-tick-confirm via the command channel.
-        // We'll encode it as: [4 bytes playerId] [8 bytes tick] [0xFF sentinel]
+        // Send a tick-confirm sentinel to all peers via the command channel:
+        // [4 bytes playerId] [8 bytes tick] [0xFF sentinel]
         byte[] data = new byte[13];
         WriteInt(data, 0, LocalPlayerId);
         WriteUlong(data, 4, tick);
@@ -194,8 +189,9 @@ public partial class LockstepManager : Node
     {
         _localChecksums[tick] = checksum;
 
-        // Broadcast to all peers
-        byte[] data = CommandSerializer.SerializeChecksum(tick, checksum);
+        // Broadcast to all peers — include LocalPlayerId so the receiver can store
+        // under the correct player slot without needing a separate peer→player map.
+        byte[] data = CommandSerializer.SerializeChecksum(LocalPlayerId, tick, checksum);
         _transport?.BroadcastChecksum(data);
 
         // Compare against any already-received remote checksums for this tick
@@ -256,17 +252,19 @@ public partial class LockstepManager : Node
 
     private void OnChecksumPacketReceived(int senderPeerId, byte[] data)
     {
-        var (tick, checksum) = CommandSerializer.DeserializeChecksum(data);
+        var (sendingPlayerId, tick, checksum) = CommandSerializer.DeserializeChecksum(data);
 
-        // Map senderPeerId to playerId — we need to find which player slot this peer occupies.
-        // For simplicity, store by senderPeerId and check against all.
-        // In practice, the LobbyManager maintains the peerId→playerId mapping.
-        // Here we store in a generic bucket and compare.
-        if (!_remoteChecksums.ContainsKey(senderPeerId))
-        {
-            _remoteChecksums[senderPeerId] = new SortedList<ulong, uint>();
-        }
-        _remoteChecksums[senderPeerId][tick] = checksum;
+        // Validate: only accept checksums from known player slots
+        if (sendingPlayerId < 0 || sendingPlayerId >= PlayerCount)
+            return;
+
+        // Store under the player ID embedded in the packet, not the network peer ID.
+        // This ensures desync comparison always uses consistent keys regardless of
+        // how the transport assigns peer IDs.
+        if (!_remoteChecksums.ContainsKey(sendingPlayerId))
+            _remoteChecksums[sendingPlayerId] = new SortedList<ulong, uint>();
+
+        _remoteChecksums[sendingPlayerId][tick] = checksum;
 
         CheckForDesync(tick);
     }

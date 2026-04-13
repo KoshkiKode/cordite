@@ -71,6 +71,15 @@ public partial class SkirmishAI : Node
     // Expanding->Aggression transition: Easy=never, Medium=14400(~8min), Hard=12600(~7min)
     private int _aggressionStartTick;
 
+    // ── Production tracking ──────────────────────────────────────────
+
+    // Maps building ID → AI ticks remaining until the in-progress unit is ready.
+    // One unit per building; key absent means the building is idle.
+    private readonly SortedList<int, int> _productionTimers = new();
+
+    // Maps building ID → unit type ID currently being produced.
+    private readonly SortedList<int, string> _productionUnitType = new();
+
     // ── State ────────────────────────────────────────────────────────
 
     private FixedVector2 _basePosition;
@@ -317,41 +326,64 @@ public partial class SkirmishAI : Node
 
     private void ProduceUnits(PlayerEconomy economy)
     {
-        // AI produces units from all production buildings
+        // AI produces units from all production buildings, respecting each unit's BuildTime.
+        // Each building queues at most one unit at a time. The cost is deducted when
+        // production starts; the unit spawns only when the build-time timer expires.
         if (_buildingPlacer is null || _unitDataRegistry is null) return;
 
         var buildings = _buildingPlacer.GetAllBuildings();
+
+        // ── Step 1: Tick down in-progress production and spawn completed units ──
+        for (int i = 0; i < buildings.Count; i++)
+        {
+            var building = buildings[i];
+            if (building.PlayerId != PlayerId) continue;
+            if (!_productionTimers.ContainsKey(building.BuildingId)) continue;
+
+            _productionTimers[building.BuildingId]--;
+
+            if (_productionTimers[building.BuildingId] <= 0)
+            {
+                // Production complete — spawn unit
+                _productionTimers.Remove(building.BuildingId);
+                if (_productionUnitType.TryGetValue(building.BuildingId, out string completedUnitId))
+                {
+                    _productionUnitType.Remove(building.BuildingId);
+                    _unitSpawner?.SpawnUnit(completedUnitId, FactionId, PlayerId,
+                        building.RallyPoint, FixedPoint.Zero);
+                }
+            }
+        }
+
+        // ── Step 2: Start new production in idle buildings ────────────────────
         for (int i = 0; i < buildings.Count; i++)
         {
             var building = buildings[i];
             if (building.PlayerId != PlayerId) continue;
             if (!building.IsConstructed) continue;
             if (building.Data is null) continue;
-
-            // Check if building can produce units
             if (building.Data.UnlocksUnitIds.Count == 0) continue;
+            if (_productionTimers.ContainsKey(building.BuildingId)) continue; // already producing
 
-            // Find a unit this building can make that we can afford
+            // Find the first affordable unit this building can make
             for (int u = 0; u < building.Data.UnlocksUnitIds.Count; u++)
             {
                 string unitId = building.Data.UnlocksUnitIds[u];
                 if (!_unitDataRegistry.HasUnit(unitId)) continue;
 
                 UnitData unitData = _unitDataRegistry.GetUnitData(unitId);
-                if (economy.CanAfford(unitData.Cost, unitData.SecondaryCost))
+                if (!economy.CanAfford(unitData.Cost, unitData.SecondaryCost)) continue;
+                if (economy.CurrentSupply + unitData.PopulationCost > economy.MaxSupply) continue;
+
+                if (_economyManager?.TryBuildUnit(PlayerId, unitData) == true)
                 {
-                    // Check supply
-                    if (economy.CurrentSupply + unitData.PopulationCost <= economy.MaxSupply)
-                    {
-                        if (_economyManager?.TryBuildUnit(PlayerId, unitData) == true)
-                        {
-                            // Spawn the unit at the building's rally point
-                            FixedVector2 spawnPos = building.RallyPoint;
-                            _unitSpawner?.SpawnUnit(unitId, FactionId, PlayerId, spawnPos, FixedPoint.Zero);
-                        }
-                        break; // One unit per building per AI tick
-                    }
+                    // Deducted cost; now schedule the build timer.
+                    // BuildTime is in seconds; TickInterval ticks = 1 second → timer in AI ticks.
+                    int buildTimeAITicks = Mathf.Max(1, unitData.BuildTime.ToInt());
+                    _productionTimers[building.BuildingId] = buildTimeAITicks;
+                    _productionUnitType[building.BuildingId] = unitId;
                 }
+                break; // One attempt per building per AI tick
             }
         }
     }

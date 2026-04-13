@@ -172,13 +172,16 @@ public static class CommandSerializer
     }
 
     /// <summary>
-    /// Serializes a checksum packet: [8 bytes tick] [4 bytes checksum].
+    /// Serializes a checksum packet: [4 bytes playerId] [8 bytes tick] [4 bytes checksum].
+    /// The player ID is embedded so the receiver can store the checksum under the correct
+    /// player slot without needing a separate peer→player mapping.
     /// </summary>
-    public static byte[] SerializeChecksum(ulong tick, uint checksum)
+    public static byte[] SerializeChecksum(int playerId, ulong tick, uint checksum)
     {
-        var data = new byte[12];
+        var data = new byte[16];
         using var ms = new MemoryStream(data);
         using var w = new BinaryWriter(ms);
+        w.Write(playerId);
         w.Write(tick);
         w.Write(checksum);
         return data;
@@ -187,13 +190,14 @@ public static class CommandSerializer
     /// <summary>
     /// Deserializes a checksum packet.
     /// </summary>
-    public static (ulong tick, uint checksum) DeserializeChecksum(byte[] data)
+    public static (int playerId, ulong tick, uint checksum) DeserializeChecksum(byte[] data)
     {
         using var ms = new MemoryStream(data);
         using var r = new BinaryReader(ms);
+        int playerId = r.ReadInt32();
         ulong tick = r.ReadUInt64();
         uint checksum = r.ReadUInt32();
-        return (tick, checksum);
+        return (playerId, tick, checksum);
     }
 
     // ── Private helpers ─────────────────────────────────────────────
