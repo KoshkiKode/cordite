@@ -172,6 +172,7 @@ public partial class GameSession : Node
     private ulong _lastAutosaveTick;
     private const ulong AutosaveIntervalTicks = 1800;
     private const float TickDeltaSeconds = 1f / 30f; // 30 Hz simulation rate
+    private const int DefaultDepotSupplyCapacity = 20; // Used when registry lookup fails during save restore
 
     /// <summary>
     /// HQ BuildingInstance nodes for each player (keyed by PlayerId).
@@ -263,6 +264,7 @@ public partial class GameSession : Node
                         "maintain_unit_type"    => CorditeWars.Game.Campaign.ObjectiveType.MaintainUnitType,
                         "survive_timer"         => CorditeWars.Game.Campaign.ObjectiveType.SurviveTimer,
                         "destroy_building_type" => CorditeWars.Game.Campaign.ObjectiveType.DestroyBuildingType,
+                        "destroy_unit_type"     => CorditeWars.Game.Campaign.ObjectiveType.DestroyUnitType,
                         "accumulate_cordite"    => CorditeWars.Game.Campaign.ObjectiveType.AccumulateCordite,
                         "escort_unit"           => CorditeWars.Game.Campaign.ObjectiveType.EscortUnit,
                         "defend_position"       => CorditeWars.Game.Campaign.ObjectiveType.DefendPosition,
@@ -711,9 +713,45 @@ public partial class GameSession : Node
                     _persistentSimUnits[su.UnitId] = su;
                 }
             }
+
+            // Handle ReinforcementDrop — spawn units at the target position
+            if (result.SpawnedUnitTypeIds.Count > 0 && _unitSpawner is not null)
+            {
+                string factionId = GetPlayerFactionId(_localPlayerId);
+
+                // Scatter spawn positions in a small ring around the target
+                FixedPoint spawnRadius = FixedPoint.FromInt(3);
+                // Offsets at cardinal directions: N, E, S, W
+                FixedPoint[] offX = [FixedPoint.Zero, spawnRadius,  FixedPoint.Zero, -spawnRadius];
+                FixedPoint[] offY = [spawnRadius,  FixedPoint.Zero, -spawnRadius, FixedPoint.Zero];
+
+                for (int i = 0; i < result.SpawnedUnitTypeIds.Count; i++)
+                {
+                    int idx = i % 4;
+                    FixedVector2 spawnPos = new FixedVector2(
+                        targetPosition.X + offX[idx],
+                        targetPosition.Y + offY[idx]);
+                    _unitSpawner.SpawnUnit(
+                        result.SpawnedUnitTypeIds[i],
+                        factionId,
+                        _localPlayerId,
+                        spawnPos,
+                        facing: FixedPoint.Zero);
+                }
+            }
         }
 
         return result;
+    }
+
+    /// <summary>Returns the faction ID for a player, or an empty string if not found.</summary>
+    private string GetPlayerFactionId(int playerId)
+    {
+        if (ActiveConfig is null) return string.Empty;
+        foreach (var pc in ActiveConfig.PlayerConfigs)
+            if (pc.PlayerId == playerId)
+                return pc.FactionId;
+        return string.Empty;
     }
 
     /// <summary>
@@ -1015,6 +1053,13 @@ public partial class GameSession : Node
                     else
                     {
                         _playerKills++;
+                        // Advance DestroyUnitType campaign objectives for enemy unit deaths
+                        if (_objectiveTracker is not null)
+                        {
+                            string? unitTypeId = _unitSpawner?.GetUnit(destroyedId)?.UnitTypeId;
+                            if (!string.IsNullOrEmpty(unitTypeId))
+                                _objectiveTracker.NotifyUnitDestroyed(unitTypeId);
+                        }
                         // SteamManager.Instance?.RecordUnitsDestroyed(1); // disabled until Steam integration is re-enabled
                     }
                 }
@@ -1428,6 +1473,16 @@ public partial class GameSession : Node
         // and vacate the occupancy grid.
         _buildingPlacer?.OnBuildingDestroyed(b);
 
+        // Advance any DestroyBuildingType campaign objectives
+        _objectiveTracker?.NotifyBuildingDestroyed(b.BuildingTypeId);
+
+        // Remove the ghost for this building from all players' fog snapshots
+        if (_playerFogSnapshots != null)
+        {
+            for (int p = 0; p < _playerFogSnapshots.Length; p++)
+                _playerFogSnapshots[p].OnEntityDestroyed(b.BuildingId);
+        }
+
         // Remove from HQ tracking if this was a player's Command Centre
         if (_playersWithInitialHQ.Contains(b.PlayerId) &&
             _playerHQNodes.TryGetValue(b.PlayerId, out var hqNode) &&
@@ -1551,6 +1606,56 @@ public partial class GameSession : Node
         {
             _visionSystem.UpdateVision(_playerFogs[p], _terrainGrid, _visionComponents);
         }
+
+        // Update FogSnapshot ghost entities for each player based on the refreshed fog grids.
+        // After every vision update we reconcile each player's "last-known" building ghosts:
+        //   • Visible cell  → remove any stale ghost (the player now sees the real building).
+        //   • Explored cell → add/update a ghost (the player has been there but can't see it now).
+        //   • Unexplored    → ignore (the player has never seen this area).
+        if (_playerFogSnapshots != null && _buildingPlacer != null)
+        {
+            var allBuildings = _buildingPlacer.GetAllBuildings();
+
+            for (int p = 0; p < _playerFogs.Length; p++)
+            {
+                FogGrid fog = _playerFogs[p];
+                FogSnapshot snapshot = _playerFogSnapshots[p];
+                int ownerPlayerId = fog.PlayerId;
+
+                for (int b = 0; b < allBuildings.Count; b++)
+                {
+                    var bldg = allBuildings[b];
+                    if (bldg.PlayerId == ownerPlayerId) continue; // own buildings are never ghosted
+
+                    FogVisibility vis = fog.GetVisibility(bldg.GridX, bldg.GridY);
+
+                    if (vis == FogVisibility.Visible)
+                    {
+                        // Player currently sees this cell — show the real building, remove ghost
+                        snapshot.OnEntityBecameVisible(bldg.BuildingId);
+                    }
+                    else if (vis == FogVisibility.Explored)
+                    {
+                        // Previously visited but no longer visible — keep/update the ghost
+                        FixedPoint healthPct = bldg.MaxHealth > FixedPoint.Zero
+                            ? bldg.Health / bldg.MaxHealth
+                            : FixedPoint.Zero;
+
+                        snapshot.OnEntityBecameHidden(
+                            bldg.BuildingId,
+                            bldg.PlayerId,
+                            new FixedVector2(
+                                FixedPoint.FromInt(bldg.GridX),
+                                FixedPoint.FromInt(bldg.GridY)),
+                            bldg.BuildingTypeId,
+                            healthPct,
+                            isBuilding: true,
+                            currentTick);
+                    }
+                    // Unexplored: player has never seen this area — no ghost
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -1654,7 +1759,10 @@ public partial class GameSession : Node
             MatchSeed = data.MatchSeed,
             GameSpeed = data.GameSpeed,
             FogOfWar = data.FogOfWar,
-            StartingCordite = data.StartingCordite
+            StartingCordite = data.StartingCordite,
+            WinCondition = data.WinCondition == nameof(WinCondition.KillAllUnits)
+                ? WinCondition.KillAllUnits
+                : WinCondition.DestroyHQ
         };
 
         ActiveConfig = config;
@@ -1718,21 +1826,28 @@ public partial class GameSession : Node
             PlayerEconomy? economy = _economyManager.GetPlayer(ps.PlayerId);
             if (economy is not null)
             {
-                // Add the difference from starting cordite to match saved value
-                FixedPoint savedCordite = FixedPoint.FromRaw((int)ps.Cordite);
-                FixedPoint diff = savedCordite - economy.Cordite;
-                if (diff > FixedPoint.Zero)
-                    economy.AddCordite(diff);
+                // Set cordite to the exact saved value (not an additive diff)
+                economy.SetCordite(FixedPoint.FromRaw((int)ps.Cordite));
 
-                FixedPoint savedVC = FixedPoint.FromRaw((int)ps.VoltaicCharge);
-                if (savedVC > FixedPoint.Zero)
-                    economy.AddVC(savedVC);
+                // Set VC to the exact saved value
+                economy.SetVC(FixedPoint.FromRaw((int)ps.VoltaicCharge));
 
                 // Restore building counts for reactors/refineries/depots
                 for (int r = 0; r < ps.ReactorCount; r++)
                     economy.RegisterReactor();
                 for (int r = 0; r < ps.RefineryCount; r++)
                     economy.RegisterRefinery();
+
+                // Restore depot supply capacity
+                if (ps.DepotCount > 0)
+                {
+                    string depotBuildingId = $"{ps.FactionId}_supply_depot";
+                    int supplyPerDepot = DefaultDepotSupplyCapacity; // sensible default
+                    if (_buildingRegistry.HasBuilding(depotBuildingId))
+                        supplyPerDepot = _buildingRegistry.GetBuilding(depotBuildingId).SupplyProvided;
+                    for (int d = 0; d < ps.DepotCount; d++)
+                        economy.RegisterDepot(supplyPerDepot);
+                }
             }
 
             // Restore completed upgrades via tech tree
@@ -1781,30 +1896,9 @@ public partial class GameSession : Node
             _harvesterSystem.RegisterCorditeNode(cn.NodeId, nodePos, cn.RemainingCordite);
         }
 
-        // Restore buildings
-        for (int i = 0; i < data.Buildings.Length; i++)
-        {
-            BuildingSaveData bs = data.Buildings[i];
-            _buildingPlacer?.RestoreBuilding(
-                bs.BuildingId,
-                bs.BuildingTypeId,
-                bs.PlayerId,
-                bs.PositionX,
-                bs.PositionY,
-                FixedPoint.FromRaw((int)bs.Health),
-                bs.IsConstructed,
-                FixedPoint.FromRaw((int)bs.ConstructionProgress));
-
-            // Re-register refineries with harvester system
-            if (bs.BuildingTypeId.Contains("refinery", StringComparison.OrdinalIgnoreCase) ||
-                bs.BuildingTypeId.Equals("hq", StringComparison.OrdinalIgnoreCase))
-            {
-                FixedVector2 bldgPos = new FixedVector2(
-                    FixedPoint.FromInt(bs.PositionX),
-                    FixedPoint.FromInt(bs.PositionY));
-                _harvesterSystem.RegisterRefinery(bs.BuildingId, bs.PlayerId, bldgPos);
-            }
-        }
+        // Restore buildings — deferred until after SetupGameplaySystems creates _buildingPlacer
+        // (see the "Restore buildings (deferred)" block below)
+        var pendingBuildings = data.Buildings;
 
         // Restore units
         for (int i = 0; i < data.Units.Length; i++)
@@ -1870,6 +1964,78 @@ public partial class GameSession : Node
 
         // Set up gameplay systems (Selection, Commands, Building, HUD, AI)
         SetupGameplaySystems(config);
+
+        // ── Restore buildings (deferred — requires _buildingPlacer from SetupGameplaySystems) ──
+        for (int i = 0; i < pendingBuildings.Length; i++)
+        {
+            BuildingSaveData bs = pendingBuildings[i];
+
+            // Detect command-center / HQ building type
+            bool isHQ = bs.BuildingTypeId.EndsWith("_command_center", StringComparison.OrdinalIgnoreCase);
+
+            if (isHQ)
+            {
+                // Restore HQ as an external building (mirrors PlaceStartingBuildings logic).
+                // We create the node ourselves so we can track it in _playerHQNodes.
+                if (_buildingRegistry.HasBuilding(bs.BuildingTypeId))
+                {
+                    BuildingData hqData = _buildingRegistry.GetBuilding(bs.BuildingTypeId);
+                    BuildingModelEntry? hqModelEntry = _buildingManifest.HasEntry(bs.BuildingTypeId)
+                        ? _buildingManifest.GetEntry(bs.BuildingTypeId)
+                        : null;
+
+                    var hqNode = new BuildingInstance();
+                    hqNode.Initialize(bs.BuildingId, bs.BuildingTypeId, hqData, bs.PlayerId,
+                        bs.PositionX, bs.PositionY, hqModelEntry);
+                    hqNode.RestoreState(
+                        FixedPoint.FromRaw((int)bs.Health),
+                        bs.IsConstructed,
+                        FixedPoint.FromRaw((int)bs.ConstructionProgress));
+
+                    if (_terrainRenderer is not null)
+                    {
+                        float terrainY = _terrainRenderer.GetElevationAtWorld(bs.PositionX, bs.PositionY);
+                        hqNode.Position = new Vector3(bs.PositionX, terrainY, bs.PositionY);
+                    }
+                    AddChild(hqNode);
+
+                    // Register for win-condition tracking
+                    _playerHQNodes[bs.PlayerId] = hqNode;
+                    _playersWithInitialHQ.Add(bs.PlayerId);
+
+                    // Make it visible to BuildingPlacer queries (minimap, objectives, simulation)
+                    _buildingPlacer?.RegisterExternalBuilding(hqNode);
+                    _garrisonSystem.RegisterBuilding(hqNode);
+
+                    // Occupy footprint so units path around it
+                    _occupancyGrid?.OccupyFootprint(
+                        bs.PositionX, bs.PositionY,
+                        hqData.FootprintWidth, hqData.FootprintHeight,
+                        OccupancyType.Building, bs.BuildingId, bs.PlayerId);
+                }
+            }
+            else
+            {
+                _buildingPlacer?.RestoreBuilding(
+                    bs.BuildingId,
+                    bs.BuildingTypeId,
+                    bs.PlayerId,
+                    bs.PositionX,
+                    bs.PositionY,
+                    FixedPoint.FromRaw((int)bs.Health),
+                    bs.IsConstructed,
+                    FixedPoint.FromRaw((int)bs.ConstructionProgress));
+            }
+
+            // Re-register refineries (including HQ refinery) with harvester system
+            if (bs.BuildingTypeId.Contains("refinery", StringComparison.OrdinalIgnoreCase) || isHQ)
+            {
+                FixedVector2 bldgPos = new FixedVector2(
+                    FixedPoint.FromInt(bs.PositionX),
+                    FixedPoint.FromInt(bs.PositionY));
+                _harvesterSystem.RegisterRefinery(bs.BuildingId, bs.PlayerId, bldgPos);
+            }
+        }
 
         // Wire minimap to live terrain/camera data
         SetupMinimapData();
@@ -2062,6 +2228,7 @@ public partial class GameSession : Node
             GameSpeed = ActiveConfig?.GameSpeed ?? 1,
             FogOfWar = ActiveConfig?.FogOfWar ?? true,
             StartingCordite = ActiveConfig?.StartingCordite ?? 5000,
+            WinCondition = _winCondition.ToString(),
             Players = players.ToArray(),
             Units = units.ToArray(),
             Buildings = buildings.ToArray(),
@@ -2126,6 +2293,8 @@ public partial class GameSession : Node
             commandBuffer,
             _unitSpawner,
             _camera);
+        // Wire superweapon targeting: FIRE button → targeting mode → left-click → activate
+        _commandInput.SetSuperweaponActivateCallback(ActivateSuperweapon);
         AddChild(_commandInput);
 
         // c. BuildingPlacer
@@ -2198,6 +2367,15 @@ public partial class GameSession : Node
         // e. Wire minimap click-to-move to camera
         EventBus.Instance?.Connect(EventBus.SignalName.MinimapClick,
             Callable.From<Vector3>((pos) => _camera?.SetFocusPoint(pos)));
+
+        // e1. Wire superweapon FIRE button → targeting mode in CommandInput
+        var capturedCommandInput = _commandInput;
+        EventBus.Instance?.Connect(EventBus.SignalName.SuperweaponActivateRequested,
+            Callable.From<int, string>((pid, weaponId) =>
+            {
+                if (pid == localPlayerId)
+                    capturedCommandInput?.StartSuperweaponTargeting(weaponId);
+            }));
 
         // e2. Wire building-destroyed to keep BuildingPlacer and HQ tracking in sync
         EventBus.Instance?.Connect(EventBus.SignalName.BuildingDestroyed,

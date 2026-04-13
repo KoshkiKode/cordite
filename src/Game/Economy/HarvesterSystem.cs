@@ -260,7 +260,7 @@ public sealed partial class HarvesterSystem : Node
 
         if (node.IsDepleted)
         {
-            EventBus.Instance?.EmitNodeDepleted(node.NodeId);
+            // Node was already depleted; transition harvester away without re-firing the depletion event
             if (harvester.CorditeCarrying > 0)
                 harvester.State = HarvesterState.MovingToRefinery;
             else

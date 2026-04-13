@@ -41,6 +41,10 @@ public partial class SkirmishAI : Node
 
     private const int TickInterval = 30; // Run every 30 ticks (1 second at 30 TPS)
 
+    // Building placement offset cycling constants
+    private const int BuildingPlacementStepInterval = 500; // ticks between offset index changes
+    private const int OffsetPatternSize = 12;              // number of offset positions in the pattern
+
     public int PlayerId { get; private set; }
     public string FactionId { get; private set; } = string.Empty;
     public AIDifficulty Difficulty { get; private set; }
@@ -70,6 +74,15 @@ public partial class SkirmishAI : Node
     private int _openingEndTick;
     // Expanding->Aggression transition: Easy=never, Medium=14400(~8min), Hard=12600(~7min)
     private int _aggressionStartTick;
+
+    // ── Production tracking ──────────────────────────────────────────
+
+    // Maps building ID → AI ticks remaining until the in-progress unit is ready.
+    // One unit per building; key absent means the building is idle.
+    private readonly SortedList<int, int> _productionTimers = new();
+
+    // Maps building ID → unit type ID currently being produced.
+    private readonly SortedList<int, string> _productionUnitType = new();
 
     // ── State ────────────────────────────────────────────────────────
 
@@ -317,41 +330,64 @@ public partial class SkirmishAI : Node
 
     private void ProduceUnits(PlayerEconomy economy)
     {
-        // AI produces units from all production buildings
+        // AI produces units from all production buildings, respecting each unit's BuildTime.
+        // Each building queues at most one unit at a time. The cost is deducted when
+        // production starts; the unit spawns only when the build-time timer expires.
         if (_buildingPlacer is null || _unitDataRegistry is null) return;
 
         var buildings = _buildingPlacer.GetAllBuildings();
+
+        // ── Step 1: Tick down in-progress production and spawn completed units ──
+        for (int i = 0; i < buildings.Count; i++)
+        {
+            var building = buildings[i];
+            if (building.PlayerId != PlayerId) continue;
+            if (!_productionTimers.ContainsKey(building.BuildingId)) continue;
+
+            _productionTimers[building.BuildingId]--;
+
+            if (_productionTimers[building.BuildingId] <= 0)
+            {
+                // Production complete — spawn unit
+                _productionTimers.Remove(building.BuildingId);
+                if (_productionUnitType.TryGetValue(building.BuildingId, out string completedUnitId))
+                {
+                    _productionUnitType.Remove(building.BuildingId);
+                    _unitSpawner?.SpawnUnit(completedUnitId, FactionId, PlayerId,
+                        building.RallyPoint, FixedPoint.Zero);
+                }
+            }
+        }
+
+        // ── Step 2: Start new production in idle buildings ────────────────────
         for (int i = 0; i < buildings.Count; i++)
         {
             var building = buildings[i];
             if (building.PlayerId != PlayerId) continue;
             if (!building.IsConstructed) continue;
             if (building.Data is null) continue;
-
-            // Check if building can produce units
             if (building.Data.UnlocksUnitIds.Count == 0) continue;
+            if (_productionTimers.ContainsKey(building.BuildingId)) continue; // already producing
 
-            // Find a unit this building can make that we can afford
+            // Find the first affordable unit this building can make
             for (int u = 0; u < building.Data.UnlocksUnitIds.Count; u++)
             {
                 string unitId = building.Data.UnlocksUnitIds[u];
                 if (!_unitDataRegistry.HasUnit(unitId)) continue;
 
                 UnitData unitData = _unitDataRegistry.GetUnitData(unitId);
-                if (economy.CanAfford(unitData.Cost, unitData.SecondaryCost))
+                if (!economy.CanAfford(unitData.Cost, unitData.SecondaryCost)) continue;
+                if (economy.CurrentSupply + unitData.PopulationCost > economy.MaxSupply) continue;
+
+                if (_economyManager?.TryBuildUnit(PlayerId, unitData) == true)
                 {
-                    // Check supply
-                    if (economy.CurrentSupply + unitData.PopulationCost <= economy.MaxSupply)
-                    {
-                        if (_economyManager?.TryBuildUnit(PlayerId, unitData) == true)
-                        {
-                            // Spawn the unit at the building's rally point
-                            FixedVector2 spawnPos = building.RallyPoint;
-                            _unitSpawner?.SpawnUnit(unitId, FactionId, PlayerId, spawnPos, FixedPoint.Zero);
-                        }
-                        break; // One unit per building per AI tick
-                    }
+                    // Deducted cost; now schedule the build timer.
+                    // BuildTime is in seconds; TickInterval ticks = 1 second → timer in AI ticks.
+                    int buildTimeAITicks = Mathf.Max(1, unitData.BuildTime.ToInt());
+                    _productionTimers[building.BuildingId] = buildTimeAITicks;
+                    _productionUnitType[building.BuildingId] = unitId;
                 }
+                break; // One attempt per building per AI tick
             }
         }
     }
@@ -371,12 +407,21 @@ public partial class SkirmishAI : Node
         if (!economy.CanAfford(data.Cost, data.SecondaryCost))
             return;
 
-        // Place near base with offset
-        FixedVector2 buildPos = new FixedVector2(
-            _basePosition.X + FixedPoint.FromInt((_totalTicksElapsed / 1000) % 10 - 5),
-            _basePosition.Y + FixedPoint.FromInt((_totalTicksElapsed / 500) % 10 - 5));
+        // Try a small grid of candidate positions near the base and pick the first free cell
+        int baseX = _basePosition.X.ToInt();
+        int baseY = _basePosition.Y.ToInt();
 
-        _economyManager?.TryBuildBuilding(PlayerId, data);
+        // Offset pattern: ring outward from base so buildings don't stack
+        int step = (int)(_totalTicksElapsed / BuildingPlacementStepInterval) % OffsetPatternSize;
+        int[] offsets = [-6, -4, -2, 0, 2, 4, 6, -8, 8, -10, 10, 0];
+        int dx = offsets[step % offsets.Length];
+        int dy = offsets[(step + 3) % offsets.Length];
+
+        int gridX = baseX + dx;
+        int gridY = baseY + dy;
+
+        // PlaceBuildingForAI deducts cost and places the building atomically
+        _buildingPlacer.PlaceBuildingForAI(factionBuildingId, PlayerId, gridX, gridY);
     }
 
     // ── Event Handlers ───────────────────────────────────────────────

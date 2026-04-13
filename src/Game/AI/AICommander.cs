@@ -60,13 +60,13 @@ public partial class AICommander : Node
 
         Name = "AICommander";
 
-        // Set attack threshold by difficulty
+        // Set attack threshold by difficulty (lower = attacks sooner = harder)
         _attackThresholdPercent = difficulty switch
         {
-            AIDifficulty.Easy => 80,   // Attacks only when near supply cap
-            AIDifficulty.Medium => 50, // Attacks at 50% supply
-            AIDifficulty.Hard => 70,   // Attacks at 70% supply (optimal timing)
-            _ => 60
+            AIDifficulty.Easy   => 80, // Attacks only when near supply cap — most passive
+            AIDifficulty.Medium => 50, // Attacks at half supply
+            AIDifficulty.Hard   => 30, // Attacks as soon as it has a meaningful force — most aggressive
+            _                   => 60
         };
 
         // Create initial squads
