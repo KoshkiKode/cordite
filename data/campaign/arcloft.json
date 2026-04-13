@@ -78,7 +78,8 @@
       "requires_mission": "arcloft_01",
       "unlocks_buildings": [
         "arcloft_barracks",
-        "arcloft_overwatch_tower"
+        "arcloft_overwatch_tower",
+        "arcloft_bunker"
       ],
       "typed_objectives": [
         {
@@ -318,7 +319,9 @@
       "twist": "All factions deploy stealth infiltrators \u2014 Stormrend Flicker Mines, Kragmore Mole Rats, Valkyr Windrunners \u2014 specifically targeting your tech lab. Without the Quantum Detection Grid active, you cannot see them coming.",
       "win_condition": "destroy_hq",
       "requires_mission": "arcloft_06",
-      "unlocks_buildings": [],
+      "unlocks_buildings": [
+        "arcloft_orbital_relay"
+      ],
       "typed_objectives": [
         {
           "type": "build_building",
