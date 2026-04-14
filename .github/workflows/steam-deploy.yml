@@ -26,6 +26,7 @@ permissions:
 
 env:
   STEAM_APP_ID: ${{ secrets.STEAM_APP_ID }}
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   # ─────────────────────────────────────────────────────────────────────────────
