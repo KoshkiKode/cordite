@@ -26,6 +26,7 @@ permissions:
 
 env:
   GODOT_VERSION: "4.6.2-stable"
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   # ─────────────────────────────────────────────────────────────────────────────
@@ -67,7 +68,7 @@ jobs:
       - name: Configure Godot Android SDK path
         run: |
           mkdir -p ~/.config/godot
-          printf '[gd_resource type="EditorSettings" format=3]\n\n[resource]\nexport/android/android_sdk_path = "%s"\n' \
+          printf '[gd_resource type="EditorSettings" format=3]\n\n[resource]\nexport/android/android_sdk_path = "%s"\nexport/android/shutdown_adb_on_exit = false\n' \
             "${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}" \
             > ~/.config/godot/editor_settings-4.tres
 
@@ -81,8 +82,8 @@ jobs:
           count = original.count(needle)
           if count == 0:
               raise SystemExit(
-                  "Expected at least one Android gradle_build/use_gradle_build=true setting in export_presets.cfg; "
-                  "ensure Android export presets exist and are configured."
+                  "Expected at least one Android preset with gradle_build/use_gradle_build=true in export_presets.cfg; "
+                  "if presets are already set to false, this CI replacement step is not needed."
               )
           path.write_text(original.replace(needle, "gradle_build/use_gradle_build=false"))
           print(f"Disabled custom Android Gradle build in {count} preset(s).")
