@@ -23,7 +23,7 @@ architectures:
 
 apps:
   cordite-wars:
-    command: bin/CorditeWars
+    command: CorditeWars
     command-chain: []
     extensions: [gnome]
     plugs:
@@ -42,19 +42,9 @@ parts:
   game:
     plugin: dump
     source: build/linux/
-    stage:
-      - CorditeWars
-      - CorditeWars.pck
-      - CorditeWars.dll
-      - GodotSharp/
-    organize:
-      CorditeWars: bin/CorditeWars
-      CorditeWars.pck: bin/CorditeWars.pck
-      CorditeWars.dll: bin/CorditeWars.dll
-      GodotSharp/: bin/GodotSharp/
     override-build: |
       craftctl default
-      chmod +x "$SNAPCRAFT_PART_INSTALL/bin/CorditeWars" || true
+      chmod +x "$SNAPCRAFT_PART_INSTALL/CorditeWars" || true
     stage-packages:
       - libgles2
       - libopenal1
