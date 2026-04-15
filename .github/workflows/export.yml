@@ -413,7 +413,7 @@ jobs:
   package-windows-msi:
     name: Windows MSI Installer
     runs-on: windows-latest
-    needs: export-windows
+    needs: export-all
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -700,7 +700,7 @@ jobs:
   package-macos:
     name: macOS DMG Package
     runs-on: macos-latest
-    needs: export-macos
+    needs: export-all-macos
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -836,7 +836,7 @@ jobs:
   smoke-test-linux:
     name: Headless Smoke Test (Linux)
     runs-on: ubuntu-latest
-    needs: export-linux
+    needs: export-all
 
     steps:
       - name: Download Linux export
@@ -871,7 +871,7 @@ jobs:
   smoke-test-windows:
     name: Headless Smoke Test (Windows)
     runs-on: windows-latest
-    needs: export-windows
+    needs: export-all
 
     steps:
       - name: Download Windows export
@@ -906,7 +906,7 @@ jobs:
   smoke-test-macos:
     name: Headless Smoke Test (macOS)
     runs-on: macos-latest
-    needs: export-macos
+    needs: export-all-macos
 
     steps:
       - name: Download macOS export
