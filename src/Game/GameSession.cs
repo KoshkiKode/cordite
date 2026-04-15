@@ -2434,11 +2434,13 @@ public partial class GameSession : Node
             PlayerConfig pc = config.PlayerConfigs[i];
             if (!pc.IsAI) continue;
 
-            // Find starting position for this AI
+            // Find starting position for this AI.
+            // Map StartingPosition.PlayerId uses 0-based indices while PlayerConfig.PlayerId
+            // is 1-based, so we match against pc.PlayerId - 1.
             FixedVector2 basePos = FixedVector2.Zero;
             for (int s = 0; s < ActiveMap.StartingPositions.Length; s++)
             {
-                if (ActiveMap.StartingPositions[s].PlayerId == pc.PlayerId)
+                if (ActiveMap.StartingPositions[s].PlayerId == pc.PlayerId - 1)
                 {
                     basePos = new FixedVector2(
                         FixedPoint.FromInt(ActiveMap.StartingPositions[s].X),
@@ -2662,11 +2664,13 @@ public partial class GameSession : Node
         {
             PlayerConfig pc = config.PlayerConfigs[i];
 
-            // Find matching starting position
+            // Find matching starting position.
+            // Map StartingPosition.PlayerId uses 0-based indices while PlayerConfig.PlayerId
+            // is 1-based, so we match against pc.PlayerId - 1.
             StartingPosition? startPos = null;
             for (int s = 0; s < ActiveMap.StartingPositions.Length; s++)
             {
-                if (ActiveMap.StartingPositions[s].PlayerId == pc.PlayerId)
+                if (ActiveMap.StartingPositions[s].PlayerId == pc.PlayerId - 1)
                 {
                     startPos = ActiveMap.StartingPositions[s];
                     break;
@@ -2750,11 +2754,13 @@ public partial class GameSession : Node
         {
             PlayerConfig pc = config.PlayerConfigs[i];
 
-            // Find starting position
+            // Find starting position.
+            // Map StartingPosition.PlayerId uses 0-based indices while PlayerConfig.PlayerId
+            // is 1-based, so we match against pc.PlayerId - 1.
             StartingPosition? startPos = null;
             for (int s = 0; s < ActiveMap.StartingPositions.Length; s++)
             {
-                if (ActiveMap.StartingPositions[s].PlayerId == pc.PlayerId)
+                if (ActiveMap.StartingPositions[s].PlayerId == pc.PlayerId - 1)
                 {
                     startPos = ActiveMap.StartingPositions[s];
                     break;
@@ -2812,8 +2818,8 @@ public partial class GameSession : Node
         {
             CorditeNodeData node = ActiveMap.CorditeNodes[i];
             FixedVector2 pos = new FixedVector2(
-                FixedPoint.FromInt(node.X),
-                FixedPoint.FromInt(node.Y));
+                FixedPoint.FromFloat(node.X),
+                FixedPoint.FromFloat(node.Y));
             _harvesterSystem.RegisterCorditeNode(i, pos, node.Amount);
         }
 
@@ -3066,6 +3072,98 @@ public partial class GameSession : Node
     /// <summary>
     /// Tears down all child nodes and managers from a previous match.
     /// </summary>
+    // ─────────────────────────────────────────────────────────────────
+    // DEBUG SNAPSHOT
+    // ─────────────────────────────────────────────────────────────────
+
+    /// <summary>
+    /// A point-in-time snapshot of key session metrics for the debug overlay.
+    /// All fields are value types so no allocation occurs on the hot path.
+    /// </summary>
+    public struct DebugSnapshot
+    {
+        // Map / world
+        public string MapId;
+        public string Biome;
+        public int MapWidth;
+        public int MapHeight;
+        public bool FogOfWar;
+
+        // Simulation
+        public ulong SimTick;
+        public int UnitCount;
+        public int BuildingCount;
+        public MatchState MatchState;
+        public string WinConditionName;
+
+        // Camera
+        public float CameraX;
+        public float CameraY;
+        public float CameraZ;
+        public float CameraZoom;
+
+        // Local player economy (player 1 / first non-AI)
+        public int Cordite;
+        public int VoltaicCharge;
+        public int Supply;
+        public int MaxSupply;
+
+        // Match timing
+        public int GameSpeed;
+        public bool IsMultiplayer;
+    }
+
+    /// <summary>
+    /// Returns a lightweight snapshot of current game state for the debug overlay.
+    /// Safe to call every frame.
+    /// </summary>
+    public DebugSnapshot GetDebugSnapshot()
+    {
+        var snap = new DebugSnapshot();
+
+        // Map
+        snap.MapId        = ActiveMap?.Id ?? string.Empty;
+        snap.Biome        = ActiveMap?.Biome ?? string.Empty;
+        snap.MapWidth     = ActiveMap?.Width ?? 0;
+        snap.MapHeight    = ActiveMap?.Height ?? 0;
+        snap.FogOfWar     = ActiveConfig?.FogOfWar ?? false;
+        snap.GameSpeed    = ActiveConfig?.GameSpeed ?? 1;
+
+        // Win condition
+        snap.WinConditionName = _winCondition.ToString();
+
+        // Sim
+        snap.SimTick      = _gameManager?.CurrentTick ?? 0;
+        snap.UnitCount    = _unitSpawner?.ActiveCount ?? 0;
+        snap.BuildingCount = _buildingPlacer?.GetAllBuildings().Count ?? 0;
+        snap.MatchState   = CurrentMatchState;
+
+        // Camera
+        if (_camera is not null)
+        {
+            var focus = _camera.FocusPoint;
+            snap.CameraX = focus.X;
+            snap.CameraY = focus.Y;
+            snap.CameraZ = focus.Z;
+            snap.CameraZoom = _camera.CurrentZoom;
+        }
+
+        // Economy
+        var economy = _economyManager?.GetPlayer(_localPlayerId);
+        if (economy is not null)
+        {
+            snap.Cordite       = economy.Cordite.ToInt();
+            snap.VoltaicCharge = economy.VoltaicCharge.ToInt();
+            snap.Supply        = economy.CurrentSupply;
+            snap.MaxSupply     = economy.MaxSupply;
+        }
+
+        // Multiplayer
+        snap.IsMultiplayer = _lockstepManager is not null;
+
+        return snap;
+    }
+
     private void CleanupMatch()
     {
         _lockstepManager?.Shutdown();
