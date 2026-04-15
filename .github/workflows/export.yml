@@ -142,8 +142,11 @@ jobs:
             echo "ERROR: CorditeWars.pck not found after export"
             exit 1
           fi
-          if [ ! -d build/windows/GodotSharp ]; then
-            echo "ERROR: build/windows/GodotSharp directory not found after export"
+          # Godot .NET exports may ship either:
+          # - legacy GodotSharp/ runtime layout, or
+          # - data_<app>_windows_<arch>/ runtime layout.
+          if [ ! -d build/windows/GodotSharp ] && ! compgen -G "build/windows/data_*_windows_*" > /dev/null; then
+            echo "ERROR: No .NET runtime data directory found (expected GodotSharp or data_*_windows_*)"
             exit 1
           fi
 
