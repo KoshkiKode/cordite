@@ -58,4 +58,4 @@ async function tryUnlockFromSession() {
   paywallMessage.textContent = "✅ Payment verified. Downloads unlocked for this session.";
 }
 
-void tryUnlockFromSession();
+tryUnlockFromSession();
