@@ -91,13 +91,14 @@ jobs:
           echo "Project validation passed."
 
   # ─────────────────────────────────────────────────────────────────────────────
-  # 1. Export all linux-runner platforms in one job:
-  #    Windows Desktop, Linux/X11, Android APK, Android AAB
-  #    All use the Linux Godot binary and run on ubuntu-latest.
+  # 1. Export all platforms in one job on a macOS runner:
+  #    Windows Desktop, Linux/X11, Android APK, Android AAB, iOS, macOS
+  #    iOS uses export_debug:true to avoid an xcodebuild signing conflict;
+  #    all other platforms use export_debug:false.
   # ─────────────────────────────────────────────────────────────────────────────
   export-all:
-    name: Export All (Windows / Linux / Android)
-    runs-on: ubuntu-latest
+    name: Export All (Windows / Linux / Android / iOS / macOS)
+    runs-on: macos-latest
     needs: validate-project
     steps:
       - name: Checkout
@@ -122,20 +123,18 @@ jobs:
           set -euo pipefail
           GODOT_VERSION="${{ env.GODOT_VERSION }}"
           TEMPLATES_VERSION="$(echo "$GODOT_VERSION" | sed 's/-/./').mono"
-          TEMPLATES_DIR="$HOME/.local/share/godot/export_templates/$TEMPLATES_VERSION"
           TPZ_URL="https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_mono_export_templates.tpz"
 
           echo "Downloading Godot ${GODOT_VERSION} export templates..."
           curl -L --fail -o /tmp/export_templates.tpz "$TPZ_URL"
 
-          echo "Extracting export templates to ${TEMPLATES_DIR}..."
-          mkdir -p "$TEMPLATES_DIR"
+          echo "Extracting export templates..."
+          mkdir -p /tmp/godot_tpz/
           unzip -q /tmp/export_templates.tpz -d /tmp/godot_tpz/
-          mv /tmp/godot_tpz/templates/* "$TEMPLATES_DIR/"
 
           echo "Installing Android Gradle build template to android/build/..."
           mkdir -p android/build
-          unzip -q "$TEMPLATES_DIR/android_source.zip" -d android/build/
+          unzip -q /tmp/godot_tpz/templates/android_source.zip -d android/build/
           echo "$TEMPLATES_VERSION" > android/.build_version
           echo "$TEMPLATES_VERSION" > android/build/.build_version
           touch android/build/.gdignore
@@ -166,10 +165,10 @@ jobs:
 
       - name: Configure Godot Android SDK path
         run: |
-          mkdir -p ~/.config/godot
+          mkdir -p "$HOME/Library/Application Support/Godot"
           printf '[gd_resource type="EditorSettings" format=3]\n\n[resource]\nexport/android/android_sdk_path = "%s"\nexport/android/shutdown_adb_on_exit = false\n' \
-            "${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}" \
-            > ~/.config/godot/editor_settings-4.tres
+            "${ANDROID_SDK_ROOT:-${ANDROID_HOME:-/Users/runner/Library/Android/sdk}}" \
+            > "$HOME/Library/Application Support/Godot/editor_settings-4.tres"
 
       - name: Disable custom Gradle build for Android APK preset only
         run: |
@@ -217,17 +216,93 @@ jobs:
           print(f"Disabled Gradle build in {modified} Android APK preset option(s).")
           PY
 
+      - name: Inject App Store Team ID into iOS preset
+        env:
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          # iOS handoff exports still require a non-empty Team ID in preset validation.
+          # 0000000000 is a validation-only sentinel when no secret is configured.
+          TEAM_ID="${APPLE_TEAM_ID:-0000000000}"
+          export TEAM_ID
+          python - <<'PY'
+          import os
+          import re
+          from pathlib import Path
+          team_id = os.environ["TEAM_ID"]
+          path = Path("export_presets.cfg")
+          lines = path.read_text().splitlines()
+
+          ios_preset_number = None
+          current_preset = None
+          in_preset_block = False
+          for line in lines:
+              stripped = line.strip()
+              preset_match = re.match(r"\[preset\.(\d+)\]$", stripped)
+              if preset_match:
+                  current_preset = preset_match.group(1)
+                  in_preset_block = True
+                  continue
+              if re.match(r"\[preset\.\d+\.options\]$", stripped):
+                  in_preset_block = False
+              if in_preset_block and stripped == 'platform="iOS"':
+                  ios_preset_number = current_preset
+                  break
+          if ios_preset_number is None:
+              raise SystemExit("iOS preset not found in export_presets.cfg")
+
+          target_options_header = f"[preset.{ios_preset_number}.options]"
+          out = []
+          in_ios_options = False
+          inserted = False
+          for line in lines:
+              stripped = line.strip()
+              if stripped == target_options_header:
+                  in_ios_options = True
+                  out.append(line)
+                  continue
+              if in_ios_options and stripped.startswith("["):
+                  if not inserted:
+                      out.append(f'application/app_store_team_id="{team_id}"')
+                      inserted = True
+                  in_ios_options = False
+              if in_ios_options and line.startswith("application/app_store_team_id="):
+                  out.append(f'application/app_store_team_id="{team_id}"')
+                  inserted = True
+                  continue
+              out.append(line)
+          if in_ios_options and not inserted:
+              out.append(f'application/app_store_team_id="{team_id}"')
+          path.write_text("\n".join(out) + "\n")
+          PY
+        shell: bash
+
+      - name: Export iOS/iPadOS Xcode project
+        uses: firebelley/godot-export@v7.0.0
+        with:
+          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_macos.universal.zip
+          godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_export_templates.tpz
+          relative_project_path: ./
+          archive_output: false
+          # export_debug: true avoids a Godot-level xcodebuild signing conflict:
+          # release mode writes CODE_SIGN_IDENTITY="Apple Distribution" but also
+          # triggers automatic signing, causing an immediate archive failure.
+          # Debug mode generates the Xcode project files only; the Release build
+          # configuration is enforced by the caller's own xcodebuild step.
+          export_debug: true
+          use_preset_export_path: true
+          presets_to_export: "iOS"
+
       - name: Export all platforms (debug-signed Android)
         if: steps.release_keystore.outputs.has_release_keystore != 'true'
         uses: firebelley/godot-export@v7.0.0
         with:
-          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_linux_x86_64.zip
+          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_macos.universal.zip
           godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_export_templates.tpz
           relative_project_path: ./
           archive_output: false
           export_debug: false
           use_preset_export_path: true
-          presets_to_export: "Windows Desktop,Linux/X11,Android,Android AAB"
+          presets_to_export: "Windows Desktop,Linux/X11,Android,Android AAB,macOS"
         env:
           GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ./debug.keystore
           GODOT_ANDROID_KEYSTORE_DEBUG_USER: androiddebugkey
@@ -242,13 +317,13 @@ jobs:
         if: steps.release_keystore.outputs.has_release_keystore == 'true'
         uses: firebelley/godot-export@v7.0.0
         with:
-          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_linux_x86_64.zip
+          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_macos.universal.zip
           godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_export_templates.tpz
           relative_project_path: ./
           archive_output: false
           export_debug: false
           use_preset_export_path: true
-          presets_to_export: "Windows Desktop,Linux/X11,Android,Android AAB"
+          presets_to_export: "Windows Desktop,Linux/X11,Android,Android AAB,macOS"
         env:
           GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ./debug.keystore
           GODOT_ANDROID_KEYSTORE_DEBUG_USER: androiddebugkey
@@ -282,6 +357,12 @@ jobs:
             cp -a "build/android/Android AAB/." "build/android/"
             rm -rf "build/android/Android AAB"
             echo "Flattened build/android/Android AAB/ → build/android/"
+          fi
+          # macOS → build/macos/
+          if [ -d "build/macos/macOS" ]; then
+            mv "build/macos/macOS/"* build/macos/
+            rmdir "build/macos/macOS"
+            echo "Flattened build/macos/macOS/ → build/macos/"
           fi
 
       - name: Verify Windows export
@@ -331,6 +412,60 @@ jobs:
             exit 1
           fi
 
+      - name: Verify macOS export
+        run: |
+          echo "macOS export contents:"
+          ls -la build/macos/
+          if [ ! -f build/macos/CorditeWars.zip ]; then
+            echo "ERROR: CorditeWars.zip not found after macOS export"
+            exit 1
+          fi
+
+      - name: Extract macOS .app bundle from Godot zip
+        run: |
+          # Godot always exports macOS as a zip to preserve the .app bundle
+          # structure with symlinks.  Extract it here so the artifact contains
+          # plain files rather than a zip-inside-a-zip.  macOS's native unzip
+          # preserves symlinks, so the .app bundle remains fully functional.
+          unzip -q build/macos/CorditeWars.zip -d build/macos/
+          rm build/macos/CorditeWars.zip
+          echo "macOS build contents after extraction:"
+          ls -la build/macos/
+
+      - name: Ad-hoc sign macOS .app bundle
+        run: |
+          # Ad-hoc signing (-) satisfies macOS's minimum code-signature
+          # requirement and prevents Gatekeeper from showing the "app is
+          # damaged" error when users download and open the artifact directly.
+          # Users will still need to right-click → Open on first launch until
+          # the app is notarized with a real Apple Developer certificate.
+          APP_PATH=$(find build/macos -maxdepth 2 -name "*.app" | head -1)
+          if [ -n "$APP_PATH" ]; then
+            codesign --deep --force --sign - "$APP_PATH"
+            echo "Ad-hoc signed: $APP_PATH"
+          else
+            echo "WARNING: No .app bundle found to sign"
+          fi
+
+      - name: Verify iOS export
+        run: |
+          echo "iOS export contents:"
+          ls -la build/ios/ 2>/dev/null || echo "WARNING: build/ios/ not found"
+          find . -maxdepth 4 \( -name "*.xcodeproj" -o -name "*.xcworkspace" \) 2>/dev/null | head -20
+
+      - name: Bundle iOS config into export
+        run: |
+          # Copy iOS platform configuration files into the exported Xcode project
+          # so developers who download the artifact have everything they need to sign
+          # and submit to the App Store without diving into the repo.
+          if [ -d build/ios ]; then
+            cp versions/ios/ios-info.plist build/ios/ios-info.plist
+            cp versions/ios/ios-export-options.plist build/ios/ios-export-options.plist
+            echo "Bundled iOS config files into artifact."
+          else
+            echo "WARNING: build/ios/ not found — skipping config bundle."
+          fi
+
       - name: Upload Windows export artifact
         uses: actions/upload-artifact@v4
         with:
@@ -354,6 +489,18 @@ jobs:
         with:
           name: CorditeWars-Android-AAB
           path: build/android/CorditeWars.aab
+
+      - name: Upload iOS/iPadOS Handoff artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CorditeWars-iOS-iPadOS-Handoff
+          path: build/ios/
+
+      - name: Upload macOS export artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CorditeWars-macOS-Export
+          path: build/macos/
 
   # ─────────────────────────────────────────────────────────────────────────────
   # 1b. Package Windows EXE — Inno Setup installer (reliable, always runs)
@@ -512,195 +659,12 @@ jobs:
           name: CorditeWars-Linux-Snap
           path: ${{ steps.snapcraft.outputs.snap }}
 
-  # ─────────────────────────────────────────────────────────────────────────────
-  # 3. Export macOS + iOS on one macOS runner (runs concurrently with export-all)
-  #    iOS requires export_debug:true to avoid an xcodebuild signing conflict;
-  #    macOS uses export_debug:false.  Two godot-export steps in one job reuse
-  #    the Godot binary/template cache established by the first step.
-  # ─────────────────────────────────────────────────────────────────────────────
-  export-all-macos:
-    name: Export All (macOS / iOS)
-    runs-on: macos-latest
-    needs: validate-project
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 9.0.x
-
-      - name: Build C# Assemblies
-        run: dotnet build -c ExportRelease
-
-      - name: Inject App Store Team ID into iOS preset
-        env:
-          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
-        run: |
-          # iOS handoff exports still require a non-empty Team ID in preset validation.
-          # 0000000000 is a validation-only sentinel when no secret is configured.
-          TEAM_ID="${APPLE_TEAM_ID:-0000000000}"
-          export TEAM_ID
-          python - <<'PY'
-          import os
-          import re
-          from pathlib import Path
-          team_id = os.environ["TEAM_ID"]
-          path = Path("export_presets.cfg")
-          lines = path.read_text().splitlines()
-
-          ios_preset_number = None
-          current_preset = None
-          in_preset_block = False
-          for line in lines:
-              stripped = line.strip()
-              preset_match = re.match(r"\[preset\.(\d+)\]$", stripped)
-              if preset_match:
-                  current_preset = preset_match.group(1)
-                  in_preset_block = True
-                  continue
-              if re.match(r"\[preset\.\d+\.options\]$", stripped):
-                  in_preset_block = False
-              if in_preset_block and stripped == 'platform="iOS"':
-                  ios_preset_number = current_preset
-                  break
-          if ios_preset_number is None:
-              raise SystemExit("iOS preset not found in export_presets.cfg")
-
-          target_options_header = f"[preset.{ios_preset_number}.options]"
-          out = []
-          in_ios_options = False
-          inserted = False
-          for line in lines:
-              stripped = line.strip()
-              if stripped == target_options_header:
-                  in_ios_options = True
-                  out.append(line)
-                  continue
-              if in_ios_options and stripped.startswith("["):
-                  if not inserted:
-                      out.append(f'application/app_store_team_id="{team_id}"')
-                      inserted = True
-                  in_ios_options = False
-              if in_ios_options and line.startswith("application/app_store_team_id="):
-                  out.append(f'application/app_store_team_id="{team_id}"')
-                  inserted = True
-                  continue
-              out.append(line)
-          if in_ios_options and not inserted:
-              out.append(f'application/app_store_team_id="{team_id}"')
-          path.write_text("\n".join(out) + "\n")
-          PY
-        shell: bash
-
-      - name: Export iOS/iPadOS Xcode project
-        uses: firebelley/godot-export@v7.0.0
-        with:
-          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_macos.universal.zip
-          godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_export_templates.tpz
-          relative_project_path: ./
-          archive_output: false
-          # export_debug: true avoids a Godot-level xcodebuild signing conflict:
-          # release mode writes CODE_SIGN_IDENTITY="Apple Distribution" but also
-          # triggers automatic signing, causing an immediate archive failure.
-          # Debug mode generates the Xcode project files only; the Release build
-          # configuration is enforced by the caller's own xcodebuild step.
-          export_debug: true
-          use_preset_export_path: true
-          presets_to_export: "iOS"
-
-      - name: Export macOS
-        uses: firebelley/godot-export@v7.0.0
-        with:
-          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_macos.universal.zip
-          godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_export_templates.tpz
-          relative_project_path: ./
-          archive_output: false
-          export_debug: false
-          use_preset_export_path: true
-          presets_to_export: "macOS"
-
-      - name: Flatten macOS export output
-        run: |
-          # godot-export nests macOS output in build/macos/macOS/.  Flatten it.
-          if [ -d "build/macos/macOS" ]; then
-            mv "build/macos/macOS/"* build/macos/
-            rmdir "build/macos/macOS"
-            echo "Flattened build/macos/macOS/ → build/macos/"
-          fi
-
-      - name: Verify macOS export
-        run: |
-          echo "macOS export contents:"
-          ls -la build/macos/
-          if [ ! -f build/macos/CorditeWars.zip ]; then
-            echo "ERROR: CorditeWars.zip not found after macOS export"
-            exit 1
-          fi
-
-      - name: Extract macOS .app bundle from Godot zip
-        run: |
-          # Godot always exports macOS as a zip to preserve the .app bundle
-          # structure with symlinks.  Extract it here so the artifact contains
-          # plain files rather than a zip-inside-a-zip.  macOS's native unzip
-          # preserves symlinks, so the .app bundle remains fully functional.
-          unzip -q build/macos/CorditeWars.zip -d build/macos/
-          rm build/macos/CorditeWars.zip
-          echo "macOS build contents after extraction:"
-          ls -la build/macos/
-
-      - name: Ad-hoc sign macOS .app bundle
-        run: |
-          # Ad-hoc signing (-) satisfies macOS's minimum code-signature
-          # requirement and prevents Gatekeeper from showing the "app is
-          # damaged" error when users download and open the artifact directly.
-          # Users will still need to right-click → Open on first launch until
-          # the app is notarized with a real Apple Developer certificate.
-          APP_PATH=$(find build/macos -maxdepth 2 -name "*.app" | head -1)
-          if [ -n "$APP_PATH" ]; then
-            codesign --deep --force --sign - "$APP_PATH"
-            echo "Ad-hoc signed: $APP_PATH"
-          else
-            echo "WARNING: No .app bundle found to sign"
-          fi
-
-      - name: Verify iOS export
-        run: |
-          echo "iOS export contents:"
-          ls -la build/ios/ 2>/dev/null || echo "WARNING: build/ios/ not found"
-          find . -maxdepth 4 \( -name "*.xcodeproj" -o -name "*.xcworkspace" \) 2>/dev/null | head -20
-
-      - name: Bundle iOS config into export
-        run: |
-          # Copy iOS platform configuration files into the exported Xcode project
-          # so developers who download the artifact have everything they need to sign
-          # and submit to the App Store without diving into the repo.
-          if [ -d build/ios ]; then
-            cp versions/ios/ios-info.plist build/ios/ios-info.plist
-            cp versions/ios/ios-export-options.plist build/ios/ios-export-options.plist
-            echo "Bundled iOS config files into artifact."
-          else
-            echo "WARNING: build/ios/ not found — skipping config bundle."
-          fi
-
-      - name: Upload iOS/iPadOS Handoff artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: CorditeWars-iOS-iPadOS-Handoff
-          path: build/ios/
-
-      - name: Upload macOS export artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: CorditeWars-macOS-Export
-          path: build/macos/
   #     Code signing and notarization run only when Apple secrets are set.
   # ─────────────────────────────────────────────────────────────────────────────
   package-macos:
     name: macOS DMG Package
     runs-on: macos-latest
-    needs: export-all-macos
+    needs: export-all
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -906,7 +870,7 @@ jobs:
   smoke-test-macos:
     name: Headless Smoke Test (macOS)
     runs-on: macos-latest
-    needs: export-all-macos
+    needs: export-all
 
     steps:
       - name: Download macOS export
