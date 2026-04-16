@@ -47,6 +47,8 @@ void fragment() {
     private ShaderMaterial?  _material;
     private Image?           _fogImage;
     private ImageTexture?    _fogTexture;
+    // Pre-allocated byte buffer for bulk pixel upload — avoids per-cell SetPixel overhead.
+    private byte[]?          _fogBytes;
 
     /// <summary>
     /// Initialises the renderer with the local player's fog grid and map dimensions.
@@ -64,8 +66,9 @@ void fragment() {
         _mapWidth  = mapWidth;
         _mapHeight = mapHeight;
 
-        // Build the image: RGBA8 with R channel used as opacity by the shader.
+        // Build the image: single-channel R8 with R used as opacity by the shader.
         _fogImage   = Image.CreateEmpty(mapWidth, mapHeight, false, Image.Format.R8);
+        _fogBytes   = new byte[mapWidth * mapHeight]; // 1 byte per cell
         _fogTexture = ImageTexture.CreateFromImage(_fogImage);
 
         // Build the fog shader + material
@@ -113,17 +116,20 @@ void fragment() {
     // ── Private helpers ──────────────────────────────────────────────────────
 
     /// <summary>
-    /// Reads the current fog state and uploads the corresponding RGBA8 image
+    /// Reads the current fog state and uploads the corresponding R8 image
     /// to the GPU texture.  Only the R channel is used (opacity).
+    /// Uses a pre-allocated byte buffer for bulk upload to avoid per-cell
+    /// <c>SetPixel</c> overhead on large maps.
     /// </summary>
     private void UploadFog()
     {
-        if (_fogImage == null || _fogTexture == null) return;
+        if (_fogImage == null || _fogTexture == null || _fogBytes == null) return;
 
         if (_fogGrid == null)
         {
             // Fog disabled — fill fully transparent
-            _fogImage.Fill(new Color(0, 0, 0, 0));
+            System.Array.Clear(_fogBytes, 0, _fogBytes.Length);
+            _fogImage.SetData(_mapWidth, _mapHeight, false, Image.Format.R8, _fogBytes);
             _fogTexture.Update(_fogImage);
             return;
         }
@@ -131,22 +137,23 @@ void fragment() {
         int w = _mapWidth;
         int h = _mapHeight;
 
+        // Convert FogVisibility → byte opacity and write to flat buffer.
+        // R8 layout is row-major: index = y * width + x.
         for (int y = 0; y < h; y++)
         {
             for (int x = 0; x < w; x++)
             {
-                float alpha = _fogGrid.Cells[x, y].Visibility switch
+                byte opacity = _fogGrid.Cells[x, y].Visibility switch
                 {
-                    FogVisibility.Visible    => AlphaVisible,
-                    FogVisibility.Explored   => AlphaExplored,
-                    _                        => AlphaUnexplored
+                    FogVisibility.Visible    => (byte)(AlphaVisible    * 255f),
+                    FogVisibility.Explored   => (byte)(AlphaExplored   * 255f),
+                    _                        => (byte)(AlphaUnexplored * 255f)
                 };
-
-                // R8 format — store alpha in red channel
-                _fogImage.SetPixel(x, y, new Color(alpha, 0f, 0f, 1f));
+                _fogBytes[y * w + x] = opacity;
             }
         }
 
+        _fogImage.SetData(w, h, false, Image.Format.R8, _fogBytes);
         _fogTexture.Update(_fogImage);
     }
 }

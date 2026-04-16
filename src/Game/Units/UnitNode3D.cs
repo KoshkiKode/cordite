@@ -62,6 +62,8 @@ public partial class UnitNode3D : Node3D
     private const float HealthBarWidth  = 1.2f;
     private const float HealthBarHeight = 0.12f;
     private const float HealthBarYOffset = 2.2f; // above unit centre
+    /// <summary>Health fraction at or above which the bar is hidden (effectively full health).</summary>
+    private const float FullHealthThreshold = 0.999f;
 
     /// <summary>
     /// Initializes the unit node with model, collision shape, and selection circle.
@@ -240,7 +242,7 @@ public partial class UnitNode3D : Node3D
         if (_healthBarRoot == null || _healthBarFg == null) return;
 
         // Hide the bar at full health
-        _healthBarRoot.Visible = healthPct < 0.999f;
+        _healthBarRoot.Visible = healthPct < FullHealthThreshold;
         if (!_healthBarRoot.Visible) return;
 
         healthPct = Mathf.Clamp(healthPct, 0f, 1f);
