@@ -193,14 +193,28 @@ jobs:
         id: release_keystore
         env:
           ANDROID_RELEASE_KEYSTORE_B64: ${{ secrets.ANDROID_RELEASE_KEYSTORE_B64 }}
+          ANDROID_RELEASE_KEYSTORE_ALIAS: ${{ secrets.ANDROID_RELEASE_KEYSTORE_ALIAS }}
+          ANDROID_RELEASE_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_RELEASE_KEYSTORE_PASSWORD }}
         run: |
-          if [ -n "$ANDROID_RELEASE_KEYSTORE_B64" ]; then
-            echo "$ANDROID_RELEASE_KEYSTORE_B64" | base64 --decode > release.keystore
-            echo "has_release_keystore=true" >> "$GITHUB_OUTPUT"
-            echo "Release keystore ready — Android builds will be release-signed."
-          else
+          if [ -z "$ANDROID_RELEASE_KEYSTORE_B64" ]; then
             echo "has_release_keystore=false" >> "$GITHUB_OUTPUT"
             echo "No release keystore secret set — Android builds will use debug signing."
+          elif [ -z "$ANDROID_RELEASE_KEYSTORE_ALIAS" ] || [ -z "$ANDROID_RELEASE_KEYSTORE_PASSWORD" ]; then
+            echo "has_release_keystore=false" >> "$GITHUB_OUTPUT"
+            echo "Release keystore alias/password secret missing — Android builds will use debug signing."
+          else
+            echo "$ANDROID_RELEASE_KEYSTORE_B64" | base64 --decode > release.keystore
+            if keytool -list \
+              -keystore release.keystore \
+              -storepass "$ANDROID_RELEASE_KEYSTORE_PASSWORD" \
+              -alias "$ANDROID_RELEASE_KEYSTORE_ALIAS" >/dev/null 2>&1; then
+              echo "has_release_keystore=true" >> "$GITHUB_OUTPUT"
+              echo "Release keystore credentials validated — Android builds will be release-signed."
+            else
+              rm -f release.keystore
+              echo "has_release_keystore=false" >> "$GITHUB_OUTPUT"
+              echo "Release keystore credentials are invalid for this keystore — Android builds will use debug signing."
+            fi
           fi
 
       - name: Configure Godot Android SDK path
