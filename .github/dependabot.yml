@@ -1,0 +1,22 @@
+version: 2
+
+updates:
+  # GitHub Actions — keep workflow action versions current
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    labels:
+      - "dependencies"
+      - "github-actions"
+
+  # NuGet — keep .NET test dependencies current
+  - package-ecosystem: "nuget"
+    directory: "/tests/CorditeWars.Tests"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    labels:
+      - "dependencies"
+      - "dotnet"

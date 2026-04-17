@@ -141,10 +141,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'temurin'
 
       - name: Setup .NET
@@ -621,13 +621,13 @@ jobs:
         shell: powershell
         run: New-Item -ItemType Directory -Force -Path dist\windows | Out-Null
 
-      - name: Install WiX Toolset v5
+      - name: Install WiX Toolset v7
         shell: powershell
-        run: dotnet tool install --global wix --version 5.0.2
+        run: dotnet tool install --global wix --version 7.0.0
 
       - name: Add WiX UI extension
         shell: powershell
-        run: wix extension add --global WixToolset.UI.wixext/5.0.2
+        run: wix extension add --global WixToolset.UI.wixext/7.0.0
 
       - name: Build MSI installer (WiX)
         shell: powershell
@@ -656,7 +656,7 @@ jobs:
   package-linux-snap:
     name: Linux Snap Package
     runs-on: ubuntu-latest
-    needs: export-all
+    needs: [export-all, resolve-version]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -676,6 +676,15 @@ jobs:
           chmod +x build/linux/CorditeWars
           echo "Linux build contents:"
           ls -la build/linux/
+
+      - name: Inject app version into snapcraft.yaml
+        run: |
+          APP_VERSION="${{ needs.resolve-version.outputs.app_version }}"
+          # Replace the hardcoded version line with the resolved app version so that
+          # the published Snap package version always matches versions/shared/version.json.
+          sed -i "s/^version: .*/version: '${APP_VERSION}'/" versions/linux/snapcraft.yaml
+          echo "snapcraft.yaml version set to: ${APP_VERSION}"
+          grep "^version:" versions/linux/snapcraft.yaml
 
       - name: Stage Linux export for Snapcraft
         run: |

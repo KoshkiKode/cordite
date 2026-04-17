@@ -1,0 +1,169 @@
+name: "Release"
+
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"        # e.g. v1.0.0
+      - "v[0-9]+.[0-9]+.[0-9]+-*"      # e.g. v1.0.0-rc.1, v1.0.0-beta.1
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+permissions:
+  contents: write   # required to create GitHub Releases and upload assets
+
+jobs:
+  # ─────────────────────────────────────────────────────────────────────────────
+  # 1. Build all platform exports by reusing the export workflow
+  # ─────────────────────────────────────────────────────────────────────────────
+  export:
+    name: Build Platform Exports
+    uses: ./.github/workflows/export.yml
+    secrets: inherit
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # 2. Publish the GitHub Release and attach all artifacts
+  # ─────────────────────────────────────────────────────────────────────────────
+  publish:
+    name: Publish GitHub Release
+    runs-on: ubuntu-latest
+    needs: export
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Derive version from tag
+        id: version
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          # Strip leading 'v' to get the bare version number
+          VERSION="${TAG#v}"
+          echo "tag=$TAG"          >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION"  >> "$GITHUB_OUTPUT"
+          # A release is a pre-release when the tag contains a hyphen (rc, beta, alpha…)
+          if [[ "$TAG" == *-* ]]; then
+            echo "prerelease=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "prerelease=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Download Windows EXE installer
+        uses: actions/download-artifact@v4
+        with:
+          name: CorditeWars-Windows-Setup-EXE
+          path: dist/
+
+      - name: Download Windows MSI installer
+        uses: actions/download-artifact@v4
+        with:
+          name: CorditeWars-Windows-MSI
+          path: dist/
+
+      - name: Download Linux export
+        uses: actions/download-artifact@v4
+        with:
+          name: CorditeWars-Linux
+          path: dist/linux/
+
+      - name: Download Linux Snap
+        uses: actions/download-artifact@v4
+        with:
+          name: CorditeWars-Linux-Snap
+          path: dist/
+
+      - name: Download macOS DMG
+        uses: actions/download-artifact@v4
+        with:
+          name: CorditeWars-macOS-DMG
+          path: dist/
+
+      - name: Download Android APK
+        uses: actions/download-artifact@v4
+        with:
+          name: CorditeWars-Android
+          path: dist/
+
+      - name: Archive Linux export
+        run: |
+          cd dist/linux
+          tar -czf "../CorditeWars_${{ steps.version.outputs.version }}_linux_x86_64.tar.gz" .
+          echo "Created Linux archive."
+
+      - name: List release assets
+        run: ls -lh dist/
+
+      - name: Extract changelog entry for this version
+        id: changelog
+        run: |
+          # Pull the section for this version out of CHANGELOG.md (between
+          # ## [X.Y.Z] and the next ## heading) for the release body.
+          VERSION="${{ steps.version.outputs.version }}"
+          NOTES=$(awk "/^## \[$VERSION\]/{found=1; next} found && /^## /{exit} found{print}" CHANGELOG.md)
+          if [ -z "$NOTES" ]; then
+            NOTES="See CHANGELOG.md for details."
+          fi
+          # GitHub output: encode newlines
+          {
+            echo "notes<<EOF"
+            echo "$NOTES"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs   = require("fs");
+            const path = require("path");
+
+            const tag        = "${{ steps.version.outputs.tag }}";
+            const version    = "${{ steps.version.outputs.version }}";
+            const prerelease = ${{ steps.version.outputs.prerelease }};
+            const notes      = `${{ steps.changelog.outputs.notes }}`;
+
+            // Create the release
+            const release = await github.rest.repos.createRelease({
+              owner: context.repo.owner,
+              repo:  context.repo.repo,
+              tag_name:         tag,
+              name:             `Cordite Wars ${tag}`,
+              body:             notes.trim(),
+              draft:            false,
+              prerelease:       prerelease,
+              make_latest:      prerelease ? "false" : "true",
+            });
+
+            console.log(`Release created: ${release.data.html_url}`);
+
+            // Upload all files from dist/ (excluding the linux/ subdirectory
+            // which was replaced by the tar.gz archive above)
+            const distDir = "dist";
+            const files = fs.readdirSync(distDir).filter(f => {
+              const full = path.join(distDir, f);
+              return fs.statSync(full).isFile();
+            });
+
+            for (const file of files) {
+              const filePath    = path.join(distDir, file);
+              const fileContent = fs.readFileSync(filePath);
+              const mimeType    = file.endsWith(".exe") ? "application/octet-stream"
+                                : file.endsWith(".msi") ? "application/octet-stream"
+                                : file.endsWith(".dmg") ? "application/octet-stream"
+                                : file.endsWith(".apk") ? "application/vnd.android.package-archive"
+                                : file.endsWith(".snap") ? "application/octet-stream"
+                                : file.endsWith(".tar.gz") ? "application/gzip"
+                                : "application/octet-stream";
+
+              console.log(`Uploading ${file} (${fileContent.length} bytes) …`);
+              await github.rest.repos.uploadReleaseAsset({
+                owner:              context.repo.owner,
+                repo:               context.repo.repo,
+                release_id:         release.data.id,
+                name:               file,
+                data:               fileContent,
+                headers: { "content-type": mimeType },
+              });
+              console.log(`  ✓ ${file}`);
+            }

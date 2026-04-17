@@ -7,13 +7,13 @@ plugins {
 }
 
 android {
-    compileSdk 34
-    ndkVersion "23.2.8568313"
+    compileSdk 35
+    ndkVersion "29.0.14206865"
 
     defaultConfig {
         applicationId "com.koshkikode.corditewars"
         minSdk 24            // Android 7.0 Nougat — minimum supported
-        targetSdk 34         // Android 14
+        targetSdk 35         // Android 15
         versionCode 100
         versionName "1.0.0"
 
@@ -50,8 +50,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
     }
 
     // Ensure assets are included.
@@ -71,6 +71,6 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.annotation:annotation:1.7.0'
+    implementation 'androidx.annotation:annotation:1.10.0'
     // Godot Android plugin pulls in its own dependencies via the template.
 }
