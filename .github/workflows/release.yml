@@ -108,25 +108,17 @@ jobs:
           name: CorditeWars-Android-AAB
           path: dist/
 
-      - name: Download iOS Xcode project handoff
+      - name: Download iOS IPA (or Xcode zip fallback)
         uses: actions/download-artifact@v4
         with:
-          name: CorditeWars-iOS-iPadOS-Handoff
-          path: dist/ios/
+          name: CorditeWars-iOS-IPA
+          path: dist/
 
       - name: Archive Linux export
         run: |
           cd dist/linux
           tar -czf "../CorditeWars_${{ steps.version.outputs.version }}_linux_x86_64.tar.gz" .
           echo "Created Linux archive."
-
-      - name: Archive iOS Xcode project handoff
-        run: |
-          # The iOS artifact is an Xcode project directory — archive it so it
-          # can be attached as a single file to the GitHub Release.
-          cd dist/ios
-          tar -czf "../CorditeWars_${{ steps.version.outputs.version }}_ios_xcode_handoff.tar.gz" .
-          echo "Created iOS Xcode handoff archive."
 
       - name: List release assets
         run: ls -lh dist/
@@ -192,6 +184,7 @@ jobs:
                                 : file.endsWith(".dmg")      ? "application/octet-stream"
                                 : file.endsWith(".apk")      ? "application/vnd.android.package-archive"
                                 : file.endsWith(".aab")      ? "application/octet-stream"
+                                : file.endsWith(".ipa")      ? "application/octet-stream"
                                 : file.endsWith(".snap")     ? "application/octet-stream"
                                 : file.endsWith(".deb")      ? "application/vnd.debian.binary-package"
                                 : file.endsWith(".flatpak")  ? "application/octet-stream"

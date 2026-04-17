@@ -1118,6 +1118,183 @@ jobs:
           path: dist/macos/CorditeWars_${{ needs.resolve-version.outputs.app_version }}.dmg
 
   # ─────────────────────────────────────────────────────────────────────────────
+  # 5. Package iOS IPA
+  #    Builds a signed IPA from the Godot-exported Xcode project when
+  #    IOS_P12_CERTIFICATE, IOS_PROVISIONING_PROFILE, IOS_P12_PASSWORD, and
+  #    APPLE_TEAM_ID secrets are all set.
+  #    Falls back to a versioned zip of the Xcode project when any secret is
+  #    absent, so the release still has a downloadable iOS artifact.
+  # ─────────────────────────────────────────────────────────────────────────────
+  package-ios:
+    name: iOS IPA
+    runs-on: macos-latest
+    needs: [export-all, resolve-version]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download iOS Xcode project
+        uses: actions/download-artifact@v4
+        with:
+          name: CorditeWars-iOS-iPadOS-Handoff
+          path: build/ios
+
+      - name: Check iOS signing secrets
+        id: ios_secrets
+        env:
+          _P12:     ${{ secrets.IOS_P12_CERTIFICATE }}
+          _PROFILE: ${{ secrets.IOS_PROVISIONING_PROFILE }}
+          _PASS:    ${{ secrets.IOS_P12_PASSWORD }}
+          _TEAM:    ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          if [ -n "$_P12" ] && [ -n "$_PROFILE" ] && [ -n "$_PASS" ] && [ -n "$_TEAM" ]; then
+            echo "has_signing=true" >> "$GITHUB_OUTPUT"
+            echo "All iOS signing secrets present — will build IPA."
+          else
+            echo "has_signing=false" >> "$GITHUB_OUTPUT"
+            echo "One or more iOS signing secrets missing (IOS_P12_CERTIFICATE, IOS_PROVISIONING_PROFILE, IOS_P12_PASSWORD, APPLE_TEAM_ID)."
+            echo "Packaging Xcode project as zip instead of building IPA."
+          fi
+
+      # ── Signed IPA path ──────────────────────────────────────────────────────
+
+      - name: Import P12 certificate
+        if: steps.ios_secrets.outputs.has_signing == 'true'
+        env:
+          IOS_P12_CERTIFICATE: ${{ secrets.IOS_P12_CERTIFICATE }}
+          IOS_P12_PASSWORD:    ${{ secrets.IOS_P12_PASSWORD }}
+        run: |
+          echo "$IOS_P12_CERTIFICATE" | base64 --decode > /tmp/signing.p12
+          security create-keychain -p "ci-keychain" build.keychain
+          security default-keychain -s build.keychain
+          security unlock-keychain -p "ci-keychain" build.keychain
+          security set-keychain-settings -lut 21600 build.keychain
+          security import /tmp/signing.p12 -k build.keychain \
+            -P "$IOS_P12_PASSWORD" -T /usr/bin/codesign -T /usr/bin/xcodebuild
+          security set-key-partition-list \
+            -S apple-tool:,apple:,codesign: -s -k "ci-keychain" build.keychain
+          rm /tmp/signing.p12
+          echo "P12 certificate imported to build keychain."
+
+      - name: Install provisioning profile
+        if: steps.ios_secrets.outputs.has_signing == 'true'
+        env:
+          IOS_PROVISIONING_PROFILE: ${{ secrets.IOS_PROVISIONING_PROFILE }}
+        run: |
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          echo "$IOS_PROVISIONING_PROFILE" | base64 --decode > /tmp/profile.mobileprovision
+          PROFILE_UUID=$(security cms -D -i /tmp/profile.mobileprovision \
+            | plutil -extract UUID raw -)
+          cp /tmp/profile.mobileprovision \
+            ~/Library/MobileDevice/Provisioning\ Profiles/"${PROFILE_UUID}.mobileprovision"
+          rm /tmp/profile.mobileprovision
+          echo "PROFILE_UUID=$PROFILE_UUID" >> "$GITHUB_ENV"
+          echo "Provisioning profile installed (UUID: $PROFILE_UUID)."
+
+      - name: Patch export options plist
+        if: steps.ios_secrets.outputs.has_signing == 'true'
+        env:
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          python3 - <<'PY'
+          import os, re
+          from pathlib import Path
+          path = Path("versions/ios/ios-export-options.plist")
+          content = path.read_text()
+          # Expand the $(APPLE_TEAM_ID) placeholder
+          content = content.replace("$(APPLE_TEAM_ID)", os.environ["APPLE_TEAM_ID"])
+          # Switch to manual signing so CI can supply the exact profile UUID
+          content = re.sub(
+              r'(<key>signingStyle</key>\s*<string>)[^<]*(</string>)',
+              r'\g<1>manual\g<2>',
+              content,
+          )
+          path.write_text(content)
+          print("Patched versions/ios/ios-export-options.plist")
+          PY
+
+      - name: Find Xcode project and scheme
+        id: xcodeproj
+        run: |
+          XCODEPROJ=$(find build/ios -name "*.xcodeproj" -maxdepth 4 | head -1)
+          if [ -z "$XCODEPROJ" ]; then
+            echo "ERROR: No .xcodeproj found in build/ios/"
+            ls -la build/ios/ || true
+            exit 1
+          fi
+          SCHEME=$(basename "$XCODEPROJ" .xcodeproj)
+          echo "XCODEPROJ=$XCODEPROJ" >> "$GITHUB_ENV"
+          echo "SCHEME=$SCHEME"       >> "$GITHUB_ENV"
+          echo "Found: $XCODEPROJ  (scheme: $SCHEME)"
+
+      - name: Build Xcode archive
+        if: steps.ios_secrets.outputs.has_signing == 'true'
+        env:
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          set -euo pipefail
+          xcodebuild archive \
+            -project "$XCODEPROJ" \
+            -scheme  "$SCHEME" \
+            -configuration Release \
+            -destination "generic/platform=iOS" \
+            -archivePath /tmp/CorditeWars.xcarchive \
+            DEVELOPMENT_TEAM="$APPLE_TEAM_ID" \
+            CODE_SIGN_STYLE=Manual \
+            PROVISIONING_PROFILE="$PROFILE_UUID" \
+            | cat
+          echo "Xcode archive created at /tmp/CorditeWars.xcarchive"
+
+      - name: Export IPA from archive
+        if: steps.ios_secrets.outputs.has_signing == 'true'
+        env:
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          set -euo pipefail
+          VERSION="${{ needs.resolve-version.outputs.app_version }}"
+          mkdir -p build/ipa
+          xcodebuild -exportArchive \
+            -archivePath /tmp/CorditeWars.xcarchive \
+            -exportPath  build/ipa \
+            -exportOptionsPlist versions/ios/ios-export-options.plist \
+            | cat
+          # Rename to include version
+          IPA=$(find build/ipa -name "*.ipa" | head -1)
+          if [ -z "$IPA" ]; then
+            echo "ERROR: No .ipa found after xcodebuild -exportArchive"
+            ls -la build/ipa/ || true
+            exit 1
+          fi
+          mv "$IPA" "build/ipa/CorditeWars_${VERSION}_ios.ipa"
+          echo "IPA: build/ipa/CorditeWars_${VERSION}_ios.ipa"
+
+      - name: Upload iOS IPA artifact
+        if: steps.ios_secrets.outputs.has_signing == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: CorditeWars-iOS-IPA
+          path: build/ipa/CorditeWars_${{ needs.resolve-version.outputs.app_version }}_ios.ipa
+
+      # ── Fallback: Xcode project zip ──────────────────────────────────────────
+
+      - name: Package Xcode project as zip (fallback)
+        if: steps.ios_secrets.outputs.has_signing != 'true'
+        run: |
+          VERSION="${{ needs.resolve-version.outputs.app_version }}"
+          mkdir -p build/ios-zip
+          cd build/ios
+          zip -r "../ios-zip/CorditeWars_${VERSION}_ios_xcode.zip" .
+          echo "Packaged Xcode project: CorditeWars_${VERSION}_ios_xcode.zip"
+
+      - name: Upload iOS Xcode zip artifact (fallback)
+        if: steps.ios_secrets.outputs.has_signing != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: CorditeWars-iOS-IPA
+          path: build/ios-zip/CorditeWars_${{ needs.resolve-version.outputs.app_version }}_ios_xcode.zip
+
+  # ─────────────────────────────────────────────────────────────────────────────
   # 6a. Headless smoke test — Linux
   #     Launch the Linux export for 60 physics frames (2 s at 30 Hz) and assert
   #     a clean exit.  Catches crashes at startup before any artifact is published.
