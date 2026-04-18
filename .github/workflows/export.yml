@@ -221,7 +221,7 @@ jobs:
           keytool -keyalg RSA -genkeypair \
             -alias androiddebugkey \
             -keypass android \
-            -keystore debug.keystore \
+            -keystore "$GITHUB_WORKSPACE/debug.keystore" \
             -storepass android \
             -dname "CN=Android Debug,O=Android,C=US" \
             -validity 9999 \
@@ -237,15 +237,15 @@ jobs:
           ANDROID_RELEASE_KEY_PASSWORD: ${{ secrets.ANDROID_RELEASE_KEY_PASSWORD }}
         run: |
           if [ -z "$ANDROID_RELEASE_KEYSTORE_B64" ]; then
-            rm -f release.keystore
+            rm -f "$GITHUB_WORKSPACE/release.keystore"
             echo "has_release_keystore=false" >> "$GITHUB_OUTPUT"
             echo "No release keystore secret set — Android builds will use debug signing."
           elif [ -z "$ANDROID_RELEASE_KEYSTORE_ALIAS" ] || [ -z "$ANDROID_RELEASE_KEYSTORE_PASSWORD" ]; then
-            rm -f release.keystore
+            rm -f "$GITHUB_WORKSPACE/release.keystore"
             echo "has_release_keystore=false" >> "$GITHUB_OUTPUT"
             echo "Release keystore alias/password secret missing — Android builds will use debug signing."
           else
-            echo "$ANDROID_RELEASE_KEYSTORE_B64" | base64 --decode > release.keystore
+            echo "$ANDROID_RELEASE_KEYSTORE_B64" | base64 --decode > "$GITHUB_WORKSPACE/release.keystore"
             OLD_UMASK="$(umask)"
             umask 077
             STOREPASS_FILE="$(mktemp)"
@@ -273,7 +273,7 @@ jobs:
             trap cleanup_password_files EXIT
             HAS_VALID_RELEASE_KEYSTORE=false
             if keytool -list \
-              -keystore release.keystore \
+              -keystore "$GITHUB_WORKSPACE/release.keystore" \
               -storepass:file "$STOREPASS_FILE" \
               -alias "$ANDROID_RELEASE_KEYSTORE_ALIAS" \
               -keypass:file "$KEYPASS_FILE" >/dev/null 2>&1; then
@@ -285,7 +285,7 @@ jobs:
               echo "has_release_keystore=true" >> "$GITHUB_OUTPUT"
               echo "Release keystore credentials validated — Android builds will be release-signed."
             else
-              rm -f release.keystore
+              rm -f "$GITHUB_WORKSPACE/release.keystore"
               echo "has_release_keystore=false" >> "$GITHUB_OUTPUT"
               echo "Release keystore credentials are invalid for this keystore — Android builds will use debug signing."
             fi
@@ -411,74 +411,89 @@ jobs:
           PY
         shell: bash
 
+      - name: Install Godot editor and export templates
+        run: |
+          set -euo pipefail
+          GODOT_VERSION="${{ env.GODOT_VERSION }}"
+          GODOT_ZIP="$RUNNER_TEMP/godot-mono.zip"
+          TEMPLATES_TPZ="$RUNNER_TEMP/export-templates.tpz"
+          GODOT_EXTRACT_DIR="$RUNNER_TEMP/godot-extract"
+          TEMPLATES_EXTRACT_DIR="$RUNNER_TEMP/templates-extract"
+
+          rm -rf "$GODOT_EXTRACT_DIR" "$TEMPLATES_EXTRACT_DIR"
+          mkdir -p "$GODOT_EXTRACT_DIR" "$TEMPLATES_EXTRACT_DIR"
+
+          curl -L --fail \
+            -o "$GODOT_ZIP" \
+            "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_mono_macos.universal.zip"
+          unzip -q "$GODOT_ZIP" -d "$GODOT_EXTRACT_DIR"
+
+          mapfile -t GODOT_APP_MATCHES < <(find "$GODOT_EXTRACT_DIR" -type d -name 'Godot.app')
+          if [ "${#GODOT_APP_MATCHES[@]}" -ne 1 ]; then
+            echo "ERROR: Expected exactly 1 Godot.app after extraction, found ${#GODOT_APP_MATCHES[@]}."
+            printf '%s\n' "${GODOT_APP_MATCHES[@]}"
+            exit 1
+          fi
+          GODOT_APP_PATH="${GODOT_APP_MATCHES[0]}"
+          GODOT_BIN="$GODOT_APP_PATH/Contents/MacOS/Godot"
+          chmod +x "$GODOT_BIN"
+          echo "GODOT_BIN=$GODOT_BIN" >> "$GITHUB_ENV"
+
+          curl -L --fail \
+            -o "$TEMPLATES_TPZ" \
+            "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_mono_export_templates.tpz"
+          unzip -q "$TEMPLATES_TPZ" -d "$TEMPLATES_EXTRACT_DIR"
+
+          mapfile -t TEMPLATES_MATCHES < <(find "$TEMPLATES_EXTRACT_DIR" -type d -name templates)
+          if [ "${#TEMPLATES_MATCHES[@]}" -ne 1 ]; then
+            echo "ERROR: Expected exactly 1 templates directory in export template archive, found ${#TEMPLATES_MATCHES[@]}."
+            printf '%s\n' "${TEMPLATES_MATCHES[@]}"
+            exit 1
+          fi
+          TEMPLATES_SRC_DIR="${TEMPLATES_MATCHES[0]}"
+
+          TEMPLATES_VERSION="$(echo "$GODOT_VERSION" | sed 's/-/./').mono"
+          TEMPLATES_DEST_DIR="$HOME/Library/Application Support/Godot/export_templates/$TEMPLATES_VERSION"
+          mkdir -p "$TEMPLATES_DEST_DIR"
+          cp -R "$TEMPLATES_SRC_DIR/." "$TEMPLATES_DEST_DIR/"
+
       - name: Export iOS/iPadOS Xcode project
         if: matrix.target == 'ios'
-        uses: firebelley/godot-export@v7.0.0
-        with:
-          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_macos.universal.zip
-          godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_export_templates.tpz
-          relative_project_path: ./
-          archive_output: false
-          # export_debug: true avoids a Godot-level xcodebuild signing conflict:
-          # release mode writes CODE_SIGN_IDENTITY="Apple Distribution" but also
-          # triggers automatic signing, causing an immediate archive failure.
-          # Debug mode generates the Xcode project files only; the Release build
-          # configuration is enforced by the caller's own xcodebuild step.
-          export_debug: true
-          use_preset_export_path: true
-          presets_to_export: "iOS"
+        run: |
+          # Debug export avoids an Xcode signing conflict during project generation.
+          "$GODOT_BIN" --headless --path ./ --export-debug "${{ matrix.preset }}"
 
-      - name: Export Android (debug-signed)
-        if: matrix.target == 'android' && steps.release_keystore.outputs.has_release_keystore != 'true'
-        uses: firebelley/godot-export@v7.0.0
-        with:
-          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_macos.universal.zip
-          godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_export_templates.tpz
-          relative_project_path: ./
-          archive_output: false
-          export_debug: false
-          use_preset_export_path: true
-          presets_to_export: "${{ matrix.preset }}"
+      - name: Export Android (APK + AAB)
+        if: matrix.target == 'android'
+        run: |
+          set -euo pipefail
+          HAS_RELEASE="${{ steps.release_keystore.outputs.has_release_keystore }}"
+          IFS=',' read -ra PRESETS <<< "${{ matrix.preset }}"
+          for PRESET in "${PRESETS[@]}"; do
+            PRESET_TRIMMED="$(echo "$PRESET" | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')"
+            if [ "$HAS_RELEASE" != "true" ] && [ "$PRESET_TRIMMED" = "Android" ]; then
+              # APK preset without a release keystore: export-debug uses the debug
+              # keystore directly and skips release-keystore validation entirely.
+              "$GODOT_BIN" --headless --path ./ --export-debug "$PRESET_TRIMMED"
+            else
+              "$GODOT_BIN" --headless --path ./ --export-release "$PRESET_TRIMMED"
+            fi
+          done
         env:
-          GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ./debug.keystore
+          GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ${{ github.workspace }}/debug.keystore
           GODOT_ANDROID_KEYSTORE_DEBUG_USER: androiddebugkey
           GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD: android
-          # AAB preset has package/signed=true; fall back to debug keystore when no
-          # release certificate is configured so the export succeeds in CI.
-          GODOT_ANDROID_KEYSTORE_RELEASE_PATH: ./debug.keystore
-          GODOT_ANDROID_KEYSTORE_RELEASE_USER: androiddebugkey
-          GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD: android
-
-      - name: Export Android (release-signed)
-        if: matrix.target == 'android' && steps.release_keystore.outputs.has_release_keystore == 'true'
-        uses: firebelley/godot-export@v7.0.0
-        with:
-          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_macos.universal.zip
-          godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_export_templates.tpz
-          relative_project_path: ./
-          archive_output: false
-          export_debug: false
-          use_preset_export_path: true
-          presets_to_export: "${{ matrix.preset }}"
-        env:
-          GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ./debug.keystore
-          GODOT_ANDROID_KEYSTORE_DEBUG_USER: androiddebugkey
-          GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD: android
-          GODOT_ANDROID_KEYSTORE_RELEASE_PATH: ./release.keystore
-          GODOT_ANDROID_KEYSTORE_RELEASE_USER: ${{ secrets.ANDROID_RELEASE_KEYSTORE_ALIAS }}
-          GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD: ${{ secrets.ANDROID_RELEASE_KEY_PASSWORD || secrets.ANDROID_RELEASE_KEYSTORE_PASSWORD }}
+          # When there is no release keystore the AAB preset (package/signed=true)
+          # still requires a valid release keystore entry; fall back to the debug
+          # keystore using its absolute path so Godot can locate the file.
+          GODOT_ANDROID_KEYSTORE_RELEASE_PATH: ${{ steps.release_keystore.outputs.has_release_keystore == 'true' && format('{0}/release.keystore', github.workspace) || format('{0}/debug.keystore', github.workspace) }}
+          GODOT_ANDROID_KEYSTORE_RELEASE_USER: ${{ steps.release_keystore.outputs.has_release_keystore == 'true' && secrets.ANDROID_RELEASE_KEYSTORE_ALIAS || 'androiddebugkey' }}
+          GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD: ${{ steps.release_keystore.outputs.has_release_keystore == 'true' && (secrets.ANDROID_RELEASE_KEY_PASSWORD || secrets.ANDROID_RELEASE_KEYSTORE_PASSWORD) || 'android' }}
 
       - name: Export platform (Windows / Linux / macOS)
         if: matrix.target != 'android' && matrix.target != 'ios'
-        uses: firebelley/godot-export@v7.0.0
-        with:
-          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_macos.universal.zip
-          godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_export_templates.tpz
-          relative_project_path: ./
-          archive_output: false
-          export_debug: false
-          use_preset_export_path: true
-          presets_to_export: "${{ matrix.preset }}"
+        run: |
+          "$GODOT_BIN" --headless --path ./ --export-release "${{ matrix.preset }}"
 
       - name: Flatten Windows export output
         if: matrix.target == 'windows'
@@ -620,42 +635,42 @@ jobs:
 
       - name: Upload Windows export artifact
         if: matrix.target == 'windows'
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v8
         with:
           name: CorditeWars-Windows
           path: build/windows/
 
       - name: Upload Linux export artifact
         if: matrix.target == 'linux'
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v8
         with:
           name: CorditeWars-Linux
           path: build/linux/
 
       - name: Upload Android APK artifact
         if: matrix.target == 'android'
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v8
         with:
           name: CorditeWars-Android
           path: build/android/CorditeWars.apk
 
       - name: Upload Android AAB artifact
         if: matrix.target == 'android'
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v8
         with:
           name: CorditeWars-Android-AAB
           path: build/android/CorditeWars.aab
 
       - name: Upload iOS/iPadOS Handoff artifact
         if: matrix.target == 'ios'
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v8
         with:
           name: CorditeWars-iOS-iPadOS-Handoff
           path: build/ios/
 
       - name: Upload macOS export artifact
         if: matrix.target == 'macos'
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v8
         with:
           name: CorditeWars-macOS-Export
           path: build/macos/
@@ -707,7 +722,7 @@ jobs:
           Write-Host "EXE installer: dist\windows\CorditeWars_Setup_${{ needs.resolve-version.outputs.app_version }}.exe"
 
       - name: Upload EXE installer artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v8
         with:
           name: CorditeWars-Windows-Setup-EXE
           path: dist/windows/CorditeWars_Setup_${{ needs.resolve-version.outputs.app_version }}.exe
@@ -766,7 +781,7 @@ jobs:
           Write-Host "MSI installer: dist\windows\CorditeWars_${{ needs.resolve-version.outputs.app_version }}.msi"
 
       - name: Upload MSI installer artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v8
         with:
           name: CorditeWars-Windows-MSI
           path: dist/windows/CorditeWars_${{ needs.resolve-version.outputs.app_version }}.msi
@@ -821,7 +836,7 @@ jobs:
           path: versions/linux
 
       - name: Upload Snap artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v8
         with:
           name: CorditeWars-Linux-Snap
           path: ${{ steps.snapcraft.outputs.snap }}
@@ -835,10 +850,10 @@ jobs:
     needs: [export-all, resolve-version]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Download Linux export
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: CorditeWars-Linux
           path: build/linux
@@ -901,7 +916,7 @@ jobs:
           ls -lh dist/linux/
 
       - name: Upload DEB artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v8
         with:
           name: CorditeWars-Linux-DEB
           path: dist/linux/CorditeWars_${{ needs.resolve-version.outputs.app_version }}_amd64.deb
@@ -915,10 +930,10 @@ jobs:
     needs: [export-all, resolve-version]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Download Linux export
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: CorditeWars-Linux
           path: build/linux
@@ -957,7 +972,7 @@ jobs:
           cache-key: flatpak-builder-${{ hashFiles('versions/linux/flatpak/com.koshkikode.CorditeWars.yml') }}
 
       - name: Upload Flatpak artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v8
         with:
           name: CorditeWars-Linux-Flatpak
           path: CorditeWars_${{ needs.resolve-version.outputs.app_version }}.flatpak
@@ -974,10 +989,10 @@ jobs:
     needs: [export-all, resolve-version]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Download Windows export
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: CorditeWars-Windows
           path: build/windows
@@ -1097,7 +1112,7 @@ jobs:
           }
 
       - name: Upload MSIX artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v8
         with:
           name: CorditeWars-Windows-MSIX
           path: dist/windows/CorditeWars_${{ needs.resolve-version.outputs.app_version }}.msix
@@ -1230,7 +1245,7 @@ jobs:
           fi
 
       - name: Upload macOS DMG artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v8
         with:
           name: CorditeWars-macOS-DMG
           path: dist/macos/CorditeWars_${{ needs.resolve-version.outputs.app_version }}.dmg
@@ -1250,10 +1265,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Download iOS Xcode project
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: CorditeWars-iOS-iPadOS-Handoff
           path: build/ios
@@ -1389,7 +1404,7 @@ jobs:
 
       - name: Upload iOS IPA artifact
         if: steps.ios_secrets.outputs.has_signing == 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v8
         with:
           name: CorditeWars-iOS-IPA
           path: build/ipa/CorditeWars_${{ needs.resolve-version.outputs.app_version }}_ios.ipa
@@ -1407,7 +1422,7 @@ jobs:
 
       - name: Upload iOS Xcode zip artifact (fallback)
         if: steps.ios_secrets.outputs.has_signing != 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v8
         with:
           name: CorditeWars-iOS-IPA
           path: build/ios-zip/CorditeWars_${{ needs.resolve-version.outputs.app_version }}_ios_xcode.zip

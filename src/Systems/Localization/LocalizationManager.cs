@@ -30,19 +30,35 @@ public partial class LocalizationManager : Node
     /// <summary>
     /// All supported locale codes and their display names.
     /// Order matches the language selector dropdown.
+    /// Each entry corresponds to a JSON file under data/locale/.
     /// </summary>
     public static readonly (string Code, string DisplayName)[] SupportedLocales =
     {
         ("en",    "English"),
-        ("zh_CN", "简体中文"),
-        ("es",    "Español"),
         ("ar",    "العربية"),
-        ("fr",    "Français"),
-        ("pt_BR", "Português (BR)"),
-        ("ru",    "Русский"),
+        ("cs",    "Čeština"),
+        ("da",    "Dansk"),
         ("de",    "Deutsch"),
+        ("es",    "Español"),
+        ("fi",    "Suomi"),
+        ("fr",    "Français"),
+        ("hu",    "Magyar"),
+        ("it",    "Italiano"),
         ("ja",    "日本語"),
         ("ko",    "한국어"),
+        ("nb",    "Norsk (Bokmål)"),
+        ("nl",    "Nederlands"),
+        ("pl",    "Polski"),
+        ("pt_BR", "Português (BR)"),
+        ("ro",    "Română"),
+        ("ru",    "Русский"),
+        ("sv",    "Svenska"),
+        ("th",    "ภาษาไทย"),
+        ("tr",    "Türkçe"),
+        ("uk",    "Українська"),
+        ("vi",    "Tiếng Việt"),
+        ("zh_CN", "简体中文"),
+        ("zh_TW", "繁體中文"),
     };
 
     /// <summary>Fired when the language changes so UI can refresh.</summary>
