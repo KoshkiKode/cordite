@@ -154,7 +154,7 @@ public sealed partial class SaveManager : Node
                 return null;
             }
 
-            byte[] payload = file.GetBuffer(file.GetLength());
+            byte[] payload = file.GetBuffer((long)file.GetLength());
             SaveGameData? data = SaveFileCodec.Decode(payload, SaveJsonOptions);
 
             if (data != null)
@@ -256,7 +256,7 @@ public sealed partial class SaveManager : Node
                     using var file = FileAccess.Open(filePath, FileAccess.ModeFlags.Read);
                     if (file is not null)
                     {
-                        byte[] payload = file.GetBuffer(file.GetLength());
+                        byte[] payload = file.GetBuffer((long)file.GetLength());
                         SaveGameData? data = SaveFileCodec.Decode(payload, SaveJsonOptions);
 
                         if (data != null)
