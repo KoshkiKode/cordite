@@ -309,7 +309,7 @@ public sealed partial class SaveManager : Node
         EnsureSaveDirectory();
 
         // Rotate: delete oldest, shift others
-        string oldestPath = $"{SaveDirectory}/autosave_{MaxAutoSaves - 1}{SaveFileExtension}";
+        string oldestPath = GetAutoSavePath(MaxAutoSaves - 1);
         if (FileAccess.FileExists(oldestPath))
         {
             DirAccess.RemoveAbsolute(oldestPath);
@@ -317,10 +317,10 @@ public sealed partial class SaveManager : Node
 
         for (int i = MaxAutoSaves - 2; i >= 0; i--)
         {
-            string fromPath = $"{SaveDirectory}/autosave_{i}{SaveFileExtension}";
-            string toPath = $"{SaveDirectory}/autosave_{i + 1}{SaveFileExtension}";
-            string fromFileName = $"autosave_{i}{SaveFileExtension}";
-            string toFileName = $"autosave_{i + 1}{SaveFileExtension}";
+            string fromPath = GetAutoSavePath(i);
+            string toPath = GetAutoSavePath(i + 1);
+            string fromFileName = GetAutoSaveFileName(i);
+            string toFileName = GetAutoSaveFileName(i + 1);
 
             if (FileAccess.FileExists(fromPath))
             {
@@ -369,6 +369,10 @@ public sealed partial class SaveManager : Node
     private static string GetProprietarySavePath(string slotName) => $"{SaveDirectory}/{slotName}{SaveFileExtension}";
 
     private static string GetLegacySavePath(string slotName) => $"{SaveDirectory}/{slotName}{LegacySaveFileExtension}";
+
+    private static string GetAutoSavePath(int index) => $"{SaveDirectory}/{GetAutoSaveFileName(index)}";
+
+    private static string GetAutoSaveFileName(int index) => $"autosave_{index}{SaveFileExtension}";
 
     private static string ResolveLoadPath(string slotName)
     {
