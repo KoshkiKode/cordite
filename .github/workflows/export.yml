@@ -215,7 +215,7 @@ jobs:
             RELEASE_KEY_PASSWORD="${ANDROID_RELEASE_KEY_PASSWORD:-$ANDROID_RELEASE_KEYSTORE_PASSWORD}"
             printf '%s' "$ANDROID_RELEASE_KEYSTORE_PASSWORD" > "$STOREPASS_FILE"
             printf '%s' "$RELEASE_KEY_PASSWORD" > "$KEYPASS_FILE"
-            cleanup_storepass_file() {
+            cleanup_password_files() {
               if [ -f "$STOREPASS_FILE" ]; then
                 if command -v shred >/dev/null 2>&1; then
                   shred -u "$STOREPASS_FILE" || rm -f "$STOREPASS_FILE"
@@ -231,7 +231,7 @@ jobs:
                 fi
               fi
             }
-            trap cleanup_storepass_file EXIT
+            trap cleanup_password_files EXIT
             HAS_VALID_RELEASE_KEYSTORE=false
             if keytool -list \
               -keystore release.keystore \
@@ -241,7 +241,7 @@ jobs:
               HAS_VALID_RELEASE_KEYSTORE=true
             fi
             trap - EXIT
-            cleanup_storepass_file
+            cleanup_password_files
             if [ "$HAS_VALID_RELEASE_KEYSTORE" = "true" ]; then
               echo "has_release_keystore=true" >> "$GITHUB_OUTPUT"
               echo "Release keystore credentials validated — Android builds will be release-signed."
