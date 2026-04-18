@@ -411,34 +411,63 @@ jobs:
           PY
         shell: bash
 
+      - name: Install Godot editor and export templates
+        run: |
+          set -euo pipefail
+          GODOT_VERSION="${{ env.GODOT_VERSION }}"
+          GODOT_ZIP="$RUNNER_TEMP/godot-mono.zip"
+          TEMPLATES_TPZ="$RUNNER_TEMP/export-templates.tpz"
+          GODOT_EXTRACT_DIR="$RUNNER_TEMP/godot-extract"
+          TEMPLATES_EXTRACT_DIR="$RUNNER_TEMP/templates-extract"
+
+          rm -rf "$GODOT_EXTRACT_DIR" "$TEMPLATES_EXTRACT_DIR"
+          mkdir -p "$GODOT_EXTRACT_DIR" "$TEMPLATES_EXTRACT_DIR"
+
+          curl -L --fail \
+            -o "$GODOT_ZIP" \
+            "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_mono_macos.universal.zip"
+          unzip -q "$GODOT_ZIP" -d "$GODOT_EXTRACT_DIR"
+
+          GODOT_APP_PATH="$(find "$GODOT_EXTRACT_DIR" -type d -name 'Godot.app' | head -n 1)"
+          if [ -z "$GODOT_APP_PATH" ]; then
+            echo "ERROR: Godot.app not found after extraction."
+            exit 1
+          fi
+          GODOT_BIN="$GODOT_APP_PATH/Contents/MacOS/Godot"
+          chmod +x "$GODOT_BIN"
+          echo "GODOT_BIN=$GODOT_BIN" >> "$GITHUB_ENV"
+
+          curl -L --fail \
+            -o "$TEMPLATES_TPZ" \
+            "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_mono_export_templates.tpz"
+          unzip -q "$TEMPLATES_TPZ" -d "$TEMPLATES_EXTRACT_DIR"
+
+          TEMPLATES_SRC_DIR="$(find "$TEMPLATES_EXTRACT_DIR" -type d -name templates | head -n 1)"
+          if [ -z "$TEMPLATES_SRC_DIR" ]; then
+            echo "ERROR: templates directory not found in export template archive."
+            exit 1
+          fi
+
+          TEMPLATES_VERSION="$(echo "$GODOT_VERSION" | sed 's/-/./').mono"
+          TEMPLATES_DEST_DIR="$HOME/Library/Application Support/Godot/export_templates/$TEMPLATES_VERSION"
+          mkdir -p "$TEMPLATES_DEST_DIR"
+          cp -R "$TEMPLATES_SRC_DIR/." "$TEMPLATES_DEST_DIR/"
+
       - name: Export iOS/iPadOS Xcode project
         if: matrix.target == 'ios'
-        uses: firebelley/godot-export@v7.0.0
-        with:
-          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_macos.universal.zip
-          godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_export_templates.tpz
-          relative_project_path: ./
-          archive_output: false
-          # export_debug: true avoids a Godot-level xcodebuild signing conflict:
-          # release mode writes CODE_SIGN_IDENTITY="Apple Distribution" but also
-          # triggers automatic signing, causing an immediate archive failure.
-          # Debug mode generates the Xcode project files only; the Release build
-          # configuration is enforced by the caller's own xcodebuild step.
-          export_debug: true
-          use_preset_export_path: true
-          presets_to_export: "iOS"
+        run: |
+          # Debug export avoids an Xcode signing conflict during project generation.
+          "$GODOT_BIN" --headless --path ./ --export-debug "iOS"
 
       - name: Export Android (debug-signed)
         if: matrix.target == 'android' && steps.release_keystore.outputs.has_release_keystore != 'true'
-        uses: firebelley/godot-export@v7.0.0
-        with:
-          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_macos.universal.zip
-          godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_export_templates.tpz
-          relative_project_path: ./
-          archive_output: false
-          export_debug: false
-          use_preset_export_path: true
-          presets_to_export: "${{ matrix.preset }}"
+        run: |
+          set -euo pipefail
+          IFS=',' read -ra PRESETS <<< "${{ matrix.preset }}"
+          for PRESET in "${PRESETS[@]}"; do
+            PRESET_TRIMMED="$(echo "$PRESET" | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')"
+            "$GODOT_BIN" --headless --path ./ --export-release "$PRESET_TRIMMED"
+          done
         env:
           GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ./debug.keystore
           GODOT_ANDROID_KEYSTORE_DEBUG_USER: androiddebugkey
@@ -451,15 +480,13 @@ jobs:
 
       - name: Export Android (release-signed)
         if: matrix.target == 'android' && steps.release_keystore.outputs.has_release_keystore == 'true'
-        uses: firebelley/godot-export@v7.0.0
-        with:
-          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_macos.universal.zip
-          godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_export_templates.tpz
-          relative_project_path: ./
-          archive_output: false
-          export_debug: false
-          use_preset_export_path: true
-          presets_to_export: "${{ matrix.preset }}"
+        run: |
+          set -euo pipefail
+          IFS=',' read -ra PRESETS <<< "${{ matrix.preset }}"
+          for PRESET in "${PRESETS[@]}"; do
+            PRESET_TRIMMED="$(echo "$PRESET" | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')"
+            "$GODOT_BIN" --headless --path ./ --export-release "$PRESET_TRIMMED"
+          done
         env:
           GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ./debug.keystore
           GODOT_ANDROID_KEYSTORE_DEBUG_USER: androiddebugkey
@@ -470,15 +497,8 @@ jobs:
 
       - name: Export platform (Windows / Linux / macOS)
         if: matrix.target != 'android' && matrix.target != 'ios'
-        uses: firebelley/godot-export@v7.0.0
-        with:
-          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_macos.universal.zip
-          godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_mono_export_templates.tpz
-          relative_project_path: ./
-          archive_output: false
-          export_debug: false
-          use_preset_export_path: true
-          presets_to_export: "${{ matrix.preset }}"
+        run: |
+          "$GODOT_BIN" --headless --path ./ --export-release "${{ matrix.preset }}"
 
       - name: Flatten Windows export output
         if: matrix.target == 'windows'
