@@ -432,11 +432,14 @@ jobs:
             "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_mono_macos.universal.zip"
           unzip -q "$GODOT_ZIP" -d "$GODOT_EXTRACT_DIR"
 
-          GODOT_APP_PATH="$(find "$GODOT_EXTRACT_DIR" -type d -name 'Godot.app' | head -1)"
-          if [ -z "$GODOT_APP_PATH" ]; then
-            echo "ERROR: Godot.app not found after extraction."
+          GODOT_APP_MATCHES="$(find "$GODOT_EXTRACT_DIR" -type d -name 'Godot.app')"
+          GODOT_APP_COUNT="$(printf '%s\n' "$GODOT_APP_MATCHES" | sed '/^$/d' | wc -l | tr -d ' ')"
+          if [ "$GODOT_APP_COUNT" -ne 1 ]; then
+            echo "ERROR: Expected exactly 1 Godot.app after extraction, found $GODOT_APP_COUNT."
+            printf '%s\n' "$GODOT_APP_MATCHES"
             exit 1
           fi
+          GODOT_APP_PATH="$(printf '%s\n' "$GODOT_APP_MATCHES" | sed -n '1p')"
           GODOT_BIN="$GODOT_APP_PATH/Contents/MacOS/Godot"
           chmod +x "$GODOT_BIN"
           echo "GODOT_BIN=$GODOT_BIN" >> "$GITHUB_ENV"
@@ -446,11 +449,14 @@ jobs:
             "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_mono_export_templates.tpz"
           unzip -q "$TEMPLATES_TPZ" -d "$TEMPLATES_EXTRACT_DIR"
 
-          TEMPLATES_SRC_DIR="$(find "$TEMPLATES_EXTRACT_DIR" -type d -name templates | head -1)"
-          if [ -z "$TEMPLATES_SRC_DIR" ]; then
-            echo "ERROR: templates directory not found in export template archive."
+          TEMPLATES_MATCHES="$(find "$TEMPLATES_EXTRACT_DIR" -type d -name templates)"
+          TEMPLATES_COUNT="$(printf '%s\n' "$TEMPLATES_MATCHES" | sed '/^$/d' | wc -l | tr -d ' ')"
+          if [ "$TEMPLATES_COUNT" -ne 1 ]; then
+            echo "ERROR: Expected exactly 1 templates directory in export template archive, found $TEMPLATES_COUNT."
+            printf '%s\n' "$TEMPLATES_MATCHES"
             exit 1
           fi
+          TEMPLATES_SRC_DIR="$(printf '%s\n' "$TEMPLATES_MATCHES" | sed -n '1p')"
 
           TEMPLATES_VERSION="$(echo "$GODOT_VERSION" | sed 's/-/./').mono"
           TEMPLATES_DEST_DIR="$HOME/Library/Application Support/Godot/export_templates/$TEMPLATES_VERSION"
