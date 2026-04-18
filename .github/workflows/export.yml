@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Check boot scene and required project files
         run: |
@@ -106,7 +106,7 @@ jobs:
       app_version: ${{ steps.read_version.outputs.app_version }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Read app version from versions/shared/version.json
         id: read_version
@@ -176,7 +176,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up JDK 21
         if: matrix.target == 'android'
@@ -688,7 +688,7 @@ jobs:
     needs: [export-all, resolve-version]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Download Windows export
         uses: actions/download-artifact@v4
@@ -740,7 +740,7 @@ jobs:
     needs: [export-all, resolve-version]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Download Windows export
         uses: actions/download-artifact@v4
@@ -799,7 +799,7 @@ jobs:
     needs: [export-all, resolve-version]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Download Linux export
         uses: actions/download-artifact@v4
@@ -854,7 +854,7 @@ jobs:
     needs: [export-all, resolve-version]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Download Linux export
         uses: actions/download-artifact@v4
@@ -934,7 +934,7 @@ jobs:
     needs: [export-all, resolve-version]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Download Linux export
         uses: actions/download-artifact@v4
@@ -993,7 +993,7 @@ jobs:
     needs: [export-all, resolve-version]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Download Windows export
         uses: actions/download-artifact@v4
@@ -1129,7 +1129,7 @@ jobs:
     needs: [export-all, resolve-version]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Download macOS export
         uses: actions/download-artifact@v4
@@ -1269,7 +1269,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Download iOS Xcode project
         uses: actions/download-artifact@v4
