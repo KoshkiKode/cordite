@@ -8,7 +8,16 @@
             **/.godot/**/*.cs,
             **/src/UI/**/*.cs,
             **/src/Game/GameSession.cs,
-            **/src/Game/World/MapEditor.cs
+            **/src/Game/World/MapEditor.cs,
+            **/src/Game/World/TerrainRenderer.cs,
+            **/src/Systems/Networking/LobbyManager.cs,
+            **/src/Game/Buildings/BuildingPlacer.cs,
+            **/src/Game/Units/UnitNode3D.cs,
+            **/src/Game/VFX/ParticleFactory.cs,
+            **/src/Game/Economy/HarvesterSystem.cs,
+            **/src/Game/World/PropPlacer.cs,
+            **/src/Game/AI/SkirmishAI.cs,
+            **/src/Game/AI/AIBuildOrder.cs
           </ExcludeByFile>
         </Configuration>
       </DataCollector>
