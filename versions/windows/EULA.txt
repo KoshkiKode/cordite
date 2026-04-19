@@ -88,9 +88,18 @@ to the Software under the following conditions:
        intellectual property rights to you. KoshkiKode LLC retains full and
        exclusive ownership of the underlying Software and all of its components.
        KoshkiKode LLC may incorporate community Mod ideas or code into the
-       official Software at its sole discretion without compensation or
-       attribution obligations, unless a separate written agreement states
-       otherwise.
+       official Software at its sole discretion without compensation obligations,
+       unless a separate written agreement states otherwise.
+
+       Community Attribution (Best-Effort). While KoshkiKode LLC is under no
+       legal obligation to credit individual community contributors, it is the
+       sincere intention of KoshkiKode LLC to acknowledge community members whose
+       ideas, suggestions, or Mod concepts are meaningfully incorporated into
+       future official releases of the Software (for example, in patch notes,
+       credits screens, or release announcements). This commitment is made in good
+       faith and does not constitute a binding contractual obligation; failure to
+       provide attribution in any specific instance shall not give rise to any
+       claim or liability against KoshkiKode LLC.
 
     g) No Warranty for Mods. KoshkiKode LLC makes no representations or
        warranties regarding any community Mods and bears no liability for
