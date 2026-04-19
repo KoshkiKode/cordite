@@ -237,8 +237,8 @@ jobs:
       - name: Flatten Windows export output
         run: |
           if [ -d "build/windows/Windows Desktop" ]; then
-            mv "build/windows/Windows Desktop/"* build/windows/
-            rmdir "build/windows/Windows Desktop"
+            cp -a "build/windows/Windows Desktop/." build/windows/
+            rm -rf "build/windows/Windows Desktop"
             echo "Flattened build/windows/Windows Desktop/ → build/windows/"
           fi
 
@@ -355,8 +355,8 @@ jobs:
       - name: Flatten Linux export output
         run: |
           if [ -d "build/linux/LinuxX11" ]; then
-            mv "build/linux/LinuxX11/"* build/linux/
-            rmdir "build/linux/LinuxX11"
+            cp -a "build/linux/LinuxX11/." build/linux/
+            rm -rf "build/linux/LinuxX11"
             echo "Flattened build/linux/LinuxX11/ → build/linux/"
           fi
 
@@ -958,8 +958,8 @@ jobs:
       - name: Flatten macOS export output
         run: |
           if [ -d "build/macos/macOS" ]; then
-            mv "build/macos/macOS/"* build/macos/
-            rmdir "build/macos/macOS"
+            cp -a "build/macos/macOS/." build/macos/
+            rm -rf "build/macos/macOS"
             echo "Flattened build/macos/macOS/ → build/macos/"
           fi
 
