@@ -68,7 +68,7 @@ public partial class EulaAgreementScreen : Control
 
         var textPanel = new PanelContainer();
         textPanel.SizeFlagsVertical = SizeFlags.ExpandFill;
-        UITheme.StylePanel(textPanel);
+        textPanel.AddThemeStyleboxOverride("panel", UITheme.MakePanel());
         root.AddChild(textPanel);
 
         var eulaText = new RichTextLabel();
@@ -81,6 +81,7 @@ public partial class EulaAgreementScreen : Control
 
         _agreeCheck = new CheckBox();
         _agreeCheck.Text = "I have read and agree to the End User License Agreement.";
+        UITheme.StyleCheckBox(_agreeCheck);
         _agreeCheck.Toggled += OnAgreeToggled;
         root.AddChild(_agreeCheck);
 
