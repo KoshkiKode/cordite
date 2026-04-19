@@ -14,7 +14,7 @@ platforms.
 Unauthorized copying, modification, or distribution of this software
 is strictly prohibited and may result in civil and criminal penalties.
 
-For the full governing terms, see versions/windows/EULA.txt in the
-source tree (also distributed as EULA.txt with installer builds).
+For the full governing terms, see EULA.txt in the source tree
+(mirrored at versions/windows/EULA.txt for installer packaging).
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.

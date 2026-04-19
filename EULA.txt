@@ -1,0 +1,205 @@
+END USER LICENSE AGREEMENT
+Cordite Wars: Six Fronts
+
+Last Updated: 18 April 2026
+
+PLEASE READ THIS END USER LICENSE AGREEMENT ("AGREEMENT" OR "EULA") CAREFULLY
+BEFORE INSTALLING OR USING CORDITE WARS: SIX FRONTS (THE "SOFTWARE"). BY
+INSTALLING, COPYING, OR OTHERWISE USING THE SOFTWARE YOU AGREE TO BE BOUND BY
+THE TERMS OF THIS AGREEMENT. IF YOU DO NOT AGREE, DO NOT INSTALL OR USE THE
+SOFTWARE AND PROMPTLY DELETE ANY COPIES IN YOUR POSSESSION.
+
+------------------------------------------------------------------------
+
+1. LICENSOR
+
+Cordite Wars: Six Fronts is published and owned by:
+
+    KoshkiKode LLC
+    ("Licensor", "we", "us", or "our")
+
+2. GRANT OF LICENSE
+
+Subject to your compliance with the terms of this Agreement, Licensor grants
+you a limited, non-exclusive, non-transferable, non-sublicensable, revocable
+license to install and run one (1) copy of the Software on a device you own or
+control, solely for your personal, non-commercial entertainment use.
+
+3. OWNERSHIP AND RESERVATION OF RIGHTS
+
+The Software, including all of its code, assets, artwork, audio, text, game
+design, documentation, and all other components, is and remains the exclusive
+property of KoshkiKode LLC. All rights not expressly granted in this Agreement
+are reserved by KoshkiKode LLC.
+
+You acknowledge that no title to or ownership of the Software is transferred to
+you. This Agreement does not grant you any intellectual property rights in the
+Software.
+
+4. RESTRICTIONS
+
+You may NOT, without prior written permission from KoshkiKode LLC:
+
+    a) Copy, reproduce, distribute, publish, display, or transmit the Software
+       or any portion thereof;
+    b) Modify, adapt, translate, reverse engineer, decompile, disassemble, or
+       create derivative works based on the Software or any portion thereof,
+       except as expressly permitted under Section 5 (Modding and Community
+       Modifications) below;
+    c) Rent, lease, lend, sell, sublicense, or otherwise transfer rights to the
+       Software;
+    d) Remove, alter, or obscure any proprietary notices, labels, or marks on
+       the Software;
+    e) Use the Software for commercial purposes, including in a service bureau
+       or time-sharing arrangement;
+    f) Use any automated means (bots, scripts, cheats, trainers, exploits) to
+       access or interact with the Software in an unauthorized manner;
+    g) Use the Software in a way that violates any applicable law or regulation.
+
+5. MODDING AND COMMUNITY MODIFICATIONS
+
+KoshkiKode LLC supports community creativity. Notwithstanding the restrictions in
+Section 4(b), you are granted a limited right to create Modifications ("Mods")
+to the Software under the following conditions:
+
+    a) Non-Commercial Only. Mods must be created and distributed free of charge.
+       You may not sell, license for a fee, or otherwise commercialize any Mod or
+       any portion of the Software on which it is based.
+
+    b) Open-Source Code Base. The source code of the Software is made publicly
+       available at https://github.com/KoshkiKode/cordite. You may read, fork,
+       and modify that source code solely to create Mods that extend or alter
+       gameplay. Any Mod you distribute must itself be distributed free of charge
+       and must clearly identify KoshkiKode LLC as the original author of the
+       underlying Software.
+
+    c) No Base-Game Redistribution. You may share your Mod files (scripts,
+       assets, configuration created by you), but you may NOT redistribute the
+       base Software, its compiled binaries, packaged builds, or any substantial
+       portion of its original assets as part of your Mod release.
+
+    d) Attribution. All Mods must prominently state: "Based on Cordite Wars: Six
+       Fronts, copyright (c) 2026 KoshkiKode LLC. All rights reserved."
+
+    e) No Harmful Mods. Mods must not introduce cheats, exploits, malware,
+       unlawful content, or anything that violates applicable law.
+
+    f) KoshkiKode LLC Retains All Rights. Creating a Mod does not transfer any
+       intellectual property rights to you. KoshkiKode LLC retains full and
+       exclusive ownership of the underlying Software and all of its components.
+       KoshkiKode LLC may incorporate community Mod ideas or code into the
+       official Software at its sole discretion without compensation obligations,
+       unless a separate written agreement states otherwise.
+
+       Community Attribution (Best-Effort). While KoshkiKode LLC is under no
+       legal obligation to credit individual community contributors, it is the
+       sincere intention of KoshkiKode LLC to acknowledge community members whose
+       ideas, suggestions, or Mod concepts are meaningfully incorporated into
+       future official releases of the Software (for example, in patch notes,
+       credits screens, or release announcements). This commitment is made in good
+       faith and does not constitute a binding contractual obligation; failure to
+       provide attribution in any specific instance shall not give rise to any
+       claim or liability against KoshkiKode LLC.
+
+    g) No Warranty for Mods. KoshkiKode LLC makes no representations or
+       warranties regarding any community Mods and bears no liability for
+       damages arising from your use or distribution of a Mod.
+
+6. UPDATES AND PATCHES
+
+Licensor may, at its sole discretion, provide updates, patches, or new versions
+of the Software. Such updates are subject to the terms of this Agreement unless
+accompanied by a separate license agreement that expressly supersedes this one.
+
+7. INTELLECTUAL PROPERTY
+
+All trademarks, service marks, trade names, logos, and trade dress associated
+with the Software are the property of KoshkiKode LLC. Nothing in this Agreement
+grants you the right to use any of those marks without prior written consent of
+KoshkiKode LLC.
+
+8. USER-GENERATED CONTENT
+
+To the extent the Software permits you to create or upload content ("User
+Content"), you retain any rights you hold in your original creative work.
+However, by submitting User Content you grant KoshkiKode LLC a worldwide,
+royalty-free, perpetual, irrevocable, sublicensable license to use, reproduce,
+modify, adapt, publish, translate, distribute, and display that User Content in
+connection with the Software and Licensor's business.
+
+9. PRIVACY
+
+Use of the Software may be subject to Licensor's Privacy Policy, available at
+https://koshkikode.com or within the Software. The Privacy
+Policy is incorporated into this Agreement by reference.
+
+10. DISCLAIMER OF WARRANTIES
+
+THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE," WITHOUT WARRANTY OF ANY
+KIND. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, KOSHKIKODE LLC AND
+ITS OFFICERS, EMPLOYEES, AND AGENTS EXPRESSLY DISCLAIM ALL WARRANTIES, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT. LICENSOR DOES
+NOT WARRANT THAT THE SOFTWARE WILL BE UNINTERRUPTED, ERROR-FREE, OR FREE OF
+VIRUSES OR OTHER HARMFUL COMPONENTS.
+
+11. LIMITATION OF LIABILITY
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL
+KOSHKIKODE LLC OR ITS OFFICERS, EMPLOYEES, OR AGENTS BE LIABLE FOR ANY
+INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES
+(INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, DATA, GOODWILL, OR OTHER
+INTANGIBLE LOSSES) ARISING OUT OF OR IN CONNECTION WITH YOUR USE OF OR
+INABILITY TO USE THE SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+DAMAGES.
+
+IN NO EVENT SHALL KOSHKIKODE LLC'S TOTAL LIABILITY TO YOU FOR ALL CLAIMS
+ARISING UNDER OR IN CONNECTION WITH THIS AGREEMENT EXCEED THE GREATER OF (A)
+THE AMOUNT YOU PAID FOR THE SOFTWARE IN THE TWELVE (12) MONTHS PRECEDING THE
+CLAIM, OR (B) TEN U.S. DOLLARS (US $10.00).
+
+SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OR LIMITATION OF CERTAIN
+WARRANTIES OR LIABILITY, SO THE ABOVE LIMITATIONS MAY NOT APPLY TO YOU.
+
+12. INDEMNIFICATION
+
+You agree to indemnify, defend, and hold harmless KoshkiKode LLC and its
+officers, directors, employees, and agents from and against any claims,
+liabilities, damages, judgments, awards, losses, costs, expenses, or fees
+(including reasonable attorneys' fees) arising out of or relating to your
+violation of this Agreement or your use of the Software.
+
+13. TERMINATION
+
+This Agreement is effective until terminated. KoshkiKode LLC may terminate this
+Agreement immediately and without notice if you breach any term herein. Upon
+termination you must destroy all copies of the Software in your possession or
+control. Sections 3, 4, 5, 7, 10, 11, 12, 14, and 15 survive any termination.
+
+14. GOVERNING LAW AND DISPUTE RESOLUTION
+
+This Agreement shall be governed by and construed in accordance with the laws of
+the jurisdiction in which KoshkiKode LLC is organized, without regard to its
+conflict of law principles. Any dispute arising out of or relating to this
+Agreement shall be subject to the exclusive jurisdiction of the courts in that
+jurisdiction, and you consent to personal jurisdiction therein.
+
+15. GENERAL
+
+    a) Entire Agreement. This Agreement constitutes the entire agreement between
+       you and KoshkiKode LLC regarding the Software and supersedes all prior or
+       contemporaneous understandings.
+    b) Severability. If any provision of this Agreement is held to be invalid or
+       unenforceable, the remaining provisions shall continue in full force and
+       effect.
+    c) Waiver. Failure by KoshkiKode LLC to enforce any right or provision of
+       this Agreement will not constitute a waiver of that right or provision.
+    d) Assignment. You may not assign or transfer this Agreement or any of your
+       rights hereunder without the prior written consent of KoshkiKode LLC.
+       KoshkiKode LLC may freely assign this Agreement.
+    e) Contact. For questions about this Agreement or to report issues,
+       contact KoshkiKode LLC at https://koshkikode.com.
+
+------------------------------------------------------------------------
+
+Copyright (c) 2026 KoshkiKode LLC. All rights reserved.

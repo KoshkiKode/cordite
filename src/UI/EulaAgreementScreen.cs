@@ -13,7 +13,7 @@ public partial class EulaAgreementScreen : Control
     private const string SettingsKeyAcceptedVersion = "eula_accepted_version";
     private const string RequiredEulaVersion = "2026-04-18";
 
-    private const string EulaPath = "res://versions/windows/EULA.txt";
+    private static readonly string[] EulaPaths = { "res://EULA.txt", "res://versions/windows/EULA.txt" };
     private const string WebsiteUrl = "https://koshkikode.com";
     private const string NextScene = "res://scenes/UI/LoadingScreen.tscn";
 
@@ -112,11 +112,14 @@ public partial class EulaAgreementScreen : Control
 
     private static string LoadEulaText()
     {
-        using var file = FileAccess.Open(EulaPath, FileAccess.ModeFlags.Read);
-        if (file != null)
-            return file.GetAsText();
+        foreach (string eulaPath in EulaPaths)
+        {
+            using var file = FileAccess.Open(eulaPath, FileAccess.ModeFlags.Read);
+            if (file != null)
+                return file.GetAsText();
+        }
 
-        GD.PrintErr($"[EulaAgreementScreen] Failed to load EULA from {EulaPath}. Godot error: {FileAccess.GetOpenError()}");
+        GD.PrintErr($"[EulaAgreementScreen] Failed to load EULA from all configured paths. Last Godot error: {FileAccess.GetOpenError()}");
 
         return
             "Unable to load full EULA text from the packaged file.\n\n" +
@@ -132,7 +135,9 @@ public partial class EulaAgreementScreen : Control
     private void OnAcceptPressed()
     {
         var cfg = new ConfigFile();
-        cfg.Load(SettingsPath);
+        Error loadErr = cfg.Load(SettingsPath);
+        if (loadErr != Error.Ok && loadErr != Error.FileNotFound)
+            GD.PrintErr($"[EulaAgreementScreen] Failed to load existing settings before saving EULA acceptance: {loadErr}");
         cfg.SetValue(SettingsSection, SettingsKeyAccepted, true);
         cfg.SetValue(SettingsSection, SettingsKeyAcceptedVersion, RequiredEulaVersion);
         cfg.Save(SettingsPath);
