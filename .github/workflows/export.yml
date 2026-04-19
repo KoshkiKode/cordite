@@ -463,7 +463,7 @@ jobs:
             umask 077
             STOREPASS_FILE="$(mktemp)"
             KEYPASS_FILE="$(mktemp)"
-            VALIDATION_KEYSTORE="$(mktemp "$RUNNER_TEMP/release-keystore-validation-XXXXXX.p12")"
+            VALIDATION_KEYSTORE="$(mktemp -p "$RUNNER_TEMP" release-keystore-validation-XXXXXX.p12)"
             umask "$OLD_UMASK"
             RELEASE_KEY_PASSWORD="${ANDROID_RELEASE_KEY_PASSWORD:-$ANDROID_RELEASE_KEYSTORE_PASSWORD}"
             printf '%s' "$ANDROID_RELEASE_KEYSTORE_PASSWORD" > "$STOREPASS_FILE"
