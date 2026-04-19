@@ -116,6 +116,8 @@ public partial class EulaAgreementScreen : Control
         if (file != null)
             return file.GetAsText();
 
+        GD.PrintErr($"[EulaAgreementScreen] Failed to load EULA from {EulaPath}. Godot error: {FileAccess.GetOpenError()}");
+
         return
             "Unable to load full EULA text from the packaged file.\n\n" +
             "Please review the latest agreement at https://koshkikode.com before continuing.\n" +
