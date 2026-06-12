@@ -160,6 +160,9 @@ public partial class BuildingInstance : Node3D
         // Construction animation: start collapsed, grow to full height
         _targetScaleY = 1f;
         _modelRoot.Scale = new Vector3(1f, 0.05f, 1f);
+
+        // Attach ground-contact ambient occlusion darkening
+        BuildingGroundAO.AttachGroundAO(this, data.FootprintWidth, data.FootprintHeight);
     }
 
     // ── Per-frame visual update ───────────────────────────────────────
