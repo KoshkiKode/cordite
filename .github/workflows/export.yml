@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Check boot scene and required project files
         run: |
@@ -103,7 +103,7 @@ jobs:
       app_version: ${{ steps.read_version.outputs.app_version }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Read app version from versions/shared/version.json
         id: read_version
@@ -181,7 +181,7 @@ jobs:
             export_mode: release
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
@@ -743,7 +743,7 @@ jobs:
     needs: [export-all, resolve-version]
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Download Windows export
         uses: actions/download-artifact@v8
@@ -795,7 +795,7 @@ jobs:
     needs: [export-all, resolve-version]
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Download Windows export
         uses: actions/download-artifact@v8
@@ -855,7 +855,7 @@ jobs:
     needs: [export-all, resolve-version]
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Download Linux export
         uses: actions/download-artifact@v8
@@ -912,7 +912,7 @@ jobs:
     needs: [export-all, resolve-version]
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Download Linux export
         uses: actions/download-artifact@v8
@@ -992,7 +992,7 @@ jobs:
     needs: [export-all, resolve-version]
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Download Linux export
         uses: actions/download-artifact@v8
@@ -1068,7 +1068,7 @@ jobs:
     needs: [export-all, resolve-version]
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Download Windows export
         uses: actions/download-artifact@v8
@@ -1204,7 +1204,7 @@ jobs:
     needs: [export-all, resolve-version]
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Download macOS export
         uses: actions/download-artifact@v8
@@ -1384,7 +1384,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Download iOS Xcode project
         uses: actions/download-artifact@v8
@@ -1702,7 +1702,7 @@ jobs:
             depot_placeholder: YOUR_MACOS_DEPOT_ID
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Download ${{ matrix.platform }} export
         uses: actions/download-artifact@v8
@@ -1799,7 +1799,7 @@ jobs:
             build_json: gog/build-macos.json
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Download ${{ matrix.platform }} export
         uses: actions/download-artifact@v8
