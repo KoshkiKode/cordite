@@ -1,4 +1,11 @@
-# AWS Release Hosting — Cordite Wars
+# (RETIRED) AWS Release Hosting — Cordite Wars
+
+> **RETIRED — October 2026.** KoshkiKode's AWS account was fully shut down
+> and deleted. Nothing in this directory is deployed. The Terraform below is
+> kept for historical reference only (e.g. as a template if a Google Cloud
+> equivalent is ever terraform'd). The live download path is the self-hosted
+> setup in [`docs/self-hosted-downloads.md`](../../docs/self-hosted-downloads.md)
+> (GoDaddy DNS), with Google Cloud planned for managed hosting.
 
 This directory contains the [Terraform](https://developer.hashicorp.com/terraform)
 configuration for the AWS infrastructure that hosts Cordite Wars release

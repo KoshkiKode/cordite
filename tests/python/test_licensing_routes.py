@@ -20,7 +20,7 @@ import pytest
 
 
 HERE = os.path.dirname(__file__)
-LAMBDA_DIR = os.path.abspath(os.path.join(HERE, "..", "..", "infra", "aws", "lambda"))
+LAMBDA_DIR = os.path.abspath(os.path.join(HERE, "..", "..", "infra", "aws-retired", "lambda"))
 sys.path.insert(0, LAMBDA_DIR)
 
 # Set required env vars BEFORE importing the modules.

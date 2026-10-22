@@ -1,9 +1,10 @@
 // ---------------------------------------------------------------------------
-// API base URL — set to your CloudFront distribution URL when this site is
-// hosted on a different origin (e.g. AWS Amplify).
+// API base URL — set to the downloads host URL when this site is hosted
+// on a different origin. (AWS CloudFront/Amplify were retired Oct 2026; the
+// host mirror of these rules belongs in GoDaddy/Google hosting config.)
 //
 //   Examples:
-//     const API_BASE = "https://d1234abcd.cloudfront.net";
+//     const API_BASE = "https://downloads.koshkikode.com";
 //     const API_BASE = "https://downloads.koshkikode.com";
 //
 // Leave as "" when this site is served from CloudFront itself (same origin).

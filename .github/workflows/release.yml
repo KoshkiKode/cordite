@@ -204,12 +204,9 @@ jobs:
             }
 
   # ─────────────────────────────────────────────────────────────────────────────
-  # 3. Deploy release artifacts to AWS S3 / CloudFront
+  # 3. Deploy release artifacts to the downloads host
   # ─────────────────────────────────────────────────────────────────────────────
-  deploy-aws:
-    name: Deploy to AWS
-    needs: publish
-    uses: ./.github/workflows/deploy-aws.yml
-    with:
-      tag: ${{ inputs.tag }}
-    secrets: inherit
+  # AWS deployment was retired Oct 2026 (account deleted; deploy-aws.yml
+  # removed). Uploads to the self-hosted downloads server are currently done
+  # manually per docs/self-hosted-downloads.md; a Google Cloud deploy job can
+  # be added here when that migration happens.

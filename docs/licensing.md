@@ -9,9 +9,11 @@ license**, with **unlimited downloads** of the installer itself.
 
 This document is the canonical reference. The matching code lives in:
 
-- `infra/aws/lambda/license_keys.py` — wire format, Ed25519 signing/verification.
-- `infra/aws/lambda/licensing.py`    — activation / renewal / deactivation routes.
-- `infra/aws/lambda/handler.py`      — Stripe webhook → license issuance.
+- `infra/aws-retired/lambda/license_keys.py` — wire format, Ed25519 signing/verification.
+- `infra/aws-retired/lambda/licensing.py`    — activation / renewal / deactivation routes.
+- `infra/aws-retired/lambda/handler.py`      — Stripe webhook → license issuance.
+  (The `aws-retired` tree is host-agnostic Python. AWS was decommissioned in
+  Oct 2026 — the backend is offline until it is re-hosted on Google Cloud.)
 - `src/Core/Licensing/`              — game-side parser, store, gate, HTTP client.
 - `tools/license_keygen.py`          — CLI for bootstrap + manual issuance.
 
@@ -190,18 +192,19 @@ then drop the old public key.
 # 1. Generate the production signing key.
 python3 tools/license_keygen.py generate-signing-key
 
-# 2. Paste the PEM into AWS Secrets Manager:
-#      <bucket>/license-signing
-#    as JSON:
-#      { "private_key_pem": "...", "public_key_pem": "..." }
+# 2. Store the keypair JSON ({ "private_key_pem": ..., "public_key_pem": ... })
+#    securely outside the repo. AWS Secrets Manager is gone (account deleted
+#    Oct 2026); the replacement is Google Secret Manager once the licensing
+#    backend is re-hosted on Google Cloud. Until then, keep the private key
+#    offline and load it from a local path when running the backend.
 
 # 3. Copy the `public_key_raw_hex` value into:
 #      src/Core/Licensing/LicenseConfig.cs
 #    in the `LicenseSigningPublicKey` array.
 
-# 4. Set ses_from_address in terraform.tfvars; apply.
-
-# 5. Add the DKIM CNAMEs (output `ses_dkim_records`) to your DNS provider.
+# 4-5. (Old AWS/SES steps removed — Amazon SES was retired with the AWS
+#      account. Transactional email moves to a Google-ecosystem provider when
+#      the backend is re-hosted. DNS is managed in GoDaddy.)
 
 # 6. Subscribe to the SNS topic (output `ses_feedback_topic_arn`) so you
 #    get bounce/complaint notifications.

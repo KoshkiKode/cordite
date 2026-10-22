@@ -160,52 +160,37 @@ Copy this into a private note or 1Password/Bitwarden item as you fill each one i
 
 ---
 
-## AWS release hosting (S3 + CloudFront)
+## AWS release hosting (RETIRED — Oct 2026)
 
-Used by `.github/workflows/deploy-aws.yml` to publish release artifacts to
-KoshkiKode's own S3 bucket / CloudFront distribution. See
-[`docs/aws-hosting-setup.md`](./aws-hosting-setup.md) for the full bootstrap.
+Release artifacts are no longer published to AWS: the AWS account was fully
+shut down and deleted in Oct 2026, the `deploy-aws.yml` workflow was removed,
+and the Terraform moved to [`infra/aws-retired/`](../infra/aws-retired/)
+(historical reference only).
 
-These are **repository variables**, not secrets — they are not sensitive
-(the role can only be assumed via OIDC from this repo, not with the ARN
-alone). Add them under **Settings → Secrets and variables → Actions →
-Variables**.
+Current release paths:
 
-| Variable | Required | Description | Where to find it |
-|--------|----------|-------------|-----------------|
-| `AWS_RELEASES_BUCKET` | ✅ | Name of the S3 bucket that stores release artifacts | `terraform output s3_bucket_name` (in `infra/aws/`) |
-| `AWS_RELEASES_ROLE_ARN` | ✅ | IAM role the workflow assumes via OIDC | `terraform output github_actions_role_arn` |
-| `AWS_REGION` | ✅ | Region of the S3 bucket (default `us-east-1`) | `terraform output aws_region` |
-| `AWS_CLOUDFRONT_DISTRIBUTION_ID` | Optional | If set, the workflow invalidates `latest.json` and the new version's prefix after upload | `terraform output cloudfront_distribution_id` |
+- **GitHub Releases** via the `release` workflow (`.github/workflows/release.yml`).
+- **Self-hosted downloads page** per [`docs/self-hosted-downloads.md`](./self-hosted-downloads.md)
+  (Docker + Caddy + Stripe Payment Links + GoDaddy DNS).
 
-> **No AWS access keys are stored in GitHub.** Authentication uses the
-> built-in GitHub OIDC provider; the trust policy on the IAM role restricts
-> federation to this repository, the `release` environment, and `v*` tags
-> by default.
+Managed hosting, when needed again, will be built on Google Cloud.
 
-### AWS checklist
-- [ ] `AWS_RELEASES_BUCKET` (variable)
-- [ ] `AWS_RELEASES_ROLE_ARN` (variable)
-- [ ] `AWS_REGION` (variable)
-- [ ] `AWS_CLOUDFRONT_DISTRIBUTION_ID` (variable, optional)
-- [ ] `release` environment created (Settings → Environments)
+## Licensing system (secret storage, not GitHub)
 
-## Licensing system (Secrets Manager, not GitHub)
+The license-key system uses one Ed25519 keypair stored **outside GitHub**
+and one constant baked into the game binary:
 
-The license-key system uses one secret stored in **AWS Secrets Manager**
-(not GitHub Actions secrets) and one constant baked into the game binary:
-
-| Where                                   | What                          | How to populate                                         |
-|-----------------------------------------|-------------------------------|---------------------------------------------------------|
-| Secrets Manager: `<bucket>/license-signing` | Ed25519 keypair JSON (PEM)    | `python3 tools/license_keygen.py generate-signing-key` then paste into the AWS console |
-| `src/Core/Licensing/LicenseConfig.cs`   | 32-byte raw public key        | `public_key_raw_hex` from the same command — paste as a `byte[]` literal |
-| Secrets Manager: `<bucket>/stripe`      | Stripe API key + webhook secret | Already documented above; license issuance fires from the same webhook |
-| Terraform variable: `ses_from_address`  | From-address for license emails | Set in `terraform.tfvars`; leave empty to disable email |
-| DNS                                      | DKIM CNAMEs                   | `terraform output ses_dkim_records` after `apply`       |
+| Where | What | How to populate |
+|-------|------|-----------------|
+| Secret store: `license-signing` | Ed25519 keypair JSON (PEM) | `python3 tools/license_keygen.py generate-signing-key`. AWS Secrets Manager is gone (account deleted Oct 2026) — the replacement is Google Secret Manager once the backend is re-hosted on Google Cloud; until then keep the private key offline |
+| `src/Core/Licensing/LicenseConfig.cs` | 32-byte raw public key | `public_key_raw_hex` from the same command — paste as a `byte[]` literal |
+| Secret store: `stripe` | Stripe API key + webhook secret | Already documented above; license issuance fires from the same webhook |
 
 > **Do not regenerate the Ed25519 signing key after launch.** Every issued
-> license and every customer's stored entitlement becomes invalid. The
-> Secrets Manager `recovery_window_in_days = 30` setting gives a 30-day
-> undo window if the secret is accidentally deleted. See
+> license and every customer's stored entitlement becomes invalid. See
 > [`docs/licensing.md`](./licensing.md) for the rotation runbook if it's
 > ever unavoidable.
+
+> The previous AWS Secrets Manager copy of these secrets was destroyed with
+> the AWS account. If the Ed25519 keypair was not exported beforehand and no
+> licenses have been issued yet, simply generate a fresh pair.

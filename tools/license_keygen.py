@@ -32,7 +32,10 @@ import sys
 from pathlib import Path
 
 # Allow importing the shared crypto module without installing the Lambda package.
-_LAMBDA_DIR = Path(__file__).resolve().parents[1] / "infra" / "aws" / "lambda"
+# The lambda/ directory is host-agnostic Python (wire format + routes). It
+# lived under infra/aws until AWS was decommissioned (Oct 2026); it now sits
+# under infra/aws-retired until a Google Cloud re-host exists.
+_LAMBDA_DIR = Path(__file__).resolve().parents[1] / "infra" / "aws-retired" / "lambda"
 sys.path.insert(0, str(_LAMBDA_DIR))
 
 import license_keys as lk  # noqa: E402

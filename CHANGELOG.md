@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- AWS decommissioned: Amazon Web Services account fully shut down (Oct 2026). Deployment/hosting references moved to GoDaddy (domain + DNS) and Google Cloud (planned managed platform). `infra/aws` moved to `infra/aws-retired` (reference only) and the `deploy-aws` GitHub Actions workflow was removed. Downloads stay self-hosted per `docs/self-hosted-downloads.md`.
+
 ## [1.0.0] - 2026-04-11
 
 ### Added

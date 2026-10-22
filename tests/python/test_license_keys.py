@@ -10,7 +10,7 @@ import pytest
 
 # Make the Lambda package importable.
 HERE = os.path.dirname(__file__)
-sys.path.insert(0, os.path.abspath(os.path.join(HERE, "..", "..", "infra", "aws", "lambda")))
+sys.path.insert(0, os.path.abspath(os.path.join(HERE, "..", "..", "infra", "aws-retired", "lambda")))
 
 import license_keys as lk  # noqa: E402
 
