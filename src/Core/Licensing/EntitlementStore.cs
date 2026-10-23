@@ -12,7 +12,7 @@ namespace CorditeWars.Core.Licensing;
 /// activated on this machine, valid until <c>ExpiresAt</c>".
 ///
 /// Mirror of the Python <c>Entitlement</c> dataclass in
-/// <c>infra/aws/lambda/license_keys.py</c>. Format (binary):
+/// <c>infra/licensing-reference/license_keys.py</c>. Format (binary):
 ///
 ///   offset  size  field
 ///   ------  ----  ------------------------------------------------

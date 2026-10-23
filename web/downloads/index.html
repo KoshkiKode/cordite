@@ -812,15 +812,15 @@ Get-FileHash .\CorditeWars-Setup.exe -Algorithm SHA256</code></pre>
     // Paywall-aware release loader.
     // - Reads /releases/latest.json served by the download host
     //   (self-hosted server per docs/self-hosted-downloads.md; previously
-    //   uploaded by the retired deploy-aws.yml workflow) to discover the
+    //   uploaded by the release process) to discover the
     //   current version + file list.
     // - Detects ?session_id (Stripe Checkout success) or ?canceled (user
     //   bailed out) on the URL and persists the session ID to localStorage
     //   so reloads + return visits keep working until the redemption budget
-    //   or DynamoDB TTL is reached.
+    //   or the configured retention policy is reached.
     // - "Buy" buttons POST to /api/checkout and redirect to Stripe; download
     //   buttons hit /api/download which 302s to a short-TTL presigned object URL
-    //   (S3-compatible; future home is Google Cloud Storage).
+    //   (object-storage compatible; Google Cloud Storage is the managed target).
     (function () {
       "use strict";
 

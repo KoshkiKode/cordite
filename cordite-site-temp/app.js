@@ -1,16 +1,13 @@
 // ---------------------------------------------------------------------------
 // API base URL — set to the downloads host URL when this site is hosted
-// on a different origin. (AWS CloudFront/Amplify were retired Oct 2026; the
-// host mirror of these rules belongs in GoDaddy/Google hosting config.)
+// on a different origin. GoDaddy DNS points this host at the selected
+// self-hosted or Google Cloud deployment.
 //
 //   Examples:
 //     const API_BASE = "https://downloads.koshkikode.com";
 //     const API_BASE = "https://downloads.koshkikode.com";
 //
-// Leave as "" when this site is served from CloudFront itself (same origin).
-// When empty and the site runs on a different origin (Amplify), configure
-// /api/* and /releases/* rewrite rules in Amplify console — see amplify.yml
-// and docs/aws-hosting-setup.md for instructions.
+// Leave as "" when this site and API are served from the same origin.
 // ---------------------------------------------------------------------------
 const API_BASE = "";
 
@@ -379,8 +376,8 @@ async function tryUnlockFromSession() {
     const match = files.find(f => f && typeof f.name === "string" && patterns.some(p => p.test(f.name)));
     if (match) {
       // Each click goes to GET /api/download?session_id=...&filename=...
-      // The Lambda atomically verifies payment, increments the redemption
-      // counter, and 302-redirects to a short-TTL S3 presigned URL.
+      // The licensing service atomically verifies payment, increments the
+      // redemption counter, and returns a short-lived signed URL.
       link.href = `${API_BASE}/api/download?session_id=${encodeURIComponent(sessionId)}&filename=${encodeURIComponent(match.name)}`;
       link.classList.add("unlocked");
       link.removeAttribute("aria-disabled");

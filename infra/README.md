@@ -1,22 +1,28 @@
 # KoshkiKode / Cordite Wars — Infrastructure
 
-## Current state (as of Oct 2026)
+## Current state
 
 - **Domain, DNS, registrar:** GoDaddy — `koshkikode.com` (registered through
   approx. Oct 2029). All A/CNAME records live in the GoDaddy DNS manager.
 - **Release downloads:** self-hosted file server per
   [`docs/self-hosted-downloads.md`](../docs/self-hosted-downloads.md)
   (Docker + Caddy + Stripe Payment Links + GoDaddy DNS).
-- **Planned managed platform:** Google Cloud / Firebase. KoshkiKode uses
-  Google's ecosystem exclusively for managed hosting, storage, and databases
-  going forward (no AWS — the account was deleted Oct 2026).
+- **Managed platform direction:** Google Cloud / Firebase. Use Cloud Run or
+  Firebase Hosting for services, Cloud Storage for release artifacts,
+  Firestore for licensing state, and Secret Manager for signing credentials.
 - **CI/CD:** GitHub Actions in `.github/workflows/`.
 
-## Directories
+## Provider boundaries
 
-- `aws-retired/` — the old AWS (S3 + CloudFront + Lambda + SES + DynamoDB)
-  Terraform and Lambda sources. **Not deployed**; kept for reference. The
-  licensing Lambda code (`aws-retired/lambda/`) is plain Python and remains
-  the reference implementation for the license wire format — it can be
-  re-hosted on Google Cloud (Cloud Run / Cloud Functions + Firestore +
-  Secret Manager) when the time comes.
+GoDaddy is the registrar and DNS provider. Google Cloud is the only managed
+cloud provider for future hosting, storage, databases, and secrets. GitHub
+Actions remains the build and release automation system; it does not require
+cloud-provider OIDC credentials for the current release flow.
+
+The game itself is offline-first and does not require a cloud backend at
+runtime. Licensing and paid downloads are optional distribution services.
+
+The `licensing-reference/` directory contains the shared license wire-format
+implementation and hermetic route tests. It is not a cloud deployment; any
+production service built from it should use Google Cloud services described
+above.
