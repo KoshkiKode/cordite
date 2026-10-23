@@ -187,7 +187,7 @@ Quick reference for submitting Cordite Wars to each major app store and platform
 | **TestFlight** | Free beta testing via TestFlight (internal + external testers) |
 
 **macOS Specific**
-- Min OS: macOS 10.14+
+- Min OS: macOS 12.0+
 - Codesign with "Developer ID Application" certificate
 - Notarize build: ~5–10 min (done in CI)
 - Can distribute outside App Store (web/direct download)

@@ -229,7 +229,7 @@ To distribute outside App Store with Gatekeeper acceptance:
 
 2. **Update build with App Store settings**
    - Set Bundle ID to `com.koshkikode.corditewars`
-   - Ensure minimum macOS version (currently 10.14)
+   - Ensure minimum macOS version (currently 12.0)
 
 3. **Create app submission**
    - Via Xcode Cloud or manual upload

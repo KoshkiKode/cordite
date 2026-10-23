@@ -246,7 +246,7 @@ Configure these repository secrets before release packaging:
 
 | Secret | Used for |
 |--------|----------|
-| `ANDROID_RELEASE_KEYSTORE_B64` | Base64-encoded Android release keystore (`.jks` / `.keystore`) |
+| `ANDROID_RELEASE_KEYSTORE_B64` | Required base64-encoded Android release keystore (`.jks` / `.keystore`) |
 | `ANDROID_RELEASE_KEYSTORE_ALIAS` | Android release key alias |
 | `ANDROID_RELEASE_KEYSTORE_PASSWORD` | Android keystore store password |
 | `ANDROID_RELEASE_KEY_PASSWORD` | Android key-entry password (optional; defaults to `ANDROID_RELEASE_KEYSTORE_PASSWORD` when omitted) |
@@ -256,6 +256,7 @@ Configure these repository secrets before release packaging:
 | `AC_PASSWORD` | App-specific password for notarization |
 
 Notes:
+- Android release packaging fails when the release keystore or its credentials are absent or invalid; CI never publishes debug-signed release artifacts.
 - The CI iOS/iPadOS **handoff export** (Xcode project files only) does not require Apple signing secrets.
 - Apple signing secrets are required when you move from handoff files to signed/notarized distributables on your Mac build host.
 

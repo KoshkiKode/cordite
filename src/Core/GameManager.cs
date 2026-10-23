@@ -100,12 +100,13 @@ public partial class GameManager : Node
         {
             ulong nextTick = CurrentTick + 1;
 
+            // Confirm local intent before checking the gate. Without this, every
+            // client waits for its own confirmation and the match never starts.
+            Lockstep.ConfirmLocalTick(nextTick);
+
             // In multiplayer: only advance if all players' commands are received
             if (!Lockstep.CanAdvanceTick(nextTick))
                 return; // Waiting for remote commands
-
-            // Confirm our own tick (signals we have no more commands for nextTick)
-            Lockstep.ConfirmLocalTick(nextTick);
 
             // Get merged commands for this tick and inject into the command buffer
             var commands = Lockstep.GetCommandsForTick(nextTick);

@@ -13,6 +13,10 @@ namespace CorditeWars.Systems.Networking;
 /// </summary>
 public static class CommandSerializer
 {
+    public const int MaxPacketBytes = 4096;
+    private const int MaxListItems = 1024;
+    private const int MaxWaypoints = 64;
+
     // ── Command type IDs for wire format ────────────────────────────
     private const byte WireMoveCommand = 0;
     private const byte WireAttackMoveCommand = 1;
@@ -83,6 +87,9 @@ public static class CommandSerializer
     /// </summary>
     public static GameCommand Deserialize(byte[] data)
     {
+        if (data is null || data.Length < 13 || data.Length > MaxPacketBytes)
+            throw new InvalidDataException("Command packet has an invalid length.");
+
         using var ms = new MemoryStream(data);
         using var r = new BinaryReader(ms);
 
@@ -140,6 +147,9 @@ public static class CommandSerializer
             case WirePatrolCommand:
             {
                 int waypointCount = r.ReadInt32();
+                if (waypointCount < 0 || waypointCount > MaxWaypoints)
+                    throw new InvalidDataException("Patrol waypoint count is out of bounds.");
+
                 var waypoints = new List<FixedVector2>(waypointCount);
                 for (int i = 0; i < waypointCount; i++)
                 {
@@ -168,6 +178,9 @@ public static class CommandSerializer
 
         cmd.ScheduledTick = scheduledTick;
         cmd.PlayerId = playerId;
+        if (ms.Position != ms.Length)
+            throw new InvalidDataException("Command packet contains trailing bytes.");
+
         return cmd;
     }
 
@@ -192,6 +205,9 @@ public static class CommandSerializer
     /// </summary>
     public static (int playerId, ulong tick, uint checksum) DeserializeChecksum(byte[] data)
     {
+        if (data is null || data.Length != 16)
+            throw new InvalidDataException("Checksum packet has an invalid length.");
+
         using var ms = new MemoryStream(data);
         using var r = new BinaryReader(ms);
         int playerId = r.ReadInt32();
@@ -243,6 +259,13 @@ public static class CommandSerializer
     private static List<int> ReadIntList(BinaryReader r)
     {
         int count = r.ReadInt32();
+        if (count < 0 || count > MaxListItems)
+            throw new InvalidDataException("Command list count is out of bounds.");
+
+        long remainingBytes = r.BaseStream.Length - r.BaseStream.Position;
+        if (remainingBytes < (long)count * sizeof(int))
+            throw new InvalidDataException("Command list is truncated.");
+
         var list = new List<int>(count);
         for (int i = 0; i < count; i++)
         {

@@ -302,6 +302,18 @@ public partial class CommandInput : Node
         return (gm?.CurrentTick ?? 0) + InputDelay;
     }
 
+    private void QueueCommand(GameCommand command)
+    {
+        var gameManager = GetNodeOrNull<GameManager>("/root/GameManager");
+        if (gameManager?.IsMultiplayer == true && gameManager.Lockstep is not null)
+        {
+            gameManager.Lockstep.SubmitLocalCommand(command, gameManager.CurrentTick);
+            return;
+        }
+
+        _commandBuffer?.AddCommand(command);
+    }
+
     private void IssueMoveCommand(FixedVector2 target, bool queue)
     {
         if (_selectionManager is null || _commandBuffer is null) return;
@@ -316,7 +328,7 @@ public partial class CommandInput : Node
             TargetPosition = target,
             UnitIds = unitIds
         };
-        _commandBuffer.AddCommand(cmd);
+        QueueCommand(cmd);
         EventBus.Instance?.EmitMoveCommandIssued(target.ToVector3());
     }
 
@@ -334,7 +346,7 @@ public partial class CommandInput : Node
             TargetUnitId = targetUnitId,
             UnitIds = unitIds
         };
-        _commandBuffer.AddCommand(cmd);
+        QueueCommand(cmd);
     }
 
     private void IssueAttackMoveCommand(FixedVector2 target, bool queue)
@@ -351,7 +363,7 @@ public partial class CommandInput : Node
             TargetPosition = target,
             UnitIds = unitIds
         };
-        _commandBuffer.AddCommand(cmd);
+        QueueCommand(cmd);
     }
 
     private void IssueStopCommand()
@@ -367,7 +379,7 @@ public partial class CommandInput : Node
             PlayerId = _localPlayerId,
             UnitIds = unitIds
         };
-        _commandBuffer.AddCommand(cmd);
+        QueueCommand(cmd);
         EventBus.Instance?.EmitUnitOrdered(unitIds.ToArray(), "stop");
     }
 
@@ -384,7 +396,7 @@ public partial class CommandInput : Node
             PlayerId = _localPlayerId,
             UnitIds = unitIds
         };
-        _commandBuffer.AddCommand(cmd);
+        QueueCommand(cmd);
         EventBus.Instance?.EmitUnitOrdered(unitIds.ToArray(), "hold");
     }
 
@@ -402,7 +414,7 @@ public partial class CommandInput : Node
             Waypoints = waypoints,
             UnitIds = unitIds
         };
-        _commandBuffer.AddCommand(cmd);
+        QueueCommand(cmd);
     }
 
     private void IssueSetStanceCommand(CorditeWars.Systems.Pathfinding.UnitStance stance)
@@ -419,7 +431,7 @@ public partial class CommandInput : Node
             UnitIds = unitIds,
             Stance = stance
         };
-        _commandBuffer.AddCommand(cmd);
+        QueueCommand(cmd);
         EventBus.Instance?.EmitUnitOrdered(unitIds.ToArray(), $"stance_{stance}");
     }
 

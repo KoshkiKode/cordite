@@ -107,10 +107,18 @@ jobs:
           name: CorditeWars-Android-AAB
           path: dist/
 
-      - name: Download iOS IPA (or Xcode zip fallback)
+      - name: Download iOS IPA
+        continue-on-error: true
         uses: actions/download-artifact@v8
         with:
           name: CorditeWars-iOS-IPA
+          path: dist/
+
+      - name: Download iOS Xcode handoff
+        continue-on-error: true
+        uses: actions/download-artifact@v8
+        with:
+          name: CorditeWars-iOS-Xcode
           path: dist/
 
       - name: Archive Linux export
