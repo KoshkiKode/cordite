@@ -1,72 +1,91 @@
-# 🚨 Immediate Action Items
+# Immediate Action Items
 
-## ✅ FIXED: Export Pipeline (was failing on all 5 jobs)
+Updated: 2026-10-22
 
-**Root Cause** (identified & fixed):
-1. `firebelley/godot-export@v7.0.0` does NOT have an `export_name` input — the correct parameter is `presets_to_export`. Using `export_name` was silently ignored, causing the action to export ALL presets on every job.
-2. The Android preset failed on every runner because release keystore env vars were partially set (`GODOT_ANDROID_KEYSTORE_RELEASE_PATH` was always set to `./release.keystore` even when the file didn't exist, while `_USER` and `_PASSWORD` were empty).
-3. Missing `workflow_call` trigger in `export.yml` prevented `release.yml` from invoking it.
+This is the short-term execution queue for Cordite Wars: Six Fronts. The
+broader architecture, product status, and longer roadmap are in
+[`docs/project-review.md`](docs/project-review.md).
 
-**Fix Applied**:
-- Replaced `export_name` with `presets_to_export` on all 5 export jobs
-- Added `use_preset_export_path: true` so exports go to paths defined in `export_presets.cfg`
-- Split Android export into conditional debug/release paths — release keystore env vars only set when secrets are configured
-- Added `workflow_call` trigger to `export.yml` so `release.yml` can chain to it
+## Completed
 
----
+- [x] Retired AWS infrastructure and updated provider guidance to GoDaddy DNS
+      plus Google Cloud for future managed services.
+- [x] Integrated the substantial `macbook-updates` gameplay branch, including
+      terrain, hierarchical pathfinding, VFX, production UI, and integration
+      tests.
+- [x] Added release metadata validation across project, export, installer, and
+      mobile metadata.
+- [x] Corrected documented macOS minimum support to macOS 12.0.
+- [x] Fixed multiplayer startup gating so local tick confirmation occurs before
+      the all-player gate is evaluated.
+- [x] Routed UI-issued multiplayer commands through
+      `LockstepManager.SubmitLocalCommand`.
+- [x] Added command/checksum packet bounds and malformed-packet rejection.
+- [x] Made Android release packaging fail closed when signing credentials are
+      absent or invalid.
+- [x] Separated unsigned iOS Xcode handoffs from signed IPA artifacts.
+- [x] Verified locally: 1,481 .NET tests, 50 Python tests, release metadata
+      validation, workflow YAML parsing, and diff hygiene.
+- [x] Opened follow-up PR #182 for the hardening pass.
 
-## ✅ FIXED: Android .NET Export
+## Active blockers
 
-**Root Cause**: The APK preset (`preset.2`) had `gradle_build/use_gradle_build=false`. For a C#/.NET game, Godot requires a Gradle build to bundle the .NET runtime. Without it, the APK would start and immediately crash because the .NET assembly cannot be loaded.
+### 1. Restore GitHub Actions reliability
 
-**Fix Applied**:
-- Set `gradle_build/use_gradle_build=true` on `preset.2` (APK)
-- Also aligned `preset.2` to arm64-v8a only (matching the AAB/Google Play preset) — keeps the APK lean and matches modern Android requirements
-- Both the APK (sideload) and AAB (Google Play) presets now use Gradle builds
+PR #182 checks currently fail immediately across the test and CodeQL jobs
+without downloadable job logs. Local validation passes, but the repository
+needs a successful remote run before the release pipeline can be considered
+verified.
 
-> **Note on "experimental" label**: Godot 4.6 still tags C#/.NET Android export as experimental in the editor UI, meaning it receives less test coverage than the GDScript path and edge cases may surface. With `use_gradle_build=true` correctly set, the build pipeline itself is sound. Treat Android as supported-with-caveats for alpha: test on real hardware before each release and file Godot upstream issues for any platform-specific crashes.
+- [ ] Resolve the GitHub Actions/account or runner failure.
+- [ ] Rerun PR #182 checks.
+- [ ] Record the first successful Ubuntu, Windows, macOS, and CodeQL run.
 
----
+### 2. Resolve open dependency alerts
 
-## ✅ ADDED: Headless Smoke Test
+GitHub currently reports three open high-severity and one open medium-severity
+Dependabot alert for Python `cryptography`.
 
-A `smoke-test-linux` job is now part of `export.yml`. It:
-- Runs after `export-linux` completes
-- Downloads the Linux export artifact
-- Runs the game with `xvfb-run` + `--quit-after 60` (60 physics frames = 2 s at 30 Hz)
-- Asserts exit code 0 — any crash, missing autoload, or broken boot scene fails the build
+- [ ] Identify the owning dependency manifest or runner environment.
+- [ ] Upgrade to a patched version compatible with the licensing tools.
+- [ ] Run the Python suite and dependency/security validation.
+- [ ] Confirm the alerts close in GitHub.
 
-This prevents broken exports from being uploaded as release artifacts.
+## Next engineering batch
 
----
+### Multiplayer reliability
 
-## ⚠️ Still Pending
+- [ ] Bind network peer IDs to lobby player IDs for commands and checksums.
+- [ ] Reject commands from a sender claiming another player slot.
+- [ ] Add disconnect, timeout, and match-abort behavior.
+- [ ] Add desync reports with actionable tick/player diagnostics.
+- [ ] Design snapshot resync, reconnect, and rollback/recovery behavior.
+- [ ] Add exported two-process LAN smoke tests.
 
-### 1. Test the Release Workflow End-to-End
-- Push a test tag `v0.0.1-test`
-- Verify exports run on all platforms
-- Verify GitHub Release created with all artifacts
-- Verify checksums generated
+### Release and persistence
 
-**Timeline**: 30 minutes
+- [ ] Make save writes atomic with temporary files, flush/close, replacement,
+      and recovery tests.
+- [ ] Add save schema versioning and migrations.
+- [ ] Eliminate or generate the duplicate shared export-preset reference.
+- [ ] Add install/launch smoke tests for each published artifact.
+- [ ] Validate Android emulator and iOS archive paths in CI or scheduled QA.
 
-### 2. Manual Platform Testing
-- Download each artifact from GitHub Release
-- Test on actual hardware (or emulators)
-- Verify game is playable on each platform
+### RTS product depth
 
-**Timeline**: 2–4 hours
+- [ ] Finish touch-first mobile controls: tap/drag selection, two-finger
+      camera controls, long-press orders, safe-area layout, and lifecycle
+      pause/resume.
+- [ ] Specify and test splash damage, friendly fire, allied/neutral behavior,
+      target priority, and fog-of-war combat rules.
+- [ ] Expand production queues, rally behavior, attack/defend/hold/patrol
+      orders, resource contesting, and reclaiming.
+- [ ] Add faction asymmetry, counters, veterancy feedback, tutorials, replay
+      and spectator tools, map validation, and mod support.
+- [ ] Add accessibility settings and complete input rebinding.
 
----
+## How to close an item
 
-## 📋 Checklist: Export Workflow Recovery
-
-- [x] **Identify exact fix**: Wrong parameter name (`export_name` → `presets_to_export`)
-- [x] **Edit workflow**: Fixed all 5 export jobs + Android keystore handling
-- [x] **Added `workflow_call`**: release.yml can now trigger export.yml
-- [x] **Committed & pushed**: Export fix is on main
-- [x] **Added smoke test**: `smoke-test-linux` job catches startup crashes
-- [x] **Fixed Android Gradle**: `gradle_build/use_gradle_build=true` on APK preset
-- [ ] **Monitor run**: Check GitHub Actions logs after next push to main
-- [ ] **Verify artifacts**: At least one successful export per platform
-- [ ] **Test one export**: Download Windows EXE, launch locally, verify gameplay
+Every completed item should include a focused test or validation command, an
+updated review note when the project status changes, and a link to the PR or
+commit that delivered it.
