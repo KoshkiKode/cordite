@@ -27,6 +27,7 @@ public partial class Main : Node3D
     private GameSession? _session;
     private PauseMenu? _pauseMenu;
     private CorditeWars.UI.HUD.DebugOverlay? _debugOverlay;
+    private CorditeWars.UI.HUD.PerformanceOverlay? _performanceOverlay;
     private DateTime _matchStartTime;
 
     public override void _Ready()
@@ -64,6 +65,11 @@ public partial class Main : Node3D
         _debugOverlay = new CorditeWars.UI.HUD.DebugOverlay(_session);
         AddChild(_debugOverlay);
 
+        // Create F4 performance overlay (hidden by default)
+        _performanceOverlay = new CorditeWars.UI.HUD.PerformanceOverlay();
+        _performanceOverlay.Initialize(_session);
+        AddChild(_performanceOverlay);
+
         // Clear the config so it doesn't accidentally restart later
         PendingConfig = null;
     }
@@ -75,6 +81,15 @@ public partial class Main : Node3D
             && keyEvent.Keycode == Key.F3)
         {
             _debugOverlay?.Toggle();
+            GetViewport().SetInputAsHandled();
+            return;
+        }
+
+        // F4 — toggle performance overlay
+        if (@event is InputEventKey perfKey && perfKey.Pressed && !perfKey.Echo
+            && perfKey.Keycode == Key.F4)
+        {
+            _performanceOverlay?.Toggle();
             GetViewport().SetInputAsHandled();
             return;
         }
