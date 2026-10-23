@@ -8,9 +8,9 @@ import time
 
 import pytest
 
-# Make the Lambda package importable.
+# Make the shared licensing reference module importable.
 HERE = os.path.dirname(__file__)
-sys.path.insert(0, os.path.abspath(os.path.join(HERE, "..", "..", "infra", "aws-retired", "lambda")))
+sys.path.insert(0, os.path.abspath(os.path.join(HERE, "..", "..", "infra", "licensing-reference")))
 
 import license_keys as lk  # noqa: E402
 

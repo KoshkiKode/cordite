@@ -1,5 +1,5 @@
 """
-Integration tests for the licensing Lambda routes (activate, renew,
+Integration tests for the licensing service routes (activate, renew,
 deactivate, manage).
 
 Uses an in-process fake DynamoDB + fake SES to keep the tests hermetic
@@ -20,8 +20,8 @@ import pytest
 
 
 HERE = os.path.dirname(__file__)
-LAMBDA_DIR = os.path.abspath(os.path.join(HERE, "..", "..", "infra", "aws-retired", "lambda"))
-sys.path.insert(0, LAMBDA_DIR)
+LICENSING_DIR = os.path.abspath(os.path.join(HERE, "..", "..", "infra", "licensing-reference"))
+sys.path.insert(0, LICENSING_DIR)
 
 # Set required env vars BEFORE importing the modules.
 os.environ.setdefault("AWS_DEFAULT_REGION", "us-east-1")

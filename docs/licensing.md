@@ -9,11 +9,11 @@ license**, with **unlimited downloads** of the installer itself.
 
 This document is the canonical reference. The matching code lives in:
 
-- `infra/aws-retired/lambda/license_keys.py` — wire format, Ed25519 signing/verification.
-- `infra/aws-retired/lambda/licensing.py`    — activation / renewal / deactivation routes.
-- `infra/aws-retired/lambda/handler.py`      — Stripe webhook → license issuance.
-  (The `aws-retired` tree is host-agnostic Python. AWS was decommissioned in
-  Oct 2026 — the backend is offline until it is re-hosted on Google Cloud.)
+- `infra/licensing-reference/license_keys.py` — wire format, Ed25519 signing/verification.
+- `infra/licensing-reference/licensing.py`    — activation / renewal / deactivation reference routes.
+- `infra/licensing-reference/handler.py`      — Stripe webhook → license issuance reference.
+  (The reference implementation is not deployed; a production backend belongs
+  on Google Cloud.)
 - `src/Core/Licensing/`              — game-side parser, store, gate, HTTP client.
 - `tools/license_keygen.py`          — CLI for bootstrap + manual issuance.
 
@@ -21,11 +21,11 @@ This document is the canonical reference. The matching code lives in:
 
 | Aspect                | Choice                                                                         |
 | --------------------- | ------------------------------------------------------------------------------ |
-| Email delivery        | Amazon SES (verified domain, DKIM, bounce/complaint SNS)                       |
+| Email delivery        | Provider-neutral transactional email service                               |
 | Key length            | 25 characters, Crockford Base32, grouped 5-5-5-5-5                             |
 | Server-side trust     | Ed25519 truncated signature, re-signed and compared against the private key    |
 | Client-side trust     | CRC-8 typo guard + signed entitlement blob (full Ed25519 sig, embedded pubkey) |
-| Activation cap        | 10 machines per license, conditional DynamoDB write                            |
+| Activation cap        | 10 machines per license, conditional persistent-store write                     |
 | Offline grace period  | ~400 days per entitlement, refreshed silently on every online launch           |
 | Inactive slot release | 30 days no-launch → automatic, plus manual "Release" button on the web UI      |
 | Storefront bypass     | Steam (steam_appid.txt) and GOG (goggame-*.info) skip the gate entirely        |

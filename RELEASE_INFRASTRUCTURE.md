@@ -137,8 +137,8 @@ The `release.yml` workflow automatically:
 
 ### 5. Publish to Downloads Server
 
-After the GitHub Release is published, mirror the artifacts to your self-hosted
-downloads server:
+After the GitHub Release is published, mirror the artifacts to the
+GoDaddy-DNS-backed downloads server:
 
 ```bash
 # On your server — mirrors artifacts from GitHub Release to local disk

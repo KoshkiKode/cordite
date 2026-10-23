@@ -1,7 +1,7 @@
 """
-Cordite Wars paywall — AWS Lambda handler.
+Cordite Wars paywall reference handler.
 
-Routes (all reachable through CloudFront's /api/* behavior):
+Routes (all reachable through the configured download host's /api/* behavior):
 
   POST /api/checkout
       Body: {"return_url": "https://..."}        (optional)

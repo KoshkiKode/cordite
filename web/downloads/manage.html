@@ -113,7 +113,7 @@
   </div>
 
   <script>
-    const API = ""; // same origin (the download host reverse-proxies /api/* to the licensing backend; previously CloudFront → Lambda on AWS, retired Oct 2026)
+    const API = ""; // same origin; the download host reverse-proxies /api/* to the licensing backend
 
     function fmtTime(unix) {
       if (!unix) return "—";

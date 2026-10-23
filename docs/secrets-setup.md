@@ -160,20 +160,15 @@ Copy this into a private note or 1Password/Bitwarden item as you fill each one i
 
 ---
 
-## AWS release hosting (RETIRED — Oct 2026)
+## Release hosting
 
-Release artifacts are no longer published to AWS: the AWS account was fully
-shut down and deleted in Oct 2026, the `deploy-aws.yml` workflow was removed,
-and the Terraform moved to [`infra/aws-retired/`](../infra/aws-retired/)
-(historical reference only).
-
-Current release paths:
+The repository does not deploy to AWS. Current release paths are:
 
 - **GitHub Releases** via the `release` workflow (`.github/workflows/release.yml`).
 - **Self-hosted downloads page** per [`docs/self-hosted-downloads.md`](./self-hosted-downloads.md)
   (Docker + Caddy + Stripe Payment Links + GoDaddy DNS).
 
-Managed hosting, when needed again, will be built on Google Cloud.
+Managed hosting, when needed, will use Google Cloud, with GoDaddy providing DNS.
 
 ## Licensing system (secret storage, not GitHub)
 
@@ -182,7 +177,7 @@ and one constant baked into the game binary:
 
 | Where | What | How to populate |
 |-------|------|-----------------|
-| Secret store: `license-signing` | Ed25519 keypair JSON (PEM) | `python3 tools/license_keygen.py generate-signing-key`. AWS Secrets Manager is gone (account deleted Oct 2026) — the replacement is Google Secret Manager once the backend is re-hosted on Google Cloud; until then keep the private key offline |
+| Secret store: `license-signing` | Ed25519 keypair JSON (PEM) | `python3 tools/license_keygen.py generate-signing-key`; store it in Google Secret Manager when the backend is hosted there, or keep it offline during development |
 | `src/Core/Licensing/LicenseConfig.cs` | 32-byte raw public key | `public_key_raw_hex` from the same command — paste as a `byte[]` literal |
 | Secret store: `stripe` | Stripe API key + webhook secret | Already documented above; license issuance fires from the same webhook |
 

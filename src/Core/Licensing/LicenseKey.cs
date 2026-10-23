@@ -7,7 +7,7 @@ namespace CorditeWars.Core.Licensing;
 /// <summary>
 /// Parses + format-validates a 25-character Cordite Wars license key.
 ///
-/// Format (mirror of <c>infra/aws/lambda/license_keys.py</c>):
+/// Format (mirror of <c>infra/licensing-reference/license_keys.py</c>):
 ///
 ///   <c>XXXXX-XXXXX-XXXXX-XXXXX-XXXXX</c>  (Crockford Base32, dashes optional)
 ///

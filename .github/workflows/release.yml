@@ -10,7 +10,6 @@ on:
 
 permissions:
   contents: write   # required to create GitHub Releases and upload assets
-  id-token: write   # required for OIDC federation with AWS
 
 jobs:
   # ─────────────────────────────────────────────────────────────────────────────
@@ -206,7 +205,7 @@ jobs:
   # ─────────────────────────────────────────────────────────────────────────────
   # 3. Deploy release artifacts to the downloads host
   # ─────────────────────────────────────────────────────────────────────────────
-  # AWS deployment was retired Oct 2026 (account deleted; deploy-aws.yml
-  # removed). Uploads to the self-hosted downloads server are currently done
-  # manually per docs/self-hosted-downloads.md; a Google Cloud deploy job can
-  # be added here when that migration happens.
+  # Release artifacts are published to GitHub Releases. Paid downloads are
+  # mirrored to the GoDaddy-DNS-backed downloads host per
+  # docs/self-hosted-downloads.md. A future Google Cloud deployment can be
+  # added here without reintroducing provider-specific credentials.
