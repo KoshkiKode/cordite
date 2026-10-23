@@ -124,6 +124,20 @@ public sealed class PathRequestManager
     /// </summary>
     private readonly AStarPathfinder _pathfinder = new();
 
+    /// <summary>
+    /// Hierarchical pathfinder used as the primary strategy for individual
+    /// path requests. Provides efficient cross-cluster pathfinding by
+    /// searching an abstract graph before refining locally. Falls back to
+    /// direct A* for same-cluster paths internally.
+    /// </summary>
+    private HierarchicalPathfinder? _hierarchicalPathfinder;
+
+    /// <summary>
+    /// Indicates whether the hierarchical pathfinder has been initialized
+    /// and is ready to service requests.
+    /// </summary>
+    private bool _hierarchicalReady;
+
     // ── Scratch buffers (reused every tick to avoid per-tick allocation) ──
 
     /// <summary>Destination groups built by BuildProcessQueue; cleared each call.</summary>
@@ -198,6 +212,51 @@ public sealed class PathRequestManager
             FlowFieldCallback = callback,
             SequenceNumber = _sequenceCounter++,
         });
+    }
+
+    // ── Public API: Hierarchical Pathfinder Integration ────────────────
+
+    /// <summary>
+    /// Initializes the hierarchical pathfinder by preprocessing the given
+    /// terrain grid. Call this once on map load after the terrain is fully
+    /// populated. After this call, individual path requests will use the
+    /// hierarchical pathfinder instead of flat A*.
+    /// </summary>
+    /// <param name="grid">The terrain grid to preprocess.</param>
+    /// <param name="profile">The movement profile for entrance detection and cost computation.</param>
+    public void InitializeHierarchical(TerrainGrid grid, MovementProfile profile)
+    {
+        _hierarchicalPathfinder = new HierarchicalPathfinder();
+        _hierarchicalPathfinder.Preprocess(grid, profile);
+        _hierarchicalReady = true;
+    }
+
+    /// <summary>
+    /// Notifies the hierarchical pathfinder that terrain has changed at the
+    /// given cell (e.g., building placement or destruction). Marks the
+    /// containing cluster and adjacent border-sharing clusters as dirty,
+    /// then schedules a rebuild of invalidated clusters.
+    ///
+    /// Call this for each cell that changes, then call
+    /// <see cref="RebuildHierarchical"/> once per batch to apply the updates.
+    /// </summary>
+    /// <param name="x">Grid X coordinate of the changed cell.</param>
+    /// <param name="y">Grid Y coordinate of the changed cell.</param>
+    public void OnTerrainChanged(int x, int y)
+    {
+        _hierarchicalPathfinder?.InvalidateCell(x, y);
+    }
+
+    /// <summary>
+    /// Rebuilds any clusters that were invalidated by terrain changes.
+    /// Call this after one or more <see cref="OnTerrainChanged"/> calls
+    /// to update the hierarchical pathfinding data structures.
+    /// </summary>
+    /// <param name="grid">The terrain grid (with updated terrain data).</param>
+    /// <param name="profile">The movement profile.</param>
+    public void RebuildHierarchical(TerrainGrid grid, MovementProfile profile)
+    {
+        _hierarchicalPathfinder?.RebuildInvalidated(grid, profile);
     }
 
     // ── Public API: Process Queue ───────────────────────────────────────
@@ -290,7 +349,9 @@ public sealed class PathRequestManager
     // ── Internal Processing Methods ─────────────────────────────────────
 
     /// <summary>
-    /// Computes an individual A* path and invokes the request's callback.
+    /// Computes an individual path and invokes the request's callback.
+    /// Uses the hierarchical pathfinder when initialized (for efficient
+    /// cross-cluster routing), falling back to flat A* otherwise.
     /// </summary>
     private void ProcessIndividualPath(TerrainGrid grid, PathRequest request)
     {
@@ -299,10 +360,25 @@ public sealed class PathRequestManager
         int goalX = request.Goal.X.ToInt();
         int goalY = request.Goal.Y.ToInt();
 
-        var path = _pathfinder.FindPath(
-            grid, request.Profile,
-            startX, startY,
-            goalX, goalY);
+        List<(int, int)> path;
+
+        if (_hierarchicalReady && _hierarchicalPathfinder != null)
+        {
+            // Use hierarchical pathfinder — handles both same-cluster (direct A*)
+            // and cross-cluster (abstract graph + local refinement) internally.
+            path = _hierarchicalPathfinder.FindPath(
+                grid, request.Profile,
+                startX, startY,
+                goalX, goalY);
+        }
+        else
+        {
+            // Fallback: flat A* when hierarchical pathfinder is not initialized.
+            path = _pathfinder.FindPath(
+                grid, request.Profile,
+                startX, startY,
+                goalX, goalY);
+        }
 
         request.PathCallback?.Invoke(path);
     }

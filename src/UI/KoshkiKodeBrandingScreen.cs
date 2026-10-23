@@ -45,7 +45,7 @@ public partial class KoshkiKodeBrandingScreen : Control
         center.AddChild(title);
 
         var subtitle = new Label();
-        subtitle.Text = "BRANDING PLACEHOLDER";
+        subtitle.Text = "Precision-Crafted Warfare";
         subtitle.HorizontalAlignment = HorizontalAlignment.Center;
         UITheme.StyleLabel(subtitle, UITheme.FontSizeSubtitle, UITheme.TextSecondary);
         center.AddChild(subtitle);

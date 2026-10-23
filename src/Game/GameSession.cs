@@ -98,6 +98,7 @@ public partial class GameSession : Node
     // ── Terrain Rendering ───────────────────────────────────────────
 
     private TerrainRenderer? _terrainRenderer;
+    private TerrainEngine? _terrainEngine;
     private WaterRenderer? _waterRenderer;
     private PropPlacer? _propPlacer;
     private FogRenderer3D? _fogRenderer3D;
@@ -426,6 +427,9 @@ public partial class GameSession : Node
         _formationManager = new FormationManager();
         _combatResolver = new CombatResolver();
 
+        // Initialize hierarchical pathfinding for efficient cross-map routing
+        _pathRequestManager.InitializeHierarchical(_terrainGrid, MovementProfile.Infantry());
+
         _unitInteractionSystem = new UnitInteractionSystem(
             _spatialHash,
             _occupancyGrid,
@@ -450,6 +454,16 @@ public partial class GameSession : Node
         _combatVFXBridge = new CombatVFXBridge();
         AddChild(_combatVFXBridge);
         _combatVFXBridge.Initialize();
+
+        // e4. Create DeathVFXController (persistent debris, wreckage, building collapse)
+        var deathVfx = new CorditeWars.Game.VFX.DeathVFXController();
+        AddChild(deathVfx);
+        deathVfx.Initialize(null);
+
+        // e5. Create ProjectileVisualizer (cosmetic projectile flight paths)
+        var projectileVis = new CorditeWars.Game.VFX.ProjectileVisualizer();
+        AddChild(projectileVis);
+        projectileVis.Initialize(null);
 
         // f. Create SaveManager
         _saveManager = new SaveManager();
@@ -1063,7 +1077,10 @@ public partial class GameSession : Node
                 {
                     node.SyncFromSimulation(sim.Movement.Position, sim.Movement.Facing, sim.Health,
                         sim.Stance, sim.XP, sim.Veterancy,
-                        _terrainRenderer?.GetElevationAtWorld(
+                        _terrainEngine?.GetElevationAtWorld(
+                            sim.Movement.Position.X.ToFloat(),
+                            sim.Movement.Position.Y.ToFloat())
+                        ?? _terrainRenderer?.GetElevationAtWorld(
                             sim.Movement.Position.X.ToFloat(),
                             sim.Movement.Position.Y.ToFloat()) ?? 0f);
 
@@ -3318,9 +3335,23 @@ public partial class GameSession : Node
 
         QualityTier tier = QualityManager.Instance?.CurrentTier ?? QualityTier.Medium;
 
-        // Terrain mesh
+        // ── New AAA Terrain Engine ────────────────────────────────────────
+        // Replaces the old TerrainRenderer with the full pipeline:
+        // elevation → erosion → subdivision → PBR shader → detail → cliffs → LOD
+        _terrainEngine = new TerrainEngine(tier);
+        var terrainRoot = new Node3D();
+        terrainRoot.Name = "TerrainEngine";
+        AddChild(terrainRoot);
+        _terrainEngine.Generate(ActiveMap, terrainRoot);
+
+        // Keep the old TerrainRenderer for systems that still reference it
+        // (WaterRenderer, PropPlacer, BuildingPlacer elevation queries).
+        // The old renderer generates the same elevation data but with 1× subdivision,
+        // so GetElevationAtWorld remains compatible. We generate it silently (no mesh)
+        // just for the elevation lookup API used by water/props/buildings.
         _terrainRenderer = new TerrainRenderer();
-        _terrainRenderer.Name = "TerrainRenderer";
+        _terrainRenderer.Name = "TerrainRendererLegacy";
+        _terrainRenderer.Visible = false; // Hidden — new engine handles visuals
         AddChild(_terrainRenderer);
         _terrainRenderer.Generate(ActiveMap, tier);
 
@@ -3662,6 +3693,7 @@ public partial class GameSession : Node
         _networkTransport = null;
         _camera = null;
         _terrainRenderer = null;
+        _terrainEngine = null;
         _waterRenderer = null;
         _propPlacer = null;
         _fogRenderer3D = null;

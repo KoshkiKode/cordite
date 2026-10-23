@@ -176,7 +176,7 @@ public partial class BuildingPlacer : Node
 
         if (_terrainRenderer is not null)
         {
-            float terrainY = _terrainRenderer.GetElevationAtWorld(gridX, gridY);
+            float terrainY = GetFlattenedElevation(gridX, gridY, data.FootprintWidth, data.FootprintHeight);
             instance.Position = new Vector3(gridX, terrainY, gridY);
         }
 
@@ -385,6 +385,14 @@ public partial class BuildingPlacer : Node
         if (!_occupancyGrid.IsFootprintFree(gridX, gridY, fw, fh))
             return false;
 
+        // Check terrain slope — buildings cannot be placed on slopes > 25 degrees
+        if (!IsSlopeAcceptable(gridX, gridY, fw, fh))
+            return false;
+
+        // Check accessibility — at least one adjacent cell must be reachable (not blocked, not cliff)
+        if (!HasAccessibleApproach(gridX, gridY, fw, fh))
+            return false;
+
         // Check build radius from nearest HQ/FOB
         if (!IsWithinBuildRadius(worldX, worldZ))
             return false;
@@ -437,6 +445,109 @@ public partial class BuildingPlacer : Node
         }
 
         return false;
+    }
+
+    /// <summary>
+    /// Returns true if the terrain slope under the building footprint is acceptable
+    /// for construction. Maximum allowed slope is 25 degrees. Checks the maximum
+    /// height difference across the footprint — if any cell differs from the average
+    /// by more than the threshold, placement is rejected.
+    /// </summary>
+    private bool IsSlopeAcceptable(int gridX, int gridY, int footprintW, int footprintH)
+    {
+        if (_terrainGrid is null)
+            return true; // No terrain data — allow placement (fail-open)
+
+        const float MaxHeightDifference = 1.2f; // ~25 degree slope over 1 cell
+
+        // Find min and max elevation across the footprint
+        float minElev = float.MaxValue;
+        float maxElev = float.MinValue;
+
+        for (int y = gridY; y < gridY + footprintH; y++)
+        {
+            for (int x = gridX; x < gridX + footprintW; x++)
+            {
+                if (!_terrainGrid.IsInBounds(x, y)) return false;
+
+                // Use the terrain grid height (simulation layer)
+                var cell = _terrainGrid.GetCellSafe(x, y);
+                float elev = cell.Height.ToFloat();
+
+                if (elev < minElev) minElev = elev;
+                if (elev > maxElev) maxElev = elev;
+            }
+        }
+
+        // Reject if height difference across footprint exceeds threshold
+        return (maxElev - minElev) <= MaxHeightDifference;
+    }
+
+    /// <summary>
+    /// Returns true if at least one cell adjacent to the building footprint is
+    /// traversable (not blocked, not water, not a cliff). This ensures units can
+    /// actually reach the building after it's placed.
+    /// </summary>
+    private bool HasAccessibleApproach(int gridX, int gridY, int footprintW, int footprintH)
+    {
+        if (_terrainGrid is null)
+            return true; // No terrain data — allow placement (fail-open)
+
+        // Check a 1-cell border around the footprint for at least one traversable cell
+        int x0 = gridX - 1;
+        int y0 = gridY - 1;
+        int x1 = gridX + footprintW;
+        int y1 = gridY + footprintH;
+
+        for (int y = y0; y <= y1; y++)
+        {
+            for (int x = x0; x <= x1; x++)
+            {
+                // Skip cells inside the footprint itself
+                if (x >= gridX && x < gridX + footprintW &&
+                    y >= gridY && y < gridY + footprintH)
+                    continue;
+
+                if (!_terrainGrid.IsInBounds(x, y)) continue;
+
+                TerrainCell cell = _terrainGrid.GetCellSafe(x, y);
+
+                // Cell must not be blocked, not water, and not too steep
+                if (!cell.IsBlocked &&
+                    cell.Type != TerrainType.Water &&
+                    cell.Type != TerrainType.DeepWater)
+                {
+                    return true; // Found at least one accessible approach
+                }
+            }
+        }
+
+        return false; // No accessible cells around the building
+    }
+
+    /// <summary>
+    /// Visually flattens the terrain under a building by adjusting the building's
+    /// Y position to the average elevation of its footprint. This prevents buildings
+    /// from floating on slopes or clipping into hillsides.
+    /// </summary>
+    private float GetFlattenedElevation(int gridX, int gridY, int footprintW, int footprintH)
+    {
+        if (_terrainRenderer is null) return 0f;
+
+        // Compute average elevation across the footprint
+        float totalElev = 0f;
+        int count = 0;
+
+        for (int y = gridY; y < gridY + footprintH; y++)
+        {
+            for (int x = gridX; x < gridX + footprintW; x++)
+            {
+                totalElev += _terrainRenderer.GetElevationAtWorld(x, y);
+                count++;
+            }
+        }
+
+        return count > 0 ? totalElev / count : 0f;
     }
 
     private bool IsWithinBuildRadius(float worldX, float worldZ)
@@ -493,7 +604,7 @@ public partial class BuildingPlacer : Node
         // Snap to terrain surface so the building sits on the ground mesh
         if (_terrainRenderer is not null)
         {
-            float terrainY = _terrainRenderer.GetElevationAtWorld(gridX, gridY);
+            float terrainY = GetFlattenedElevation(gridX, gridY, _placingData.FootprintWidth, _placingData.FootprintHeight);
             instance.Position = new Vector3(gridX, terrainY, gridY);
         }
 
