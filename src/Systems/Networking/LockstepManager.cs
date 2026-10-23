@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using Godot;
 using CorditeWars.Core;
 
@@ -240,7 +241,22 @@ public partial class LockstepManager : Node
         }
 
         // Normal command packet — deserialize
-        GameCommand cmd = CommandSerializer.Deserialize(data);
+        GameCommand cmd;
+        try
+        {
+            cmd = CommandSerializer.Deserialize(data);
+        }
+        catch (InvalidDataException ex)
+        {
+            GD.PushWarning($"[LockstepManager] Rejected malformed command packet from peer {senderPeerId}: {ex.Message}");
+            return;
+        }
+        catch (EndOfStreamException)
+        {
+            GD.PushWarning($"[LockstepManager] Rejected truncated command packet from peer {senderPeerId}.");
+            return;
+        }
+
         int cmdPlayerId = cmd.PlayerId;
         ulong cmdTick = cmd.ScheduledTick;
 
@@ -252,7 +268,23 @@ public partial class LockstepManager : Node
 
     private void OnChecksumPacketReceived(int senderPeerId, byte[] data)
     {
-        var (sendingPlayerId, tick, checksum) = CommandSerializer.DeserializeChecksum(data);
+        (int sendingPlayerId, ulong tick, uint checksum) parsed;
+        try
+        {
+            parsed = CommandSerializer.DeserializeChecksum(data);
+        }
+        catch (InvalidDataException ex)
+        {
+            GD.PushWarning($"[LockstepManager] Rejected malformed checksum packet from peer {senderPeerId}: {ex.Message}");
+            return;
+        }
+        catch (EndOfStreamException)
+        {
+            GD.PushWarning($"[LockstepManager] Rejected truncated checksum packet from peer {senderPeerId}.");
+            return;
+        }
+
+        var (sendingPlayerId, tick, checksum) = parsed;
 
         // Validate: only accept checksums from known player slots
         if (sendingPlayerId < 0 || sendingPlayerId >= PlayerCount)

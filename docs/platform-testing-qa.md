@@ -109,7 +109,7 @@ This guide outlines testing procedures and known issues per platform for Cordite
 
 ### Minimum Requirements
 
-- **OS**: macOS 10.14 (Mojave) or later
+- **OS**: macOS 12.0 (Monterey) or later
 - **Processor**: Intel Core 2 Duo or Apple Silicon (M1+)
 - **RAM**: 4 GB minimum, 8 GB recommended
 - **Storage**: 500 MB free

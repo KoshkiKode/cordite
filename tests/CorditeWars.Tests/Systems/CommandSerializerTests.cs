@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using CorditeWars.Core;
 using CorditeWars.Systems.Networking;
 
@@ -259,6 +260,38 @@ public class CommandSerializerTests
         Assert.Equal(original.ScheduledTick, restored.ScheduledTick);
         Assert.Equal(original.PlayerId, restored.PlayerId);
         Assert.Equal(original.UnitIds, restored.UnitIds);
+    }
+
+    [Fact]
+    public void Deserialize_RejectsOversizedPacket()
+    {
+        Assert.Throws<InvalidDataException>(() =>
+            CommandSerializer.Deserialize(new byte[CommandSerializer.MaxPacketBytes + 1]));
+    }
+
+    [Fact]
+    public void Deserialize_RejectsTruncatedUnitList()
+    {
+        var bytes = CommandSerializer.Serialize(new StopCommand
+        {
+            ScheduledTick = 1,
+            PlayerId = 0,
+            UnitIds = new List<int> { 1 }
+        });
+
+        Array.Resize(ref bytes, bytes.Length - sizeof(int));
+
+        Assert.Throws<InvalidDataException>(() => CommandSerializer.Deserialize(bytes));
+    }
+
+    [Fact]
+    public void DeserializeChecksum_RejectsTrailingBytes()
+    {
+        byte[] bytes = CommandSerializer.SerializeChecksum(0, 1, 123);
+        Array.Resize(ref bytes, bytes.Length + 1);
+
+        Assert.Throws<InvalidDataException>(() =>
+            CommandSerializer.DeserializeChecksum(bytes));
     }
 
     [Fact]

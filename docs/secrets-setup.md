@@ -95,11 +95,13 @@ Used by `.github/workflows/export.yml` and `.github/workflows/deploy-google-play
 
 | Secret | Required | Description | Where to find it |
 |--------|----------|-------------|-----------------|
-| `ANDROID_RELEASE_KEYSTORE_B64` | ✅ for signed builds | Base64-encoded release keystore file | `base64 -w 0 release.keystore` |
-| `ANDROID_RELEASE_KEYSTORE_ALIAS` | ✅ for signed builds | Alias used when the keystore was created | Set during `keytool -genkey` |
-| `ANDROID_RELEASE_KEYSTORE_PASSWORD` | ✅ for signed builds | Password for the keystore (store password) | Set during `keytool -genkey` |
+| `ANDROID_RELEASE_KEYSTORE_B64` | ✅ for Android releases | Base64-encoded release keystore file | `base64 -w 0 release.keystore` |
+| `ANDROID_RELEASE_KEYSTORE_ALIAS` | ✅ for Android releases | Alias used when the keystore was created | Set during `keytool -genkey` |
+| `ANDROID_RELEASE_KEYSTORE_PASSWORD` | ✅ for Android releases | Password for the keystore (store password) | Set during `keytool -genkey` |
 | `ANDROID_RELEASE_KEY_PASSWORD` | Optional | Password for the release key entry (falls back to `ANDROID_RELEASE_KEYSTORE_PASSWORD` when unset) | Set during `keytool -genkey` if different from store password |
 | `GOOGLE_PLAY_SERVICE_ACCOUNT_JSON` | ✅ for Play Store | Full JSON of the Google Play service account | Google Play Console → **Setup → API access → Service accounts** |
+
+Android release jobs fail closed when these signing secrets are missing or invalid; debug-signed artifacts are not published as releases.
 
 ---
 

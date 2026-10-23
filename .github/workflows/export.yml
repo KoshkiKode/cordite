@@ -93,6 +93,9 @@ jobs:
           echo ""
           echo "Project validation passed."
 
+      - name: Validate release metadata
+        run: python3 tools/validate_release_metadata.py
+
   # ─────────────────────────────────────────────────────────────────────────────
   # 0b. Resolve application version from canonical shared version source.
   # ─────────────────────────────────────────────────────────────────────────────
@@ -246,13 +249,11 @@ jobs:
           ANDROID_RELEASE_KEY_PASSWORD: ${{ secrets.ANDROID_RELEASE_KEY_PASSWORD }}
         run: |
           if [ -z "$ANDROID_RELEASE_KEYSTORE_B64" ]; then
-            rm -f "$GITHUB_WORKSPACE/release.keystore"
-            echo "has_release_keystore=false" >> "$GITHUB_OUTPUT"
-            echo "No release keystore secret set — Android builds will use debug signing."
+            echo "ERROR: ANDROID_RELEASE_KEYSTORE_B64 is required for release Android artifacts."
+            exit 1
           elif [ -z "$ANDROID_RELEASE_KEYSTORE_ALIAS" ] || [ -z "$ANDROID_RELEASE_KEYSTORE_PASSWORD" ]; then
-            rm -f "$GITHUB_WORKSPACE/release.keystore"
-            echo "has_release_keystore=false" >> "$GITHUB_OUTPUT"
-            echo "Release keystore alias/password secret missing — Android builds will use debug signing."
+            echo "ERROR: Android release keystore alias/password secrets are required."
+            exit 1
           else
             echo "$ANDROID_RELEASE_KEYSTORE_B64" | base64 --decode > "$GITHUB_WORKSPACE/release.keystore"
             OLD_UMASK="$(umask)"
@@ -302,8 +303,8 @@ jobs:
               echo "Release keystore credentials validated — Android builds will be release-signed."
             else
               rm -f "$GITHUB_WORKSPACE/release.keystore"
-              echo "has_release_keystore=false" >> "$GITHUB_OUTPUT"
-              echo "Release keystore credentials are invalid for this keystore — Android builds will use debug signing."
+              echo "ERROR: Android release keystore credentials are invalid."
+              exit 1
             fi
           fi
 
@@ -504,15 +505,10 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p build/android
-          HAS_RELEASE="${{ steps.release_keystore.outputs.has_release_keystore }}"
           IFS=',' read -ra PRESETS <<< "Android,Android AAB"
           for PRESET in "${PRESETS[@]}"; do
             PRESET_TRIMMED="$(echo "$PRESET" | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')"
-            if [ "$HAS_RELEASE" != "true" ] && [ "$PRESET_TRIMMED" = "Android" ]; then
-              "$GODOT_BIN" --headless --path ./ --export-debug "$PRESET_TRIMMED"
-            else
-              "$GODOT_BIN" --headless --path ./ --export-release "$PRESET_TRIMMED"
-            fi
+            "$GODOT_BIN" --headless --path ./ --export-release "$PRESET_TRIMMED"
           done
         env:
           GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ${{ github.workspace }}/debug.keystore
@@ -1543,7 +1539,7 @@ jobs:
         if: steps.ios_secrets.outputs.has_signing != 'true'
         uses: actions/upload-artifact@v7
         with:
-          name: CorditeWars-iOS-IPA
+          name: CorditeWars-iOS-Xcode
           path: build/ios-zip/CorditeWars_${{ needs.resolve-version.outputs.app_version }}_ios_xcode.zip
 
   # ─────────────────────────────────────────────────────────────────────────────
