@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace CorditeWars.Core.Licensing;
 
 /// <summary>
-/// HTTPS client for the licensing API exposed by the AWS Lambda backend.
+/// HTTPS client for a compatible hosted licensing API.
 /// Routes:
 ///   POST /api/activate         — register/refresh a machine for a license
 ///   POST /api/deactivate       — release a slot

@@ -24,8 +24,8 @@ namespace CorditeWars.Core.Licensing;
 public static class LicenseConfig
 {
     /// <summary>
-    /// Raw 32-byte Ed25519 public key matching the private key held in
-    /// AWS Secrets Manager at <c>&lt;bucket&gt;/license-signing</c>.
+    /// Raw 32-byte Ed25519 public key matching the private signing key held
+    /// outside the repository (for production, Google Cloud Secret Manager).
     /// </summary>
     public static readonly byte[] LicenseSigningPublicKey = new byte[32]; // all zeros = disabled
 

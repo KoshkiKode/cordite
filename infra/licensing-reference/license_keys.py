@@ -10,7 +10,7 @@ Encoded payload (15 bytes raw → 24 base32 chars + 1 check char = 25 chars):
     offset  size  field
     ------  ----  ------------------------------------------------
     0       1     version       (currently 1)
-    1       4     key_id        (random uint32, identifies the row in DynamoDB)
+    1       4     key_id        (random uint32, identifies a license record)
     5       1     sku           (product SKU code; 1 = standard)
     6       2     issue_date    (days since 2025-01-01, uint16)
     8       1     flags         (reserved, currently 0)
@@ -18,7 +18,7 @@ Encoded payload (15 bytes raw → 24 base32 chars + 1 check char = 25 chars):
 
 The 6-byte signature gives ~48 bits of forgery resistance. That's not
 cryptographically tight, but it's only a *first-line* filter — every key
-is also looked up in DynamoDB on activation, so a forged key that happens
+is also looked up by the activation service, so a forged key that happens
 to verify still won't match any row. The check is here to (a) reject
 typos quickly without a network call and (b) make it expensive to spam
 the activation endpoint with random strings.
@@ -42,7 +42,7 @@ Entitlement blob format (binary, base64-url encoded for storage):
     ...     64    signature     (full Ed25519 signature over preceding bytes)
 
 Both keys and entitlements are signed with the same Ed25519 private key
-held in Secrets Manager; the public key is embedded in the game binary
+held outside the repository; the public key is embedded in the game binary
 so verification works fully offline.
 """
 
@@ -262,8 +262,8 @@ def decode_license_key(text: str) -> LicenseKeyPayload:
     The truncated Ed25519 signature in a license key cannot be verified
     with only a public key (see `verify_license_key_signature` for the
     server-side check). Clients should treat a successfully decoded key
-    as a *candidate* and rely on either (a) the activation server's
-    DynamoDB lookup or (b) the resulting signed entitlement blob as the
+    as a *candidate* and rely on either (a) the activation service's
+    license-record lookup or (b) the resulting signed entitlement blob as the
     authoritative trust anchor.
 
     Raises ValueError on format errors, bad CRC, or unsupported version.

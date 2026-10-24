@@ -1,6 +1,6 @@
 # Project Review and RTS Roadmap
 
-Updated: 2026-10-22
+Updated: 2026-10-24
 
 This document is the current engineering and product review for Cordite Wars:
 Six Fronts. It is intentionally separate from the short-term checklist in
@@ -59,6 +59,8 @@ turning the existing systems into a coherent, readable RTS experience.
 - Corrected documentation to match the macOS 12.0 package minimum.
 - Hardened lockstep startup and multiplayer UI command submission in PR #182.
 - Added network packet size/count/truncation/trailing-byte validation.
+- Upgraded the Python license-protocol dependency to `cryptography==50.0.2`
+  and removed the retired AWS-specific license/checkout service handlers.
 - Changed Android release packaging to fail instead of publishing debug-signed
   release artifacts.
 - Separated unsigned iOS Xcode handoffs from signed IPA artifacts.
@@ -110,9 +112,12 @@ interrupted writes before treating saves as production-ready.
 ### Supply-chain and CI health
 
 GitHub reports open high/medium security alerts for Python
-`cryptography`. The owning dependency path must be identified and upgraded.
-GitHub Actions also needs to run successfully again so release confidence is
-based on both local and hosted validation.
+`cryptography` in the pre-merge default branch. This cleanup pins the retained
+protocol dependency to `50.0.2`, removes the obsolete AWS service code, and
+passes the Python suite against the patched release. Confirm Dependabot closes
+the active alerts after merge and clear any alerts that still reference the
+removed AWS manifest. GitHub Actions also needs a successful run so release
+confidence is based on both local and hosted validation.
 
 ## RTS product roadmap
 

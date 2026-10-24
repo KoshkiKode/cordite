@@ -172,22 +172,18 @@ The repository does not deploy to AWS. Current release paths are:
 
 Managed hosting, when needed, will use Google Cloud, with GoDaddy providing DNS.
 
-## Licensing system (secret storage, not GitHub)
+## Licensing system (not currently hosted)
 
-The license-key system uses one Ed25519 keypair stored **outside GitHub**
-and one constant baked into the game binary:
+The game includes the client-side license protocol, but no hosted activation,
+renewal, or checkout service is currently deployed. Keep any development
+Ed25519 private key outside GitHub and outside the repository:
 
 | Where | What | How to populate |
 |-------|------|-----------------|
-| Secret store: `license-signing` | Ed25519 keypair JSON (PEM) | `python3 tools/license_keygen.py generate-signing-key`; store it in Google Secret Manager when the backend is hosted there, or keep it offline during development |
+| Secure offline storage (development) | Ed25519 private key | `python3 tools/license_keygen.py generate-signing-key`; store it outside the repository |
 | `src/Core/Licensing/LicenseConfig.cs` | 32-byte raw public key | `public_key_raw_hex` from the same command — paste as a `byte[]` literal |
-| Secret store: `stripe` | Stripe API key + webhook secret | Already documented above; license issuance fires from the same webhook |
 
-> **Do not regenerate the Ed25519 signing key after launch.** Every issued
-> license and every customer's stored entitlement becomes invalid. See
-> [`docs/licensing.md`](./licensing.md) for the rotation runbook if it's
-> ever unavoidable.
-
-> The previous AWS Secrets Manager copy of these secrets was destroyed with
-> the AWS account. If the Ed25519 keypair was not exported beforehand and no
-> licenses have been issued yet, simply generate a fresh pair.
+Production secrets should use Google Cloud Secret Manager if a licensing
+backend is implemented. Do not enable the game-side licensing gate until a
+compatible service is deployed and a production key lifecycle is established.
+See [`docs/licensing.md`](./licensing.md) for the protocol and current status.

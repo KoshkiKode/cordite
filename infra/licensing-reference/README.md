@@ -1,9 +1,8 @@
 # Licensing reference implementation
 
-This directory contains the shared license-key wire format and the original
-route-level test harness. It is kept as a reference for the game/client
-protocol, not as a deployed cloud stack.
+This directory contains the shared license-key and entitlement wire format
+used by the game client and the local key-generation tool.
 
-Production hosting belongs on Google Cloud (for example Cloud Run,
-Firestore, Secret Manager, and Cloud Storage) with GoDaddy providing DNS.
-The repository does not deploy or require AWS.
+A hosted activation, renewal, and purchase service is not included. Future
+hosting should use Google Cloud (for example Cloud Run, Firestore, and Secret
+Manager) with GoDaddy providing DNS.
