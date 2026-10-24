@@ -1,4 +1,4 @@
-"""Tests for the license-key crypto module shipped with the Lambda."""
+"""Tests for the shared license-key and entitlement protocol."""
 
 from __future__ import annotations
 

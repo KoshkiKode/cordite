@@ -1,6 +1,6 @@
 # Immediate Action Items
 
-Updated: 2026-10-22
+Updated: 2026-10-24
 
 This is the short-term execution queue for Cordite Wars: Six Fronts. The
 broader architecture, product status, and longer roadmap are in
@@ -24,7 +24,13 @@ broader architecture, product status, and longer roadmap are in
 - [x] Made Android release packaging fail closed when signing credentials are
       absent or invalid.
 - [x] Separated unsigned iOS Xcode handoffs from signed IPA artifacts.
-- [x] Verified locally: 1,481 .NET tests, 50 Python tests, release metadata
+- [x] Upgraded the retained Python crypto dependency to `cryptography==50.0.2`
+      and verified the Python suite with that exact version.
+- [x] Removed the retired AWS-specific licensing/checkout handlers and their
+      provider-specific route tests; retained the shared license protocol.
+- [x] Removed the obsolete project-file backup and unreferenced temporary
+      marketing-site prototype.
+- [x] Verified locally: 1,481 .NET tests, 32 Python tests, release metadata
       validation, workflow YAML parsing, and diff hygiene.
 - [x] Opened follow-up PR #182 for the hardening pass.
 
@@ -41,15 +47,13 @@ verified.
 - [ ] Rerun PR #182 checks.
 - [ ] Record the first successful Ubuntu, Windows, macOS, and CodeQL run.
 
-### 2. Resolve open dependency alerts
+### 2. Confirm hosted security and test results
 
-GitHub currently reports three open high-severity and one open medium-severity
-Dependabot alert for Python `cryptography`.
-
-- [ ] Identify the owning dependency manifest or runner environment.
-- [ ] Upgrade to a patched version compatible with the licensing tools.
-- [ ] Run the Python suite and dependency/security validation.
-- [ ] Confirm the alerts close in GitHub.
+The active Python dependency manifest now pins `cryptography==50.0.2`, which
+is newer than the patched versions for the reported advisories. The retired
+AWS handlers and their dependency manifest are no longer part of the project.
+Confirm the active alerts close after merge; dismiss only any residual alerts
+that still point to the removed AWS manifest.
 
 ## Next engineering batch
 

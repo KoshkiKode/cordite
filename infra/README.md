@@ -22,7 +22,7 @@ cloud-provider OIDC credentials for the current release flow.
 The game itself is offline-first and does not require a cloud backend at
 runtime. Licensing and paid downloads are optional distribution services.
 
-The `licensing-reference/` directory contains the shared license wire-format
-implementation and hermetic route tests. It is not a cloud deployment; any
-production service built from it should use Google Cloud services described
-above.
+The `licensing-reference/` directory contains only the shared license
+wire-format implementation. It is not a cloud deployment. A hosted licensing
+service is not currently included; any future service should use Google Cloud
+services described above.

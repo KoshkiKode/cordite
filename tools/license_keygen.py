@@ -4,14 +4,13 @@ license_keygen.py — local CLI for generating Cordite Wars signing keys
 and (optionally) one-off license keys for press, support replacements,
 and dev testing.
 
-The web/checkout flow issues keys *automatically* via the Stripe webhook;
-this tool exists for the bootstrap step (generating the production
-signing key) and for occasional manual issuance.
+No hosted checkout or issuance service is currently deployed. This tool
+generates local development keys and can mint one-off test keys.
 
 Usage
 -----
 
-  # 1. Bootstrap: produce the Ed25519 keypair to paste into Secrets Manager
+  # 1. Bootstrap: produce the Ed25519 keypair for secure offline storage
   #    AND the public key (raw 32-byte hex) to embed in the game binary:
   python3 tools/license_keygen.py generate-signing-key
 
@@ -53,7 +52,7 @@ def cmd_generate_signing_key(args: argparse.Namespace) -> int:
             "public_key_raw_hex": pk_hex,
         }, indent=2))
     else:
-        print("=== PRIVATE KEY (paste into Secrets Manager: <bucket>/license-signing) ===")
+        print("=== PRIVATE KEY (store securely outside the repository) ===")
         print(sk_pem)
         print("=== PUBLIC KEY (PEM) ===")
         print(pk_pem)
