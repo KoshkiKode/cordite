@@ -75,3 +75,36 @@ jobs:
           name: test-results-${{ matrix.os }}
           path: tests/CorditeWars.Tests/TestResults/test-results.trx
           retention-days: 30
+
+      - name: Collect coverage report
+        if: matrix.os == 'ubuntu-latest' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+        shell: bash
+        run: |
+          coverage_file=$(find tests/CorditeWars.Tests/TestResults -name "coverage.cobertura.xml" -print -quit)
+          cp "$coverage_file" coverage.cobertura.xml
+
+      - name: Upload coverage artifact
+        if: matrix.os == 'ubuntu-latest' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage-report-csharp
+          path: coverage.cobertura.xml
+
+  upload-coverage-csharp:
+    needs: test
+    if: ${{ !cancelled() && needs.test.result == 'success' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      code-quality: write
+    steps:
+      - name: Download coverage artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: coverage-report-csharp
+
+      - uses: actions/upload-code-coverage@v1
+        with:
+          file: coverage.cobertura.xml
+          language: C#
+          label: code-coverage-agent
