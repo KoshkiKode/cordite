@@ -58,6 +58,7 @@ temp/
 
 # Test results
 TestResults/
+coverage.cobertura.xml
 
 # Python
 __pycache__/
