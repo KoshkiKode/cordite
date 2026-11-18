@@ -35,7 +35,7 @@ These tool-neutral instructions apply to coding agents working in this repositor
 - The authoritative simulation is deterministic: fixed-point math, seeded xoshiro256** RNG, and a 30 Hz simulation tick. Keep wall-clock time, unseeded randomness, floating-point or platform-dependent behavior out of authoritative simulation paths unless the design explicitly requires and tests it.
 - Keep presentation/UI behavior separate from deterministic simulation behavior. A presentation-only change does not require changing simulation code.
 - Protect third-party asset and source licensing; check repository asset documentation and notices before adding or replacing assets.
-- Model fit: use the cost-first Copilot model at the highest available effort for gameplay changes; deterministic simulation still requires repeatable tests. The Google Cloud preference does not justify adding a backend to this local/LAN game.
+- Deterministic simulation still requires repeatable tests. The Google Cloud preference does not justify adding a backend to this local/LAN game.
 
 ## Validation
 
