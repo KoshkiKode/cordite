@@ -530,6 +530,125 @@ public class LicenseKeyTests
         }
     }
 
+    // --- LicenseGate: boot gate + offline activation ------------------------
+
+    [Theory]
+    [InlineData("steam_appid.txt", StorefrontDetector.Storefront.Steam)]
+    [InlineData("goggame-1234567890.info", StorefrontDetector.Storefront.Gog)]
+    public async Task LicenseGate_StorefrontBuild_SkipsGateWithoutEntitlement(
+        string marker, StorefrontDetector.Storefront expected)
+    {
+        using var tempDir = new TempDir();
+        File.WriteAllText(Path.Combine(tempDir.Path, marker), "{}");
+        var (_, pk) = TestKeyFactory.GenerateKeypair();
+        var store = new EntitlementStore(tempDir.Path, pk);
+
+        var result = await new LicenseGate(store, NoNetworkClient, tempDir.Path).RunAsync();
+
+        Assert.Equal(LicenseGateOutcome.SkippedForStorefront, result.Outcome);
+        Assert.Equal(expected, result.Storefront);
+        Assert.Null(result.Entitlement);
+    }
+
+    [Fact]
+    public async Task LicenseGate_StandaloneWithoutEntitlement_RequestsActivation()
+    {
+        using var tempDir = new TempDir();
+        var (_, pk) = TestKeyFactory.GenerateKeypair();
+        var store = new EntitlementStore(tempDir.Path, pk);
+
+        var result = await new LicenseGate(store, NoNetworkClient, tempDir.Path).RunAsync();
+
+        Assert.Equal(LicenseGateOutcome.NeedsActivation, result.Outcome);
+        Assert.Equal(StorefrontDetector.Storefront.Standalone, result.Storefront);
+        Assert.Null(result.Entitlement);
+        Assert.Contains("no entitlement", result.Message!, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public async Task LicenseGate_ValidEntitlementForThisMachine_IsAlreadyActivated()
+    {
+        using var tempDir = new TempDir();
+        var (sk, pk) = TestKeyFactory.GenerateKeypair();
+        byte[] blob = TestKeyFactory.IssueEntitlement(
+            sk, 42, ThisMachineId(), 1, "h",
+            (uint)DateTimeOffset.UtcNow.ToUnixTimeSeconds());
+        var store = new EntitlementStore(tempDir.Path, pk);
+        store.Save(blob);
+
+        var result = await new LicenseGate(store, NoNetworkClient, tempDir.Path).RunAsync();
+
+        Assert.Equal(LicenseGateOutcome.AlreadyActivated, result.Outcome);
+        Assert.NotNull(result.Entitlement);
+        Assert.Equal(42u, result.Entitlement!.KeyId);
+    }
+
+    [Theory]
+    [InlineData("h")]   // 96-byte blob: base64 needs no padding
+    [InlineData("ho")]  // 97-byte blob: base64 needs "=="
+    [InlineData("hos")] // 98-byte blob: base64 needs "="
+    public void LicenseGate_ApplyOfflineEntitlement_AcceptsUnpaddedBase64UrlWithWhitespace(string hostname)
+    {
+        using var tempDir = new TempDir();
+        var (sk, pk) = TestKeyFactory.GenerateKeypair();
+        // KeyId 0x0FBF0000 puts '+' and '/' in the base64 prefix ("AQ+/"),
+        // so the URL-safe '-'/'_' mapping is always exercised.
+        byte[] blob = TestKeyFactory.IssueEntitlement(
+            sk, 0x0FBF0000, ThisMachineId(), 1, hostname,
+            (uint)DateTimeOffset.UtcNow.ToUnixTimeSeconds());
+        string pasted = "  " + EncodeBase64Url(blob) + "\r\n";
+        var store = new EntitlementStore(tempDir.Path, pk);
+
+        var result = new LicenseGate(store, NoNetworkClient, tempDir.Path).ApplyOfflineEntitlement(pasted);
+
+        Assert.Equal(LicenseGateOutcome.AlreadyActivated, result.Outcome);
+        Assert.NotNull(result.Entitlement);
+        Assert.Equal(0x0FBF0000u, result.Entitlement!.KeyId);
+    }
+
+    [Theory]
+    [InlineData("")]
+    [InlineData("not!a!blob")]
+    public void LicenseGate_ApplyOfflineEntitlement_RejectsUnparseableInput_WithoutWritingStore(string pasted)
+    {
+        using var tempDir = new TempDir();
+        var (_, pk) = TestKeyFactory.GenerateKeypair();
+        var store = new EntitlementStore(tempDir.Path, pk);
+
+        var result = new LicenseGate(store, NoNetworkClient, tempDir.Path).ApplyOfflineEntitlement(pasted);
+
+        Assert.Equal(LicenseGateOutcome.NeedsActivation, result.Outcome);
+        Assert.StartsWith("Could not parse offline entitlement", result.Message!);
+        Assert.False(File.Exists(store.FilePath));
+    }
+
+    [Fact]
+    public void LicenseGate_ApplyOfflineEntitlement_RejectsBlobBoundToAnotherMachine()
+    {
+        using var tempDir = new TempDir();
+        var (sk, pk) = TestKeyFactory.GenerateKeypair();
+        byte[] otherMachine = Enumerable.Repeat((byte)0xAA, 16).ToArray();
+        byte[] blob = TestKeyFactory.IssueEntitlement(
+            sk, 1, otherMachine, 1, "h",
+            (uint)DateTimeOffset.UtcNow.ToUnixTimeSeconds());
+        var store = new EntitlementStore(tempDir.Path, pk);
+
+        var result = new LicenseGate(store, NoNetworkClient, tempDir.Path)
+            .ApplyOfflineEntitlement(EncodeBase64Url(blob));
+
+        Assert.Equal(LicenseGateOutcome.NeedsActivation, result.Outcome);
+        Assert.Null(result.Entitlement);
+        Assert.Contains("different machine", result.Message!, StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static LicenseClient NoNetworkClient() =>
+        throw new InvalidOperationException("Network access is not expected in this test.");
+
+    private static byte[] ThisMachineId() => Convert.FromHexString(MachineFingerprint.Compute());
+
+    private static string EncodeBase64Url(byte[] data) =>
+        Convert.ToBase64String(data).TrimEnd('=').Replace('+', '-').Replace('/', '_');
+
     // --- helpers ------------------------------------------------------------
 
     private sealed class TempDir : IDisposable
